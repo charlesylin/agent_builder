@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/agent-handoff-v1.json",
+  "title": "Compact agent handoff",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "handoff_id",
+    "created_at",
+    "source_agent",
+    "status",
+    "summary",
+    "decisions",
+    "artifacts",
+    "blockers",
+    "questions",
+    "next_action"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "handoff_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_agent": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "target_agent": {
+      "type": ["string", "null"],
+      "maxLength": 100
+    },
+    "status": {
+      "enum": ["complete", "in_progress", "blocked", "needs_input"]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "decisions": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "status", "summary"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1, "maxLength": 100},
+          "status": {"enum": ["proposed", "confirmed", "rejected", "superseded"]},
+          "confidence": {"enum": ["high", "medium", "low"]},
+          "summary": {"type": "string", "minLength": 1, "maxLength": 300}
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "media_type"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1, "maxLength": 500},
+          "media_type": {"type": "string", "minLength": 1, "maxLength": 100},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {"type": "string", "minLength": 1, "maxLength": 300}
+    },
+    "questions": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {"type": "string", "minLength": 1, "maxLength": 300}
+    },
+    "next_action": {
+      "type": ["string", "null"],
+      "maxLength": 300
+    }
+  }
+}

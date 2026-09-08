@@ -1,0 +1,24 @@
+# Contracts
+
+Contracts describe what crosses agent and system boundaries. Keep them independent of model
+providers and runtime frameworks, version them explicitly, and validate them in deterministic
+code before use.
+
+## Agent handoff
+
+`schemas/agent-handoff.schema.json` defines the compact machine-to-machine handoff envelope.
+It carries only coordination state: status, summary, decisions, artifacts, blockers, questions,
+and the next action. It must never contain chain-of-thought, credential values, or unrestricted
+copies of sensitive source data.
+
+Human-facing closeouts remain Markdown or standalone HTML and provide more explanation.
+
+## Adding a contract
+
+For each API, MCP tool, message, persisted record, or exchanged file:
+
+1. identify the producer and consumer;
+2. define and validate the smallest stable schema;
+3. state authority, sensitivity, size, timeout, retry, and failure behavior;
+4. include a synthetic example and deterministic contract test; and
+5. version breaking changes and document migration or coordinated rollout.

@@ -1,0 +1,18 @@
+# Deployment profile
+
+The approved target is a standalone OCI container with Docker Compose as the default local
+orchestration format. Version {{TEMPLATE_VERSION}} does not create a Dockerfile or Compose
+service because this project has not selected a runtime.
+
+When the runtime is approved, the deployment profile should define:
+
+- a minimal trusted base image pinned by digest and rebuilt for security updates;
+- locked Python and system dependencies using a multi-stage build;
+- non-root execution, a read-only filesystem where feasible, and external durable volumes;
+- explicit health and readiness checks plus CPU, memory, and restart limits;
+- narrowly scoped network access and runtime-injected secrets;
+- one primary concern per container, separating agents, MCP servers, databases, and
+  untrusted-code sandboxes when their permissions differ; and
+- deterministic image build, test, provenance, and rollback commands.
+
+Do not put secret values in Compose files, build arguments, image layers, or the build context.

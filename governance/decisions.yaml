@@ -1,0 +1,58 @@
+schema_version: 1
+decisions:
+  - id: AB-D001
+    status: confirmed
+    date: 2026-09-08
+    decision: Use Define, Plan, Build, and Review phases with explicit author transitions.
+  - id: AB-D002
+    status: confirmed
+    date: 2026-09-08
+    decision: Reserve model reasoning for orchestration and use deterministic Python for repeatable work.
+  - id: AB-D003
+    status: confirmed
+    date: 2026-09-08
+    decision: Search for validated open-source solutions before implementing bespoke capabilities.
+  - id: AB-D004
+    status: confirmed
+    date: 2026-09-08
+    decision: Keep core contracts independent of coding agents, model providers, and runtimes.
+  - id: AB-D005
+    status: confirmed
+    date: 2026-09-08
+    decision: Select Codex, Claude Code, and Gemini CLI adapters during project initialization.
+  - id: AB-D006
+    status: confirmed
+    date: 2026-09-08
+    decision: Use concise Markdown or standalone HTML for humans and compact JSON or YAML for agents.
+  - id: AB-D007
+    status: confirmed
+    date: 2026-09-08
+    decision: Never expose tokens, secrets, keys, or credential values.
+  - id: AB-D008
+    status: confirmed
+    date: 2026-09-08
+    decision: Limit v0.1 to governance and project scaffolding; defer runtime selection.
+  - id: AB-D009
+    status: confirmed
+    date: 2026-09-08
+    decision: Permit reuse of any legitimately open-source component while recording license obligations.
+  - id: AB-D010
+    status: confirmed
+    date: 2026-09-08
+    decision: Deploy generated agents as standalone OCI containers with Docker Compose as the local default.
+  - id: AB-D011
+    status: confirmed
+    date: 2026-09-08
+    decision: Require compatibility at external contracts rather than inside each agent implementation.
+  - id: AB-D012
+    status: confirmed
+    date: 2026-09-08
+    decision: Do not mutate generated projects when Agent Builder changes; upgrades are explicit and opt-in.
+  - id: AB-D013
+    status: confirmed
+    date: 2026-09-08
+    decision: Determine practical v0.1 acceptance criteria by building and reviewing the first real agent.
+  - id: AB-D014
+    status: confirmed
+    date: 2026-09-08
+    decision: Use a portable runtime core with explicitly declared provider-specific extensions.

@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "handoff_id": "{{PROJECT_SLUG}}-handoff-001",
+  "created_at": {{GENERATED_AT_JSON}},
+  "source_agent": "definition-agent",
+  "target_agent": "planning-agent",
+  "status": "needs_input",
+  "summary": "Initial project definition is drafted; author confirmation is required.",
+  "decisions": [
+    {
+      "id": "{{PROJECT_SLUG}}-D001",
+      "status": "confirmed",
+      "confidence": "high",
+      "summary": {{PURPOSE_JSON}}
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "governance/project-state.yaml",
+      "media_type": "application/yaml"
+    }
+  ],
+  "blockers": [],
+  "questions": [
+    "Has the project author approved transition from Define to Plan?"
+  ],
+  "next_action": "Obtain explicit phase approval."
+}

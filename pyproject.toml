@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agent-builder-template"
+version = "0.1.0"
+description = "Governance-first scaffolding for lean, predictable agents"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Charles Yang Lin" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "prek==0.4.11",
+  "ruff==0.16.6",
+]
+
+[project.scripts]
+agent-builder = "agent_builder.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agent_builder"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

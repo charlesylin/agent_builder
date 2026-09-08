@@ -1,0 +1,34 @@
+"""Dependency-free checks for the generated project contract."""
+
+from __future__ import annotations
+
+import json
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class ScaffoldTests(unittest.TestCase):
+    def test_machine_handoff_example_contains_required_fields(self) -> None:
+        schema = json.loads(
+            (ROOT / "contracts/schemas/agent-handoff.schema.json").read_text(encoding="utf-8")
+        )
+        example = json.loads(
+            (ROOT / "contracts/examples/agent-handoff.example.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(set(schema["required"]) - set(example), set())
+
+    def test_new_project_starts_in_define(self) -> None:
+        state = (ROOT / "governance/project-state.yaml").read_text(encoding="utf-8")
+        self.assertIn("  current: define\n", state)
+
+    def test_runtime_is_not_selected(self) -> None:
+        metadata = json.loads((ROOT / ".agent-builder.json").read_text(encoding="utf-8"))
+        self.assertIsNone(metadata["runtime_profile"])
+        self.assertFalse((ROOT / "Dockerfile").exists())
+        self.assertFalse((ROOT / "compose.yaml").exists())
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -1,0 +1,42 @@
+schema_version: 1
+project:
+  id: {{PROJECT_SLUG_JSON}}
+  name: {{PROJECT_NAME_JSON}}
+  purpose: {{PURPOSE_JSON}}
+  generated_by:
+    template: agent-builder
+    version: "{{TEMPLATE_VERSION}}"
+    generated_at: "{{GENERATED_AT}}"
+  coding_agent_adapters:
+{{ADAPTERS_YAML}}
+
+phase:
+  current: define
+  status: awaiting_definition
+  transition_requires: explicit_project_author_invocation_or_confirmation
+  inferred_transitions_permitted: false
+  history:
+    - phase: define
+      effective_date: {{GENERATED_DATE}}
+      basis: Project scaffold created; definition not yet approved.
+
+runtime:
+  selected: false
+  profile: null
+  selection_phase: plan
+
+deployment:
+  container_standard: OCI
+  local_orchestration: docker_compose
+  artifacts_generated: false
+  reason: Runtime selection is deliberately deferred.
+
+compatibility:
+  internal_backward_compatibility_required: false
+  external_contracts_versioned: true
+  template_updates_automatic: false
+
+security:
+  secret_values_in_repository: forbidden
+  secret_values_in_model_context: forbidden
+  runtime_injection_required: true

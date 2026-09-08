@@ -29,6 +29,15 @@ htmlcov/
 .env
 .env.*
 !.env.example
+!**/.env.example.tmpl
+.secrets/
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+service-account*.json
 
 # Logs and temporary files
 *.log
@@ -37,3 +46,6 @@ htmlcov/
 # Editors
 .idea/
 .vscode/
+
+# Generated acceptance fixtures
+.generated/

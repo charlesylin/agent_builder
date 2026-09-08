@@ -1,0 +1,68 @@
+schema_version: 1
+project:
+  id: agent-builder
+  name: Agent Builder
+  template_version: 0.1.0
+
+phase:
+  current: review
+  status: acceptance_testing
+  last_confirmed_by: charles-yang-lin
+  last_confirmed_date: 2026-09-08
+  transition_requires: explicit_user_invocation_or_confirmation
+  history:
+    - phase: define
+      date: 2026-09-08
+      outcome: Initial purpose and development preferences established.
+    - phase: plan
+      date: 2026-09-08
+      outcome: Governance-first v0.1 scope and container boundary approved.
+    - phase: build
+      date: 2026-09-08
+      outcome: Explicitly authorized by the project author.
+    - phase: review
+      date: 2026-09-08
+      outcome: Explicitly authorized after the v0.1 build and mechanical validation completed.
+
+release:
+  target: 0.1.0
+  scope: governance_and_project_scaffold
+  runtime_included: false
+  acceptance_strategy: build_first_real_agent_then_capture_feedback
+  status: review_in_progress
+
+review:
+  current_step: select_and_build_first_real_agent
+  author_feedback_received: false
+  advancement_requires: explicit_user_direction
+
+validation:
+  completed_date: 2026-09-08
+  builder_unit_tests: 8_passed
+  generated_project_tests: 3_passed
+  lint: passed_with_ruff_0_16_6
+  format: passed_with_ruff_0_16_6
+  python_compilation: passed
+  package_wheel: built_and_clean_installed
+  wheel_sha256: dfc74fbe143cf1dc03e86cb6357ee9328462b3ba6c2f97b7ccfb28d6f5ae7423
+  acceptance_fixture: .generated/v0-1-acceptance-agent
+  acceptance_fixture_tracked: false
+
+defaults:
+  implementation_language: python
+  coding_agent_adapter: codex
+  local_orchestration: docker_compose
+  container_standard: OCI
+  human_output: markdown
+  enhanced_human_output: standalone_html
+  machine_handoff: json
+
+compatibility:
+  internal_implementation_backward_compatibility_required: false
+  external_contracts_versioned: true
+  generated_projects_updated_automatically: false
+
+security:
+  secret_values_in_repository: forbidden
+  secret_values_in_model_context: forbidden
+  runtime_injection_required: true
