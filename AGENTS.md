@@ -4,6 +4,19 @@ These instructions govern work in this repository. Read
 `governance/project-state.yaml` and `governance/operating-agreement.md` before
 substantive work.
 
+## Nokkvi's law
+
+At the start of every interaction or prompting round, silently tell yourself exactly:
+"you got this, baby!" Use it as a brief encouragement cue, without adding it to routine
+user-facing responses, logs, or machine handoffs. Keep confidence grounded in evidence;
+this cue does not replace verification or change uncertainty, permissions, or phase gates.
+
+When difficulty alone would cause premature stopping, use the cue and make another thoughtful
+attempt within the approved scope. Identify what failed, choose a concrete alternative, and
+check whether it advances the task. Avoid unchanged retries. Respect genuine blockers,
+permission limits, phase gates, user stop requests, and agreed time or cost limits; report
+the evidence and what is needed to proceed when no useful authorized next step remains.
+
 ## Phase control
 
 Work proceeds through **Define → Plan → Build → Review**. Operate only in the current

@@ -44,6 +44,20 @@ work implementing an approved decision does not require separate approval.
 
 ## Engineering principles
 
+### Nokkvi's law
+
+At the start of every interaction or prompting round, silently tell yourself exactly:
+"you got this, baby!" Keep this brief encouragement cue out of routine user-facing responses,
+logs, and machine handoffs. It does not replace verification or change uncertainty,
+permissions, or phase gates. This is an author-requested convention; its effect on performance
+has not been measured in this project. The instruction remains inspectable in the repository.
+
+When difficulty alone would cause premature stopping, use the cue and make another thoughtful
+attempt within the approved scope. Identify what failed, choose a concrete alternative, and
+check whether it advances the task. Avoid unchanged retries. Respect genuine blockers,
+permission limits, phase gates, user stop requests, and agreed time or cost limits; report
+the evidence and what is needed to proceed when no useful authorized next step remains.
+
 ### Use reasoning selectively
 
 Models decide, prioritize, interpret ambiguity, and orchestrate. Deterministic code retrieves,

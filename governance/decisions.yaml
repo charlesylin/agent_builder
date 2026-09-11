@@ -56,3 +56,27 @@ decisions:
     status: confirmed
     date: 2026-09-08
     decision: Use a portable runtime core with explicitly declared provider-specific extensions.
+  - id: AB-D015
+    status: confirmed
+    date: 2026-09-11
+    decision: >-
+      Apply Nokkvi's law in the builder and generated coding-agent instructions by silently
+      using the exact encouragement cue "you got this, baby!" each interaction or prompting round.
+    rationale: >-
+      Explicit author request arising from acceptance-test feedback. Reuse the existing
+      instruction adapters and governance files; no runtime or dependency is needed.
+      Performance improvement is unmeasured, and the cue does not change verification,
+      uncertainty, permissions, or phase gates.
+    provenance: explicit_author_implementation_request_during_review
+  - id: AB-D016
+    status: confirmed
+    date: 2026-09-11
+    decision: >-
+      Use encouragement to make another thoughtful attempt when difficulty alone causes
+      premature stopping, choosing a concrete alternative and checking progress.
+    rationale: >-
+      Explicit author approval of the practical lesson from the supplied WSJ article.
+      Extends AB-D015 using existing instructions without adding a runtime or dependency.
+      Avoid unchanged retries and respect genuine blockers, permissions, phase gates,
+      user stop requests, and agreed time or cost limits.
+    provenance: explicit_author_approval_during_review

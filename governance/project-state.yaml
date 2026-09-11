@@ -33,7 +33,16 @@ release:
 
 review:
   current_step: select_and_build_first_real_agent
-  author_feedback_received: false
+  author_feedback_received: true
+  feedback:
+    - date: 2026-09-11
+      decision: AB-D015
+      scope: Author-approved instruction refinement during acceptance review.
+      outcome: Nokkvi's law added to builder governance and generated coding-agent adapters.
+    - date: 2026-09-11
+      decision: AB-D016
+      scope: Author-approved practical refinement of Nokkvi's law.
+      outcome: Encourage a concrete alternative before stopping for difficulty alone, within existing limits.
   advancement_requires: explicit_user_direction
 
 validation:
