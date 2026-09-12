@@ -32,7 +32,7 @@ release:
   status: review_in_progress
 
 review:
-  current_step: select_and_build_first_real_agent
+  current_step: resume_acceptance_review_and_collect_feedback
   author_feedback_received: true
   feedback:
     - date: 2026-09-11
@@ -44,6 +44,15 @@ review:
       scope: Author-approved practical refinement of Nokkvi's law.
       outcome: Encourage a concrete alternative before stopping for difficulty alone, within existing limits.
   advancement_requires: explicit_user_direction
+
+checkpoint:
+  date: 2026-09-12
+  status: paused_by_author_for_cross_account_resume
+  phase_changed: false
+  human_handoff: docs/RESUME.md
+  machine_handoff: governance/handoff.json
+  next_action: Recover repository context in the new session and review feedback with the author.
+  runtime_implementation_approved: false
 
 validation:
   completed_date: 2026-09-08

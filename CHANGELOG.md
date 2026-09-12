@@ -6,6 +6,9 @@ All notable changes to Agent Builder are documented here.
 
 ### Added
 
+- Repository restart guide and compact handoff for resuming Review across accounts and hosts.
+- Sean's Windows test packet and proposed onboarding/existing-project adoption review notes.
+
 - Nokkvi's law: a silent per-turn encouragement cue in builder instructions and generated
   Codex, Claude Code, and Gemini CLI adapters. Performance impact remains unmeasured.
 - Practical persistence guidance: try a concrete alternative when difficulty causes premature

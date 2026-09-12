@@ -48,7 +48,21 @@ agent-builder validate ../my-agent
 The initializer refuses to write to an existing path. This makes generation predictable
 and prevents accidental overwrites.
 
-## Development
+## Resume development in another account or agent
+
+Clone this repository's current `main` branch and open the repository itself as your project.
+Read [the restart handoff](docs/RESUME.md). Use this prompt in the new session:
+
+> Resume work on Agent Builder. Read AGENTS.md, governance/project-state.yaml,
+> governance/operating-agreement.md, governance/decisions.yaml, and docs/RESUME.md.
+> Summarize the current phase, confirmed decisions, pending feedback, and next recommended
+> step. Stay in Review until I explicitly approve a transition. Do not assume access to
+> earlier conversations or begin implementing a runtime.
+
+If your environment cannot access the clone, provide those files explicitly. Repository
+access does not transfer previous chat history, credentials, or account configuration.
+
+## Development checks
 
 ```sh
 python3 -m unittest discover -s tests -v

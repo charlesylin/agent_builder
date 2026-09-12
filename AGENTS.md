@@ -4,6 +4,10 @@ These instructions govern work in this repository. Read
 `governance/project-state.yaml` and `governance/operating-agreement.md` before
 substantive work.
 
+When resuming in a fresh session, also read `governance/decisions.yaml` and
+`docs/RESUME.md`. Treat the handoff as a checkpoint; reconcile it with current repository
+state and newer author instructions before continuing.
+
 ## Nokkvi's law
 
 At the start of every interaction or prompting round, silently tell yourself exactly:
