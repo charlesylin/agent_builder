@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-plan-v0-2-drafted-2026-09-13",
-  "created_at": "2026-09-13T23:30:00Z",
+  "handoff_id": "agent-builder-build-v0-2-2026-09-13",
+  "created_at": "2026-09-14T00:05:00Z",
   "source_agent": "agent-builder-claude",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Plan for v0.2 drafted; phase is Plan by explicit author authorization. Define decisions AB-D019..024 confirmed; AB-D018 superseded. Plan answers the open questions, sequences eight Build commits B1..B8, and proposes AB-D025..029. Read docs/v0-2-define.md then docs/v0-2-plan.md. Build requires explicit author authorization after the section 6 double-check.",
+  "summary": "Build for v0.2 authorized by the author on 2026-09-13. All Define and Plan decisions AB-D019..029 confirmed. Execute B1..B8 from docs/v0-2-plan.md, one commit per step, tests green after each; governance/project-state.yaml next_release.build_steps_done tracks progress. The author pushes.",
   "decisions": [
     {
       "id": "AB-D019",
@@ -29,27 +29,17 @@
     },
     {
       "id": "AB-D025",
-      "status": "proposed",
+      "status": "confirmed",
       "summary": "Python floor 3.9."
     },
     {
       "id": "AB-D026",
-      "status": "proposed",
+      "status": "confirmed",
       "summary": "Self-contained scripts; retire src/agent_builder in B5."
     },
     {
-      "id": "AB-D027",
-      "status": "proposed",
-      "summary": "This repo is its own plugin marketplace."
-    },
-    {
-      "id": "AB-D028",
-      "status": "proposed",
-      "summary": "Codex best-effort."
-    },
-    {
       "id": "AB-D029",
-      "status": "proposed",
+      "status": "confirmed",
       "summary": "Build as eight green commits B1..B8."
     }
   ],
@@ -88,9 +78,6 @@
     }
   ],
   "blockers": [],
-  "questions": [
-    "Do AB-D025 through AB-D029 stand as written?",
-    "Authorize Build starting at B1?"
-  ],
-  "next_action": "Author double-checks docs/v0-2-plan.md section 6 and explicitly authorizes Build. Do not start B1 before then."
+  "questions": [],
+  "next_action": "Execute the next undone step in build_steps per docs/v0-2-plan.md as one commit with tests green, then stop and report."
 }

@@ -5,8 +5,8 @@ project:
   template_version: 0.1.0
 
 phase:
-  current: plan
-  status: plan_drafted_pending_author_double_check
+  current: build
+  status: executing_b1_of_b8
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation
@@ -37,6 +37,12 @@ phase:
     - phase: plan
       date: 2026-09-13
       outcome: Explicitly authorized by the project author. Plan record docs/v0-2-plan.md.
+    - phase: plan
+      date: 2026-09-13
+      outcome: Closed. AB-D025 through AB-D029 confirmed.
+    - phase: build
+      date: 2026-09-13
+      outcome: Explicitly authorized by the project author. Executes B1 through B8 in docs/v0-2-plan.md, one commit each.
 
 release:
   target: 0.1.0
@@ -67,8 +73,9 @@ next_release:
     - id: build
       summary: build/render.py assembles generated files from principles/; a CI test fails on drift.
   kinds: [agent, skill]
-  confirmed_decisions: [AB-D019, AB-D020, AB-D021, AB-D022, AB-D023, AB-D024]
-  proposed_decisions: [AB-D025, AB-D026, AB-D027, AB-D028, AB-D029]
+  confirmed_decisions: [AB-D019, AB-D020, AB-D021, AB-D022, AB-D023, AB-D024, AB-D025, AB-D026, AB-D027, AB-D028, AB-D029]
+  build_steps: [B1, B2, B3, B4, B5, B6, B7, B8]
+  build_steps_done: []
   inputs_resolved:
     - id: F-001
       resolution: Skill is discovered by trigger; seeded repos carry in-repo skill pointers.
@@ -86,14 +93,13 @@ next_release:
 
 checkpoint:
   date: 2026-09-13
-  status: plan_drafted_pending_author_double_check
+  status: build_in_progress
   phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Author works through the double-check list in docs/v0-2-plan.md section 6, confirms or
-    amends AB-D025 through AB-D029, and explicitly authorizes Build. Build then executes
-    B1 through B8 in order.
+    Execute the next undone step in next_release.build_steps per docs/v0-2-plan.md, one commit
+    per step, tests green after each. Stop and report after every step; the author pushes.
   runtime_implementation_approved: false
 
 validation:

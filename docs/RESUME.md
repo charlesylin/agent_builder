@@ -58,23 +58,22 @@ Two findings were carried forward rather than treated as blockers:
 
 The scheduling-agent test remains abandoned; do not resume it here.
 
-## Current phase: Plan for v0.2 — drafted, pending author double-check
+## Current phase: Build for v0.2
 
-Define closed on 2026-09-13; the author confirmed AB-D019 through AB-D024 and authorized Plan.
-Read `docs/v0-2-define.md` (what and why) and then `docs/v0-2-plan.md` (how, in what order).
+Plan closed on 2026-09-13; the author confirmed AB-D025 through AB-D029 and authorized Build.
+Read `docs/v0-2-define.md` (what and why) then `docs/v0-2-plan.md` (the eight steps B1–B8).
 
-The Plan answers Define's seven open questions, lays out eight small Build commits B1–B8 that
-each leave the tests green, and records five further decisions AB-D025 through AB-D029 as
-`proposed`. The author has a double-check list in the Plan's section 6. Build starts only when
-the author explicitly authorizes it. Do not begin B1 before then.
+`next_release.build_steps_done` in `governance/project-state.yaml` records which steps have
+landed. Execute the next one only, as a single commit, with the test suite green afterward.
+Stop and report after each step. The author pushes. Do not skip ahead, combine steps, or delete
+anything before its replacement is tested.
 
 Open proposals preserved from Review, none of them confirmed product scope:
 
 - `docs/onboarding-kit-review.md` — not in v0.2.
 - `docs/existing-project-review.md` — not in v0.2; the future `project` kind is its likely home.
 - `docs/COWORK_EXISTING_PROJECT_ADOPTION.md` — derived from `1057a49`, predates Nokkvi's law.
-- `docs/SEAN_CODEX_TEST_PACKET.md` — preserves the `1057a49` baseline. Leave Sean's project
-  as-is (Plan answer 7).
+- `docs/SEAN_CODEX_TEST_PACKET.md` — preserves the `1057a49` baseline. Leave Sean's project as-is.
 
 ## Open item outside the phase
 
@@ -100,5 +99,4 @@ adherence, performance, or Windows, Claude, or ChatGPT behavior. They were not r
 
 ## Next action
 
-Walk the author through the double-check list in `docs/v0-2-plan.md` §6. Record any amendments.
-On explicit authorization, begin Build at B1 and stop after each step for tests to pass.
+Execute the next undone Build step from `docs/v0-2-plan.md`. One commit. Tests green. Report.

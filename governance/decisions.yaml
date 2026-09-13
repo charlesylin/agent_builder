@@ -208,8 +208,11 @@ decisions:
     provenance: author_direction_during_v0_2_define
     record: docs/v0-2-define.md
   - id: AB-D025
-    status: proposed
+    status: confirmed
     date: 2026-09-13
+    confirmed_date: 2026-09-13
+    confirmed_by: charles-yang-lin
+    confirmation: Author approved the Plan record and authorized Build on 2026-09-13.
     decision: Python floor is 3.9 for all shipped scripts.
     rationale: >-
       macOS system Python is 3.9; the only 3.10+ constructs in the code are slots=True on two
@@ -217,8 +220,11 @@ decisions:
     provenance: plan_recommendation
     record: docs/v0-2-plan.md
   - id: AB-D026
-    status: proposed
+    status: confirmed
     date: 2026-09-13
+    confirmed_date: 2026-09-13
+    confirmed_by: charles-yang-lin
+    confirmation: Author approved the Plan record and authorized Build on 2026-09-13.
     decision: >-
       seed.py, check.py, and render.py are self-contained single files. src/agent_builder/
       and the pip console-script entry point are retired in Build step B5.
@@ -228,15 +234,21 @@ decisions:
     provenance: plan_recommendation
     record: docs/v0-2-plan.md
   - id: AB-D027
-    status: proposed
+    status: confirmed
     date: 2026-09-13
+    confirmed_date: 2026-09-13
+    confirmed_by: charles-yang-lin
+    confirmation: Author approved the Plan record and authorized Build on 2026-09-13.
     decision: This repository is its own plugin marketplace via .claude-plugin/marketplace.json.
     rationale: Simplest working arrangement; an org-wide marketplace repo can reference it later.
     provenance: plan_recommendation
     record: docs/v0-2-plan.md
   - id: AB-D028
-    status: proposed
+    status: confirmed
     date: 2026-09-13
+    confirmed_date: 2026-09-13
+    confirmed_by: charles-yang-lin
+    confirmation: Author approved the Plan record and authorized Build on 2026-09-13.
     decision: >-
       Codex support is best-effort in v0.2: the same skill folder, one recorded smoke test,
       not a gating success signal.
@@ -244,8 +256,11 @@ decisions:
     provenance: plan_recommendation
     record: docs/v0-2-plan.md
   - id: AB-D029
-    status: proposed
+    status: confirmed
     date: 2026-09-13
+    confirmed_date: 2026-09-13
+    confirmed_by: charles-yang-lin
+    confirmation: Author approved the Plan record and authorized Build on 2026-09-13.
     decision: >-
       Build proceeds as the eight commits B1 through B8 in docs/v0-2-plan.md, each leaving the
       test suite green and independently revertible. B5 may be split in two.
