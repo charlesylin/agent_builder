@@ -6,9 +6,9 @@ project:
 
 phase:
   current: review
-  status: acceptance_testing
+  status: closed
   last_confirmed_by: charles-yang-lin
-  last_confirmed_date: 2026-09-08
+  last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation
   history:
     - phase: define
@@ -23,17 +23,30 @@ phase:
     - phase: review
       date: 2026-09-08
       outcome: Explicitly authorized after the v0.1 build and mechanical validation completed.
+    - phase: review
+      date: 2026-09-13
+      outcome: Closed. v0.1 accepted by the project author under AB-D017.
 
 release:
   target: 0.1.0
   scope: governance_and_project_scaffold
   runtime_included: false
   acceptance_strategy: build_first_real_agent_then_capture_feedback
-  status: review_in_progress
+  status: accepted
+  accepted_date: 2026-09-13
+  accepted_by: charles-yang-lin
+  decision: AB-D017
+  tag: v0.1.0
+  acceptance_record: docs/v0-1-acceptance.md
 
 review:
-  current_step: resume_acceptance_review_and_collect_feedback
+  current_step: closed
+  closed_date: 2026-09-13
   author_feedback_received: true
+  outcome: >-
+    Author confirmed Agent Builder works as intended, based on Sean's generated sourcing
+    project and additional use cases outside this repository. Supporting transcripts and
+    repositories are not published here.
   feedback:
     - date: 2026-09-11
       decision: AB-D015
@@ -43,16 +56,17 @@ review:
       decision: AB-D016
       scope: Author-approved practical refinement of Nokkvi's law.
       outcome: Encourage a concrete alternative before stopping for difficulty alone, within existing limits.
-  advancement_requires: explicit_user_direction
-
-checkpoint:
-  date: 2026-09-12
-  status: paused_by_author_for_cross_account_resume
-  phase_changed: false
-  human_handoff: docs/RESUME.md
-  machine_handoff: governance/handoff.json
-  next_action: Recover repository context in the new session and review feedback with the author.
-  runtime_implementation_approved: false
+    - date: 2026-09-13
+      decision: AB-D017
+      scope: Author acceptance of v0.1 based on Sean's test and other use cases.
+      outcome: Review closed; two findings carried into v0.2 rather than treated as blockers.
+  findings:
+    - id: F-001
+      summary: Cross-account resume succeeded but required an author-supplied prompt naming the files to read.
+      record: docs/v0-1-acceptance.md
+    - id: F-002
+      summary: Builder requires host Python 3.11+ with no preflight check, container, or explanatory failure.
+      record: docs/v0-1-acceptance.md
 
 validation:
   completed_date: 2026-09-08
@@ -65,6 +79,8 @@ validation:
   wheel_sha256: dfc74fbe143cf1dc03e86cb6357ee9328462b3ba6c2f97b7ccfb28d6f5ae7423
   acceptance_fixture: .generated/v0-1-acceptance-agent
   acceptance_fixture_tracked: false
+  reverified_date: 2026-09-12
+  reverified_scope: tests_and_compilation_only_under_python_3_14_0
 
 defaults:
   implementation_language: python

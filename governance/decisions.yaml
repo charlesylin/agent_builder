@@ -80,3 +80,17 @@ decisions:
       Avoid unchanged retries and respect genuine blockers, permissions, phase gates,
       user stop requests, and agreed time or cost limits.
     provenance: explicit_author_approval_during_review
+  - id: AB-D017
+    status: confirmed
+    date: 2026-09-13
+    decision: >-
+      Accept Agent Builder v0.1, close the Review phase, and tag release 0.1.0 at the
+      validated dependency pins.
+    rationale: >-
+      Satisfies AB-D013, which made acceptance criteria depend on building and reviewing a
+      real agent. The author confirmed that Agent Builder works as intended, based on Sean's
+      generated sourcing project taken through Define and Plan and on additional author use
+      cases outside this repository. Those transcripts and repositories are not published
+      here. Findings F-001 and F-002 in docs/v0-1-acceptance.md are carried into v0.2 rather
+      than treated as acceptance blockers.
+    provenance: explicit_author_acceptance

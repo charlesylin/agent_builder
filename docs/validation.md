@@ -2,7 +2,8 @@
 
 **Build validation date:** 2026-09-08
 
-**Status:** Mechanical validation passed; realistic author acceptance pending.
+**Status:** Mechanical validation passed. Author acceptance was confirmed on 2026-09-13
+under AB-D017; see [the acceptance record](v0-1-acceptance.md).
 
 ## Automated evidence
 
@@ -39,6 +40,6 @@ The built-in validator performs fast structural checks. It does not fully evalua
 edited YAML, prove JSON Schema semantics, detect every possible secret format, or assess agent
 behavior. Those limits are explicit rather than hidden behind a broad correctness claim.
 
-Practical acceptance will come from creating one real agent, following the workflow through
-its phases, and recording friction, missing instructions, unnecessary files, and inconsistent
-behavior. That feedback will define the next acceptance suite.
+Practical acceptance came from creating real agents outside this repository and recording
+friction rather than from this structural suite. That outcome, and the two findings it
+surfaced, are recorded in [the acceptance record](v0-1-acceptance.md).

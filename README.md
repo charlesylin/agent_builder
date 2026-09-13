@@ -85,9 +85,10 @@ See [the architecture](docs/architecture.md),
 
 ## Status
 
-Version 0.1 is in the Review phase. Mechanical validation has passed; user acceptance will
-come from building the first real agent with the scaffold. Generated projects record the
-Agent Builder version they came from; later releases never silently rewrite them.
+Version 0.1.0 was accepted by the project author on 2026-09-13 and is tagged `v0.1.0`. It
+supplies governance and scaffolding only. See [the acceptance record](docs/v0-1-acceptance.md)
+for what acceptance rested on and the two findings carried forward. Generated projects record
+the Agent Builder version they came from; later releases never silently rewrite them.
 
 ## License
 
