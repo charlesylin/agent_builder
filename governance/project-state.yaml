@@ -5,8 +5,8 @@ project:
   template_version: 0.1.0
 
 phase:
-  current: review
-  status: closed
+  current: define
+  status: scoping_v0_2
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation
@@ -26,6 +26,11 @@ phase:
     - phase: review
       date: 2026-09-13
       outcome: Closed. v0.1 accepted by the project author under AB-D017.
+    - phase: define
+      date: 2026-09-13
+      outcome: >-
+        Explicitly authorized by the project author after v0.1 acceptance.
+        v0.2 scope is open and not yet determined.
 
 release:
   target: 0.1.0
@@ -38,6 +43,43 @@ release:
   decision: AB-D017
   tag: v0.1.0
   acceptance_record: docs/v0-1-acceptance.md
+
+next_release:
+  target: 0.2.0
+  scope: undetermined
+  scope_status: open_for_define
+  runtime_included: undetermined
+  note: >-
+    The following are unprioritized inputs to Define. None is confirmed scope, and none
+    implies a solution. Define establishes purpose, users, boundaries, non-goals, authority,
+    risks, and success signals before any of these is designed.
+  candidate_inputs:
+    - id: F-001
+      summary: Unprompted instruction discovery, so resume does not depend on an author-supplied file list.
+      source: docs/v0-1-acceptance.md
+    - id: F-002
+      summary: Host prerequisites for running Agent Builder itself. See AB-D018 (proposed).
+      source: docs/v0-1-acceptance.md
+    - id: AB-R001
+      summary: Employee onboarding kit review, including authoring hosts and instruction enforcement.
+      source: docs/onboarding-kit-review.md
+    - id: AB-R004
+      summary: Adoption into existing non-agent projects while preserving their phase and decisions.
+      source: docs/existing-project-review.md
+    - id: AB-D008
+      summary: Runtime and environment profiles, deliberately deferred at v0.1.
+      source: governance/decisions.yaml
+
+checkpoint:
+  date: 2026-09-13
+  status: define_opened_for_v0_2
+  phase_changed: true
+  human_handoff: docs/RESUME.md
+  machine_handoff: governance/handoff.json
+  next_action: >-
+    Establish v0.2 purpose, users, boundaries, non-goals, authority, risks, and success
+    signals. Do not design or implement before Plan is explicitly approved.
+  runtime_implementation_approved: false
 
 review:
   current_step: closed

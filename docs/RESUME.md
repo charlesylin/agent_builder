@@ -1,8 +1,8 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-09-12. The author requested a pause and repository push to continue from a
-work Claude or ChatGPT account. Agent Builder remains in **Review**. This checkpoint does
-not approve a new phase or runtime implementation.
+Checkpoint: 2026-09-13. v0.1 is accepted and closed; release `v0.1.0` is tagged. Agent Builder
+is now in **Define** for v0.2, authorized by the project author on 2026-09-13. v0.2 scope is
+open. This checkpoint does not approve Plan, Build, or any runtime implementation.
 
 ## Recover context
 
@@ -12,7 +12,7 @@ Read these files completely, in order:
 2. `governance/project-state.yaml`
 3. `governance/operating-agreement.md`
 4. `governance/decisions.yaml`
-5. This file, then the review artifacts relevant to the next task.
+5. This file, then `docs/v0-1-acceptance.md`.
 
 The compact machine handoff is `governance/handoff.json`. Its schema is
 `src/agent_builder/templates/base/contracts/schemas/agent-handoff.schema.json.tmpl`.
@@ -24,87 +24,87 @@ environment without repository access, ask the author to supply the required fil
 claim to have read unavailable files or assume account memory includes previous sessions.
 Instruction files guide behavior; they do not guarantee host enforcement or automatic loading.
 
-## Implemented and confirmed
+## What v0.1 shipped, and what it did not
 
-- v0.1 provides a Python 3.11+ scaffold generator and structural validator, with no runtime
-  dependencies. Entry points: `scripts/new_agent.py` and `scripts/validate_project.py`.
+- A Python 3.11+ scaffold generator and structural validator with no runtime dependencies.
+  Entry points: `scripts/new_agent.py` and `scripts/validate_project.py`.
 - Generated projects start in Define and select Codex, Claude Code, and/or Gemini CLI adapters.
-- The workflow is Define → Plan → Build → Review with explicit author-approved transitions.
+- Define → Plan → Build → Review with explicit author-approved transitions.
 - Engineering defaults: lean Python; deterministic execution; model judgment for orchestration;
   open-source evaluation before custom work; replaceable providers and interfaces.
-- Eventual deployment defaults: standalone OCI containers and Docker Compose locally.
-  These are policies, not implemented deployment artifacts. External contracts are versioned;
-  container isolation does not eliminate compatibility obligations.
-- Secrets never enter committed files, prompts, logs, images, or handoffs. Authority is scoped.
-- Human closeouts contain high-confidence decisions, uncertainties, questions, and
-  “What should you be asking that you are not?” Use None when appropriate. Compact JSON is
-  available for machine handoffs; Markdown and standalone HTML serve human presentation.
-- Nokkvi's law and practical persistence guidance were committed in `453d8cb` (AB-D015/016).
-  Follow the exact instruction in AGENTS.md. Encouragement prompts a thoughtful alternative
-  when difficulty alone causes premature stopping; existing limits remain in force.
+- Deployment defaults recorded as policy, not artifacts: standalone OCI containers for
+  generated agents, Docker Compose locally. External contracts are versioned.
+- Secrets never enter committed files, prompts, logs, images, or handoffs.
+- Nokkvi's law and practical persistence guidance (AB-D015, AB-D016), committed in `453d8cb`.
 
 No runtime, model client, MCP server, custom API, Dockerfile, or Compose service is supplied.
 The initializer refuses existing destinations. Generated projects never update automatically.
-The template version remains 0.1.0; record the source Git commit too when comparing tests.
+Template version remains 0.1.0; record the source Git commit or the `v0.1.0` tag when
+comparing tests.
 
-## Acceptance experience so far
+## Acceptance outcome
 
-The author reports that Agent Builder is useful. Full acceptance is still open.
+The author accepted v0.1 on 2026-09-13 under AB-D017, based on Sean's generated sourcing
+project taken through Define and Plan and on additional use cases outside this repository.
+Those transcripts and repositories are not in this checkout. `docs/v0-1-acceptance.md` records
+what acceptance rested on and what it did not close.
 
-- The original scheduling-agent test was abandoned after the author solved that problem in
-  Gemini. Do not resume scheduling-agent implementation here.
-- Sean is testing a separately generated project for sourcing secondhand laboratory equipment.
-  He is new to agent building. Keep his problem definition and design in his project; this
-  repository evaluates the builder's guidance and receives feedback.
-- The initial Sean test focuses on Define and Plan. Collect redacted transcripts, phase
-  closeouts, repository commits/diffs, model/settings where known, and Sean's friction notes.
-  Full transcripts and his generated repository are not included in this checkout.
-- Windows onboarding exposed missing Git/Python and private-repository authentication friction.
-  The packet delegates setup to Sean's local coding agent with appropriate approvals.
-- The author also wants pause/resume across accounts and hosts to test whether repository
-  records carry enough context without prior conversation history.
+Two findings were carried forward rather than treated as blockers:
 
-## Review artifacts and open proposals
+- **F-001** — resume from repository records works, but the 2026-09-13 test still relied on an
+  author-supplied prompt naming the files to read. Unprompted instruction discovery is untested.
+- **F-002** — Agent Builder itself requires host Python 3.11+, with no preflight check and no
+  container of its own. AB-D018 (proposed) records one candidate response.
 
-- `docs/SEAN_CODEX_TEST_PACKET.md`: Windows bootstrap and minimal ideation prompt. It preserves
-  the original `1057a49` baseline. That commit predates Nokkvi's law. For a new test including
-  that law, explicitly select `453d8cb` or a later reviewed commit and record the change.
-  Do not silently replace an ongoing test's baseline or regenerate over Sean's files.
-- `docs/onboarding-kit-review.md`: proposed separate employee onboarding kit review case,
-  including distinctions among authoring hosts and instruction enforcement (AB-R001–003).
-- `docs/existing-project-review.md`: proposed adoption into existing non-agent projects
-  while preserving their decisions, artifacts, and phase (AB-R004).
-- `docs/COWORK_EXISTING_PROJECT_ADOPTION.md`: proposed manual adaptation derived from the
-  original v0.1 commit. It is not a shipped generator feature or validated scaffold and does
-  not include later Nokkvi's law changes. Reassess before adopting it.
+The scheduling-agent test remains abandoned; do not resume it here.
 
-These artifacts preserve review work; proposed recommendations are not confirmed product
-scope. Their external product references were recorded on 2026-09-11 and should be rechecked
-when relevant. No company transcripts, credentials, or attached WSJ article are published here.
+## Current phase: Define for v0.2
 
-Candidate next work, requiring prioritization and the appropriate phase approval:
+Define establishes purpose, owner, users, scope, non-goals, authority, risks, and success
+signals for v0.2. It does not select solutions. `next_release.candidate_inputs` in
+`governance/project-state.yaml` lists unprioritized inputs — F-001, F-002, the onboarding kit
+review (AB-R001–003), existing-project adoption (AB-R004), and the deferred runtime profiles
+(AB-D008). None is confirmed scope.
 
-- Review Sean's evidence and convert actual friction into acceptance criteria.
-- Evaluate simpler onboarding and safe initialization in an empty cloned repository.
-- Evaluate governance reuse in existing projects and non-software work.
-- Plan runtime/environment profiles when the author chooses to address them.
-- Assess this restart: can the new session recover the phase, decisions, and next step without
-  manual coaching? Record missing context as a builder finding.
+Open proposals preserved from Review, none of them confirmed product scope:
 
-## Verification and next action
+- `docs/onboarding-kit-review.md` — separate employee onboarding kit case.
+- `docs/existing-project-review.md` — adoption into existing non-agent projects.
+- `docs/COWORK_EXISTING_PROJECT_ADOPTION.md` — manual adaptation derived from `1057a49`. It is
+  not a shipped generator feature or validated scaffold and predates Nokkvi's law. Reassess
+  before adopting it.
+- `docs/SEAN_CODEX_TEST_PACKET.md` — preserves the `1057a49` baseline. For a new test including
+  Nokkvi's law, explicitly select `453d8cb` or later and record the change. Do not silently
+  replace an ongoing test's baseline or regenerate over Sean's files.
 
-On 2026-09-12, Python 3.14.0 ran these checks successfully:
+External product references in these artifacts were recorded on 2026-09-11 and should be
+rechecked when relevant. No company transcripts, credentials, or attached article are
+published here.
+
+## Open item outside the phase
+
+Dependabot PR #1 bumps the development-only pin `prek` 0.4.11 → 0.5.2 in `pyproject.toml`. It
+was deliberately left open so the `v0.1.0` tag matches the pins the validation evidence was
+produced against. `prek` is not a runtime dependency and CI does not use it. If it is merged,
+run `prek install` once locally to confirm the `repo = "builtin"` hooks still resolve under
+0.5.x.
+
+## Verification
+
+On 2026-09-12, Python 3.14.0 ran these successfully:
 
 ```sh
 python3 -m unittest discover -s tests -v
 python3 -m compileall -q src scripts tests
 ```
 
-All 8 builder tests passed, including the generated project's 3 tests. Earlier wheel and
-lint evidence in `docs/validation.md` applies to its dated build; it is not a new release
-validation for this checkpoint. Structural tests do not prove agent adherence, performance,
-or Windows/Claude/ChatGPT behavior.
+All 8 builder tests passed, including the generated project's 3 tests. Wheel and lint evidence
+in `docs/validation.md` applies to its dated build. Structural tests do not prove agent
+adherence, performance, or Windows, Claude, or ChatGPT behavior. They were not re-run for the
+2026-09-13 closeout, which changed governance and documentation only.
 
-In the resumed session, summarize the state and recommend the next Review action for the
-author. Identify unavailable evidence honestly. Continue within existing authority; ask for
-phase approval only when a proposed next step crosses the recorded phase boundary.
+## Next action
+
+Work the Define phase for v0.2 with the author: purpose, users, boundaries, non-goals, risks,
+and success signals, before any solution is designed. Ask for explicit approval before
+entering Plan.

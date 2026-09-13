@@ -55,9 +55,9 @@ Read [the restart handoff](docs/RESUME.md). Use this prompt in the new session:
 
 > Resume work on Agent Builder. Read AGENTS.md, governance/project-state.yaml,
 > governance/operating-agreement.md, governance/decisions.yaml, and docs/RESUME.md.
-> Summarize the current phase, confirmed decisions, pending feedback, and next recommended
-> step. Stay in Review until I explicitly approve a transition. Do not assume access to
-> earlier conversations or begin implementing a runtime.
+> Summarize the current phase, confirmed decisions, open findings, and next recommended
+> step. Stay in the recorded phase until I explicitly approve a transition. Do not assume
+> access to earlier conversations or begin implementing a runtime.
 
 If your environment cannot access the clone, provide those files explicitly. Repository
 access does not transfer previous chat history, credentials, or account configuration.
@@ -89,6 +89,10 @@ Version 0.1.0 was accepted by the project author on 2026-09-13 and is tagged `v0
 supplies governance and scaffolding only. See [the acceptance record](docs/v0-1-acceptance.md)
 for what acceptance rested on and the two findings carried forward. Generated projects record
 the Agent Builder version they came from; later releases never silently rewrite them.
+
+Work has moved to the **Define** phase for v0.2. Scope is open and no solution is approved;
+`next_release.candidate_inputs` in `governance/project-state.yaml` lists the unprioritized
+inputs under consideration.
 
 ## License
 

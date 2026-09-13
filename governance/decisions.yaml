@@ -94,3 +94,21 @@ decisions:
       here. Findings F-001 and F-002 in docs/v0-1-acceptance.md are carried into v0.2 rather
       than treated as acceptance blockers.
     provenance: explicit_author_acceptance
+  - id: AB-D018
+    status: proposed
+    date: 2026-09-13
+    decision: >-
+      Evaluate distributing Agent Builder itself as an OCI container image so that
+      bootstrapping requires Docker and Git rather than a correctly versioned local Python.
+    rationale: >-
+      Responds to finding F-002. AB-D010 containerization covers generated agents only; the
+      builder ships no image of its own and requires host Python 3.11 or newer with no
+      preflight check and no explanatory failure. Observed friction: Sean's Windows
+      onboarding stalled on missing Git and Python, and a Python 3.10 review environment
+      could not run the test suite. This is an evaluation proposal, not a commitment. A
+      container trades a Python prerequisite for a Docker prerequisite, which is the heavier
+      install on Windows, and the generated project must still reach the user's filesystem
+      through a bind mount. A preflight version check with a clear failure message is a
+      cheaper partial alternative to assess alongside it.
+    provenance: author_observation_during_v0_1_closeout
+    resolve_in: define_or_plan_for_0_2
