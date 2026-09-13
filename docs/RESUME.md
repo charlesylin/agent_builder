@@ -58,28 +58,28 @@ Two findings were carried forward rather than treated as blockers:
 
 The scheduling-agent test remains abandoned; do not resume it here.
 
-## Current phase: Define for v0.2
+## Current phase: Define for v0.2 — complete, pending confirmation
 
-Define establishes purpose, owner, users, scope, non-goals, authority, risks, and success
-signals for v0.2. It does not select solutions. `next_release.candidate_inputs` in
-`governance/project-state.yaml` lists unprioritized inputs — F-001, F-002, the onboarding kit
-review (AB-R001–003), existing-project adoption (AB-R004), and the deferred runtime profiles
-(AB-D008). None is confirmed scope.
+Define concluded on 2026-09-13. Read `docs/v0-2-define.md` in full; it is the vision and the
+reorganization plan in plain language. In short, Agent Builder becomes three things in this
+repository — an org-installable skill, a Python seeder/checker that ships inside it, and starter
+templates for the `agent` and `skill` kinds — held together by a build step that generates every
+copy of the principles from one `principles/` folder and fails CI on drift.
+
+Six decisions are recorded as `proposed` (AB-D019 through AB-D024). They are not confirmed.
+Entering Plan requires the author to say so explicitly. Plan must resolve the open questions in
+section 9 of the Define record and produce a file-by-file migration plan before any Build work.
+Do not restructure the repository, move templates, or write `SKILL.md` until Plan is approved
+and a Build is authorized.
 
 Open proposals preserved from Review, none of them confirmed product scope:
 
-- `docs/onboarding-kit-review.md` — separate employee onboarding kit case.
-- `docs/existing-project-review.md` — adoption into existing non-agent projects.
-- `docs/COWORK_EXISTING_PROJECT_ADOPTION.md` — manual adaptation derived from `1057a49`. It is
-  not a shipped generator feature or validated scaffold and predates Nokkvi's law. Reassess
-  before adopting it.
-- `docs/SEAN_CODEX_TEST_PACKET.md` — preserves the `1057a49` baseline. For a new test including
-  Nokkvi's law, explicitly select `453d8cb` or later and record the change. Do not silently
-  replace an ongoing test's baseline or regenerate over Sean's files.
-
-External product references in these artifacts were recorded on 2026-09-11 and should be
-rechecked when relevant. No company transcripts, credentials, or attached article are
-published here.
+- `docs/onboarding-kit-review.md` — separate employee onboarding kit case. Not in v0.2.
+- `docs/existing-project-review.md` — adoption into existing non-agent projects. Not in v0.2;
+  the future `project` kind is its likely home.
+- `docs/COWORK_EXISTING_PROJECT_ADOPTION.md` — derived from `1057a49`, predates Nokkvi's law.
+- `docs/SEAN_CODEX_TEST_PACKET.md` — preserves the `1057a49` baseline. Do not regenerate over
+  Sean's files. His migration to thin adapters is an open question for Plan.
 
 ## Open item outside the phase
 
@@ -105,6 +105,5 @@ adherence, performance, or Windows, Claude, or ChatGPT behavior. They were not r
 
 ## Next action
 
-Work the Define phase for v0.2 with the author: purpose, users, boundaries, non-goals, risks,
-and success signals, before any solution is designed. Ask for explicit approval before
-entering Plan.
+Confirm with the author that `docs/v0-2-define.md` and AB-D019 through AB-D024 stand as written,
+or amend them. Then ask for explicit approval to enter Plan. Nothing else.

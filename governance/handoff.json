@@ -1,27 +1,92 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-define-v0-2-2026-09-13",
-  "created_at": "2026-09-13T19:20:00Z",
+  "handoff_id": "agent-builder-define-v0-2-complete-2026-09-13",
+  "created_at": "2026-09-13T22:10:00Z",
   "source_agent": "agent-builder-claude",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "v0.1 accepted and closed; release v0.1.0 tagged at the validated pins. Phase is now Define for v0.2, authorized by the project author on 2026-09-13. Scope is open and no solution is approved. Two carried findings, F-001 (resume still needed an author-supplied file list) and F-002 (unguarded host Python 3.11+ prerequisite), are recorded in docs/v0-1-acceptance.md. Recover context from repository governance and docs/RESUME.md.",
+  "summary": "Define for v0.2 is complete pending author confirmation. Agent Builder becomes an org-installable skill plus a stdlib seeder/checker and agent/skill templates in this repo, with a single-source build step and drift test. Six decisions AB-D019..024 are proposed, not confirmed. Read docs/v0-2-define.md. Entering Plan requires explicit author approval.",
   "decisions": [
-    {"id": "AB-D008", "status": "confirmed", "summary": "v0.1 scope was governance and scaffolding; runtime deferred."},
-    {"id": "AB-D012", "status": "confirmed", "summary": "Existing generated projects update only through explicit opt-in."},
-    {"id": "AB-D013", "status": "confirmed", "summary": "Acceptance criteria come from building and reviewing a real agent."},
-    {"id": "AB-D017", "status": "confirmed", "summary": "v0.1 accepted, Review closed, release 0.1.0 tagged at validated pins."},
-    {"id": "AB-D018", "status": "proposed", "summary": "Evaluate shipping Agent Builder itself as an OCI image to remove the host Python prerequisite."}
+    {
+      "id": "AB-D008",
+      "status": "confirmed",
+      "summary": "Runtime selection remains deferred."
+    },
+    {
+      "id": "AB-D012",
+      "status": "confirmed",
+      "summary": "Seeded projects update only by explicit opt-in."
+    },
+    {
+      "id": "AB-D017",
+      "status": "confirmed",
+      "summary": "v0.1 accepted; release 0.1.0 tagged."
+    },
+    {
+      "id": "AB-D019",
+      "status": "proposed",
+      "summary": "Primary deliverable is an org-installable skill; all else serves it."
+    },
+    {
+      "id": "AB-D020",
+      "status": "proposed",
+      "summary": "One source per principle under principles/; all copies generated and drift-checked."
+    },
+    {
+      "id": "AB-D021",
+      "status": "proposed",
+      "summary": "Stdlib-only scripts with version preflight; supersedes AB-D018 on confirmation."
+    },
+    {
+      "id": "AB-D022",
+      "status": "proposed",
+      "summary": "Local check advisory; CI in seeded projects is the binding gate."
+    },
+    {
+      "id": "AB-D023",
+      "status": "proposed",
+      "summary": "v0.2 ships agent and skill kinds only."
+    },
+    {
+      "id": "AB-D024",
+      "status": "proposed",
+      "summary": "Thin adapters; version pin plus check --since as the upgrade path."
+    }
   ],
   "artifacts": [
-    {"path": "AGENTS.md", "media_type": "text/markdown"},
-    {"path": "governance/project-state.yaml", "media_type": "application/yaml"},
-    {"path": "governance/operating-agreement.md", "media_type": "text/markdown"},
-    {"path": "governance/decisions.yaml", "media_type": "application/yaml"},
-    {"path": "docs/RESUME.md", "media_type": "text/markdown"},
-    {"path": "docs/v0-1-acceptance.md", "media_type": "text/markdown"}
+    {
+      "path": "AGENTS.md",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "governance/project-state.yaml",
+      "media_type": "application/yaml"
+    },
+    {
+      "path": "governance/operating-agreement.md",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "governance/decisions.yaml",
+      "media_type": "application/yaml"
+    },
+    {
+      "path": "docs/RESUME.md",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "docs/v0-2-define.md",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "docs/v0-1-acceptance.md",
+      "media_type": "text/markdown"
+    }
   ],
   "blockers": [],
-  "questions": [],
-  "next_action": "Work the Define phase for v0.2: purpose, users, boundaries, non-goals, authority, risks, and success signals. Do not design solutions, select a runtime, or infer approval to enter Plan."
+  "questions": [
+    "Do AB-D019 through AB-D024 stand as written, or need amendment?",
+    "Approve entering Plan?"
+  ],
+  "next_action": "Obtain author confirmation of the Define record and proposed decisions, then explicit approval to enter Plan. Do not restructure the repository or write SKILL.md before then."
 }

@@ -46,69 +46,47 @@ release:
 
 next_release:
   target: 0.2.0
-  scope: undetermined
-  scope_status: open_for_define
-  runtime_included: undetermined
-  note: >-
-    The following are unprioritized inputs to Define. None is confirmed scope, and none
-    implies a solution. Define establishes purpose, users, boundaries, non-goals, authority,
-    risks, and success signals before any of these is designed.
-  candidate_inputs:
+  scope: org_installable_skill_with_seeder_templates_and_single_source_build
+  scope_status: defined_pending_author_confirmation
+  runtime_included: false
+  define_record: docs/v0-2-define.md
+  deliverables:
+    - id: skill
+      summary: skills/agent-builder/SKILL.md in Agent Skills format, packaged as a Claude plugin, usable by Codex.
+    - id: seeder
+      summary: skills/agent-builder/scripts/seed.py creates a project from templates/base plus one kind; check.py validates one.
+    - id: templates
+      summary: templates/base plus templates/kinds/agent and templates/kinds/skill, inside this repository.
+    - id: build
+      summary: build/render.py assembles generated files from principles/; a CI test fails on drift.
+  kinds: [agent, skill]
+  proposed_decisions: [AB-D019, AB-D020, AB-D021, AB-D022, AB-D023, AB-D024]
+  inputs_resolved:
     - id: F-001
-      summary: Unprompted instruction discovery, so resume does not depend on an author-supplied file list.
-      source: docs/v0-1-acceptance.md
+      resolution: Skill is discovered by trigger; seeded repos carry in-repo skill pointers.
     - id: F-002
-      summary: Host prerequisites for running Agent Builder itself. See AB-D018 (proposed).
-      source: docs/v0-1-acceptance.md
+      resolution: Stdlib-only scripts with version preflight (AB-D021); no Python beyond the interpreter on the user's machine.
+    - id: AB-D018
+      resolution: To be superseded by AB-D021 on confirmation.
+  inputs_deferred:
     - id: AB-R001
-      summary: Employee onboarding kit review, including authoring hosts and instruction enforcement.
-      source: docs/onboarding-kit-review.md
+      summary: Onboarding kit review. Not in v0.2 scope.
     - id: AB-R004
-      summary: Adoption into existing non-agent projects while preserving their phase and decisions.
-      source: docs/existing-project-review.md
+      summary: Existing-project adoption. Not in v0.2 scope; the project kind is the likely future home.
     - id: AB-D008
-      summary: Runtime and environment profiles, deliberately deferred at v0.1.
-      source: governance/decisions.yaml
+      summary: Runtime and environment profiles remain deferred.
 
 checkpoint:
   date: 2026-09-13
-  status: define_opened_for_v0_2
-  phase_changed: true
+  status: define_complete_pending_author_confirmation_and_plan_approval
+  phase_changed: false
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Establish v0.2 purpose, users, boundaries, non-goals, authority, risks, and success
-    signals. Do not design or implement before Plan is explicitly approved.
+    Author reviews docs/v0-2-define.md, confirms or amends AB-D019 through AB-D024, and
+    explicitly approves entering Plan. Plan resolves the open questions in that record's
+    section 9 and produces a file-by-file migration plan before any Build work.
   runtime_implementation_approved: false
-
-review:
-  current_step: closed
-  closed_date: 2026-09-13
-  author_feedback_received: true
-  outcome: >-
-    Author confirmed Agent Builder works as intended, based on Sean's generated sourcing
-    project and additional use cases outside this repository. Supporting transcripts and
-    repositories are not published here.
-  feedback:
-    - date: 2026-09-11
-      decision: AB-D015
-      scope: Author-approved instruction refinement during acceptance review.
-      outcome: Nokkvi's law added to builder governance and generated coding-agent adapters.
-    - date: 2026-09-11
-      decision: AB-D016
-      scope: Author-approved practical refinement of Nokkvi's law.
-      outcome: Encourage a concrete alternative before stopping for difficulty alone, within existing limits.
-    - date: 2026-09-13
-      decision: AB-D017
-      scope: Author acceptance of v0.1 based on Sean's test and other use cases.
-      outcome: Review closed; two findings carried into v0.2 rather than treated as blockers.
-  findings:
-    - id: F-001
-      summary: Cross-account resume succeeded but required an author-supplied prompt naming the files to read.
-      record: docs/v0-1-acceptance.md
-    - id: F-002
-      summary: Builder requires host Python 3.11+ with no preflight check, container, or explanatory failure.
-      record: docs/v0-1-acceptance.md
 
 validation:
   completed_date: 2026-09-08

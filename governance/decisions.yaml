@@ -112,3 +112,78 @@ decisions:
       cheaper partial alternative to assess alongside it.
     provenance: author_observation_during_v0_1_closeout
     resolve_in: define_or_plan_for_0_2
+  - id: AB-D019
+    status: proposed
+    date: 2026-09-13
+    decision: >-
+      The primary v0.2 deliverable is an org-installable skill in the Agent Skills format,
+      packaged as a Claude plugin and usable unchanged by Codex. The seeder, checker,
+      templates, and build step exist to serve it.
+    rationale: >-
+      v0.1 acceptance rested on the instructions, not the Python. Inside an organization that
+      controls its hosts, an installed skill is discovered by trigger rather than by a person
+      naming files (F-001) and requires nothing installed on the user's machine (F-002).
+    provenance: author_direction_during_v0_2_define
+    record: docs/v0-2-define.md
+  - id: AB-D020
+    status: proposed
+    date: 2026-09-13
+    decision: >-
+      Every principle has exactly one source file under principles/. The skill text, template
+      operating agreement, adapter files, and root AGENTS.md are generated from it, committed,
+      and drift-checked by a test in CI.
+    rationale: >-
+      Nokkvi's law is currently hand-maintained in six files and the root operating agreement
+      has drifted 208 lines from its template copy. The rewrites.bio single-source pattern
+      prevents this; the drift test adds the check that pattern lacks.
+    provenance: author_direction_during_v0_2_define
+    record: docs/v0-2-define.md
+  - id: AB-D021
+    status: proposed
+    date: 2026-09-13
+    decision: >-
+      seed.py, check.py, and render.py are standard-library Python with a version preflight
+      that fails in one sentence. The Python floor is set in Plan. On confirmation this
+      supersedes AB-D018.
+    rationale: >-
+      Removing the requirement is cheaper and more portable than containerizing it. Once
+      nothing beyond a stdlib interpreter runs on the user's machine, the container evaluation
+      in AB-D018 has no remaining problem to solve.
+    provenance: author_direction_during_v0_2_define
+    record: docs/v0-2-define.md
+  - id: AB-D022
+    status: proposed
+    date: 2026-09-13
+    decision: >-
+      Enforcement model: instructions and file structure guide behavior; check.py is advisory
+      on the user's machine (pre-commit hook, bypassable); CI in each seeded project is the
+      binding gate.
+    rationale: >-
+      Resolves the manifesto-versus-governance tension without a gatekeeper program on anyone's
+      machine. A person retains an explicit escape hatch locally; the merge gate does not.
+    provenance: author_direction_during_v0_2_define
+    record: docs/v0-2-define.md
+  - id: AB-D023
+    status: proposed
+    date: 2026-09-13
+    decision: >-
+      v0.2 ships the agent and skill kinds only. mcp and project kinds are added when a real
+      project in the organization requests one, with that project's friction as evidence.
+    rationale: >-
+      Applies AB-D013 to template kinds. agent exists from v0.1; skill is required because
+      Agent Builder is itself a skill and building it from its own template is the acceptance
+      test. Starter files for untried kinds would be scope without evidence.
+    provenance: author_direction_during_v0_2_define
+    record: docs/v0-2-define.md
+  - id: AB-D024
+    status: proposed
+    date: 2026-09-13
+    decision: >-
+      Seeded adapter files are thin pointers to the skill, not copies of the operating
+      agreement. Seeded projects pin their template version in .agent-builder.json, and
+      check.py --since <version> is the explicit opt-in upgrade path.
+    rationale: >-
+      Thin adapters drift less and make the installed skill the single living copy. The
+      version pin and --since report provide the opt-in path AB-D012 requires and v0.1 lacked.
+    provenance: author_direction_during_v0_2_define
+    record: docs/v0-2-define.md
