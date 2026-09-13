@@ -48,6 +48,22 @@ Python, and a 2026-09-13 review environment running Python 3.10 could not execut
 suite. There is no preflight check and no failure message that explains the requirement at
 the point where it bites.
 
+The failure is not limited to the test suite. Both entry points abort on import, because
+`agent_builder.scaffold` imports `datetime.UTC`, which is Python 3.11+. Reproduced on
+2026-09-13 under Python 3.10.12:
+
+```sh
+$ python3 scripts/new_agent.py ./smoke-agent --name "Smoke Agent" --purpose "..."
+ImportError: cannot import name 'UTC' from 'datetime'
+
+$ python3 scripts/validate_project.py ./smoke-agent
+ImportError: cannot import name 'UTC' from 'datetime'
+```
+
+A first-time user on an older Python sees a stdlib `ImportError` naming `datetime`, with
+nothing pointing at the real cause or the required version. This is the concrete shape of
+the friction; it is evidence for Define, not a decision about how to resolve it.
+
 AB-D018 records one candidate response as `proposed`, not confirmed.
 
 ## Not closed by this record
