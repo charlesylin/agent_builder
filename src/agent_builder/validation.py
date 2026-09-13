@@ -38,7 +38,7 @@ _FORBIDDEN_SECRET_FILES = {".env", ".env.local", ".env.production"}
 _TOKEN = re.compile(r"\{\{[A-Z0-9_]+\}\}")
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class ValidationIssue:
     """One actionable scaffold validation failure."""
 

@@ -26,7 +26,7 @@ def _slugify(name: str) -> str:
     return slug
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class ProjectSpec:
     """The small, provider-neutral input contract for a generated project."""
 

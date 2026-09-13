@@ -7,7 +7,7 @@ import os
 import re
 import shutil
 import tempfile
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from agent_builder import __version__
@@ -46,7 +46,7 @@ def _render(value: str, context: dict[str, str], *, source: Path) -> str:
 
 
 def _context(spec: ProjectSpec, generated_at: datetime) -> dict[str, str]:
-    timestamp = generated_at.astimezone(UTC).replace(microsecond=0)
+    timestamp = generated_at.astimezone(timezone.utc).replace(microsecond=0)
     iso_timestamp = timestamp.isoformat().replace("+00:00", "Z")
     adapter_labels = {
         "codex": "Codex",
@@ -119,7 +119,7 @@ def create_project(
     if not destination.parent.is_dir():
         raise ScaffoldError(f"target parent does not exist: {destination.parent}")
 
-    context = _context(spec, generated_at or datetime.now(UTC))
+    context = _context(spec, generated_at or datetime.now(timezone.utc))
     rendered_files = _collect_templates(spec, context)
     temporary = Path(
         tempfile.mkdtemp(prefix=f".{destination.name}.agent-builder-", dir=destination.parent)

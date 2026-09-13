@@ -2,6 +2,16 @@
 
 All notable changes to Agent Builder are documented here.
 
+## [Unreleased]
+
+### Changed
+
+- Python floor lowered from 3.11 to 3.9 for the builder's own scripts (AB-D025). Entry points
+  now fail with a one-sentence message and exit code 2 on an older interpreter instead of a
+  stdlib traceback (closes finding F-002). CI runs on Python 3.9 and 3.12 on Ubuntu and 3.12 on
+  Windows. Generated projects still declare `requires-python >= 3.11` for their own future code;
+  that default is theirs to change.
+
 ## [0.1.0] - 2026-09-13
 
 Governance and project scaffolding only. No agent runtime, model client, MCP server, custom

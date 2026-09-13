@@ -19,7 +19,7 @@ select an agent runtime, model provider, API framework, or MCP implementation.
 
 ## Quick start
 
-Agent Builder has no runtime dependencies and requires Python 3.11 or newer.
+Agent Builder has no runtime dependencies and requires Python 3.9 or newer.
 
 ```sh
 python3 scripts/new_agent.py ../my-agent \

@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 """Validate a generated project without installing Agent Builder."""
 
-from __future__ import annotations
-
 import sys
+
+if sys.version_info < (3, 9):
+    sys.stderr.write(
+        "Agent Builder needs Python 3.9 or newer; this is %d.%d. "
+        "Install a newer Python and run this again.\n" % sys.version_info[:2]
+    )
+    sys.exit(2)
+
 from pathlib import Path
 
 SOURCE = Path(__file__).resolve().parents[1] / "src"

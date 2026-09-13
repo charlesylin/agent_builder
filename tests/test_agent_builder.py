@@ -5,11 +5,11 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+import re
 import tempfile
-import tomllib
 import unittest
 from contextlib import redirect_stderr
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from io import StringIO
 from pathlib import Path
 
@@ -19,7 +19,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from agent_builder import ProjectSpec, ScaffoldError, create_project, validate_project  # noqa: E402
 from agent_builder.cli import main  # noqa: E402
 
-GENERATED_AT = datetime(2026, 9, 8, 12, 0, tzinfo=UTC)
+GENERATED_AT = datetime(2026, 9, 8, 12, 0, tzinfo=timezone.utc)
 
 
 class ProjectSpecTests(unittest.TestCase):
@@ -73,10 +73,10 @@ class ScaffoldTests(unittest.TestCase):
             self.assertEqual(metadata["coding_agent_adapters"], ["codex", "gemini"])
             self.assertIsNone(metadata["runtime_profile"])
 
-            project_metadata = tomllib.loads(
-                (target / "pyproject.toml").read_text(encoding="utf-8")
-            )
-            self.assertEqual(project_metadata["project"]["name"], "generated-agent")
+            pyproject = (target / "pyproject.toml").read_text(encoding="utf-8")
+            name_line = re.search(r'^name = "([^"]+)"$', pyproject, flags=re.MULTILINE)
+            self.assertIsNotNone(name_line)
+            self.assertEqual(name_line.group(1), "generated-agent")
 
     def test_generated_project_runs_its_own_tests(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
