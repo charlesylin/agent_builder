@@ -1,56 +1,56 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-define-v0-2-complete-2026-09-13",
-  "created_at": "2026-09-13T22:10:00Z",
+  "handoff_id": "agent-builder-plan-v0-2-drafted-2026-09-13",
+  "created_at": "2026-09-13T23:30:00Z",
   "source_agent": "agent-builder-claude",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Define for v0.2 is complete pending author confirmation. Agent Builder becomes an org-installable skill plus a stdlib seeder/checker and agent/skill templates in this repo, with a single-source build step and drift test. Six decisions AB-D019..024 are proposed, not confirmed. Read docs/v0-2-define.md. Entering Plan requires explicit author approval.",
+  "summary": "Plan for v0.2 drafted; phase is Plan by explicit author authorization. Define decisions AB-D019..024 confirmed; AB-D018 superseded. Plan answers the open questions, sequences eight Build commits B1..B8, and proposes AB-D025..029. Read docs/v0-2-define.md then docs/v0-2-plan.md. Build requires explicit author authorization after the section 6 double-check.",
   "decisions": [
     {
-      "id": "AB-D008",
-      "status": "confirmed",
-      "summary": "Runtime selection remains deferred."
-    },
-    {
-      "id": "AB-D012",
-      "status": "confirmed",
-      "summary": "Seeded projects update only by explicit opt-in."
-    },
-    {
-      "id": "AB-D017",
-      "status": "confirmed",
-      "summary": "v0.1 accepted; release 0.1.0 tagged."
-    },
-    {
       "id": "AB-D019",
-      "status": "proposed",
-      "summary": "Primary deliverable is an org-installable skill; all else serves it."
+      "status": "confirmed",
+      "summary": "Primary deliverable is an org-installable skill."
     },
     {
       "id": "AB-D020",
-      "status": "proposed",
-      "summary": "One source per principle under principles/; all copies generated and drift-checked."
-    },
-    {
-      "id": "AB-D021",
-      "status": "proposed",
-      "summary": "Stdlib-only scripts with version preflight; supersedes AB-D018 on confirmation."
+      "status": "confirmed",
+      "summary": "One source per principle; all copies generated and drift-checked."
     },
     {
       "id": "AB-D022",
-      "status": "proposed",
-      "summary": "Local check advisory; CI in seeded projects is the binding gate."
+      "status": "confirmed",
+      "summary": "Local check advisory; CI in seeded projects binds."
     },
     {
       "id": "AB-D023",
-      "status": "proposed",
-      "summary": "v0.2 ships agent and skill kinds only."
+      "status": "confirmed",
+      "summary": "agent and skill kinds only."
     },
     {
-      "id": "AB-D024",
+      "id": "AB-D025",
       "status": "proposed",
-      "summary": "Thin adapters; version pin plus check --since as the upgrade path."
+      "summary": "Python floor 3.9."
+    },
+    {
+      "id": "AB-D026",
+      "status": "proposed",
+      "summary": "Self-contained scripts; retire src/agent_builder in B5."
+    },
+    {
+      "id": "AB-D027",
+      "status": "proposed",
+      "summary": "This repo is its own plugin marketplace."
+    },
+    {
+      "id": "AB-D028",
+      "status": "proposed",
+      "summary": "Codex best-effort."
+    },
+    {
+      "id": "AB-D029",
+      "status": "proposed",
+      "summary": "Build as eight green commits B1..B8."
     }
   ],
   "artifacts": [
@@ -81,12 +81,16 @@
     {
       "path": "docs/v0-1-acceptance.md",
       "media_type": "text/markdown"
+    },
+    {
+      "path": "docs/v0-2-plan.md",
+      "media_type": "text/markdown"
     }
   ],
   "blockers": [],
   "questions": [
-    "Do AB-D019 through AB-D024 stand as written, or need amendment?",
-    "Approve entering Plan?"
+    "Do AB-D025 through AB-D029 stand as written?",
+    "Authorize Build starting at B1?"
   ],
-  "next_action": "Obtain author confirmation of the Define record and proposed decisions, then explicit approval to enter Plan. Do not restructure the repository or write SKILL.md before then."
+  "next_action": "Author double-checks docs/v0-2-plan.md section 6 and explicitly authorizes Build. Do not start B1 before then."
 }

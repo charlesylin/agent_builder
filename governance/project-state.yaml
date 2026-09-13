@@ -5,8 +5,8 @@ project:
   template_version: 0.1.0
 
 phase:
-  current: define
-  status: scoping_v0_2
+  current: plan
+  status: plan_drafted_pending_author_double_check
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation
@@ -31,6 +31,12 @@ phase:
       outcome: >-
         Explicitly authorized by the project author after v0.1 acceptance.
         v0.2 scope is open and not yet determined.
+    - phase: define
+      date: 2026-09-13
+      outcome: Closed. Define record docs/v0-2-define.md; AB-D019 through AB-D024 confirmed.
+    - phase: plan
+      date: 2026-09-13
+      outcome: Explicitly authorized by the project author. Plan record docs/v0-2-plan.md.
 
 release:
   target: 0.1.0
@@ -47,7 +53,8 @@ release:
 next_release:
   target: 0.2.0
   scope: org_installable_skill_with_seeder_templates_and_single_source_build
-  scope_status: defined_pending_author_confirmation
+  scope_status: confirmed
+  plan_record: docs/v0-2-plan.md
   runtime_included: false
   define_record: docs/v0-2-define.md
   deliverables:
@@ -60,14 +67,15 @@ next_release:
     - id: build
       summary: build/render.py assembles generated files from principles/; a CI test fails on drift.
   kinds: [agent, skill]
-  proposed_decisions: [AB-D019, AB-D020, AB-D021, AB-D022, AB-D023, AB-D024]
+  confirmed_decisions: [AB-D019, AB-D020, AB-D021, AB-D022, AB-D023, AB-D024]
+  proposed_decisions: [AB-D025, AB-D026, AB-D027, AB-D028, AB-D029]
   inputs_resolved:
     - id: F-001
       resolution: Skill is discovered by trigger; seeded repos carry in-repo skill pointers.
     - id: F-002
       resolution: Stdlib-only scripts with version preflight (AB-D021); no Python beyond the interpreter on the user's machine.
     - id: AB-D018
-      resolution: To be superseded by AB-D021 on confirmation.
+      resolution: Superseded by AB-D021.
   inputs_deferred:
     - id: AB-R001
       summary: Onboarding kit review. Not in v0.2 scope.
@@ -78,14 +86,14 @@ next_release:
 
 checkpoint:
   date: 2026-09-13
-  status: define_complete_pending_author_confirmation_and_plan_approval
-  phase_changed: false
+  status: plan_drafted_pending_author_double_check
+  phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Author reviews docs/v0-2-define.md, confirms or amends AB-D019 through AB-D024, and
-    explicitly approves entering Plan. Plan resolves the open questions in that record's
-    section 9 and produces a file-by-file migration plan before any Build work.
+    Author works through the double-check list in docs/v0-2-plan.md section 6, confirms or
+    amends AB-D025 through AB-D029, and explicitly authorizes Build. Build then executes
+    B1 through B8 in order.
   runtime_implementation_approved: false
 
 validation:

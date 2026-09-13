@@ -95,7 +95,9 @@ decisions:
       than treated as acceptance blockers.
     provenance: explicit_author_acceptance
   - id: AB-D018
-    status: proposed
+    status: superseded
+    superseded_by: AB-D021
+    superseded_date: 2026-09-13
     date: 2026-09-13
     decision: >-
       Evaluate distributing Agent Builder itself as an OCI container image so that
@@ -113,8 +115,11 @@ decisions:
     provenance: author_observation_during_v0_1_closeout
     resolve_in: define_or_plan_for_0_2
   - id: AB-D019
-    status: proposed
+    status: confirmed
     date: 2026-09-13
+    confirmed_date: 2026-09-13
+    confirmed_by: charles-yang-lin
+    confirmation: Author approved the Define record and authorized Plan on 2026-09-13.
     decision: >-
       The primary v0.2 deliverable is an org-installable skill in the Agent Skills format,
       packaged as a Claude plugin and usable unchanged by Codex. The seeder, checker,
@@ -126,8 +131,11 @@ decisions:
     provenance: author_direction_during_v0_2_define
     record: docs/v0-2-define.md
   - id: AB-D020
-    status: proposed
+    status: confirmed
     date: 2026-09-13
+    confirmed_date: 2026-09-13
+    confirmed_by: charles-yang-lin
+    confirmation: Author approved the Define record and authorized Plan on 2026-09-13.
     decision: >-
       Every principle has exactly one source file under principles/. The skill text, template
       operating agreement, adapter files, and root AGENTS.md are generated from it, committed,
@@ -139,8 +147,11 @@ decisions:
     provenance: author_direction_during_v0_2_define
     record: docs/v0-2-define.md
   - id: AB-D021
-    status: proposed
+    status: confirmed
     date: 2026-09-13
+    confirmed_date: 2026-09-13
+    confirmed_by: charles-yang-lin
+    confirmation: Author approved the Define record and authorized Plan on 2026-09-13.
     decision: >-
       seed.py, check.py, and render.py are standard-library Python with a version preflight
       that fails in one sentence. The Python floor is set in Plan. On confirmation this
@@ -152,8 +163,11 @@ decisions:
     provenance: author_direction_during_v0_2_define
     record: docs/v0-2-define.md
   - id: AB-D022
-    status: proposed
+    status: confirmed
     date: 2026-09-13
+    confirmed_date: 2026-09-13
+    confirmed_by: charles-yang-lin
+    confirmation: Author approved the Define record and authorized Plan on 2026-09-13.
     decision: >-
       Enforcement model: instructions and file structure guide behavior; check.py is advisory
       on the user's machine (pre-commit hook, bypassable); CI in each seeded project is the
@@ -164,8 +178,11 @@ decisions:
     provenance: author_direction_during_v0_2_define
     record: docs/v0-2-define.md
   - id: AB-D023
-    status: proposed
+    status: confirmed
     date: 2026-09-13
+    confirmed_date: 2026-09-13
+    confirmed_by: charles-yang-lin
+    confirmation: Author approved the Define record and authorized Plan on 2026-09-13.
     decision: >-
       v0.2 ships the agent and skill kinds only. mcp and project kinds are added when a real
       project in the organization requests one, with that project's friction as evidence.
@@ -176,8 +193,11 @@ decisions:
     provenance: author_direction_during_v0_2_define
     record: docs/v0-2-define.md
   - id: AB-D024
-    status: proposed
+    status: confirmed
     date: 2026-09-13
+    confirmed_date: 2026-09-13
+    confirmed_by: charles-yang-lin
+    confirmation: Author approved the Define record and authorized Plan on 2026-09-13.
     decision: >-
       Seeded adapter files are thin pointers to the skill, not copies of the operating
       agreement. Seeded projects pin their template version in .agent-builder.json, and
@@ -187,3 +207,48 @@ decisions:
       version pin and --since report provide the opt-in path AB-D012 requires and v0.1 lacked.
     provenance: author_direction_during_v0_2_define
     record: docs/v0-2-define.md
+  - id: AB-D025
+    status: proposed
+    date: 2026-09-13
+    decision: Python floor is 3.9 for all shipped scripts.
+    rationale: >-
+      macOS system Python is 3.9; the only 3.10+ constructs in the code are slots=True on two
+      dataclasses, datetime.UTC, and tomllib in one test, all trivially replaced.
+    provenance: plan_recommendation
+    record: docs/v0-2-plan.md
+  - id: AB-D026
+    status: proposed
+    date: 2026-09-13
+    decision: >-
+      seed.py, check.py, and render.py are self-contained single files. src/agent_builder/
+      and the pip console-script entry point are retired in Build step B5.
+    rationale: >-
+      A skill ships as a folder; a single file with no import path runs reliably on another
+      machine. The shared helpers are about forty lines and are duplicated on purpose.
+    provenance: plan_recommendation
+    record: docs/v0-2-plan.md
+  - id: AB-D027
+    status: proposed
+    date: 2026-09-13
+    decision: This repository is its own plugin marketplace via .claude-plugin/marketplace.json.
+    rationale: Simplest working arrangement; an org-wide marketplace repo can reference it later.
+    provenance: plan_recommendation
+    record: docs/v0-2-plan.md
+  - id: AB-D028
+    status: proposed
+    date: 2026-09-13
+    decision: >-
+      Codex support is best-effort in v0.2: the same skill folder, one recorded smoke test,
+      not a gating success signal.
+    rationale: Claude is the primary host; the format is identical so trying costs little and guaranteeing costs a second test matrix.
+    provenance: plan_recommendation
+    record: docs/v0-2-plan.md
+  - id: AB-D029
+    status: proposed
+    date: 2026-09-13
+    decision: >-
+      Build proceeds as the eight commits B1 through B8 in docs/v0-2-plan.md, each leaving the
+      test suite green and independently revertible. B5 may be split in two.
+    rationale: Work small; nothing is deleted before its replacement is tested.
+    provenance: plan_recommendation
+    record: docs/v0-2-plan.md
