@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
-import re
 import tempfile
 import unittest
 from contextlib import redirect_stderr

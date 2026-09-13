@@ -4,6 +4,16 @@ All notable changes to Agent Builder are documented here.
 
 ## [Unreleased]
 
+### Added
+
+- `principles/`: one file per principle, the single source for every copy of the operating
+  principles (AB-D020). `scripts/render.py` fills `{{principle:<id>}}` tokens in
+  `scripts/stencils/` to produce root `AGENTS.md`, this repository's operating agreement, the
+  template operating agreement, and the three coding-agent adapter templates. A test and a CI
+  step fail when a generated file is edited directly. Nokkvi's law now exists in one file
+  instead of six; the root and template operating agreements no longer differ.
+- CI `lint` job running pinned Ruff check and format.
+
 ### Changed
 
 - Python floor lowered from 3.11 to 3.9 for the builder's own scripts (AB-D025). Entry points

@@ -3,10 +3,10 @@
 
 import sys
 
-if sys.version_info < (3, 9):
+if sys.version_info < (3, 9):  # noqa: UP036 - deliberate guard for older interpreters
     sys.stderr.write(
-        "Agent Builder needs Python 3.9 or newer; this is %d.%d. "
-        "Install a newer Python and run this again.\n" % sys.version_info[:2]
+        f"Agent Builder needs Python 3.9 or newer; this is "
+        f"{sys.version_info[0]}.{sys.version_info[1]}. Install a newer Python and run this again.\n"
     )
     sys.exit(2)
 

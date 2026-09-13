@@ -52,6 +52,12 @@ independently revertible. Nothing is deleted until its replacement is tested.
 - **Done when:** the drift test passes; editing one principle file and re-rendering changes all
   six outputs in one diff.
 
+> **B2 as built (2026-09-13):** the renderer and stencils live at `scripts/render.py` and
+> `scripts/stencils/`, not `build/`, because `build/` is gitignored as packaging output and the
+> tool would have been silently excluded. The operating agreements no longer state a current
+> phase; `project-state.yaml` is the source. Ruff lint/format was added to CI here rather than
+> in B7, at the author's request.
+
 ### B3 — Move templates to the repo root
 - `git mv src/agent_builder/templates templates`.
 - Split: everything agent-specific (`contracts/`, `deployment/`, `src/__PYTHON_PACKAGE__/`,

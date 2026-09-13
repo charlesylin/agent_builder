@@ -8,6 +8,7 @@ repo = "local"
 hooks = [
   { id = "ruff-check", name = "ruff check", entry = "ruff check --fix", language = "system", types = ["python"] },
   { id = "ruff-format", name = "ruff format", entry = "ruff format", language = "system", types = ["python"] },
+  { id = "render-check", name = "generated files match principles/", entry = "python3 scripts/render.py --check", language = "system", pass_filenames = false },
   { id = "unit-tests", name = "unit tests", entry = "python3 -m unittest discover -s tests", language = "system", pass_filenames = false },
 ]
 
