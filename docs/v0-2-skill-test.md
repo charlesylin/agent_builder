@@ -500,6 +500,43 @@ longer asks Claude to run anything.
 Verified: offer, then silent for two further create-shaped prompts in the same session, then
 offered again in a new session.
 
-## Not yet verified
+## Verified through the installed plugin — 2026-09-14
 
-The offer through the **installed plugin** rather than a project-settings registration. Pending an installed-plugin test.
+Project-settings diagnostic removed; only `enabledPlugins` remained in the test folder, so the
+plugin was the sole source of the hook. Transcript:
+
+```
+❯ help me build a little service that watches our S3 bucket for new FASTQs and kicks off the pipeline
+
+Want to use the agent-builder skill to scaffold this, or should I just build it directly?
+
+✻ Worked for 1s
+
+❯ build it directly without using the agent-builder skill
+
+  Read 1 file, listed 1 directory, ran 1 shell command
+  [proceeds with the actual task]
+```
+
+Every part of the design held:
+
+- the offer is one sentence, with no work started while asking — "Worked for 1s";
+- declining drops it and the actual request is served;
+- the decline sentence itself matches the create pattern, and produced **no second offer**
+  (F-014);
+- the prompt is the one that scored 0/3 for the description alone in eval run 2.
+
+**B7c is done.** The offer works through the real distribution path.
+
+## What this step cost, and why
+
+Three live attempts were needed. The first could not have worked (`--plugin-dir` does not load
+hooks, F-012). The second ran the hook against a key the payload never contained (F-013). The
+third offered twice (F-014). Each time the unit tests were green, because each test constructed
+its payload from the same misunderstanding the code held.
+
+The lesson is narrow and worth keeping: unit tests confirm the author's model of an external
+contract, they do not check it. The thing that found all three was making the hook report what
+it actually received — `AGENTS_BUILDER_HOOK_LOG`, added for an unrelated reason, then used to
+pin the schema in a test. Anything this repository builds against an interface it does not own
+should be able to say what it saw. Pending an installed-plugin test.

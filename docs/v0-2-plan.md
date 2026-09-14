@@ -178,6 +178,10 @@ concretely enough that the host would otherwise just start coding.
 - **Done when:** the hook matches every eval phrasing and none of the counter-examples (unit
   tested), is silent in a seeded project and after a decline, always exits 0, and the author
   has seen the offer appear and be declined in a real session.
+- **Done 2026-09-14**, through the installed plugin, after three failed attempts recorded as
+  F-012 (`--plugin-dir` does not load hooks), F-013 (the hook read a key the payload never
+  sent) and F-014 (the offer repeated after a decline). B7b's original goal — widening the
+  description — was superseded by AB-D032 and is closed unchanged.
 
 ### B8 — Dogfood
 - Run `seed.py --kind skill` into a temp dir with Agent Builder's own name and purpose; diff the

@@ -6,7 +6,7 @@ project:
 
 phase:
   current: build
-  status: b7c_hook_verified_via_project_settings_awaiting_plugin_path
+  status: b7_complete_awaiting_ab_d031_then_b8
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation
@@ -75,7 +75,7 @@ next_release:
   kinds: [agent, skill]
   confirmed_decisions: [AB-D019, AB-D020, AB-D021, AB-D022, AB-D023, AB-D024, AB-D025, AB-D026, AB-D027, AB-D028, AB-D029]
   build_steps: [B1, B2, B3, B4, B5, B6, B7, B8]
-  build_steps_done: [B1, B2, B3, B4, B5, B6, B7a, B7c]
+  build_steps_done: [B1, B2, B3, B4, B5, B6, B7a, B7b, B7c]
   inputs_resolved:
     - id: F-001
       resolution: >-
@@ -103,9 +103,10 @@ checkpoint:
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Author updates the installed plugin to 0.2.0-dev.2 (/plugin marketplace update
-    agent-builder, /reload-plugins), removes the project-settings diagnostic from the test
-    folder, and confirms the offer still appears through the plugin alone. Then B8.
+    B7 is complete: the offer works through the installed plugin. Next, the author confirms or
+    rejects AB-D031 (a project.status field for scratch, paused, and abandoned projects); if
+    confirmed it lands before the release. Then B8: seed Agent Builder's own skill from its own
+    skill template, reconcile, bump to 0.2.0, tag, and hand to Review.
     B7b rewrites the skill description against them (F-007) and re-runs. Then B8. (Superseded
     text follows.) Execute B6 as revised by AB-D030: keep seeded adapters substantive, add an explicit
     skill-invocation line, widen the skill description to cover resume, and change the resume
