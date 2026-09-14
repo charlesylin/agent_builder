@@ -1,0 +1,9 @@
+# Scripts
+
+Deterministic helpers that `SKILL.md` tells the host to run. Rules:
+
+- Standard library only unless a dependency is recorded in `governance/decisions.yaml`.
+- Each script has a test in `tests/` and fails loudly on unsupported or invalid input.
+- No secrets in code or arguments; read credentials by name from the environment at runtime.
+- A script does one thing a model should not be trusted to do reliably: validate, transform,
+  calculate, enforce a rule, or execute a repeatable action.

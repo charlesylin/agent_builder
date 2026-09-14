@@ -70,6 +70,8 @@ def _context(spec: ProjectSpec, generated_at: datetime) -> dict[str, str]:
         "GENERATED_AT_JSON": json.dumps(iso_timestamp),
         "GENERATED_DATE": timestamp.date().isoformat(),
         "TEMPLATE_VERSION": __version__,
+        "KIND": spec.kind,
+        "KIND_JSON": json.dumps(spec.kind),
     }
 
 

@@ -7,7 +7,7 @@ import unicodedata
 from dataclasses import dataclass
 
 SUPPORTED_ADAPTERS = ("codex", "claude", "gemini")
-SUPPORTED_KINDS = ("agent",)
+SUPPORTED_KINDS = ("agent", "skill")
 DEFAULT_KIND = "agent"
 
 

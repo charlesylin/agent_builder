@@ -1,0 +1,33 @@
+"""Dependency-free checks for the generated skill contract."""
+
+from __future__ import annotations
+
+import json
+import re
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+FRONT_MATTER = re.compile(r"\A---\n(.*?)\n---\n", re.DOTALL)
+
+
+class SkillScaffoldTests(unittest.TestCase):
+    def test_skill_front_matter_has_name_and_description(self) -> None:
+        text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        match = FRONT_MATTER.match(text)
+        self.assertIsNotNone(match, "SKILL.md must start with YAML front matter")
+        keys = {line.split(":", 1)[0].strip() for line in match.group(1).splitlines() if ":" in line}
+        self.assertTrue({"name", "description"} <= keys, keys)
+
+    def test_plugin_manifest_parses_and_matches_skill_name(self) -> None:
+        manifest = json.loads((ROOT / ".claude-plugin/plugin.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["name"], {{PROJECT_SLUG_JSON}})
+        self.assertTrue(manifest["description"])
+
+    def test_new_project_starts_in_define(self) -> None:
+        state = (ROOT / "governance/project-state.yaml").read_text(encoding="utf-8")
+        self.assertIn("  current: define\n", state)
+
+
+if __name__ == "__main__":
+    unittest.main()

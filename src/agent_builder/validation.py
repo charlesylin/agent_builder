@@ -14,19 +14,31 @@ _ADAPTER_FILES = {
 }
 _REQUIRED_FILES = (
     Path(".agent-builder.json"),
-    Path(".dockerignore"),
     Path(".env.example"),
     Path(".gitignore"),
     Path("README.md"),
     Path("SECURITY.md"),
-    Path("contracts/examples/agent-handoff.example.json"),
-    Path("contracts/schemas/agent-handoff.schema.json"),
     Path("governance/decisions.yaml"),
     Path("governance/operating-agreement.md"),
     Path("governance/project-state.yaml"),
     Path("planning/README.md"),
     Path("planning/open-questions.md"),
 )
+# Files each kind adds on top of the base set. Projects generated before kinds existed have
+# no "kind" in their manifest and are treated as agents, so they keep validating unchanged.
+_KIND_REQUIRED_FILES = {
+    "agent": (
+        Path(".dockerignore"),
+        Path("contracts/examples/agent-handoff.example.json"),
+        Path("contracts/schemas/agent-handoff.schema.json"),
+    ),
+    "skill": (
+        Path("SKILL.md"),
+        Path(".claude-plugin/plugin.json"),
+        Path("evals/README.md"),
+    ),
+}
+_DEFAULT_KIND = "agent"
 _SECRET_PATTERNS = {
     "private-key": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
     "openai-style-key": re.compile(r"\bsk-[A-Za-z0-9_-]{20,}\b"),
@@ -114,14 +126,29 @@ def validate_project(root: str | Path) -> tuple[ValidationIssue, ...]:
             ValidationIssue("missing-project", "project directory does not exist", project_root),
         )
 
-    for relative in _REQUIRED_FILES:
+    manifest_path = project_root / ".agent-builder.json"
+    manifest = _load_json(manifest_path, issues) if manifest_path.is_file() else None
+    kind = _DEFAULT_KIND
+    if isinstance(manifest, dict):
+        declared = manifest.get("kind", _DEFAULT_KIND)
+        if declared not in _KIND_REQUIRED_FILES:
+            issues.append(
+                ValidationIssue(
+                    "invalid-manifest",
+                    f"unknown kind {declared!r}; known kinds: "
+                    + ", ".join(sorted(_KIND_REQUIRED_FILES)),
+                    manifest_path,
+                )
+            )
+        else:
+            kind = declared
+
+    for relative in _REQUIRED_FILES + _KIND_REQUIRED_FILES[kind]:
         if not (project_root / relative).is_file():
             issues.append(
                 ValidationIssue("missing-file", "required scaffold file is missing", relative)
             )
 
-    manifest_path = project_root / ".agent-builder.json"
-    manifest = _load_json(manifest_path, issues) if manifest_path.is_file() else None
     if isinstance(manifest, dict):
         adapters = manifest.get("coding_agent_adapters")
         if (
@@ -193,6 +220,7 @@ def validate_project(root: str | Path) -> tuple[ValidationIssue, ...]:
                     )
                 )
 
-    _validate_contract(project_root, issues)
+    if kind == "agent":
+        _validate_contract(project_root, issues)
     _scan_text_files(project_root, issues)
     return tuple(issues)

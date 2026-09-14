@@ -6,6 +6,12 @@ All notable changes to Agent Builder are documented here.
 
 ### Added
 
+- `skill` kind (AB-D023): `init --kind skill` seeds a project whose `SKILL.md` carries `name`
+  and `description` front matter, plus `scripts/`, `references/`, `evals/` with a first
+  scenario, a `.claude-plugin/plugin.json` manifest, its own tests, and skill-specific README,
+  CONTRIBUTING, CI, and project state via kind overrides. `.agent-builder.json` and
+  `project-state.yaml` now record `kind`. The validator reads the kind and requires the right
+  files for it; manifests without a kind (v0.1 projects) validate as agents unchanged.
 - `principles/`: one file per principle, the single source for every copy of the operating
   principles (AB-D020). `scripts/render.py` fills `{{principle:<id>}}` tokens in
   `scripts/stencils/` to produce root `AGENTS.md`, this repository's operating agreement, the

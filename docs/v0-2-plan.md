@@ -82,6 +82,14 @@ independently revertible. Nothing is deleted until its replacement is tested.
 - One test: seed a `skill` project, validate it, assert `SKILL.md` frontmatter parses.
 - **Done when:** `seed.py --kind skill` produces a folder Claude recognizes as a skill.
 
+> **B4 as built (2026-09-14):** the skill kind also overrides `README.md`, `CONTRIBUTING.md`,
+> `ci.yml`, and `governance/project-state.yaml` (no runtime/deployment blocks; a
+> `distribution` block instead), and ships `tests/test_skill.py` so its CI has something to
+> run. `kind` is recorded in `.agent-builder.json` and `project-state.yaml` for every kind.
+> The validator became kind-aware here rather than later; v0.1 manifests without `kind`
+> validate as agents. `plugin.json` has no `author` because the seeder does not yet collect an
+> owner — B5's skill procedure asks for one, so the field lands there.
+
 ### B5 — `skills/agent-builder/` and retirement of the package
 - Create `skills/agent-builder/scripts/seed.py` and `check.py` as self-contained files,
   assembled from `scaffold.py` + `models.py` + `cli.py` and `validation.py` respectively.

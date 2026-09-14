@@ -1,0 +1,36 @@
+---
+name: {{PROJECT_SLUG_JSON}}
+description: {{PURPOSE_JSON}}
+---
+
+# {{PROJECT_NAME}}
+
+{{PURPOSE}}
+
+This skill is in the **Define** phase. Its instructions below are a scaffold; replace each
+section as Define and Plan settle what the skill does. Keep `description` in the front matter
+accurate — it is the only text the host reads when deciding whether to load this skill.
+
+## When to use
+
+State the situations that should trigger this skill and the ones that should not. Be concrete:
+the host matches user requests against `description`, and people match against this section.
+
+## Procedure
+
+1. Say what the skill reads first (files, state, prior outputs).
+2. Say what it asks the person before acting, and what it never assumes.
+3. Say which steps are judgment (the model decides) and which are deterministic (a script in
+   `scripts/` does them, with tests). Repeatable work belongs in a script, not in prose.
+4. Say what the skill produces and how the person can check it.
+
+## Resources
+
+- `scripts/` — deterministic helpers this skill runs. Each has a test in `tests/`.
+- `references/` — reference material loaded on demand, not on every activation.
+- `evals/` — scenarios that check the skill behaves as written. Run them before a release.
+
+## Governance
+
+This project follows Agent Builder. Phase, decisions, and history live in `governance/`.
+Do not change phase without the project author's explicit approval.
