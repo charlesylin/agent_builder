@@ -18,11 +18,11 @@ state and newer author instructions before continuing.
 
 ## Engineering standard
 
-- {{principle:search-before-building|short}}
-- {{principle:use-reasoning-selectively|short}}
-- {{principle:work-small-fail-loudly|short}}
-- {{principle:keep-boundaries-replaceable|short}}
-- {{principle:decision-protocol|short}}
+- **{{principle:search-before-building|title}}.** {{principle:search-before-building|short}}
+- **{{principle:use-reasoning-selectively|title}}.** {{principle:use-reasoning-selectively|short}}
+- **{{principle:work-small-fail-loudly|title}}.** {{principle:work-small-fail-loudly|short}}
+- **{{principle:keep-boundaries-replaceable|title}}.** {{principle:keep-boundaries-replaceable|short}}
+- **{{principle:decision-protocol|title}}.** {{principle:decision-protocol|short}}
 
 ## Contracts and deployment
 

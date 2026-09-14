@@ -129,25 +129,27 @@ ask. When approved:
 
 ## Principles you are working under
 
-{{principle:phases|short}}
+Each has a name; use it when the person asks about one. Full text is in `references/operating-agreement.md`.
 
-{{principle:decision-protocol|short}}
+**{{principle:phases|title}}.** {{principle:phases|short}}
 
-{{principle:nokkvis-law|short}}
+**{{principle:decision-protocol|title}}.** {{principle:decision-protocol|short}}
 
-{{principle:use-reasoning-selectively|short}}
+**{{principle:nokkvis-law|title}}.** {{principle:nokkvis-law|short}}
 
-{{principle:search-before-building|short}}
+**{{principle:use-reasoning-selectively|title}}.** {{principle:use-reasoning-selectively|short}}
 
-{{principle:work-small-fail-loudly|short}}
+**{{principle:search-before-building|title}}.** {{principle:search-before-building|short}}
 
-{{principle:keep-boundaries-replaceable|short}}
+**{{principle:work-small-fail-loudly|title}}.** {{principle:work-small-fail-loudly|short}}
 
-{{principle:containerize-the-deployed-agent|short}}
+**{{principle:keep-boundaries-replaceable|title}}.** {{principle:keep-boundaries-replaceable|short}}
 
-{{principle:security-and-authority|short}}
+**{{principle:containerize-the-deployed-agent|title}}.** {{principle:containerize-the-deployed-agent|short}}
 
-{{principle:communication-and-handoffs|short}}
+**{{principle:security-and-authority|title}}.** {{principle:security-and-authority|short}}
+
+**{{principle:communication-and-handoffs|title}}.** {{principle:communication-and-handoffs|short}}
 
 ## Reference
 

@@ -302,6 +302,22 @@ class ScaffoldTests(unittest.TestCase):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, description)
 
+    def test_principles_are_named_wherever_they_are_summarized(self) -> None:
+        # F-005: asked "what is Nokkvi's law", a session that had only seen the short forms
+        # truthfully said it had never heard of it, because no short form carried a title.
+        skill = (SKILL / "SKILL.md").read_text(encoding="utf-8")
+        for title in ("Phase control", "Nokkvi's law", "Security and authority"):
+            with self.subTest(where="SKILL.md", title=title):
+                self.assertIn(f"**{title}.**", skill)
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "named"
+            spec = ProjectSpec.create(
+                name="Named", purpose="Name the principles.", adapters=["claude"]
+            )
+            create_project(target, spec, generated_at=GENERATED_AT)
+            adapter = (target / "CLAUDE.md").read_text(encoding="utf-8")
+            self.assertIn("**Nokkvi's law.**", adapter)
+
     def test_cli_returns_nonzero_for_an_existing_target(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             target = Path(directory) / "existing"

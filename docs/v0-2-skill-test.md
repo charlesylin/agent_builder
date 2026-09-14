@@ -1,5 +1,7 @@
 # v0.2 skill test — 2026-09-14
 
+Two runs: run 1 against B5b, run 2 against B6. Run 2 is at the end of this file.
+
 **Tester:** Charles Yang Lin
 **Build state:** B5b (`bd44074`), plugin version `0.2.0-dev`
 **Host:** Claude Code, `claude --plugin-dir ~/Dropbox/codex/project_agent_builder`
@@ -119,3 +121,79 @@ Recorded as AB-D030, which supersedes AB-D024's thin-adapter clause. AB-D024's v
 - Codex, on any path.
 - The counter-case: a nearby request the skill should ignore.
 - `claude plugin eval`, which would measure trigger rate rather than demonstrate it once.
+
+
+---
+
+# Run 2 — against B6 (`fa89eed`)
+
+**Transcript:** `docs/evidence/2026-09-14-skill-test-run2-transcript.md`. Fresh folder
+(`~/tmp/skill-test-2`), same two sessions, same opening prompt.
+
+## Session 1 — start: pass, and the §1 revision behaved as written
+
+The `Skill` tool was the very first call, before any directory listing. The kind picker this
+time offered three options including `mcp`, labelled "not yet supported by this builder — I'd
+tell you and we'd fall back to agent", which is the §1 table followed literally. Purpose went
+draft → two clarifying dimensions → reformulation → read-back → "yes". Logistics arrived as one
+table of four defaults, accepted in one line — the revised §1 exactly. Seeder ran with correct
+flags; output verbatim; remote asked about, not assumed.
+
+The seeded project was verified independently: one commit on `main`, clean tree,
+`source_commit` = `fa89eed…`, `check.py` valid, adapter opens with the skill-invocation line.
+
+## Session 2 — resume: **F-003 closed, F-004 closed**
+
+"what's the current status?" → the host listed the directory, read the adapter, said *"This is
+an agent-builder project — invoking the skill to brief properly"*, and called
+`Skill(agent-builder:agent-builder)`. The briefing matched §3 point for point: purpose in the
+ledger's words; phase, status, and *how long* ("roughly an hour ago"); what exists and what
+Define still owes (`planning/definition.md` missing, `open-questions.md` untouched); the four
+decisions in a table; a proposed next step with the reason for that one first; the closeout;
+*"I've made no changes and moved no phase."*
+
+Whether the description or the adapter line caused the invocation cannot be separated from
+one run. It does not need to be: AB-D030's design is that the adapter is the floor and the
+skill is the ceiling, and both layers did their job.
+
+Two unplanned behaviors worth recording:
+
+- It noticed `../session-transcript.md` in the parent folder, read it, learned from it that the
+  project had been declared a test, and **reconciled that against the ledger** rather than
+  believing either: *"The repo itself doesn't record that."* It then made the next step
+  conditional on which was true. That is §3's checkpoint rule applied to a file it was never
+  told about.
+- Its closing question was a product finding, not a project one — see F-006.
+
+## New findings
+
+**F-005 — summarized principles had no names.** Asked *"confirm to me what Nokkvi's law is"*,
+the session replied it had never heard of it and declined to confirm something unknown right
+after being told the preceding minutes were a test. That was the right answer to the wrong
+situation: `SKILL.md` and the seeded `CLAUDE.md` rendered every principle as an anonymous
+paragraph — `{{principle:…|short}}` without `|title` — so the model had the rule and not its
+name. Only the full operating agreement carried the heading. **Fixed in this commit:** every
+summarized principle is now prefixed `**Title.**` in `SKILL.md`, the three adapters, and the
+root `AGENTS.md`, with a test. The skepticism itself is behavior to keep.
+
+**F-006 — a project cannot say it is scratch.** The session's own words: *"the skill may need
+somewhere in-repo to record 'this is scratch' — or Define's closeout may need to run even when
+the answer is 'never mind.'"* The phase model has no terminal state. An abandoned or test
+project is indistinguishable in its ledger from a live one awaiting Define. In an organization
+that will start many projects and finish fewer, that gap matters. Recorded as AB-D031,
+`proposed`: it changes the project-state contract and needs the author.
+
+## Status of findings after run 2
+
+| Finding | Status |
+| --- | --- |
+| F-001 — resume needs manual coaching | **Closed.** A cold session with only the skill trigger phrase recovered the full picture and invoked the skill unprompted. |
+| F-002 — host Python prerequisite | Closed (run 1). |
+| F-003 — description did not cover resume | **Closed** by B6. |
+| F-004 — three-line resume was the wrong shape | **Closed** by B6. |
+| F-005 — summarized principles unnamed | **Closed** by this commit. |
+| F-006 — no scratch/abandoned state | Open; AB-D031 proposed. |
+
+## Still not tested
+
+The `skill` kind through the skill; Codex; the counter-case; `claude plugin eval`.

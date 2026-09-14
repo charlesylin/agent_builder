@@ -42,6 +42,9 @@ All notable changes to Agent Builder are documented here.
 
 ### Changed
 
+- Every summarized principle in `SKILL.md`, the adapters, and root `AGENTS.md` is now prefixed
+  with its name, so a session can answer "what is Nokkvi's law?" without opening the full
+  agreement (F-005).
 - Seeded adapter files (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`) stay substantive and now open
   by telling the host to invoke the `agent-builder` skill when it is available, and to answer
   a status question with a briefing rather than a summary. The skill's `description` covers

@@ -6,7 +6,7 @@ project:
 
 phase:
   current: build
-  status: b6_done_awaiting_push_and_ci
+  status: b6_verified_by_run2_f005_fixed
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation
@@ -79,9 +79,9 @@ next_release:
   inputs_resolved:
     - id: F-001
       resolution: >-
-        Partly closed on 2026-09-14. A cold session recovers phase, decisions, and next step
-        from repository records with no resume prompt, but through the adapter file rather
-        than the skill. See docs/v0-2-skill-test.md.
+        Closed 2026-09-14 (run 2). A cold session given only "what's the current status?"
+        invoked the skill unprompted and delivered the full briefing from repository records.
+        See docs/v0-2-skill-test.md.
     - id: F-002
       resolution: >-
         Closed for the seed path on 2026-09-14: seed.py and check.py ran on the author's

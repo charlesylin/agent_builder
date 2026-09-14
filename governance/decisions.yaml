@@ -294,3 +294,19 @@ decisions:
     supersedes: AB-D024
     provenance: explicit_author_approval_after_skill_test
     record: docs/v0-2-skill-test.md
+  - id: AB-D031
+    status: proposed
+    date: 2026-09-14
+    decision: >-
+      Give a project a way to record that it is scratch, paused, or abandoned: a
+      project.status field in project-state.yaml (active | paused | abandoned | archived),
+      set by the skill when the author says so, with the reason in the phase history. The
+      four phases stay as they are; this is a state alongside them, not a fifth phase.
+    rationale: >-
+      Surfaced by the skill itself during the 2026-09-14 run 2 resume test (F-006): a test
+      project's ledger was indistinguishable from a live project awaiting Define, and the
+      session had to find the truth in a stray transcript outside the repository. An
+      organization that starts many projects needs the ledger to say which ones are dead.
+      Changes the project-state contract (AB-D011), so it needs the author.
+    provenance: skill_finding_during_review_of_run2
+    record: docs/v0-2-skill-test.md
