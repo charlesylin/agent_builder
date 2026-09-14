@@ -9,7 +9,7 @@ project:
 
 phase:
   current: build
-  status: b8_done_v0_2_0_tagged_awaiting_review_approval
+  status: b8_done_v0_2_0_tagged_first_review_feedback_recorded_awaiting_review_approval
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation
@@ -110,7 +110,9 @@ checkpoint:
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Build is complete: v0.2.0 is tagged. The author decides whether to enter Review. Review's
+    Build is complete: v0.2.0 is tagged. Sean's Review feedback is recorded in
+    docs/v0-2-review-feedback.md with four proposed decisions AB-D033..036. The author decides
+    whether to enter Review and which proposals to confirm. Review's
     acceptance test is the opt-in org install (docs/INSTALL.md, "Available for install") and
     the friction it produces; success signals are in docs/v0-2-define.md section 7. Nothing
     else is authorized until the author says so.

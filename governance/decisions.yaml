@@ -339,3 +339,57 @@ decisions:
       explicit invocation and training (AB-D028).
     provenance: explicit_author_direction_after_eval_run_2
     record: docs/v0-2-skill-test.md
+  - id: AB-D033
+    status: proposed
+    date: 2026-09-14
+    decision: >-
+      Define opens with four problem-framing questions — what problem, how it is solved today,
+      what the value is if solved, who it is for — one turn each; the purpose sentence is drafted
+      from the answers; the answers are seeded into planning/definition.md and summarized in
+      D001's rationale; check.py --leaving define fails while any is a placeholder.
+    rationale: >-
+      Sean's first Review point: the thing is only as good as the author's articulation of its
+      value, and Define today demands only a one-sentence purpose, which the skill will
+      fluently draft for a problem nobody has.
+    provenance: review_feedback_sean_via_author
+    record: docs/v0-2-review-feedback.md
+  - id: AB-D034
+    status: proposed
+    date: 2026-09-14
+    decision: >-
+      Adopt "build only what you need" (rewrites.bio 4.2) as principles/11, rendered into the
+      skill, adapters, and seeded agreements; planning/definition.md gains "smallest version
+      that delivers the value" and "not in the first version"; the skill tests proposals
+      against them.
+    rationale: >-
+      Sean's second point: suggestions become bloat because nothing argues against
+      accumulation. The principle was in the inspiration and never carried over.
+    provenance: review_feedback_sean_via_author
+    record: docs/v0-2-review-feedback.md
+  - id: AB-D035
+    status: proposed
+    date: 2026-09-14
+    decision: >-
+      Suggestions are not scope. Seed planning/later.md as the default destination for
+      anything the author did not ask for; proposed decisions expire at phase close, enforced
+      by check.py --leaving <phase>, which requires each to be confirmed or rejected; the
+      closeout asks one question and never converts it into work on a yes.
+    rationale: >-
+      Deterministic closing of scope, so that a person who says yes to everything still ends
+      up with the minimum. D003/D004 rotting as proposed template defaults is the same failure
+      already in evidence.
+    provenance: review_feedback_sean_via_author
+    record: docs/v0-2-review-feedback.md
+  - id: AB-D036
+    status: proposed
+    date: 2026-09-14
+    decision: >-
+      Consequential approvals — purpose, MVP statement, phase transition, seeding, remote
+      creation, any send/spend/publish/delete authority — are typed, never clicked: the skill
+      states in one line what a yes commits to, then asks for a word or a restatement.
+      Pickers remain for exploratory questions.
+    rationale: >-
+      Sean's third point: novices approve everything without reading. The phase gate already
+      requires words and was the one rule that held in every run.
+    provenance: review_feedback_sean_via_author
+    record: docs/v0-2-review-feedback.md
