@@ -81,9 +81,25 @@ class MatcherTests(unittest.TestCase):
         self.assertFalse(hook.looks_like_new_work("build an agent that " + "x" * 2000))
 
 
+class PromptKeyTests(unittest.TestCase):
+    """The key holding the typed text is not pinned in the docs; read whichever one carries it."""
+
+    def test_reads_the_prompt_from_any_known_key(self) -> None:
+        for key in hook.PROMPT_KEYS:
+            with self.subTest(key=key):
+                self.assertEqual(hook.extract_prompt({key: EVAL_PROMPTS[0]}), EVAL_PROMPTS[0])
+
+    def test_prefers_the_first_key_that_carries_text(self) -> None:
+        self.assertEqual(hook.extract_prompt({"prompt": "", "user_prompt": "hello"}), "hello")
+
+    def test_unknown_schema_is_silent_rather_than_wrong(self) -> None:
+        self.assertEqual(hook.extract_prompt({"somethingElse": EVAL_PROMPTS[0]}), "")
+        self.assertFalse(hook.should_offer({"somethingElse": EVAL_PROMPTS[0], "cwd": "/"}))
+
+
 class HookProcessTests(unittest.TestCase):
     def test_offer_names_the_skill_and_the_mute_command(self) -> None:
-        out = invoke({"user_prompt": EVAL_PROMPTS[0], "cwd": "/", "session_id": "abc"})
+        out = invoke({"prompt": EVAL_PROMPTS[0], "cwd": "/", "session_id": "abc"})
         payload = json.loads(out)["hookSpecificOutput"]
         self.assertEqual(payload["hookEventName"], "UserPromptSubmit")
         self.assertIn("agent-builder", payload["additionalContext"])

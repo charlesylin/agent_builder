@@ -17,6 +17,11 @@ when a person declines. One decline ends the offers for that session.
 
 Exit status is always 0 and a failure prints nothing: a hook that breaks a person's prompt is
 worse than a hook that misses one.
+
+Debugging: set ``AGENT_BUILDER_HOOK_LOG`` to a file path and every invocation appends one line
+saying what it decided and why. If that file never appears, the hook is not being run at all —
+plugin hooks load only from an installed plugin, not from ``--plugin-dir``. ``--selftest``
+exercises the matcher with no stdin, so you can prove the script itself works on a machine.
 """
 
 from __future__ import annotations
@@ -27,10 +32,16 @@ import os
 import re
 import sys
 import tempfile
+from datetime import datetime
 from pathlib import Path
 
 SKILL = "agent-builder"
 MARKER_PREFIX = "agent-builder-offer-muted-"
+
+# The key holding the typed text is not pinned in the public hook docs, and a 2026-09-14 trace
+# showed the hook receiving a payload where "user_prompt" was absent. Read whichever of these
+# carries text; the trace records the payload's actual keys so the schema stops being a guess.
+PROMPT_KEYS = ("prompt", "user_prompt", "user_prompt_raw", "message", "input", "text")
 
 # Something is being created that does not exist yet. Deliberately conservative: a false
 # positive costs one question, and the negative patterns below take precedence.
@@ -88,6 +99,16 @@ def marker_path(session_id: str) -> Path:
     return Path(tempfile.gettempdir()) / f"{MARKER_PREFIX}{safe}"
 
 
+def extract_prompt(payload: dict) -> str:
+    """The text the person typed, from whichever key this Claude Code version uses."""
+
+    for key in PROMPT_KEYS:
+        value = payload.get(key)
+        if isinstance(value, str) and value.strip():
+            return value
+    return ""
+
+
 def looks_like_new_work(prompt: str) -> bool:
     """True when the text reads as creating something that does not exist yet."""
 
@@ -116,22 +137,71 @@ def should_offer(payload: dict) -> bool:
         return False
     if is_seeded_project(str(payload.get("cwd") or "")):
         return False
-    return looks_like_new_work(str(payload.get("user_prompt") or ""))
+    return looks_like_new_work(extract_prompt(payload))
+
+
+def trace(message: str) -> None:
+    """Append one line to AGENT_BUILDER_HOOK_LOG, when it is set. Never raises."""
+
+    path = os.environ.get("AGENT_BUILDER_HOOK_LOG")
+    if not path:
+        return
+    with contextlib.suppress(OSError), open(path, "a", encoding="utf-8") as handle:
+        handle.write(f"{datetime.now().isoformat(timespec='seconds')} {message}\n")
+
+
+def decide(payload: dict) -> tuple[bool, str]:
+    """Return (offer?, why) so the reason can be traced."""
+
+    session_id = str(payload.get("session_id") or "")
+    prompt = extract_prompt(payload)
+    if session_id and marker_path(session_id).exists():
+        return False, f"muted for session {session_id}"
+    if is_seeded_project(str(payload.get("cwd") or "")):
+        return False, "already a seeded project"
+    if not looks_like_new_work(prompt):
+        return False, f"prompt did not match: {prompt[:60]!r}"
+    return True, f"offering for: {prompt[:60]!r}"
+
+
+def selftest() -> int:
+    """Run the matcher over known prompts without stdin, and report."""
+
+    checks = [
+        ("help me build a little service that watches our S3 bucket", True),
+        ("we need an internal tool that summarizes QC reports. where do I start?", True),
+        ("i want to make a thing that retrieves depmap data", True),
+        ("fix the failing test in test_parser.py", False),
+        ("what's the difference between a dataclass and a NamedTuple?", False),
+    ]
+    bad = 0
+    for prompt, want in checks:
+        got = looks_like_new_work(prompt)
+        bad += got != want
+        print(f"{'ok  ' if got == want else 'MISS'} {'offer ' if got else 'silent'}  {prompt[:60]}")
+    print(f"{len(checks) - bad}/{len(checks)} correct; python {sys.version.split()[0]}")
+    return 1 if bad else 0
 
 
 def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] == "--selftest":
+        return selftest()
     if argv and argv[0] == "--mute":
         if len(argv) > 1:
             with contextlib.suppress(OSError):
                 marker_path(argv[1]).touch()
+            trace(f"muted session {argv[1]}")
         return 0
 
     try:
         payload = json.loads(sys.stdin.read() or "{}")
         if not isinstance(payload, dict):
+            trace("input was not a JSON object")
             return 0
-        if not should_offer(payload):
+        offer, why = decide(payload)
+        trace(f"keys={sorted(payload)} :: " + ("OFFER  " if offer else "silent ") + why)
+        if not offer:
             return 0
         offer = OFFER.format(
             hook=os.path.abspath(__file__), session=payload.get("session_id") or ""
