@@ -137,6 +137,13 @@ independently revertible. Nothing is deleted until its replacement is tested.
 - **Done when:** a seeded `CLAUDE.md` is under fifteen lines and a Windows-less test proves
   the pointer files exist.
 
+> **B6 as built (2026-09-14):** per AB-D030. The in-repo pointer skills
+> (`.agents/skills/agent-builder/`, `.claude/skills/agent-builder/`) were dropped: a pointer
+> cannot load a skill that is not installed, and the adapter file — loaded unconditionally by
+> every host — is a strictly more reliable carrier than a second trigger surface. `--since`
+> reads the builder's `CHANGELOG.md` when run from a checkout and says plainly when a copied
+> skill folder has none. `source_commit` is `null` from a copied folder for the same reason.
+
 ### B7 — Documentation and evals
 - `docs/INSTALL.md`: Claude org marketplace (GitHub sync, *Installed by default*), Claude Code
   managed settings with the exact keys, Codex paths. Dated; sources cited.

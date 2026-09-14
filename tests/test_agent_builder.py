@@ -255,6 +255,53 @@ class ScaffoldTests(unittest.TestCase):
         self.assertLessEqual(len(lines[1]) - len("description: ''"), 1024)
         self.assertEqual(len(lines), 2, "front matter carries only name and description")
 
+    def test_adapters_point_at_the_skill_and_ask_for_a_briefing(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "adapters"
+            spec = ProjectSpec.create(
+                name="Adapters",
+                purpose="Check adapter text.",
+                adapters=["codex", "claude", "gemini"],
+            )
+            create_project(target, spec, generated_at=GENERATED_AT)
+            for name in ("AGENTS.md", "CLAUDE.md", "GEMINI.md"):
+                with self.subTest(adapter=name):
+                    text = (target / name).read_text(encoding="utf-8")
+                    self.assertIn("If the `agent-builder` skill is available, invoke it", text)
+                    self.assertIn("give a briefing", text)
+                    self.assertIn("governance/operating-agreement.md", text)
+
+    def test_manifest_records_source_commit(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "commit"
+            spec = ProjectSpec.create(name="Commit", purpose="Record provenance.")
+            create_project(target, spec, generated_at=GENERATED_AT)
+            manifest = json.loads((target / ".agent-builder.json").read_text(encoding="utf-8"))
+            self.assertIn("source_commit", manifest)
+            commit = manifest["source_commit"]
+            self.assertTrue(commit is None or re.fullmatch(r"[0-9a-f]{40}", commit), commit)
+
+    def test_since_reports_changelog_sections_newer_than_a_version(self) -> None:
+        import check
+
+        newer = check.changes_since("0.1.0")
+        self.assertIn("## [Unreleased]", newer)
+        self.assertNotIn("## [0.1.0]", newer)
+        unknown = check.changes_since("9.9.9")
+        self.assertIn("No changelog heading for '9.9.9'", unknown)
+
+    def test_skill_description_covers_start_and_resume(self) -> None:
+        text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
+        description = re.search(r"^description: '(.*)'$", text, flags=re.MULTILINE).group(1)
+        for phrase in (
+            "build an agent",
+            "status here",
+            "where did we leave off",
+            "what phase are we in",
+        ):
+            with self.subTest(phrase=phrase):
+                self.assertIn(phrase, description)
+
     def test_cli_returns_nonzero_for_an_existing_target(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             target = Path(directory) / "existing"

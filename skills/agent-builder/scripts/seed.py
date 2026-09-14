@@ -44,6 +44,19 @@ except ImportError as error:  # pragma: no cover - only when the skill folder is
 # Kept equal to "version" in the repository's .claude-plugin/plugin.json; a test enforces it.
 TEMPLATE_VERSION = "0.2.0-dev"
 
+
+def source_commit() -> str | None:
+    """The builder commit these templates came from, or None for a copied skill folder."""
+
+    git = shutil.which("git")
+    if git is None:
+        return None
+    result = subprocess.run(
+        [git, "rev-parse", "HEAD"], cwd=HERE, capture_output=True, text=True, check=False
+    )
+    return result.stdout.strip() or None if result.returncode == 0 else None
+
+
 SUPPORTED_ADAPTERS = ("codex", "claude", "gemini")
 SUPPORTED_KINDS = ("agent", "skill")
 DEFAULT_KIND = "agent"
@@ -182,6 +195,7 @@ def _context(spec: ProjectSpec, generated_at: datetime) -> dict[str, str]:
         "GENERATED_AT_JSON": json.dumps(iso_timestamp),
         "GENERATED_DATE": timestamp.date().isoformat(),
         "TEMPLATE_VERSION": TEMPLATE_VERSION,
+        "SOURCE_COMMIT_JSON": json.dumps(source_commit()),
         "KIND": spec.kind,
         "KIND_JSON": json.dumps(spec.kind),
         "OWNER": spec.owner,

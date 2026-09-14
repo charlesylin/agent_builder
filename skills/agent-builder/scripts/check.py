@@ -5,7 +5,10 @@ Deterministic structural and secret-safety checks. Reads the project's kind from
 ``.agent-builder.json`` and requires the files that kind needs. Never modifies the project.
 
 Usage:
-    python3 check.py PATH          # exit 0 when valid, 1 with one line per issue otherwise
+    python3 check.py PATH                  # exit 0 when valid, 1 with one line per issue
+    python3 check.py PATH --since          # what changed in Agent Builder since this project
+                                           # was seeded (reads template_version from the manifest)
+    python3 check.py PATH --since 0.1.0    # ... since a specific version
 """
 
 from __future__ import annotations
@@ -244,10 +247,67 @@ def validate_project(root: str | Path) -> tuple[ValidationIssue, ...]:
     return tuple(issues)
 
 
+HERE = Path(__file__).resolve().parent
+_CHANGELOG_CANDIDATES = (HERE.parent / "CHANGELOG.md", HERE.parents[2] / "CHANGELOG.md")
+_HEADING = re.compile(r"^## \[([^\]]+)\]", re.MULTILINE)
+
+
+def changes_since(version: str) -> str:
+    """Return the CHANGELOG sections newer than ``version``, or an explanation.
+
+    Deliberately simple: the changelog is the upgrade guide. Agent Builder never rewrites a
+    seeded project; this tells a person what they would be opting into.
+    """
+
+    changelog = next((path for path in _CHANGELOG_CANDIDATES if path.is_file()), None)
+    if changelog is None:
+        return (
+            "No CHANGELOG.md found beside this skill folder. A copied skill folder does not carry "
+            "the changelog; read it in the Agent Builder repository."
+        )
+    text = changelog.read_text(encoding="utf-8")
+    headings = list(_HEADING.finditer(text))
+    if not headings:
+        return f"{changelog}: no version headings found"
+    for index, match in enumerate(headings):
+        if match.group(1) == version:
+            if index == 0:
+                return f"Nothing newer than {version} in {changelog.name}."
+            return text[headings[0].start() : match.start()].rstrip() + "\n"
+    newest = headings[0].group(1)
+    return (
+        f"No changelog heading for {version!r}; the newest heading is [{newest}]. "
+        f"Showing everything in {changelog.name}:\n\n" + text[headings[0].start() :].rstrip() + "\n"
+    )
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="check.py", description=__doc__.splitlines()[0])
     parser.add_argument("target", type=Path, help="root of the generated project")
+    parser.add_argument(
+        "--since",
+        nargs="?",
+        const="",
+        default=None,
+        metavar="VERSION",
+        help="print Agent Builder changes since VERSION (default: the project's template_version)",
+    )
     arguments = parser.parse_args(argv)
+
+    if arguments.since is not None:
+        version = arguments.since
+        if not version:
+            manifest_path = Path(arguments.target).expanduser().resolve() / ".agent-builder.json"
+            try:
+                version = json.loads(manifest_path.read_text(encoding="utf-8"))["template_version"]
+            except (OSError, ValueError, KeyError) as error:
+                print(
+                    f"error: cannot read template_version from {manifest_path}: {error}",
+                    file=sys.stderr,
+                )
+                return 2
+        print(changes_since(str(version)), end="")
+        return 0
 
     issues = validate_project(arguments.target)
     if not issues:

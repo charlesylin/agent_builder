@@ -6,6 +6,11 @@ All notable changes to Agent Builder are documented here.
 
 ### Added
 
+- `check.py --since [VERSION]` prints the Agent Builder changelog sections newer than the
+  project's pinned `template_version` (or a given version). Deliberately that simple: the
+  changelog is the upgrade guide, and Agent Builder never rewrites a seeded project
+  (AB-D012, AB-D030). `.agent-builder.json` now records `source_commit`, the builder commit
+  the templates came from, or `null` when seeded from a copied skill folder.
 - `skills/agent-builder/` — Agent Builder as a skill (AB-D019, AB-D026). `SKILL.md` carries the
   authored procedure (orient, Define conversation, seed, resume, phase rules, decisions,
   closeout) and the generated short form of every principle. `scripts/seed.py` and
@@ -37,6 +42,13 @@ All notable changes to Agent Builder are documented here.
 
 ### Changed
 
+- Seeded adapter files (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`) stay substantive and now open
+  by telling the host to invoke the `agent-builder` skill when it is available, and to answer
+  a status question with a briefing rather than a summary. The skill's `description` covers
+  returning to a project ("what's the status here", "where did we leave off", "catch me up")
+  as well as starting one; its resume step specifies the briefing; its Define step asks kind
+  and purpose one at a time and batches logistics with defaults. All from the 2026-09-14 skill
+  test (F-003, F-004, AB-D030).
 - Templates moved out of the Python package to `templates/` at the repository root and split
   into `base/` (every project), `kinds/agent/` (contracts, deployment policy, Python package
   skeleton, pyproject, `.dockerignore`), and `adapters/<host>/`. A kind layer may override a

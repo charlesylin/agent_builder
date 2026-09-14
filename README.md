@@ -37,11 +37,15 @@ python3 skills/agent-builder/scripts/seed.py ../my-agent \
 more hosts. The seeder refuses an existing path, validates what it produced, and makes the
 first git commit on `main`.
 
-Validate a project:
+Validate a project, or see what has changed in Agent Builder since it was seeded:
 
 ```sh
 python3 skills/agent-builder/scripts/check.py ../my-agent
+python3 skills/agent-builder/scripts/check.py ../my-agent --since
 ```
+
+Agent Builder never rewrites a seeded project. `--since` shows the changelog entries newer
+than the project's pinned template version so the owner can decide what to adopt.
 
 Install the skill so it activates by itself: see `docs/INSTALL.md` (arrives in B7). Until then,
 Claude Code users can run `/plugin marketplace add <path-or-url-of-this-repo>` then
