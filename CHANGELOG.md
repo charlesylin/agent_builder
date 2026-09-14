@@ -10,7 +10,8 @@ All notable changes to Agent Builder are documented here.
   of a new agent, skill, tool, or project (AB-D032). Silent inside a seeded project, silent
   after one decline for that session, silent on anything that reads as work on existing code,
   and always exits 0. Catches the three phrasings the description alone scored 0/3 on. Claude
-  Code only; Codex uses explicit invocation.
+  Code only; Codex uses explicit invocation. Note that hooks load only from an installed
+  plugin, not from `--plugin-dir`; verify with `/hooks`.
 - `evals/`: ten `claude plugin eval` cases — seven trigger phrasings including the one that
   failed in run 3, one negative case, and two resume cases seeded by a scaffold script.
   Trigger cases are short and tool-free so the sweep is cheap; the README gives the three

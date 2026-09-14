@@ -33,6 +33,11 @@ offline: add the phrasing to `EVAL_PROMPTS` or `NOT_NEW_WORK` in `tests/test_hoo
 `POSITIVE` or `NEGATIVE`, and run the tests. `NEGATIVE` wins over `POSITIVE` by design — work
 on something that already exists should never be interrupted.
 
+Testing it is not like testing the skill: `--plugin-dir` does not load hooks, only an
+installed plugin's hooks run. Unit tests cover the matcher offline; for a live check, install
+the plugin from a local path, verify with `/hooks`, and use `claude --debug` to see the hook's
+exit code and output. Re-installing or bumping the version is required to pick up an edit.
+
 Keep the hook silent by default and always exiting 0. It runs on every prompt; a hook that is
 noisy, slow, or capable of failing loudly is worse than no hook.
 

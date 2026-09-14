@@ -103,10 +103,11 @@ checkpoint:
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Author tries the hook hands-on: `claude --plugin-dir <repo>` from an empty folder with a
-    concrete request ("help me build a little service that watches our S3 bucket"), confirms the
-    offer appears, that declining mutes it for the session, and that the skill still works by
-    name. Then B8.
+    Author installs the plugin from the local checkout (/plugin marketplace add, /plugin
+    install), confirms the hook with /hooks, then tries a concrete request in an empty folder
+    and checks that the offer appears, that declining mutes it for the session, and that the
+    skill still works by name. --plugin-dir will not do: it does not load hooks (F-012).
+    Then B8.
     B7b rewrites the skill description against them (F-007) and re-runs. Then B8. (Superseded
     text follows.) Execute B6 as revised by AB-D030: keep seeded adapters substantive, add an explicit
     skill-invocation line, widen the skill description to cover resume, and change the resume

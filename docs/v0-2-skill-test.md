@@ -453,6 +453,24 @@ on `$agent-builder` and training (AB-D028).
 `SKILL.md` §0 now states that deliberate invocation, a description match, and an accepted hook
 offer are all normal entry points, and that a decline is not to be revisited that session.
 
+## F-012 — `--plugin-dir` does not load plugin hooks
+
+The first live attempt, 2026-09-14, showed no offer: a concrete S3-watcher prompt in an empty
+folder produced a design conversation, exactly as before the hook existed. The hook was never
+invoked. **Plugin hooks run only when the plugin is installed**; `--plugin-dir` loads skills,
+commands and agents but not hooks — a defensible line, since a hook executes on every prompt
+and `--plugin-dir` points at an unvetted directory.
+
+Consequences: every earlier `--plugin-dir` test measured the skill description alone, which is
+what those runs were for, so nothing is invalidated. But the hook cannot be tested that way,
+and `docs/INSTALL.md` and `docs/AUTHORING.md` now say so. Two diagnostics worth knowing:
+`/hooks` lists every registered hook and its source file, and `claude --debug` records which
+hooks matched, their exit codes, and their output.
+
+Whether the org-wide path is affected: no. Installed-by-default and available-for-install both
+install the plugin properly, so hooks run there. The limitation is specific to local
+development.
+
 ## Not yet verified
 
-The offer has not been seen in a live session. That is the B7c done-when the author still owes.
+The offer has not been seen in a live session. Pending an installed-plugin test.

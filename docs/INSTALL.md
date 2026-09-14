@@ -37,17 +37,33 @@ claude --plugin-dir /path/to/agent_builder
 Loads the plugin for that session only. Nothing to uninstall. Run this from an **empty**
 folder to test starting a project, or from inside a seeded project to test resuming.
 
+**`--plugin-dir` does not load the hook.** Plugin hooks run only when the plugin is installed,
+so this path exercises the skill and the scripts but never the offer. To test the hook, install
+it (below) and confirm with `/hooks`, which lists every registered hook and the file it came
+from. `claude --debug` shows each hook that matched, its exit code, and its output.
+
 ## Claude Code — install for yourself
 
-This repository is its own plugin marketplace (`.claude-plugin/marketplace.json`).
+This repository is its own plugin marketplace (`.claude-plugin/marketplace.json`). Install from
+GitHub, or from a local checkout while developing:
 
 ```text
 /plugin marketplace add charlesylin/agent_builder
 /plugin install agent-builder@agent-builder
 ```
 
+```text
+/plugin marketplace add ~/Dropbox/codex/project_agent_builder
+/plugin install agent-builder@agent-builder
+```
+
+Confirm the hook registered with `/hooks`: `UserPromptSubmit` should list one handler pointing
+at `hooks/agent_builder_offer.py`. If it does not appear, the plugin is loaded but not
+installed, and the offer will never fire.
+
 Update later with `/plugin marketplace update agent-builder`. Updates arrive only when
-`version` in `.claude-plugin/plugin.json` changes.
+`version` in `.claude-plugin/plugin.json` changes — so while iterating on the hook, bump the
+version or reinstall; editing the file alone is not enough.
 
 ## Claude Code — for everyone in the organization
 
