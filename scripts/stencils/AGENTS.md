@@ -21,6 +21,7 @@ state and newer author instructions before continuing.
 - **{{principle:search-before-building|title}}.** {{principle:search-before-building|short}}
 - **{{principle:use-reasoning-selectively|title}}.** {{principle:use-reasoning-selectively|short}}
 - **{{principle:work-small-fail-loudly|title}}.** {{principle:work-small-fail-loudly|short}}
+- **{{principle:build-only-what-you-need|title}}.** {{principle:build-only-what-you-need|short}}
 - **{{principle:keep-boundaries-replaceable|title}}.** {{principle:keep-boundaries-replaceable|short}}
 - **{{principle:decision-protocol|title}}.** {{principle:decision-protocol|short}}
 

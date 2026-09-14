@@ -8,10 +8,10 @@ project:
   status: active
 
 phase:
-  current: build
-  status: b8_done_v0_2_0_tagged_first_review_feedback_recorded_awaiting_review_approval
+  current: review
+  status: acceptance_testing_with_0_2_1_refinement_in_progress
   last_confirmed_by: charles-yang-lin
-  last_confirmed_date: 2026-09-13
+  last_confirmed_date: 2026-09-14
   transition_requires: explicit_user_invocation_or_confirmation
   history:
     - phase: define
@@ -46,6 +46,15 @@ phase:
     - phase: build
       date: 2026-09-13
       outcome: Explicitly authorized by the project author. Executes B1 through B8 in docs/v0-2-plan.md, one commit each.
+    - phase: build
+      date: 2026-09-14
+      outcome: Closed. B1 through B8 landed; v0.2.0 tagged.
+    - phase: review
+      date: 2026-09-14
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        Explicitly authorized by the project author on receiving Sean's feedback. A 0.2.1
+        refinement (AB-D033..037) is authorized inside Review (AB-D038).
 
 release:
   target: 0.1.0
@@ -104,54 +113,14 @@ next_release:
       summary: Runtime and environment profiles remain deferred.
 
 checkpoint:
-  date: 2026-09-13
-  status: build_in_progress
+  date: 2026-09-14
+  status: review_in_progress_against_0_2_1
   phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Build is complete: v0.2.0 is tagged. Sean's Review feedback is recorded in
-    docs/v0-2-review-feedback.md with four proposed decisions AB-D033..036. The author decides
-    whether to enter Review and which proposals to confirm. Review's
-    acceptance test is the opt-in org install (docs/INSTALL.md, "Available for install") and
-    the friction it produces; success signals are in docs/v0-2-define.md section 7. Nothing
-    else is authorized until the author says so.
-    B7b rewrites the skill description against them (F-007) and re-runs. Then B8. (Superseded
-    text follows.) Execute B6 as revised by AB-D030: keep seeded adapters substantive, add an explicit
-    skill-invocation line, widen the skill description to cover resume, and change the resume
-    step to a briefing. Then B7 and B8 per docs/v0-2-plan.md. One commit per step; the author
-    pushes.
-  runtime_implementation_approved: false
-
-validation:
-  completed_date: 2026-09-08
-  builder_unit_tests: 8_passed
-  generated_project_tests: 3_passed
-  lint: passed_with_ruff_0_16_6
-  format: passed_with_ruff_0_16_6
-  python_compilation: passed
-  package_wheel: built_and_clean_installed
-  wheel_sha256: dfc74fbe143cf1dc03e86cb6357ee9328462b3ba6c2f97b7ccfb28d6f5ae7423
-  acceptance_fixture: .generated/v0-1-acceptance-agent
-  acceptance_fixture_tracked: false
-  reverified_date: 2026-09-12
-  reverified_scope: tests_and_compilation_only_under_python_3_14_0
-
-defaults:
-  implementation_language: python
-  coding_agent_adapter: codex
-  local_orchestration: docker_compose
-  container_standard: OCI
-  human_output: markdown
-  enhanced_human_output: standalone_html
-  machine_handoff: json
-
-compatibility:
-  internal_implementation_backward_compatibility_required: false
-  external_contracts_versioned: true
-  generated_projects_updated_automatically: false
-
-security:
-  secret_values_in_repository: forbidden
-  secret_values_in_model_context: forbidden
-  runtime_injection_required: true
+    Review is open against v0.2.1, which incorporates Sean's feedback (AB-D033..037) under
+    AB-D038. Push with tags, update the installed plugin, make it Available for install per
+    docs/INSTALL.md, and observe Sean's next project: do the four problem questions get real
+    answers, does planning/later.md fill up, do typed approvals slow the click-through. Record
+    findings. Nothing beyond Review is authorized.

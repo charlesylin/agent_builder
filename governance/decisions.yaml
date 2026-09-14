@@ -340,8 +340,11 @@ decisions:
     provenance: explicit_author_direction_after_eval_run_2
     record: docs/v0-2-skill-test.md
   - id: AB-D033
-    status: proposed
+    status: confirmed
     date: 2026-09-14
+    confirmed_date: 2026-09-14
+    confirmed_by: charles-yang-lin
+    confirmation: Author entered Review and directed a 0.2.1 incorporating Sean's feedback.
     decision: >-
       Define opens with four problem-framing questions — what problem, how it is solved today,
       what the value is if solved, who it is for — one turn each; the purpose sentence is drafted
@@ -354,8 +357,11 @@ decisions:
     provenance: review_feedback_sean_via_author
     record: docs/v0-2-review-feedback.md
   - id: AB-D034
-    status: proposed
+    status: confirmed
     date: 2026-09-14
+    confirmed_date: 2026-09-14
+    confirmed_by: charles-yang-lin
+    confirmation: Author entered Review and directed a 0.2.1 incorporating Sean's feedback.
     decision: >-
       Adopt "build only what you need" (rewrites.bio 4.2) as principles/11, rendered into the
       skill, adapters, and seeded agreements; planning/definition.md gains "smallest version
@@ -367,8 +373,11 @@ decisions:
     provenance: review_feedback_sean_via_author
     record: docs/v0-2-review-feedback.md
   - id: AB-D035
-    status: proposed
+    status: confirmed
     date: 2026-09-14
+    confirmed_date: 2026-09-14
+    confirmed_by: charles-yang-lin
+    confirmation: Author entered Review and directed a 0.2.1 incorporating Sean's feedback.
     decision: >-
       Suggestions are not scope. Seed planning/later.md as the default destination for
       anything the author did not ask for; proposed decisions expire at phase close, enforced
@@ -381,8 +390,11 @@ decisions:
     provenance: review_feedback_sean_via_author
     record: docs/v0-2-review-feedback.md
   - id: AB-D036
-    status: proposed
+    status: confirmed
     date: 2026-09-14
+    confirmed_date: 2026-09-14
+    confirmed_by: charles-yang-lin
+    confirmation: Author entered Review and directed a 0.2.1 incorporating Sean's feedback.
     decision: >-
       Consequential approvals — purpose, MVP statement, phase transition, seeding, remote
       creation, any send/spend/publish/delete authority — are typed, never clicked: the skill
@@ -392,4 +404,32 @@ decisions:
       Sean's third point: novices approve everything without reading. The phase gate already
       requires words and was the one rule that held in every run.
     provenance: review_feedback_sean_via_author
+    record: docs/v0-2-review-feedback.md
+  - id: AB-D037
+    status: confirmed
+    date: 2026-09-14
+    confirmed_by: charles-yang-lin
+    decision: >-
+      Nokkvi's law gains an outward clause: when the person shows frustration or confusion,
+      the skill offers a short, sincere encouragement — "you got this!" or another positive
+      affirmation — and then helps with the specific thing that is stuck. The cue stays out of
+      routine responses; a person struggling is not routine.
+    rationale: >-
+      Author direction during Review, informed by watching a novice use the tool. Extends
+      AB-D015/016, which kept the cue silent, without changing what it does not do: it never
+      replaces the help, alters verification, or moves a phase gate.
+    provenance: explicit_author_direction_during_review
+    record: docs/v0-2-review-feedback.md
+  - id: AB-D038
+    status: confirmed
+    date: 2026-09-14
+    confirmed_by: charles-yang-lin
+    decision: >-
+      Release 0.2.1 during Review, implementing AB-D033 through AB-D037, before the opt-in
+      organization install. Review continues against 0.2.1.
+    rationale: >-
+      Sean's feedback is the first real acceptance input; the cohort that installs should meet
+      the version that learned from it. Follows the AB-D015/016 precedent for author-approved
+      refinement inside Review.
+    provenance: explicit_author_direction_during_review
     record: docs/v0-2-review-feedback.md

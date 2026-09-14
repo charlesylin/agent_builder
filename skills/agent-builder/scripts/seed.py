@@ -42,7 +42,9 @@ except ImportError as error:  # pragma: no cover - only when the skill folder is
     raise SystemExit(f"seed.py needs check.py beside it in {HERE}: {error}") from error
 
 # Kept equal to "version" in the repository's .claude-plugin/plugin.json; a test enforces it.
-TEMPLATE_VERSION = "0.2.0"
+TEMPLATE_VERSION = "0.2.1"
+# The marker check.py looks for in planning/definition.md. Keep the two in sync.
+UNANSWERED = "(not yet answered)"
 
 
 def source_commit() -> str | None:
@@ -90,6 +92,10 @@ class ProjectSpec:
     adapters: tuple[str, ...]
     kind: str = DEFAULT_KIND
     owner: str = ""
+    problem: str = ""
+    current_approach: str = ""
+    value: str = ""
+    beneficiaries: str = ""
 
     @classmethod
     def create(
@@ -100,6 +106,10 @@ class ProjectSpec:
         adapters: tuple[str, ...] | list[str] | None = None,
         kind: str = DEFAULT_KIND,
         owner: str = "",
+        problem: str = "",
+        current_approach: str = "",
+        value: str = "",
+        beneficiaries: str = "",
     ) -> ProjectSpec:
         """Normalize user input and derive stable project identifiers."""
 
@@ -136,6 +146,10 @@ class ProjectSpec:
             adapters=normalized_adapters,
             kind=kind,
             owner=" ".join(owner.split()),
+            problem=" ".join(problem.split()),
+            current_approach=" ".join(current_approach.split()),
+            value=" ".join(value.split()),
+            beneficiaries=" ".join(beneficiaries.split()),
         )
 
 
@@ -200,6 +214,12 @@ def _context(spec: ProjectSpec, generated_at: datetime) -> dict[str, str]:
         "KIND_JSON": json.dumps(spec.kind),
         "OWNER": spec.owner,
         "OWNER_JSON": json.dumps(spec.owner),
+        # Problem framing (AB-D033). Unanswered fields carry a placeholder that
+        # check.py --leaving define refuses, so a project cannot leave Define without them.
+        "PROBLEM": spec.problem or UNANSWERED,
+        "CURRENT_APPROACH": spec.current_approach or UNANSWERED,
+        "VALUE": spec.value or UNANSWERED,
+        "BENEFICIARIES": spec.beneficiaries or UNANSWERED,
     }
 
 
@@ -320,6 +340,15 @@ def main(argv: list[str] | None = None) -> int:
         help=f"what is being built; selects templates/kinds/<kind> (default: {DEFAULT_KIND})",
     )
     parser.add_argument("--owner", default="", help="person accountable for the project")
+    framing = parser.add_argument_group(
+        "problem framing",
+        "Answers from the Define conversation, written into planning/definition.md. Optional at"
+        " seed time; required before leaving Define.",
+    )
+    framing.add_argument("--problem", default="", help="what problem this solves")
+    framing.add_argument("--current", default="", help="how the problem is solved today")
+    framing.add_argument("--value", default="", help="what it is worth if solved")
+    framing.add_argument("--for", dest="beneficiaries", default="", help="who it is for")
     parser.add_argument(
         "--adapter",
         action="append",
@@ -338,6 +367,10 @@ def main(argv: list[str] | None = None) -> int:
             adapters=arguments.adapter,
             kind=arguments.kind,
             owner=arguments.owner,
+            problem=arguments.problem,
+            current_approach=arguments.current,
+            value=arguments.value,
+            beneficiaries=arguments.beneficiaries,
         )
         files = create_project(arguments.target, spec)
     except (OSError, ValueError, ScaffoldError) as error:

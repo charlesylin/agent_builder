@@ -2,6 +2,50 @@
 
 All notable changes to Agent Builder are documented here.
 
+## [0.2.1] - 2026-09-14
+
+Review feedback from the first colleague to use v0.2 (Sean), incorporated during Review under
+AB-D038. v0.2 opened projects well and closed nothing; 0.2.1 makes a project state its problem
+before its purpose, keeps suggestions out of scope, and refuses phase changes with loose ends.
+Evidence and reasoning: `docs/v0-2-review-feedback.md`.
+
+### Added
+
+- **Problem framing before purpose (AB-D033).** The Define conversation now starts with four
+  questions — what problem, how it is solved today, what the value is, who it is for — one
+  per turn, before the kind and before the purpose. The seeder takes them as `--problem`,
+  `--current`, `--value`, `--for` and writes them verbatim into a new seeded
+  `planning/definition.md`, whose remaining sections (smallest version, not in the first
+  version, success signals) start as `(not yet answered)`.
+- **`planning/later.md` (AB-D034, AB-D035).** Every seeded project has a parking lot.
+  Suggestions the author did not ask for, and the answer to the closeout question, go there
+  by default; nothing leaves it without the author asking in their own words.
+- **Principle: Build only what you need (AB-D034).** `principles/11-build-only-what-you-need.md`,
+  rendered into the skill, the adapters, and the operating agreements.
+- **`check.py PATH --leaving <phase>` (AB-D035).** Refuses while any decision is still
+  `proposed`, while `phase.current` is not the phase being left, and — for Define — while
+  `planning/definition.md` is missing or still has `(not yet answered)`. `SKILL.md` §5 runs it
+  before asking for a transition. The agent kind's two seeded proposals (D003 container,
+  D004 versioned contracts) now have to be confirmed or rejected before leaving Define.
+
+### Changed
+
+- **Typed approvals (AB-D036).** Purpose, smallest version, phase change, seeding, a remote,
+  and any grant of send/spend/publish/delete authority are read back in full and approved in
+  the author's own typed words — never a menu, numbered option, or button. Added to the
+  decision protocol principle and `SKILL.md` §4.
+- **One closeout question (AB-D035).** Section 4 of the closeout asks exactly one question;
+  its answer goes to `planning/later.md` unless the author asks for work on it now.
+- **Nokkvi's law (AB-D037).** When the person is frustrated or confused, the encouragement
+  cue turns outward: a brief, sincere "you got this!" is welcome, followed immediately by help
+  with the specific thing that is stuck. Previously the cue was silent in all user-facing text.
+- `planning/open-questions.md` no longer re-asks what `definition.md` now holds; D001's
+  rationale points at the definition. `TEMPLATE_VERSION` is `0.2.1`.
+
+Not changed: required files for existing projects. A project seeded by 0.2.0 still validates;
+`check.py --since 0.2.0` lists this section. Adding `definition.md` and `later.md` to an older
+project is a copy of the two templates.
+
 ## [0.2.0] - 2026-09-14
 
 Agent Builder becomes a skill. The folder `skills/agent-builder/` — `SKILL.md`, two

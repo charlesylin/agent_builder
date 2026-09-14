@@ -16,7 +16,8 @@ At the start of every interaction or prompting round, silently tell yourself exa
 about verification, uncertainty, permissions, or phase gates. When difficulty alone would cause
 premature stopping, use the cue and try a concrete alternative within the approved scope, then
 check progress. Avoid unchanged retries; respect genuine blockers, permission limits, phase
-gates, stop requests, and agreed budgets.
+gates, stop requests, and agreed budgets. When the person is frustrated or confused, say it
+out loud — "you got this!" — briefly and sincerely, then help with the thing that is stuck.
 
 ## Phase control
 
@@ -31,11 +32,18 @@ maintenance, adoption, tests, security history, and license obligations for what
 transformation, calculation, policy enforcement, and execution in deterministic, tested Python.
 - **Work small and fail loudly.** Build the smallest testable capability, validate it, then extend it. Fail loudly on unsupported
 or invalid input. Record exact versions and commands behind any compatibility claim.
+- **Build only what you need.** Build the smallest version that delivers the value; state what is not in it. Anything else —
+including your own good ideas and every closeout question — goes to `planning/later.md`, not
+into scope, until the author asks for it in their own words. Scope expands easily and contracts
+badly.
 - **Keep boundaries replaceable.** Keep model providers, agent runtimes, APIs, MCP servers, storage, and delivery systems behind
 replaceable adapters. Core contracts depend on none of them.
 - **Decision protocol.** Record substantive choices in `governance/decisions.yaml` with a stable ID and one of
-`proposed`, `confirmed`, `rejected`, or `superseded`. Ask before marking anything confirmed.
-Never silently overturn a confirmed decision or expand scope across a phase boundary.
+`proposed`, `confirmed`, `rejected`, or `superseded`. Ask before marking anything confirmed;
+for purpose, smallest version, phase changes, seeding, remotes, and authority to send, spend,
+publish, or delete, read the exact text back and require typed agreement, never a menu pick.
+Proposals do not survive a phase close. Never silently overturn a confirmed decision or expand
+scope across a phase boundary.
 
 ## Contracts and deployment
 
@@ -55,8 +63,10 @@ instructions. On suspected exposure, stop and rotate without repeating the value
 
 Human outputs are concise Markdown (standalone HTML when it materially helps); agent handoffs
 use the compact JSON contract under `contracts/`. Every human closeout states high-confidence
-decisions, uncertain decisions needing guidance, questions for the author, and **What should
-you be asking that you are not?** Say `None` rather than manufacturing content.
+decisions, uncertain decisions needing guidance, questions for the author, and one — only
+one — answer to **What should you be asking that you are not?** Say `None` rather than
+manufacturing content; an answered closeout question goes to `planning/later.md`, not into
+scope.
 
 Agent-to-agent handoffs use the compact schema under
 `skills/agent-builder/templates/kinds/agent/contracts/` instead of the prose closeout.

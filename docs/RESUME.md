@@ -1,8 +1,9 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-09-13. v0.1 is accepted and closed; release `v0.1.0` is tagged. Agent Builder
-is now in **Define** for v0.2, authorized by the project author on 2026-09-13. v0.2 scope is
-open. This checkpoint does not approve Plan, Build, or any runtime implementation.
+Checkpoint: 2026-09-14. Agent Builder is in **Review** for v0.2, entered on 2026-09-14 by the
+project author. v0.2.0 is tagged; **v0.2.1** incorporates the first Review feedback (Sean's,
+`docs/v0-2-review-feedback.md`) under AB-D038 and is the version Review continues against.
+This checkpoint authorizes nothing beyond Review: no v0.3 Define, no new Build.
 
 ## Recover context
 
@@ -59,17 +60,23 @@ Two findings were carried forward rather than treated as blockers:
 
 The scheduling-agent test remains abandoned; do not resume it here.
 
-## Current phase: Build for v0.2 — complete; v0.2.0 tagged; Review awaits approval
+## Current phase: Review for v0.2 — against 0.2.1
 
-All eight Build steps landed on 2026-09-14 and `v0.2.0` is tagged. Read `docs/v0-2-define.md`
-(what and why), `docs/v0-2-plan.md` (how, with per-step "as built" notes), and
-`docs/v0-2-skill-test.md` (evidence: three hands-on runs, two eval runs, sixteen findings).
+Build closed and Review opened on 2026-09-14 (`governance/project-state.yaml` history). Read
+`docs/v0-2-define.md` (what and why), `docs/v0-2-plan.md` (how, with per-step "as built"
+notes), `docs/v0-2-skill-test.md` (evidence: three hands-on runs, two eval runs, sixteen
+findings), and `docs/v0-2-review-feedback.md` (why 0.2.1 exists).
 
-Nothing is authorized until the author approves entering Review. Review's acceptance test is
-the opt-in organization install (`docs/INSTALL.md`, *Available for install*) and the friction
-real colleagues report; the success signals are `docs/v0-2-define.md` §7. Open items carried
-in: F-015 (the `project` kind), F-016 (`planning/` vs `docs/` here), Codex untested, `SKILL.md`
-§6 untested live.
+0.2.1 changed the Define conversation (problem before purpose), seeded `planning/definition.md`
+and `planning/later.md`, added `check.py --leaving <phase>`, typed approvals, one closeout
+question, the *Build only what you need* principle, and the outward form of Nokkvi's law.
+`CHANGELOG.md` has the full list with decision IDs.
+
+Review's acceptance test is the opt-in organization install (`docs/INSTALL.md`, *Available for
+install*) and the friction real colleagues report; the success signals are
+`docs/v0-2-define.md` §7. Open items carried in: F-015 (the `project` kind), F-016
+(`planning/` vs `docs/` here), Codex untested, `SKILL.md` §6 untested live, and whether 0.2.1's
+changes alter what novices actually build (unobserved until Sean's next project).
 
 Open proposals preserved from v0.1 Review, none of them confirmed product scope:
 `docs/onboarding-kit-review.md`, `docs/existing-project-review.md`,
@@ -85,19 +92,14 @@ run `prek install` once locally to confirm the `repo = "builtin"` hooks still re
 
 ## Verification
 
-On 2026-09-12, Python 3.14.0 ran these successfully:
-
-```sh
-python3 -m unittest discover -s tests -v
-python3 -m compileall -q src scripts tests
-```
-
-All 8 builder tests passed, including the generated project's 3 tests. Wheel and lint evidence
-in `docs/validation.md` applies to its dated build. Structural tests do not prove agent
-adherence, performance, or Windows, Claude, or ChatGPT behavior. They were not re-run for the
-2026-09-13 closeout, which changed governance and documentation only.
+The gate for every commit is in `docs/AUTHORING.md`: `scripts/render.py --check`, ruff check and
+format, the unit tests under Python 3.10 and 3.9, and `compileall`. For the 0.2.1 release all
+of it passed locally on 2026-09-14 and CI runs the same on push. Structural tests do not prove
+agent adherence; that is what Review measures.
 
 ## Next action
 
-Ask the author whether to enter Review. If yes: record the transition, then follow
-`docs/INSTALL.md` to make the plugin *Available for install* and start collecting friction.
+After the push: `/plugin marketplace update agent-builder` and `/reload-plugins` in Claude Code,
+then follow `docs/INSTALL.md` to make the plugin *Available for install*. Watch Sean's next
+project for whether the four questions get real answers and `later.md` fills up. Record what
+happens as findings; do not start v0.3 Define without the author's words.

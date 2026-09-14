@@ -27,6 +27,10 @@ carries the same text in its own `governance/operating-agreement.md`.
 
 {{principle:work-small-fail-loudly}}
 
+## {{principle:build-only-what-you-need|title}}
+
+{{principle:build-only-what-you-need}}
+
 ## {{principle:keep-boundaries-replaceable|title}}
 
 {{principle:keep-boundaries-replaceable}}

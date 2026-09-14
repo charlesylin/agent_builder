@@ -18,7 +18,7 @@ SKILL = ROOT / "skills" / "agent-builder"
 sys.path.insert(0, str(SKILL / "scripts"))
 
 import seed  # noqa: E402
-from check import validate_project  # noqa: E402
+from check import phase_exit_issues, proposed_decisions, validate_project  # noqa: E402
 from seed import ProjectSpec, ScaffoldError, create_project  # noqa: E402
 
 GENERATED_AT = datetime(2026, 9, 8, 12, 0, tzinfo=timezone.utc)
@@ -398,6 +398,128 @@ class ScaffoldTests(unittest.TestCase):
 
             self.assertEqual(result, 2)
             self.assertIn("refusing to overwrite", error_output.getvalue())
+
+
+class ReviewFeedbackTests(unittest.TestCase):
+    """0.2.1: Sean's review feedback (AB-D033..036) and the Nokkvi's-law amendment (AB-D037)."""
+
+    def _seed(self, directory: str, **framing: str) -> Path:
+        target = Path(directory) / "framed"
+        spec = ProjectSpec.create(name="Framed", purpose="Answer the problem.", **framing)
+        create_project(target, spec, generated_at=GENERATED_AT)
+        return target
+
+    def test_problem_answers_are_written_to_definition(self) -> None:
+        # AB-D033: the four problem questions are recorded verbatim, before purpose.
+        with tempfile.TemporaryDirectory() as directory:
+            target = self._seed(
+                directory,
+                problem="Deals vanish  before anyone sees them.",
+                current_approach="Three sites checked by hand.",
+                value="One instrument a quarter at half price.",
+                beneficiaries="The lab manager.",
+            )
+            definition = (target / "planning/definition.md").read_text(encoding="utf-8")
+            self.assertLess(
+                definition.index("## What problem does this solve?"),
+                definition.index("## Purpose"),
+            )
+            self.assertIn("Deals vanish before anyone sees them.", definition)
+            self.assertIn("The lab manager.", definition)
+            self.assertTrue((target / "planning/later.md").is_file())
+            self.assertFalse(validate_project(target), "seeding must still validate")
+
+    def test_leaving_define_requires_every_answer_and_no_open_proposal(self) -> None:
+        # AB-D033 + AB-D035: the gate names what is missing instead of failing vaguely.
+        with tempfile.TemporaryDirectory() as directory:
+            target = self._seed(directory, problem="Known.")
+            issues = phase_exit_issues(target, "define")
+            messages = "\n".join(f"{issue.code}: {issue.message}" for issue in issues)
+            self.assertEqual({"unanswered", "proposed-decision"}, {issue.code for issue in issues})
+            self.assertIn("'How is it solved today?' is still", messages)
+            self.assertNotIn("'What problem does this solve?'", messages, "answered at seed time")
+            self.assertIn("framed-D003 is still proposed", messages)
+
+            definition = target / "planning/definition.md"
+            definition.write_text(
+                definition.read_text(encoding="utf-8").replace("(not yet answered)", "Answered."),
+                encoding="utf-8",
+            )
+            ledger = target / "governance/decisions.yaml"
+            ledger.write_text(
+                ledger.read_text(encoding="utf-8").replace("status: proposed", "status: rejected"),
+                encoding="utf-8",
+            )
+            self.assertEqual((), phase_exit_issues(target, "define"))
+
+    def test_leaving_the_wrong_phase_is_refused(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = self._seed(directory)
+            codes = [issue.code for issue in phase_exit_issues(target, "build")]
+            self.assertIn("wrong-phase", codes)
+            self.assertEqual(
+                ("unknown-phase",), tuple(i.code for i in phase_exit_issues(target, "ship"))
+            )
+
+    def test_proposed_decisions_are_read_per_entry(self) -> None:
+        ledger = (
+            "decisions:\n"
+            "  - id: x-D001\n    status: confirmed\n    decision: a\n"
+            "  - id: x-D002\n    status: proposed\n    decision: b\n"
+            "  - id: x-D003\n    status: superseded\n    decision: c\n"
+            "  - id: x-D004\n    status: proposed\n    decision: d\n"
+        )
+        self.assertEqual(("x-D002", "x-D004"), proposed_decisions(ledger))
+
+    def test_leaving_cli_reports_and_exits_nonzero(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = self._seed(directory)
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(SKILL / "scripts/check.py"),
+                    str(target),
+                    "--leaving",
+                    "define",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(result.returncode, 1, result.stderr)
+            self.assertIn("Cannot leave define yet", result.stderr)
+            self.assertIn("unanswered", result.stderr)
+
+    def test_skill_and_adapters_carry_the_review_rules(self) -> None:
+        # AB-D033/035/036 must reach both the skill and the seeded project's own instructions,
+        # because the seeded adapter does the work when the skill is not invoked (F-009).
+        skill = (SKILL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("What problem are you solving?", skill)
+        self.assertLess(
+            skill.index("**First, the problem.**"), skill.index("**Second, the kind.**")
+        )
+        self.assertIn("planning/later.md", skill)
+        self.assertIn("**Approval is typed, never clicked.**", skill)
+        self.assertIn("check.py . --leaving <old-phase>", skill)
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "rules"
+            spec = ProjectSpec.create(name="Rules", purpose="Carry the rules.", adapters=["claude"])
+            create_project(target, spec, generated_at=GENERATED_AT)
+            agreement = (target / "governance/operating-agreement.md").read_text(encoding="utf-8")
+            self.assertIn("does not survive a phase close", agreement)
+            self.assertIn("an approval that can be clicked without reading is not one", agreement)
+            self.assertIn("planning/later.md", agreement)
+            adapter = (target / "CLAUDE.md").read_text(encoding="utf-8")
+            self.assertIn("**Build only what you need.**", adapter)
+            self.assertIn("planning/later.md", adapter)
+
+    def test_nokkvis_law_encourages_a_stuck_person(self) -> None:
+        # AB-D037: the law is about tone; a frustrated person gets encouragement, then help.
+        for path in (SKILL / "SKILL.md", ROOT / "principles/03-nokkvis-law.md"):
+            with self.subTest(path=path.name):
+                text = path.read_text(encoding="utf-8")
+                self.assertIn("you got this!", text)
+                self.assertIn("frustrat", text)
 
 
 if __name__ == "__main__":

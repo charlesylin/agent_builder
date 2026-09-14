@@ -9,6 +9,8 @@ Usage:
     python3 check.py PATH --since          # what changed in Agent Builder since this project
                                            # was seeded (reads template_version from the manifest)
     python3 check.py PATH --since 0.1.0    # ... since a specific version
+    python3 check.py PATH --leaving define # may this project leave Define? exit 0 yes, 1 no,
+                                           # one line per unresolved item (AB-D033, AB-D035)
 """
 
 from __future__ import annotations
@@ -267,6 +269,97 @@ _CHANGELOG_CANDIDATES = (HERE.parent / "CHANGELOG.md", HERE.parents[2] / "CHANGE
 _HEADING = re.compile(r"^## \[([^\]]+)\]", re.MULTILINE)
 
 
+_PHASES = ("define", "plan", "build", "review")
+_UNANSWERED = "(not yet answered)"
+_DECISION_ID = re.compile(r"^\s*-\s*id:\s*(\S+)", re.MULTILINE)
+_DECISION_STATUS = re.compile(r"^\s*status:\s*(\S+)", re.MULTILINE)
+_PHASE_CURRENT = re.compile(r"^phase:\n(?:[ \t]+.*\n)*?[ \t]+current:[ \t]*(\S+)", re.MULTILINE)
+
+
+def proposed_decisions(text: str) -> tuple[str, ...]:
+    """Return ids of decisions whose status is still ``proposed``.
+
+    Line-oriented on purpose: the ledger is YAML we wrote ourselves, and the stdlib has no
+    YAML parser. Each ``- id:`` line opens a decision; the next ``status:`` line belongs to it.
+    """
+    proposed: list[str] = []
+    entries = list(_DECISION_ID.finditer(text))
+    for index, entry in enumerate(entries):
+        end = entries[index + 1].start() if index + 1 < len(entries) else len(text)
+        status = _DECISION_STATUS.search(text, entry.end(), end)
+        if status and status.group(1) == "proposed":
+            proposed.append(entry.group(1))
+    return tuple(proposed)
+
+
+def phase_exit_issues(root: str | Path, phase: str) -> tuple[ValidationIssue, ...]:
+    """What still blocks this project from leaving ``phase``.
+
+    Two rules apply to every phase (AB-D035): the ledger holds no ``proposed`` decision, and
+    the project is actually in the phase being left. Leaving Define additionally requires
+    ``planning/definition.md`` with every problem-framing answer filled in (AB-D033).
+    """
+    project_root = Path(root).expanduser().resolve()
+    issues: list[ValidationIssue] = []
+    if phase not in _PHASES:
+        return (ValidationIssue("unknown-phase", f"phase must be one of {', '.join(_PHASES)}"),)
+
+    state_path = project_root / "governance/project-state.yaml"
+    if state_path.is_file():
+        match = _PHASE_CURRENT.search(state_path.read_text(encoding="utf-8"))
+        current = match.group(1) if match else None
+        if current != phase:
+            issues.append(
+                ValidationIssue(
+                    "wrong-phase",
+                    f"project-state says phase.current is {current or 'unset'}, not {phase}",
+                    state_path,
+                )
+            )
+    else:
+        issues.append(ValidationIssue("missing", "governance/project-state.yaml", state_path))
+
+    ledger_path = project_root / "governance/decisions.yaml"
+    if ledger_path.is_file():
+        for decision_id in proposed_decisions(ledger_path.read_text(encoding="utf-8")):
+            issues.append(
+                ValidationIssue(
+                    "proposed-decision",
+                    f"{decision_id} is still proposed; confirm it, reject it, or move it to"
+                    " planning/later.md before leaving " + phase,
+                    ledger_path,
+                )
+            )
+    else:
+        issues.append(ValidationIssue("missing", "governance/decisions.yaml", ledger_path))
+
+    if phase == "define":
+        definition_path = project_root / "planning/definition.md"
+        if not definition_path.is_file():
+            issues.append(
+                ValidationIssue(
+                    "missing-definition",
+                    "planning/definition.md must exist and answer the problem questions",
+                    definition_path,
+                )
+            )
+        else:
+            text = definition_path.read_text(encoding="utf-8")
+            heading = None
+            for line in text.splitlines():
+                if line.startswith("## "):
+                    heading = line[3:].strip()
+                elif _UNANSWERED in line and heading:
+                    issues.append(
+                        ValidationIssue(
+                            "unanswered",
+                            f"'{heading}' is still {_UNANSWERED}",
+                            definition_path,
+                        )
+                    )
+    return tuple(issues)
+
+
 def changes_since(version: str) -> str:
     """Return the CHANGELOG sections newer than ``version``, or an explanation.
 
@@ -307,7 +400,24 @@ def main(argv: list[str] | None = None) -> int:
         metavar="VERSION",
         help="print Agent Builder changes since VERSION (default: the project's template_version)",
     )
+    parser.add_argument(
+        "--leaving",
+        choices=_PHASES,
+        metavar="PHASE",
+        help="check whether the project may leave PHASE (define, plan, build, review)",
+    )
     arguments = parser.parse_args(argv)
+
+    if arguments.leaving is not None:
+        issues = phase_exit_issues(arguments.target, arguments.leaving)
+        if not issues:
+            print(f"May leave {arguments.leaving}: nothing unresolved.")
+            return 0
+        print(f"Cannot leave {arguments.leaving} yet:", file=sys.stderr)
+        for issue in issues:
+            location = f" ({issue.path})" if issue.path else ""
+            print(f"  {issue.code}{location}: {issue.message}", file=sys.stderr)
+        return 1
 
     if arguments.since is not None:
         version = arguments.since

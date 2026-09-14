@@ -74,7 +74,9 @@ How to change principles, the skill, templates, or cut a release:
 
 ## Status
 
-**v0.2.0 is built and tagged, awaiting Review** — the org opt-in test is the acceptance test.
+**In Review.** v0.2.0 shipped 2026-09-14; the first colleague's feedback is in
+[`docs/v0-2-review-feedback.md`](docs/v0-2-review-feedback.md) and is incorporated in **v0.2.1**
+(see [`CHANGELOG.md`](CHANGELOG.md)). The org opt-in install is the acceptance test.
 v0.1 (governance and scaffolding only) was accepted on 2026-09-13 and is tagged `v0.1.0`. The v0.2 vision is in
 [`docs/v0-2-define.md`](docs/v0-2-define.md), the plan in
 [`docs/v0-2-plan.md`](docs/v0-2-plan.md), and the evidence from three rounds of hands-on testing

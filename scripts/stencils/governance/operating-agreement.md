@@ -39,6 +39,10 @@ framework-driven abstractions.
 
 {{principle:work-small-fail-loudly}}
 
+### {{principle:build-only-what-you-need|title}}
+
+{{principle:build-only-what-you-need}}
+
 ### {{principle:keep-boundaries-replaceable|title}}
 
 {{principle:keep-boundaries-replaceable}}

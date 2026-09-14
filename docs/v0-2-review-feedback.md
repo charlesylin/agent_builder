@@ -114,7 +114,10 @@ expensive.
 
 ## Status
 
-Recorded 2026-09-14 while the project is still formally in Build (v0.2.0 tagged, Review not
-yet approved). These are Review inputs. Implementing them is Build work for a 0.2.x or 0.3;
-v0.1's precedent (AB-D015, AB-D016) allows author-approved instruction refinements during
-Review.
+Recorded 2026-09-14. The author entered Review the same day and confirmed AB-D033, AB-D034,
+AB-D035, and AB-D036 as written above, added AB-D037 (Nokkvi's law turns outward when the person
+is frustrated or confused), and authorized AB-D038: incorporate the feedback as release 0.2.1
+during Review, under v0.1's precedent for author-approved refinements (AB-D015, AB-D016).
+0.2.1 is what Review continues against; the `CHANGELOG.md` entry lists what changed. Whether
+the four questions, the parking lot, and typed approvals actually change what novices build
+is the thing Review still has to observe — Sean is the first tester.

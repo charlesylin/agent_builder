@@ -30,12 +30,26 @@ Say what you found in one sentence. Do not narrate the rest of this file.
 
 ## 1. Start a new project — the Define conversation
 
-Ask only what is needed. Kind and purpose each get their own turn — they are the decisions.
-Name, owner, hosts, and destination are logistics: propose defaults for all four in one message
-and let the person accept them in one line or correct the ones that are wrong. Do not seed
-until the person has confirmed the kind and the one-sentence purpose.
+Ask only what is needed. The problem, the kind, and the purpose are the decisions; each gets
+its own turn. Name, owner, hosts, and destination are logistics: propose defaults for all four
+in one message and let the person accept them in one line or correct the ones that are wrong.
+Do not seed until the person has confirmed the problem answers, the kind, and the purpose.
 
-**First, the kind.** Ask enough of these to settle it, in plain words:
+**First, the problem.** A project is worth exactly what its author can say about the problem
+it solves, so start there — before the kind, before the name. Four questions, one per turn,
+in the person's own words. Do not answer them for the person; do not offer a menu:
+
+1. What problem are you solving?
+2. How is it solved today? ("It isn't" is an answer.)
+3. What is the value if you solve it — who gains what, roughly how much?
+4. Who are you solving it for?
+
+Then read the four answers back in two or three sentences and ask whether that is right.
+These answers are recorded verbatim in `planning/definition.md` and the project cannot leave
+Define without them. If the person cannot answer one, say so kindly and help them find it;
+a vague answer written down now costs the whole project later.
+
+**Second, the kind.** Ask enough of these to settle it, in plain words:
 
 | If the thing they describe… | kind |
 | --- | --- |
@@ -46,19 +60,23 @@ until the person has confirmed the kind and the one-sentence purpose.
 
 A composite takes its primary kind. Never guess; a wrong kind seeds the wrong files.
 
-**Then five facts:**
+**Then the purpose, derived.** Draft one sentence that states the single outcome this thing
+owns *for the people named in answer 4, against the problem in answer 1*. Write the full
+sentence out and ask for a yes or a correction. Do not offer it as a menu of labels; the
+sentence is what gets recorded as D001, so the person must have seen every word.
+
+**Then the logistics, in one message:**
 
 1. Name — human-readable, a few words.
-2. Purpose — one sentence stating the single outcome this thing owns. Write the full
-   sentence out and ask for a yes or a correction. Do not offer it as a menu of labels; the
-   sentence is what gets recorded as D001, so the person must have seen every word.
-3. Owner — the person accountable. Default to the person you are talking to; confirm.
-4. Coding hosts they will use: Claude Code, Codex, Gemini CLI. One or more.
-5. Destination folder — must not exist yet. Confirm the parent folder exists.
+2. Owner — the person accountable. Default to the person you are talking to.
+3. Coding hosts they will use: Claude Code, Codex, Gemini CLI. One or more.
+4. Destination folder — must not exist yet. Confirm the parent folder exists.
 
 If they want to talk through scope, users, non-goals, or risks first, do that; it is Define
-work and it belongs in `planning/open-questions.md` after seeding. Do not write files by hand
-before seeding.
+work and it belongs in `planning/definition.md` and `planning/open-questions.md` after seeding.
+Do not write files by hand before seeding. Do not suggest features; the smallest version that
+delivers the value in answer 3 is the goal, and everything else has a home in
+`planning/later.md` once the project exists.
 
 ## 2. Seed
 
@@ -67,8 +85,13 @@ Run the seeder from this skill's folder. Adapters map to hosts: `claude`, `codex
 ```sh
 python3 <this-skill-folder>/scripts/seed.py <destination> \
   --name "<Name>" --purpose "<One sentence.>" --kind <agent|skill> \
-  --owner "<owner>" --adapter <host> [--adapter <host>]
+  --owner "<owner>" --adapter <host> [--adapter <host>] \
+  --problem "<answer 1>" --current "<answer 2>" --value "<answer 3>" --for "<answer 4>"
 ```
+
+Pass the four problem answers exactly as the person gave them; they land in
+`planning/definition.md`. If one is missing the seeder writes `(not yet answered)` and
+`check.py --leaving define` will refuse the transition until it is filled in.
 
 The script refuses an existing destination, copies `templates/base` plus
 `templates/kinds/<kind>` plus one adapter file per host, fills the placeholders, validates the
@@ -96,8 +119,10 @@ Then give a briefing, not a summary. The person may be picking up a colleague's 
 - if `project.status` is anything but `active`, lead with that — a paused or abandoned
   project is not waiting for its next step, and saying so first saves the person the
   briefing they do not need;
-- what exists (from the tree) and what the phase still owes — for Define, which planning
-  files are missing;
+- what exists (from the tree) and what the phase still owes — for Define, which answers in
+  `planning/definition.md` are still `(not yet answered)`;
+- anything in `planning/later.md`, in one line, so the person knows it is there — do not
+  propose promoting it;
 - every decision, with ID and status, in a short table;
 - the next step you propose inside the current phase, and why that one first;
 - the four-section closeout.
@@ -118,7 +143,24 @@ or `governance/handoff.json`, treat it as a claim to reconcile with the files, n
 
 **Decisions.** A substantive choice goes in `governance/decisions.yaml` with the next ID in
 sequence, a status, one-sentence decision, and rationale. Propose; the author confirms. Never
-mark something `confirmed` because the conversation felt settled.
+mark something `confirmed` because the conversation felt settled. A `proposed` decision does
+not survive a phase close: before the phase ends it is confirmed, rejected, or moved to
+`planning/later.md`.
+
+**Suggestions go to `planning/later.md`, not into scope.** Test every idea you are about to
+offer against the smallest version in `planning/definition.md`. If the smallest version does
+not need it, write it in `later.md` with the date and where it came from, and say that you
+did — one line. Do not ask whether to add it. A person who says "sure" to a suggestion has
+not decided anything; only a request in their own words moves an item out of `later.md`, and
+then it becomes a decision. Novices in particular say yes to everything; the kindest thing
+you can do is offer less.
+
+**Approval is typed, never clicked.** For the decisions that shape the project — the purpose,
+the smallest version, a phase change, seeding, creating a remote, and any grant of authority
+to send, spend, publish, or delete — read the exact thing back in full and ask the person to
+type their agreement in their own words. Do not present these as a yes/no menu, a numbered
+option list, or a button; an "approve" that can be clicked without reading is not approval.
+Routine steps inside an approved plan do not need this ceremony.
 
 **Checks and commits.** Before committing anything under `governance/`, run
 `python3 <this-skill-folder>/scripts/check.py .` and fix what it reports. Commit at each
@@ -126,17 +168,24 @@ closeout with a message starting `<phase>:` (for example `define: record purpose
 non-goals`). Do not push unless asked in that turn.
 
 **Closeout.** Every time you finish a piece of work for the person, end with the four
-sections in *Communication and handoffs* below. Say `None` when a section is empty.
+sections in *Communication and handoffs* below. Say `None` when a section is empty. In the
+fourth section ask **one** question, the one that matters most — not a list. If the person
+answers it, the answer goes to `planning/later.md` unless they ask, in their own words, for
+work on it now.
 
 ## 5. Change phase — only when told
 
 A phase changes only when the author says so in words that leave no doubt: "approved, move to
 Plan", "enter Build", "close Review". "Looks good", "great, next", or silence is not approval;
-ask. When approved:
+ask, and ask for typed words, not a menu pick. Before you ask, run
+`python3 <this-skill-folder>/scripts/check.py . --leaving <old-phase>`. It refuses while any
+decision is still `proposed`, and refuses to leave Define while any answer in
+`planning/definition.md` is `(not yet answered)`. Resolve what it lists — with the person,
+not by editing statuses yourself — and run it again. When it passes and the author approves:
 
 1. Add a history entry to `governance/project-state.yaml` with the new phase, the date, and
    `confirmed_by`. Update `phase.current`.
-2. Run `check.py`. Commit with `<old-phase>: close` and `<new-phase>: open` in the message.
+2. Run `check.py .`. Commit with `<old-phase>: close` and `<new-phase>: open` in the message.
 3. State the new phase and its first step.
 
 ## 6. When a project stops
@@ -186,6 +235,8 @@ Each has a name; use it when the person asks about one. Full text is in `referen
 **{{principle:security-and-authority|title}}.** {{principle:security-and-authority|short}}
 
 **{{principle:communication-and-handoffs|title}}.** {{principle:communication-and-handoffs|short}}
+
+**{{principle:build-only-what-you-need|title}}.** {{principle:build-only-what-you-need|short}}
 
 ## Reference
 

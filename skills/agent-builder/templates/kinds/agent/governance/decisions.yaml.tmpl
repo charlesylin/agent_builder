@@ -4,7 +4,9 @@ decisions:
     status: confirmed
     date: {{GENERATED_DATE}}
     decision: {{PURPOSE_JSON}}
-    rationale: Supplied as the project purpose during initialization.
+    rationale: >-
+      Derived from the problem, current approach, value, and beneficiaries recorded in
+      planning/definition.md during Define.
     provenance: project_initialization
   - id: {{PROJECT_SLUG}}-D002
     status: confirmed
@@ -16,7 +18,7 @@ decisions:
     status: proposed
     date: {{GENERATED_DATE}}
     decision: Deploy the eventual agent as an OCI container using Docker Compose locally.
-    rationale: Agent Builder default; confirm during project planning.
+    rationale: Agent Builder default. Confirm or reject before leaving Define; proposals do not survive a phase close.
     provenance: agent-builder-{{TEMPLATE_VERSION}}
   - id: {{PROJECT_SLUG}}-D004
     status: proposed

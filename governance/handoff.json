@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-v0-2-0-built-2026-09-14",
-  "created_at": "2026-09-14T20:30:00Z",
+  "handoff_id": "agent-builder-v0-2-1-review-2026-09-14",
+  "created_at": "2026-09-15T02:30:00Z",
   "source_agent": "agent-builder-claude",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "v0.2.0 is built and tagged: an org-installable skill with stdlib seeder and checker, single-source principles with drift checks, agent and skill kinds, and a UserPromptSubmit offer hook verified live through the installed plugin. Sixteen findings recorded; F-015 (project kind) and F-016 (planning/ vs docs/) carried into Review. Phase is Build until the author approves Review.",
+  "summary": "Review for v0.2 is open. v0.2.1 incorporates the first Review feedback: the Define conversation asks the problem, current approach, value, and beneficiaries before the purpose (seeded planning/definition.md); suggestions go to planning/later.md; check.py --leaving refuses phase changes with proposed decisions or unanswered definitions; approvals are typed; one closeout question; Nokkvi's law encourages a frustrated person out loud. Acceptance test is the org opt-in install.",
   "decisions": [
     {
       "id": "AB-D019",
@@ -13,34 +13,44 @@
       "summary": "Primary deliverable is an org-installable skill."
     },
     {
-      "id": "AB-D020",
-      "status": "confirmed",
-      "summary": "One source per principle; copies generated and drift-checked."
-    },
-    {
-      "id": "AB-D022",
-      "status": "confirmed",
-      "summary": "Local check advisory; CI in seeded projects binds."
-    },
-    {
-      "id": "AB-D023",
-      "status": "confirmed",
-      "summary": "agent and skill kinds; project kind has its evidence (F-015)."
-    },
-    {
       "id": "AB-D030",
       "status": "confirmed",
       "summary": "Adapters stay substantive and point at the skill; resume is a briefing."
     },
     {
-      "id": "AB-D031",
-      "status": "confirmed",
-      "summary": "project.status records paused, abandoned, archived alongside the phase."
-    },
-    {
       "id": "AB-D032",
       "status": "confirmed",
       "summary": "Explicit invocation first; a hook offers the skill once per session on new work."
+    },
+    {
+      "id": "AB-D033",
+      "status": "confirmed",
+      "summary": "Problem framing (four questions) before purpose; recorded in planning/definition.md."
+    },
+    {
+      "id": "AB-D034",
+      "status": "confirmed",
+      "summary": "Principle: build only what you need; smallest version stated in definition.md."
+    },
+    {
+      "id": "AB-D035",
+      "status": "confirmed",
+      "summary": "Suggestions go to planning/later.md; proposals expire at phase close; one closeout question."
+    },
+    {
+      "id": "AB-D036",
+      "status": "confirmed",
+      "summary": "Approvals that shape the project are typed in the author's words, never clicked."
+    },
+    {
+      "id": "AB-D037",
+      "status": "confirmed",
+      "summary": "Nokkvi's law: brief outward encouragement when the person is frustrated or confused, then help."
+    },
+    {
+      "id": "AB-D038",
+      "status": "confirmed",
+      "summary": "Release 0.2.1 during Review with the feedback incorporated."
     }
   ],
   "artifacts": [
@@ -83,11 +93,19 @@
     {
       "path": "docs/INSTALL.md",
       "media_type": "text/markdown"
+    },
+    {
+      "path": "docs/v0-2-review-feedback.md",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "media_type": "text/markdown"
     }
   ],
   "blockers": [],
   "questions": [
-    "Enter Review?"
+    "Does Sean's next project, seeded by 0.2.1, get real answers to the four problem questions?"
   ],
-  "next_action": "Obtain the author's explicit approval to enter Review; then make the plugin Available for install and collect friction per docs/INSTALL.md."
+  "next_action": "Push with tags; update the installed plugin; make it Available for install per docs/INSTALL.md; observe and record findings. Review continues until the author closes it."
 }

@@ -20,6 +20,7 @@ optional `## Short form` section used where a one-paragraph statement is enough.
 | `containerize-the-deployed-agent` | Containerize the deployed agent |
 | `security-and-authority` | Security and authority |
 | `communication-and-handoffs` | Communication and handoffs |
+| `build-only-what-you-need` | Build only what you need |
 
 Reference a principle in a stencil as `{{principle:<id>}}` (full text),
 `{{principle:<id>|short}}` (short form), or `{{principle:<id>|title}}`.

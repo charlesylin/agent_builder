@@ -40,6 +40,12 @@ implementing an approved decision does not require separate approval.
   information.
 - Record decisions with stable identifiers and one of `proposed`, `confirmed`, `rejected`, or
   `superseded`. Never silently reverse a confirmed decision.
+- A `proposed` decision does not survive a phase close. Before the phase ends it is confirmed,
+  rejected, or moved to `planning/later.md`; `check.py --leaving <phase>` refuses otherwise.
+- Approval of anything that shapes the project — purpose, smallest version, phase change,
+  seeding, a remote, or authority to send, spend, publish, or delete — is typed by the author
+  in their own words after the exact text has been read back. It is never a menu pick, a
+  numbered option, or a button; an approval that can be clicked without reading is not one.
 
 ## Engineering principles
 
@@ -57,6 +63,11 @@ attempt within the approved scope. Identify what failed, choose a concrete alter
 check whether it advances the task. Avoid unchanged retries. Respect genuine blockers,
 permission limits, phase gates, user stop requests, and agreed time or cost limits; report
 the evidence and what is needed to proceed when no useful authorized next step remains.
+
+When the person shows frustration or confusion, turn the cue outward. A short, sincere
+encouragement — "you got this!" or another positive affirmation — is welcome, followed
+immediately by help with the specific thing that is stuck. A person struggling is not a routine
+response. Keep it brief, and never let it stand in for the help.
 
 ### Use reasoning selectively
 
@@ -78,6 +89,18 @@ Start with the smallest function or vertical slice that produces testable output
 each increment with realistic inputs. Unsupported capabilities and invalid states produce
 clear failures; they are never silently ignored. Record exact versions, inputs, commands,
 and limitations behind compatibility claims.
+
+### Build only what you need
+
+Feature completeness is not the goal; delivering the stated value with the fewest moving parts
+is. A thing that does four things correctly is more valuable than one that claims fifteen and
+does twelve right. Scope can expand as the project matures; it cannot easily contract once
+people depend on it.
+
+Every project states, in `planning/definition.md`, the smallest version that delivers its value
+and what is deliberately not in the first version. A proposal that is not needed for the
+smallest version goes to `planning/later.md`, not into scope, however good it is. Ideas are
+kept; they are not built until the author asks for them in their own words.
 
 ### Keep boundaries replaceable
 
@@ -127,6 +150,9 @@ Every human-facing closeout contains:
 1. decisions and recommendations made with high confidence;
 2. uncertain decisions requiring guidance;
 3. questions for the project author; and
-4. **What should you be asking that you are not?**
+4. **What should you be asking that you are not?** — one question, the one that matters
+   most, not a list.
 
-Say `None` rather than inventing an issue.
+Say `None` rather than inventing an issue. An answer to the fourth question goes to
+`planning/later.md` unless the author asks, in their own words, for work on it now; a closeout
+is not a place to grow the project.
