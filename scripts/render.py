@@ -158,7 +158,8 @@ def main(argv=None) -> int:
 
     for path, content in outputs.items():
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(content, encoding="utf-8")
+        with path.open("w", encoding="utf-8", newline="\n") as handle:
+            handle.write(content)
         print(f"rendered {path.relative_to(ROOT)}")
     return 0
 

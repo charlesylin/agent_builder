@@ -129,7 +129,9 @@ def create_project(
         for relative, content in rendered_files.items():
             output = temporary / relative
             output.parent.mkdir(parents=True, exist_ok=True)
-            output.write_text(content, encoding="utf-8", newline="\n")
+            # Path.write_text(newline=...) is Python 3.10+; open() keeps LF on every platform.
+            with output.open("w", encoding="utf-8", newline="\n") as handle:
+                handle.write(content)
 
         issues = validate_project(temporary)
         if issues:
