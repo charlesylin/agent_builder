@@ -98,12 +98,60 @@ class PromptKeyTests(unittest.TestCase):
 
 
 class HookProcessTests(unittest.TestCase):
-    def test_offer_names_the_skill_and_the_mute_command(self) -> None:
-        out = invoke({"prompt": EVAL_PROMPTS[0], "cwd": "/", "session_id": "abc"})
+    def test_offer_names_the_skill_and_tells_claude_to_ask_first(self) -> None:
+        session = "offer-shape"
+        hook.marker_path(session).unlink(missing_ok=True)
+        try:
+            out = invoke({"prompt": EVAL_PROMPTS[0], "cwd": "/", "session_id": session})
+        finally:
+            hook.marker_path(session).unlink(missing_ok=True)
         payload = json.loads(out)["hookSpecificOutput"]
         self.assertEqual(payload["hookEventName"], "UserPromptSubmit")
         self.assertIn("agent-builder", payload["additionalContext"])
-        self.assertIn("--mute abc", payload["additionalContext"])
+        self.assertIn("ask the person once", payload["additionalContext"])
+
+    def test_offers_once_per_session_whatever_the_answer(self) -> None:
+        # F-014: a decline can itself read as starting something ("build directly without
+        # agent-builder"), so the offer must not depend on the decline arriving as a command.
+        session = "once-per-session"
+        hook.marker_path(session).unlink(missing_ok=True)
+        try:
+            first = invoke({"prompt": EVAL_PROMPTS[0], "cwd": "/", "session_id": session})
+            self.assertNotEqual(first, "")
+            decline = invoke(
+                {
+                    "prompt": "build directly without agent-builder",
+                    "cwd": "/",
+                    "session_id": session,
+                }
+            )
+            self.assertEqual(decline, "", "a session is asked at most once")
+            other = invoke({"prompt": EVAL_PROMPTS[0], "cwd": "/", "session_id": "next-session"})
+            self.assertNotEqual(other, "", "the next session is still asked")
+        finally:
+            for name in (session, "next-session"):
+                hook.marker_path(name).unlink(missing_ok=True)
+
+    def test_the_real_payload_schema_is_handled(self) -> None:
+        # Verbatim key set from Claude Code 2.1.270, traced 2026-09-14.
+        session = "real-schema"
+        hook.marker_path(session).unlink(missing_ok=True)
+        try:
+            out = invoke(
+                {
+                    "cwd": "/",
+                    "hook_event_name": "UserPromptSubmit",
+                    "permission_mode": "auto",
+                    "prompt": EVAL_PROMPTS[5],
+                    "prompt_id": "p1",
+                    "scratchpad_dir": "/tmp/x",
+                    "session_id": session,
+                    "transcript_path": "/tmp/t.jsonl",
+                }
+            )
+            self.assertIn("agent-builder", out)
+        finally:
+            hook.marker_path(session).unlink(missing_ok=True)
 
     def test_silent_on_unrelated_prompts(self) -> None:
         self.assertEqual(
@@ -116,22 +164,23 @@ class HookProcessTests(unittest.TestCase):
             out = invoke({"user_prompt": EVAL_PROMPTS[0], "cwd": directory, "session_id": "b"})
             self.assertEqual(out, "", "a seeded project carries an adapter; the offer is noise")
 
-    def test_mute_silences_that_session_only(self) -> None:
-        session = "mute-test-session"
-        marker = hook.marker_path(session)
-        marker.unlink(missing_ok=True)
-        try:
-            self.assertNotEqual(
-                invoke({"user_prompt": EVAL_PROMPTS[0], "cwd": "/", "session_id": session}), ""
-            )
-            subprocess.run([sys.executable, str(HOOK), "--mute", session], check=True)
-            self.assertEqual(
-                invoke({"user_prompt": EVAL_PROMPTS[0], "cwd": "/", "session_id": session}), ""
-            )
-            other = invoke({"user_prompt": EVAL_PROMPTS[0], "cwd": "/", "session_id": "another"})
-            self.assertNotEqual(other, "", "muting one session must not mute the next")
-        finally:
-            marker.unlink(missing_ok=True)
+    def test_explicit_mute_still_works_and_is_scoped(self) -> None:
+        # Markers live in the system temp directory and outlive a run, so every session name
+        # this test touches is cleared before and after. Reusing one across runs is what made
+        # this test fail once the marker started being written at offer time.
+        session, neighbour = "mute-test-session", "mute-test-neighbour"
+        for name in (session, neighbour):
+            hook.marker_path(name).unlink(missing_ok=True)
+            self.addCleanup(hook.marker_path(name).unlink, missing_ok=True)
+
+        subprocess.run([sys.executable, str(HOOK), "--mute", session], check=True)
+        live = {"prompt": EVAL_PROMPTS[0], "cwd": "/", "session_id": session}
+        self.assertEqual(invoke(live), "", "an explicitly muted session is never offered")
+        self.assertNotEqual(
+            invoke(dict(live, session_id=neighbour)),
+            "",
+            "muting one session must not mute the next",
+        )
 
     def test_malformed_input_never_breaks_a_prompt(self) -> None:
         for bad in ("", "not json", "[]", "null"):

@@ -12,8 +12,11 @@ Silence is the default. It prints nothing at all unless every one of these is tr
   points at the skill, so an offer would be noise);
 - nothing has muted this session.
 
-Muting: write the session's marker with ``--mute <session-id>``. Claude is told to do that
-when a person declines. One decline ends the offers for that session.
+Muting: the marker is written **when the offer is made**, so a session is asked exactly once
+whether the person accepts, declines, or ignores it. Waiting for a decline to arrive as a
+command was worse: on 2026-09-14 a person answered "build directly without agent-builder" and
+was offered again, because that sentence also reads as starting something. ``--mute
+<session-id>`` remains for Claude to call explicitly; it is idempotent and harmless.
 
 Exit status is always 0 and a failure prints nothing: a hook that breaks a person's prompt is
 worse than a hook that misses one.
@@ -38,9 +41,10 @@ from pathlib import Path
 SKILL = "agent-builder"
 MARKER_PREFIX = "agent-builder-offer-muted-"
 
-# The key holding the typed text is not pinned in the public hook docs, and a 2026-09-14 trace
-# showed the hook receiving a payload where "user_prompt" was absent. Read whichever of these
-# carries text; the trace records the payload's actual keys so the schema stops being a guess.
+# Claude Code 2.1.270 sends: cwd, hook_event_name, permission_mode, prompt, prompt_id,
+# scratchpad_dir, session_id, transcript_path. "prompt" is the typed text — confirmed by trace
+# on 2026-09-14, after an earlier guess of "user_prompt" made the hook silent forever. The rest
+# are fallbacks so a schema change degrades into silence rather than a wrong read.
 PROMPT_KEYS = ("prompt", "user_prompt", "user_prompt_raw", "message", "input", "text")
 
 # Something is being created that does not exist yet. Deliberately conservative: a false
@@ -84,9 +88,8 @@ OFFER = (
     f"to use `{SKILL}` for this. Do not describe the skill at length and do not start the work "
     "while asking.\n\n"
     f"- If they say yes, invoke the `{SKILL}` skill and follow it.\n"
-    "- If they say no, or say this is a quick or throwaway task, run "
-    "`python3 {hook} --mute {session}` so they are not asked again this session, then continue "
-    "with what they actually asked for.\n\n"
+    "- If they say no, or say this is a quick or throwaway task, drop it and continue with what "
+    "they actually asked for. They will not be asked again this session.\n\n"
     "If this message is plainly not about creating something new, skip the question entirely and "
     "just help. The hook matches text, not intent."
 )
@@ -156,7 +159,7 @@ def decide(payload: dict) -> tuple[bool, str]:
     session_id = str(payload.get("session_id") or "")
     prompt = extract_prompt(payload)
     if session_id and marker_path(session_id).exists():
-        return False, f"muted for session {session_id}"
+        return False, "already offered or muted this session"
     if is_seeded_project(str(payload.get("cwd") or "")):
         return False, "already a seeded project"
     if not looks_like_new_work(prompt):
@@ -203,9 +206,12 @@ def main(argv: list[str] | None = None) -> int:
         trace(f"keys={sorted(payload)} :: " + ("OFFER  " if offer else "silent ") + why)
         if not offer:
             return 0
-        offer = OFFER.format(
-            hook=os.path.abspath(__file__), session=payload.get("session_id") or ""
-        )
+        # Mark before printing: one offer per session, whatever the person does with it.
+        session_id = str(payload.get("session_id") or "")
+        if session_id:
+            with contextlib.suppress(OSError):
+                marker_path(session_id).touch()
+        offer = OFFER
         json.dump(
             {
                 "hookSpecificOutput": {

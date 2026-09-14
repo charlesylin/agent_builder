@@ -471,6 +471,35 @@ Whether the org-wide path is affected: no. Installed-by-default and available-fo
 install the plugin properly, so hooks run there. The limitation is specific to local
 development.
 
+## The offer works — 2026-09-14, third live attempt
+
+With the fixed hook registered in the test folder, the S3 prompt produced the offer. The trace
+records the payload schema Claude Code 2.1.270 actually sends:
+
+```
+keys=['cwd', 'hook_event_name', 'permission_mode', 'prompt', 'prompt_id',
+      'scratchpad_dir', 'session_id', 'transcript_path']
+```
+
+The typed text is under **`prompt`**. There is no `user_prompt` and no `user_prompt_raw`. A
+test now asserts the hook handles that exact key set.
+
+## F-014 — the offer repeated after being declined
+
+The same trace showed a second offer fourteen seconds later. The person had answered *"build
+directly without agent-builder"* — which is itself a create-something sentence, so it matched,
+and nothing had muted the session because muting depended on Claude choosing to run a command
+it did not run.
+
+The docstring already claimed "offers at most once per session"; the code implemented "offers
+until muted". The code now matches the claim: **the marker is written when the offer is made**,
+so a session is asked once regardless of what the person says, whether they accept, decline, or
+ignore it. `--mute` remains for Claude to call explicitly and is idempotent. The offer text no
+longer asks Claude to run anything.
+
+Verified: offer, then silent for two further create-shaped prompts in the same session, then
+offered again in a new session.
+
 ## Not yet verified
 
-The offer has not been seen in a live session. Pending an installed-plugin test.
+The offer through the **installed plugin** rather than a project-settings registration. Pending an installed-plugin test.

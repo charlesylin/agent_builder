@@ -6,7 +6,7 @@ project:
 
 phase:
   current: build
-  status: b7c_hook_done_awaiting_hands_on_check
+  status: b7c_hook_verified_via_project_settings_awaiting_plugin_path
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation
@@ -103,11 +103,9 @@ checkpoint:
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Author installs the plugin from the local checkout (/plugin marketplace add, /plugin
-    install), confirms the hook with /hooks, then tries a concrete request in an empty folder
-    and checks that the offer appears, that declining mutes it for the session, and that the
-    skill still works by name. --plugin-dir will not do: it does not load hooks (F-012).
-    Then B8.
+    Author updates the installed plugin to 0.2.0-dev.2 (/plugin marketplace update
+    agent-builder, /reload-plugins), removes the project-settings diagnostic from the test
+    folder, and confirms the offer still appears through the plugin alone. Then B8.
     B7b rewrites the skill description against them (F-007) and re-runs. Then B8. (Superseded
     text follows.) Execute B6 as revised by AB-D030: keep seeded adapters substantive, add an explicit
     skill-invocation line, widen the skill description to cover resume, and change the resume

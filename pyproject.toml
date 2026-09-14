@@ -3,7 +3,7 @@
 
 [project]
 name = "agent-builder"
-version = "0.2.0-dev"
+version = "0.2.0-dev.2"
 description = "Governance-first starting point for agents, skills, and projects"
 readme = "README.md"
 requires-python = ">=3.9"

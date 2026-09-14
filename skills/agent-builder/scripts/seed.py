@@ -42,7 +42,7 @@ except ImportError as error:  # pragma: no cover - only when the skill folder is
     raise SystemExit(f"seed.py needs check.py beside it in {HERE}: {error}") from error
 
 # Kept equal to "version" in the repository's .claude-plugin/plugin.json; a test enforces it.
-TEMPLATE_VERSION = "0.2.0-dev"
+TEMPLATE_VERSION = "0.2.0-dev.2"
 
 
 def source_commit() -> str | None:
