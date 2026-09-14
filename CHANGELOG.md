@@ -6,6 +6,15 @@ All notable changes to Agent Builder are documented here.
 
 ### Added
 
+- `skills/agent-builder/` — Agent Builder as a skill (AB-D019, AB-D026). `SKILL.md` carries the
+  authored procedure (orient, Define conversation, seed, resume, phase rules, decisions,
+  closeout) and the generated short form of every principle. `scripts/seed.py` and
+  `scripts/check.py` are self-contained, standard-library files; the seeder gains `--owner`,
+  makes the first commit on `main`, and soft-fails when git or an identity is missing.
+  `templates/` lives inside the skill folder so a copied folder is complete.
+  `references/` holds the full operating agreement (generated), a kinds guide, and the
+  closeout template. Root `.claude-plugin/plugin.json` and `marketplace.json` make this
+  repository its own plugin marketplace (AB-D027).
 - `skill` kind (AB-D023): `init --kind skill` seeds a project whose `SKILL.md` carries `name`
   and `description` front matter, plus `scripts/`, `references/`, `evals/` with a first
   scenario, a `.claude-plugin/plugin.json` manifest, its own tests, and skill-specific README,
@@ -19,6 +28,12 @@ All notable changes to Agent Builder are documented here.
   step fail when a generated file is edited directly. Nokkvi's law now exists in one file
   instead of six; the root and template operating agreements no longer differ.
 - CI `lint` job running pinned Ruff check and format.
+
+### Removed
+
+- The `agent_builder` Python package, `scripts/new_agent.py`, `scripts/validate_project.py`,
+  the `agent-builder` console script, and the wheel build. Nothing is installed with pip;
+  the skill folder is the product. `pyproject.toml` keeps metadata and Ruff config only.
 
 ### Changed
 

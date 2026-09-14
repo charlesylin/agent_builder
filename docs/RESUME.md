@@ -27,7 +27,8 @@ Instruction files guide behavior; they do not guarantee host enforcement or auto
 ## What v0.1 shipped, and what it did not
 
 - A Python 3.11+ scaffold generator and structural validator with no runtime dependencies.
-  Entry points: `scripts/new_agent.py` and `scripts/validate_project.py`.
+  v0.1 entry points were `scripts/new_agent.py` and `scripts/validate_project.py`; since B5
+  they are `skills/agent-builder/scripts/seed.py` and `check.py`.
 - Generated projects start in Define and select Codex, Claude Code, and/or Gemini CLI adapters.
 - Define → Plan → Build → Review with explicit author-approved transitions.
 - Engineering defaults: lean Python; deterministic execution; model judgment for orchestration;

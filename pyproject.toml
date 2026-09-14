@@ -1,11 +1,10 @@
-[build-system]
-requires = ["hatchling>=1.27,<2"]
-build-backend = "hatchling.build"
+# Agent Builder ships as a skill folder (skills/agent-builder), not as a Python package.
+# This file keeps repository metadata and the Ruff configuration only.
 
 [project]
-name = "agent-builder-template"
-version = "0.1.0"
-description = "Governance-first scaffolding for lean, predictable agents"
+name = "agent-builder"
+version = "0.2.0-dev"
+description = "Governance-first starting point for agents, skills, and projects"
 readme = "README.md"
 requires-python = ">=3.9"
 license = "MIT"
@@ -17,12 +16,6 @@ dev = [
   "prek==0.4.11",
   "ruff==0.16.6",
 ]
-
-[project.scripts]
-agent-builder = "agent_builder.cli:main"
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/agent_builder"]
 
 [tool.ruff]
 target-version = "py39"

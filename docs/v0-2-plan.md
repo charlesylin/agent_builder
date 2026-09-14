@@ -105,6 +105,17 @@ independently revertible. Nothing is deleted until its replacement is tested.
 - **Done when:** tests pass with the package gone; `/plugin marketplace add <this repo>` then
   `/plugin install agent-builder` loads the skill in Claude Code.
 
+> **B5 as built (2026-09-14), two commits:** `templates/` moved *inside* `skills/agent-builder/`
+> rather than staying at the repo root, so a Codex user who copies only the skill folder has
+> everything the seeder needs; `principles/`, `scripts/render.py`, and `scripts/stencils/` stay
+> at the root because they are maintenance tooling, not shipped. `seed.py` imports
+> `validate_project` from its sibling `check.py` instead of duplicating 200 lines; the folder,
+> not the file, is the self-contained unit. The seeder gained `--owner` and a first commit on
+> `main` here (the plan had the commit in B2's description of the experience, not in a step).
+> `plugin.json` version is `0.2.0-dev` until B8. The "loads in Claude Code" done-when needs
+> the author to run `/plugin marketplace add` against the pushed repository; it cannot be
+> verified from the build environment.
+
 ### B6 — Thin adapters, version pin, `--since`
 - Adapter templates shrink to: project name, current phase (read at seed time), "this project
   follows Agent Builder — use the `agent-builder` skill", and a link to the reference.
