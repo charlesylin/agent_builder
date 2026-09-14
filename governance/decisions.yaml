@@ -310,3 +310,27 @@ decisions:
       Changes the project-state contract (AB-D011), so it needs the author.
     provenance: skill_finding_during_review_of_run2
     record: docs/v0-2-skill-test.md
+  - id: AB-D032
+    status: confirmed
+    date: 2026-09-14
+    confirmed_by: charles-yang-lin
+    decision: >-
+      Invocation is explicit first. The plugin ships a UserPromptSubmit hook that offers the
+      skill once per session when a prompt looks like the start of new work, outside a seeded
+      project, and goes quiet for that session when the person declines. The skill description
+      stays precise rather than being widened to win concrete requests.
+    rationale: >-
+      Eval run 2 measured the description at 10/21. Abstract asks fired 3/3; concrete asks
+      that give the host enough to start fired 0/3, because a description competes for model
+      attention against a request the host already knows how to begin. A hook does not
+      compete: it runs before the model sees anything, its matcher is deterministic and
+      testable offline at no cost, and a false positive costs one question where a false
+      negative is silent. The author also does not want every trivial task routed through the
+      skill, and will train users to invoke it by name. Amends the B7b goal from widening the
+      description to keeping it precise.
+    consequences: >-
+      The plugin now runs a script on every prompt in Claude Code; this is disclosed in
+      docs/INSTALL.md for admin review. Hooks are Claude Code only, so Codex relies on
+      explicit invocation and training (AB-D028).
+    provenance: explicit_author_direction_after_eval_run_2
+    record: docs/v0-2-skill-test.md

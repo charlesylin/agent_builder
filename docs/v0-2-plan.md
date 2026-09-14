@@ -169,6 +169,16 @@ independently revertible. Nothing is deleted until its replacement is tested.
 > install); the author runs it and B7b rewrites the description against the numbers. The
 > AB-D031 "this was a test" line waits for that decision.
 
+### B7c — The offer hook (added 2026-09-14, AB-D032)
+
+A `UserPromptSubmit` hook replaces "widen the description" as the answer to F-007. Explicit
+invocation is the trained path; the hook is the safety net for people who phrase a request
+concretely enough that the host would otherwise just start coding.
+
+- **Done when:** the hook matches every eval phrasing and none of the counter-examples (unit
+  tested), is silent in a seeded project and after a decline, always exits 0, and the author
+  has seen the offer appear and be declined in a real session.
+
 ### B8 — Dogfood
 - Run `seed.py --kind skill` into a temp dir with Agent Builder's own name and purpose; diff the
   result against `skills/agent-builder/`. Reconcile the template toward the real skill, not the

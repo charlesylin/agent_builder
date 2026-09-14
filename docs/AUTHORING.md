@@ -25,6 +25,17 @@ generated, the rest is authored. Edit, render, test. The `description` line in i
 is the whole trigger surface: change it only with the evals (`evals/README.md`) run before and
 after, and keep the version that measures better.
 
+## Change the offer hook
+
+`hooks/agent_builder_offer.py` decides when Claude is asked to offer the skill.
+`looks_like_new_work` is a pure function over the prompt text, so tuning it is cheap and
+offline: add the phrasing to `EVAL_PROMPTS` or `NOT_NEW_WORK` in `tests/test_hook.py`, adjust
+`POSITIVE` or `NEGATIVE`, and run the tests. `NEGATIVE` wins over `POSITIVE` by design — work
+on something that already exists should never be interrupted.
+
+Keep the hook silent by default and always exiting 0. It runs on every prompt; a hook that is
+noisy, slow, or capable of failing loudly is worse than no hook.
+
 ## Change what gets seeded
 
 Templates live in `skills/agent-builder/templates/`: `base/` for every kind, `kinds/<kind>/`

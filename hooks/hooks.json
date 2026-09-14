@@ -1,0 +1,16 @@
+{
+  "description": "Offers the agent-builder skill when a prompt looks like the start of a new agent, skill, tool, or project. Silent otherwise; one decline mutes it for the session.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/hooks/agent_builder_offer.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

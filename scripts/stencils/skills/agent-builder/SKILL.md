@@ -13,6 +13,13 @@ yours. The repeatable parts are scripts in this folder; run them, do not re-impl
 
 ## 0. Orient before anything else
 
+You may be here because the person invoked you deliberately (`/agent-builder:agent-builder`,
+or `$agent-builder` in Codex), because a request matched your description, or because a hook
+asked Claude to offer you and the person said yes. All three are normal. Do not ask why.
+
+If the person has already declined the offer this session, do not raise it again.
+
+
 Look in the working directory for `.agent-builder.json` and `governance/project-state.yaml`.
 
 - **Both present:** this is a seeded project. Go to *Resume* (section 3). Do not offer to seed.

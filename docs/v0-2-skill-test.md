@@ -401,3 +401,58 @@ adapter file that already covers every existing project (see F-009).
 | F-007 — description overfit | **Measured at 48%.** Open; B7b. |
 | F-011 — eval turn cap too low | Closed 2026-09-14. |
 | F-009, F-010 | See eval run 1. |
+
+
+---
+
+# B7c — the offer hook (2026-09-14)
+
+AB-D032. F-007 is answered by a hook rather than by a wider description.
+
+`hooks/agent_builder_offer.py` is a `UserPromptSubmit` hook: Claude Code runs it before every
+prompt and adds anything it returns in `additionalContext` to the model's context. Hooks cannot
+ask a person anything, so this one asks *Claude* to make the offer, and Claude asks.
+
+## Why a hook beats a better description
+
+A description competes for the model's attention against a request the host already knows how
+to start on — that is the measured 0/3 on concrete asks. A hook does not compete: it runs
+before the model sees the prompt. Its matcher is a pure function over text, so it is tuned
+offline, in unit tests, with no model calls and no cost. And the error costs invert: a false
+positive is one question the person declines, where a false negative is silent and the
+colleague never learns the skill exists.
+
+## Behavior
+
+Silent unless all three hold: the prompt matches a create-something pattern; the working
+directory is not already a seeded project (those carry an adapter that points at the skill);
+and the session has not been muted. Always exits 0 — a broken hook must never break a prompt.
+Muting is a marker file keyed by `session_id` under the temp directory, written by Claude when
+the person declines. 17 ms per silent invocation.
+
+## Measured
+
+| Check | Result |
+| --- | --- |
+| The seven eval phrasings | 7/7 matched, including the three the description scored 0/3 on |
+| Seven counter-examples (fix, explain, refactor, rename, summarize, run tests, a Python question) | 7/7 silent |
+| "why does the build script create a stale agent?" | silent — negatives win over positives |
+| Inside a seeded project | silent |
+| After `--mute <session>` | silent for that session, offers in the next |
+| Empty, malformed, non-object, oversized input | exit 0, no output |
+
+Nineteen tests in `tests/test_hook.py`; 40 tests total, green on 3.9 and 3.10.
+
+## Consequences recorded
+
+The plugin now executes a script on every prompt in Claude Code. `docs/INSTALL.md` has a
+section for whoever reviews the plugin: what it reads, what it writes, that it makes no network
+calls, and how to disable it while keeping the skill. Hooks are Claude Code only — Codex relies
+on `$agent-builder` and training (AB-D028).
+
+`SKILL.md` §0 now states that deliberate invocation, a description match, and an accepted hook
+offer are all normal entry points, and that a decline is not to be revisited that session.
+
+## Not yet verified
+
+The offer has not been seen in a live session. That is the B7c done-when the author still owes.

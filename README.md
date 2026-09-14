@@ -27,6 +27,15 @@ Coming back later, *"what's the status here?"* gets a briefing from the reposito
 records: purpose, phase and how long it has been there, what exists and what the phase still
 owes, every decision with its ID, a proposed next step — and nothing done unasked.
 
+## How it gets invoked
+
+By name — `/agent-builder:agent-builder` in Claude Code, `$agent-builder` in Codex — or by its
+description matching what someone typed. In Claude Code the plugin also ships a
+`UserPromptSubmit` hook: when a prompt looks like the start of new work and the folder is not
+already a seeded project, it asks Claude to offer the skill once. Declining mutes the offer for
+that session. The hook is silent otherwise and never blocks a prompt; `docs/INSTALL.md`
+describes exactly what it does.
+
 ## Install
 
 See [`docs/INSTALL.md`](docs/INSTALL.md). To try it now:

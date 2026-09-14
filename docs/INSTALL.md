@@ -4,6 +4,30 @@ Agent Builder is a skill. Installing it means getting the folder `skills/agent-b
 front of a coding agent. Nothing is installed with pip; the two scripts inside need only
 Python 3.9 or newer. Mechanics verified against vendor documentation on 2026-09-13.
 
+## How people invoke it
+
+Explicitly, which is the trained path:
+
+- **Claude Code:** `/agent-builder:agent-builder`
+- **Codex:** `$agent-builder`
+
+Or the skill's own description matches what they typed. Or — Claude Code only — the plugin's
+hook notices a prompt that looks like the start of new work and asks Claude to offer once.
+Answering no mutes the offer for that session; the skill stays available by name.
+
+## What the hook does, for whoever reviews this plugin
+
+Enabling the plugin means `hooks/agent_builder_offer.py` runs on **every prompt** in Claude
+Code. It is standard-library Python, about 120 lines, and readable in a sitting. It reads the
+prompt from stdin, prints nothing at all unless the text matches a create-something pattern
+*and* the working directory is not already a seeded project *and* the session has not been
+muted, and always exits 0 — a failure prints nothing rather than interfering with the prompt.
+It writes one empty marker file under the system temp directory when muted. It makes no
+network calls and reads no files outside the working directory.
+
+To disable it while keeping the skill, remove `hooks/` from an installed copy, or disable the
+plugin and put `skills/agent-builder` in `~/.claude/skills/` instead.
+
 ## Claude Code — try it without installing
 
 ```sh
