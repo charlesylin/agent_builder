@@ -338,3 +338,66 @@ expected reading.
 
 The trigger rate for every phrasing — F-007 remains open, and the trigger sweep is the next
 thing to run.
+
+
+---
+
+# Eval run 2 — trigger sweep, 2026-09-14 (Claude Code 2.1.270)
+
+`claude plugin eval . --tag trigger --tag negative --ablation none -j 4 --judge-model sonnet`
+— 8 cases, 231s, $3.92 list-price estimate (subscription usage, not billed).
+
+## F-011 — the turn cap was too low, and contaminated the run
+
+Five of eight cases reported `Reached maximum number of turns (3)`. `max_turns: 3` cannot hold
+the sequence `SKILL.md` §0 prescribes: look at the directory, call `Skill`, then reply. Runs
+that fired the skill and were cut off before answering scored 0 exactly like runs that never
+fired. Raised to 8 for trigger cases and 6 for the negative case. **Read the `turns` column
+before believing a low score.** Numbers below are `skill-fired` per run, which survives the
+contamination where the run completed.
+
+## Trigger rate by phrasing
+
+| Prompt shape | skill-fired | Note |
+| --- | --- | --- |
+| "I want to **build something that** finds secondhand lab equipment…" | **3/3** | control; clean |
+| "**starting a new project** today — a CLI… what's the right way to set it up?" | **3/3** | clean |
+| "can you help me **make a skill** that turns my rough notes…" | **3/3** | 1 run capped after firing |
+| "i want to **make a thing** that can quickly retrieve depmap data…" | **1/3** | F-007 prompt; 2 clean non-fires |
+| "i keep manually reformatting… **can we automate that?**" | **0/3** | 2 clean non-fires |
+| "**help me build** a little service that watches our S3 bucket…" | **0/3** | 1 clean non-fire, 2 capped |
+| "we need an **internal tool** that summarizes… **where do I start?**" | **0/3** | 3 clean non-fires |
+
+**10 of 21 — 48%.** `ignores-general-coding-question` scored 1.00 with the skill not firing:
+the widened description is not greedy.
+
+## What the pattern says
+
+It is not vocabulary. "Help me **build** a little service" contains the verb and never fired;
+"starting a new project… what's the right way to set it up" contains no build verb and fired
+every time.
+
+The discriminator is **how much the request already specifies**. An abstract ask — "something
+that finds lab equipment", "how should I set this up" — leaves nothing to code, so the skill
+wins. A concrete ask — "a service that watches our S3 bucket and kicks off the pipeline" —
+gives the host enough to start, and starting is its default.
+
+This is the hypothesis raised after manual run 3, now measured. Its uncomfortable implication
+for a rollout: the colleagues most likely to get a bad first experience are the ones who know
+exactly what they want, which is not the population a governance tool can afford to lose.
+
+Whether a description rewrite can beat a host's default on concrete requests is the open
+question. B7b tests it: re-baseline with the corrected turn cap, rewrite the description to
+lead with the shape of the *situation* (a new thing is being created, nothing exists yet)
+rather than a list of verbs, re-run the identical command, and keep the better number. If the
+concrete phrasings stay near zero after a fair attempt, the honest answer is that the empty
+folder needs a second entry point that does not depend on triggering — the counterpart to the
+adapter file that already covers every existing project (see F-009).
+
+## Status of findings
+
+| Finding | Status |
+| --- | --- |
+| F-007 — description overfit | **Measured at 48%.** Open; B7b. |
+| F-011 — eval turn cap too low | Closed 2026-09-14. |
+| F-009, F-010 | See eval run 1. |

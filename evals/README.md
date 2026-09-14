@@ -17,8 +17,11 @@ claude plugin eval . --tag trigger --tag negative --ablation none -j 4 --judge-m
   Single-arm mode scores it, which is the number we are after.
 - **`-j 4`** runs four at a time. The default is **1**, and a serial suite takes far longer
   than it looks like it should.
-- No tool grants needed: these cases only need to ask a question. `max_turns: 3` keeps them
-  short.
+- No tool grants needed: these cases only need to ask a question. `max_turns: 8` is the floor
+  that works: §0 of `SKILL.md` tells the skill to look at the directory first, then the
+  `Skill` call is itself a turn, then the reply. At 3 turns half the suite reported
+  `Reached maximum number of turns` and scored 0 whether or not the skill had fired — the
+  measurement, not the skill. Check the `turns` column before believing a low score.
 
 Roughly 24 runs, a few minutes, low cost. Read `skill-fired` per case: that fraction is the
 trigger rate for that phrasing.
