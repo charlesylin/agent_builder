@@ -6,7 +6,7 @@ project:
 
 phase:
   current: build
-  status: b6_verified_by_runs_2_and_3_f008_fixed_f007_open
+  status: b7a_done_evals_and_docs_awaiting_author_eval_run
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation
@@ -75,7 +75,7 @@ next_release:
   kinds: [agent, skill]
   confirmed_decisions: [AB-D019, AB-D020, AB-D021, AB-D022, AB-D023, AB-D024, AB-D025, AB-D026, AB-D027, AB-D028, AB-D029]
   build_steps: [B1, B2, B3, B4, B5, B6, B7, B8]
-  build_steps_done: [B1, B2, B3, B4, B5, B6]
+  build_steps_done: [B1, B2, B3, B4, B5, B6, B7a]
   inputs_resolved:
     - id: F-001
       resolution: >-
@@ -103,7 +103,9 @@ checkpoint:
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Execute B6 as revised by AB-D030: keep seeded adapters substantive, add an explicit
+    Author runs `claude plugin eval . --scaffold --judge-model sonnet` and reports the numbers.
+    B7b rewrites the skill description against them (F-007) and re-runs. Then B8. (Superseded
+    text follows.) Execute B6 as revised by AB-D030: keep seeded adapters substantive, add an explicit
     skill-invocation line, widen the skill description to cover resume, and change the resume
     step to a briefing. Then B7 and B8 per docs/v0-2-plan.md. One commit per step; the author
     pushes.

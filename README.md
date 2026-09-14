@@ -1,108 +1,79 @@
 # Agent Builder
 
-Agent Builder creates governance-first project scaffolds for lean, predictable agents.
-It keeps model reasoning focused on orchestration and decisions while reserving repeatable
-work for deterministic, testable Python.
+A skill that helps people in an organization build agents, skills, and projects the same
+way: a short Define conversation first, a repository seeded from templates by a script, work
+kept inside a recorded phase, decisions written down with IDs, and a closeout in a fixed shape.
 
-Version 0.1 intentionally provides the project contract and scaffold only. It does not
-select an agent runtime, model provider, API framework, or MCP implementation.
+It is three things in one folder, `skills/agent-builder/`:
 
-## What it creates
+- **`SKILL.md`** — the instructions Claude Code or Codex follows. The judgment lives here.
+- **`scripts/seed.py`** and **`scripts/check.py`** — create a project; validate one. Standard
+  library only, Python 3.9+.
+- **`templates/`** — what a new project gets: `base/` for every kind, `kinds/agent/` and
+  `kinds/skill/`, one adapter file per coding host.
 
-- an explicit Define → Plan → Build → Review workflow;
-- human-readable governance plus machine-readable project state and decisions;
-- selectable Codex, Claude Code, and Gemini CLI instruction adapters;
-- a compact JSON Schema for agent-to-agent handoffs;
-- security rules for credentials, tools, data, and logs;
-- Python-first source and test directories without a runtime dependency; and
-- container and compatibility policies ready for a later runtime profile.
+The principles behind all of it live once, in `principles/`, and are rendered into every place
+they appear by `scripts/render.py`. A test fails if a copy drifts.
 
-## Quick start
+## What a colleague experiences
 
-Agent Builder is a skill: the folder `skills/agent-builder/` holds the instructions a coding
-agent follows (`SKILL.md`), the two scripts it runs, and the templates it seeds from. Nothing
-is installed with pip. The scripts need Python 3.9 or newer and nothing else.
+In an empty folder, with the skill installed: *"I want to build something that…"*. The skill
+asks what kind of thing it is, settles a one-sentence purpose and reads it back, proposes
+name, owner, hosts, and destination as defaults, then runs the seeder. Twenty-odd files, a git
+repository on `main` with its first commit, phase **Define**, purpose and decisions already in
+the ledger. It asks before creating a remote.
 
-Seed a new project:
+Coming back later, *"what's the status here?"* gets a briefing from the repository's own
+records: purpose, phase and how long it has been there, what exists and what the phase still
+owes, every decision with its ID, a proposed next step — and nothing done unasked.
+
+## Install
+
+See [`docs/INSTALL.md`](docs/INSTALL.md). To try it now:
+
+```sh
+claude --plugin-dir /path/to/agent_builder    # Claude Code, this session only
+ln -s /path/to/agent_builder/skills/agent-builder ~/.agents/skills/agent-builder   # Codex
+```
+
+## Use the scripts directly
 
 ```sh
 python3 skills/agent-builder/scripts/seed.py ../my-agent \
-  --name "My Agent" \
-  --purpose "Describe the single outcome this agent owns." \
-  --kind agent --owner "Your Name" \
-  --adapter claude --adapter codex
+  --name "My Agent" --purpose "The single outcome this owns." \
+  --kind agent --owner "Your Name" --adapter claude --adapter codex
+
+python3 skills/agent-builder/scripts/check.py ../my-agent          # validate
+python3 skills/agent-builder/scripts/check.py ../my-agent --since  # what changed since seeding
 ```
 
-`--kind` is `agent` or `skill`. Codex is selected when no `--adapter` is given; repeat it for
-more hosts. The seeder refuses an existing path, validates what it produced, and makes the
-first git commit on `main`.
+`--kind` is `agent` or `skill`. The seeder refuses an existing path and never rewrites a seeded
+project; `--since` shows a project's owner what they would be opting into.
 
-Validate a project, or see what has changed in Agent Builder since it was seeded:
-
-```sh
-python3 skills/agent-builder/scripts/check.py ../my-agent
-python3 skills/agent-builder/scripts/check.py ../my-agent --since
-```
-
-Agent Builder never rewrites a seeded project. `--since` shows the changelog entries newer
-than the project's pinned template version so the owner can decide what to adopt.
-
-Install the skill so it activates by itself: see `docs/INSTALL.md` (arrives in B7). Until then,
-Claude Code users can run `/plugin marketplace add <path-or-url-of-this-repo>` then
-`/plugin install agent-builder@agent-builder`; Codex users can copy or link
-`skills/agent-builder` into `~/.agents/skills/agent-builder`.
-
-## Resume development in another account or agent
-
-Clone this repository's current `main` branch and open the repository itself as your project.
-Read [the restart handoff](docs/RESUME.md). Use this prompt in the new session:
-
-> Resume work on Agent Builder. Read AGENTS.md, governance/project-state.yaml,
-> governance/operating-agreement.md, governance/decisions.yaml, and docs/RESUME.md.
-> Summarize the current phase, confirmed decisions, open findings, and next recommended
-> step. Stay in the recorded phase until I explicitly approve a transition. Do not assume
-> access to earlier conversations or begin implementing a runtime.
-
-If your environment cannot access the clone, provide those files explicitly. Repository
-access does not transfer previous chat history, credentials, or account configuration.
-
-## Development checks
+## Development
 
 ```sh
-python3 scripts/render.py --check   # generated files match principles/
-python3 -m unittest discover -s tests -v
+python3 scripts/render.py --check           # generated files match principles/
+python3 -m unittest discover -s tests -v    # 30 tests, Python 3.9+
 python3 -m compileall -q scripts skills tests
+python3 -m pip install "ruff==0.16.6" && ruff check . && ruff format --check .
+claude plugin eval . --scaffold --judge-model sonnet   # does the skill trigger and behave? see evals/
 ```
 
-Principle text lives only in `principles/`. Files that state a principle — `AGENTS.md`, the
-operating agreements, the adapter templates, `SKILL.md` and its references — are generated by
-`scripts/render.py` from `scripts/stencils/`. Edit the source, run the renderer, commit both.
-
-Optional tooling, pinned:
-
-```sh
-python3 -m pip install "ruff==0.16.6"
-ruff check .
-ruff format --check .
-prek install   # pre-commit hooks from prek.toml, if you use prek
-```
-
-See [the architecture](docs/architecture.md),
-[the operating agreement](governance/operating-agreement.md),
-[the v0.2 definition](docs/v0-2-define.md), [the plan](docs/v0-2-plan.md), and
-[the validation record](docs/validation.md) for rationale and evidence.
+How to change principles, the skill, templates, or cut a release:
+[`docs/AUTHORING.md`](docs/AUTHORING.md).
 
 ## Status
 
-Version 0.1.0 was accepted by the project author on 2026-09-13 and is tagged `v0.1.0`. It
-supplies governance and scaffolding only. See [the acceptance record](docs/v0-1-acceptance.md)
-for what acceptance rested on and the two findings carried forward. Generated projects record
-the Agent Builder version they came from; later releases never silently rewrite them.
+**v0.2 is in Build**, step B7 of B8. v0.1 (governance and scaffolding only) was accepted on
+2026-09-13 and is tagged `v0.1.0`. The v0.2 vision is in
+[`docs/v0-2-define.md`](docs/v0-2-define.md), the plan in
+[`docs/v0-2-plan.md`](docs/v0-2-plan.md), and the evidence from three rounds of hands-on testing
+in [`docs/v0-2-skill-test.md`](docs/v0-2-skill-test.md).
 
-Work has moved to the **Define** phase for v0.2. Scope is open and no solution is approved;
-`next_release.candidate_inputs` in `governance/project-state.yaml` lists the unprioritized
-inputs under consideration.
+This repository is developed under its own phases; see
+[`governance/`](governance/) and [`docs/RESUME.md`](docs/RESUME.md).
 
 ## License
 
-Agent Builder is available under the [MIT License](LICENSE).
+[MIT](LICENSE).

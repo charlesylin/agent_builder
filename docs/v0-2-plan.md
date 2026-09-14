@@ -164,6 +164,11 @@ independently revertible. Nothing is deleted until its replacement is tested.
   produces the four-section closeout; resumes cold from a seeded repo.
 - **Done when:** a colleague can follow INSTALL.md without asking a question.
 
+> **B7a as built (2026-09-14):** evals, INSTALL, AUTHORING, README landed. The eval suite
+> cannot run from the build environment (`claude plugin eval` needs an interactive-capable
+> install); the author runs it and B7b rewrites the description against the numbers. The
+> AB-D031 "this was a test" line waits for that decision.
+
 ### B8 — Dogfood
 - Run `seed.py --kind skill` into a temp dir with Agent Builder's own name and purpose; diff the
   result against `skills/agent-builder/`. Reconcile the template toward the real skill, not the

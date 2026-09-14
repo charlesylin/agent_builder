@@ -6,6 +6,11 @@ All notable changes to Agent Builder are documented here.
 
 ### Added
 
+- `evals/`: seven `claude plugin eval` cases — four trigger phrasings including the one that
+  failed in run 3, one negative case, and two resume cases seeded by a scaffold script — with
+  behavioral graders scored against the no-plugin baseline. `docs/INSTALL.md` (Claude Code
+  `--plugin-dir`, personal install, managed settings, claude.ai admin marketplace, Codex),
+  `docs/AUTHORING.md` (single-source workflow, kinds, release), and a rewritten README.
 - `check.py --since [VERSION]` prints the Agent Builder changelog sections newer than the
   project's pinned `template_version` (or a given version). Deliberately that simple: the
   changelog is the upgrade guide, and Agent Builder never rewrites a seeded project
