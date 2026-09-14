@@ -6,7 +6,7 @@ project:
 
 phase:
   current: build
-  status: b7a_done_evals_and_docs_awaiting_author_eval_run
+  status: b7a_revised_after_partial_eval_run_awaiting_trigger_sweep
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation
@@ -103,7 +103,9 @@ checkpoint:
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Author runs `claude plugin eval . --scaffold --judge-model sonnet` and reports the numbers.
+    Author runs the trigger sweep:
+    `claude plugin eval . --tag trigger --tag negative --ablation none -j 4 --judge-model sonnet`
+    and reports skill-fired per case.
     B7b rewrites the skill description against them (F-007) and re-runs. Then B8. (Superseded
     text follows.) Execute B6 as revised by AB-D030: keep seeded adapters substantive, add an explicit
     skill-invocation line, widen the skill description to cover resume, and change the resume

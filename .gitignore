@@ -49,3 +49,7 @@ service-account*.json
 
 # Generated acceptance fixtures
 .generated/
+
+# Eval run output
+evals/results/
+evals-*.json

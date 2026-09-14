@@ -5,4 +5,4 @@ allowed_tools: [Read, Glob, Grep, Skill]
 tags: [trigger, natural]
 ---
 
-we need an internal tool that summarizes our weekly sequencing QC reports for the team. where do I start?
+help me build a little service that watches our S3 bucket for new FASTQs and kicks off the pipeline

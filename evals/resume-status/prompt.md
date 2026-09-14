@@ -1,6 +1,6 @@
 ---
 max_turns: 10
-timeout_seconds: 240
+timeout_seconds: 180
 allowed_tools: [Read, Glob, Grep, Bash, Skill]
 tags: [resume]
 ---

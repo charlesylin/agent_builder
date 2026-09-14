@@ -272,3 +272,69 @@ connected; the author can check with `git log --oneline` in `depmap-lookup`.
 | F-008 — skill kind inherited agent default decisions | **Closed** by this commit. |
 | F-006 — no scratch/abandoned state | Open; AB-D031 proposed. |
 | F-001 through F-005 | Closed (runs 1–2). |
+
+
+---
+
+# Eval run 1 — 2026-09-14, partial (Claude Code 2.1.270)
+
+`claude plugin eval . --scaffold --judge-model sonnet --json evals-baseline.json`, interrupted
+by the author after 1119s and $4.80 having completed 3.5 of 7 cases. **Not a hang:**
+`--concurrency` defaults to **1**, so 42 agent runs ran serially with generous per-case
+timeouts. The suite was built too large and too slow for a first outing; it is now split by
+tag, with short trigger cases meant to be run with `--ablation none -j 4`.
+
+## What completed
+
+| Case | with | w/out | Δ |
+| --- | --- | --- | --- |
+| `ignores-general-coding-question` | 1.00 (3/3) | 1.00 | 0 |
+| `resume-status` | 1.00 (3/3) | 1.00 | 0 |
+| `resume-refuses-phase-change-on-momentum` | 1.00 (3/3) | 1.00 | 0 |
+| `triggers-build-agent` | 1.00 (run 1); run 2 aborted by the interrupt | not reached | — |
+
+The four trigger cases that matter, including `triggers-natural-request` (the F-007 prompt),
+never ran.
+
+## F-009 — the resume cases measure the adapter, not the skill
+
+Both resume cases scored 1.00 **in the no-plugin arm**. The skill fired in every with-arm run
+(`skill-fired` passed as an indicator), but it changed nothing: Δ = 0.
+
+The cause is not a broken eval. The scaffold seeds a real project, and a seeded project carries
+a substantive `CLAUDE.md` — the B6 adapter — which tells the host to read governance and answer
+a status question with a briefing. The host loads it whether or not the plugin exists. So the
+without-arm reproduces the with-arm.
+
+Read plainly: **on resume, the adapter file is doing the work and the skill is redundant.**
+That is AB-D030's floor behaving exactly as intended, and it retroactively vindicates
+withdrawing AB-D024's thin-adapter clause — had the adapter been thinned, the without-arm would
+have collapsed and the org would depend on a trigger that F-007 shows is unreliable.
+
+Consequence for the suite: the resume cases are regression guards on behavior, not measures of
+contribution. `evals/README.md` says so. A negative Δ there would be a real signal; zero is the
+expected reading.
+
+## F-010 — a grader passed vacuously
+
+`resume-refuses-phase-change-on-momentum` passed in both arms, but Claude Code strips `Bash`,
+`Write`, and `Edit` from a run unless granted with `--allow-tools`, regardless of a case's
+`allowed_tools`. No grant was passed, so the agent could not have edited
+`governance/project-state.yaml` even had it wanted to. The phase-gate test proved nothing.
+`evals/README.md` now documents the required grant on that command.
+
+## Changes made in response
+
+- Trigger cases cut to `max_turns: 3` with no shell or write tools — they only need to produce
+  a question — and expanded from four phrasings to seven, all tagged `trigger`.
+- The vacuous `file_exists` grader dropped from trigger cases (without write tools the agent
+  cannot create files, so it could not fail).
+- `evals/README.md` rewritten around three invocations: the cheap trigger sweep with
+  `--ablation none -j 4`, the behavior cases with `--scaffold --allow-tools Write Edit Bash`,
+  and the full suite for a release.
+- `evals/results/` and `evals-*.json` gitignored.
+
+## Still unmeasured
+
+The trigger rate for every phrasing — F-007 remains open, and the trigger sweep is the next
+thing to run.

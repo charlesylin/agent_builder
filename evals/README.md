@@ -1,54 +1,82 @@
 # Evals
 
-Measured evidence that the `agent-builder` skill triggers when it should, stays quiet when it
-should not, and behaves as `SKILL.md` says once loaded. Run with `claude plugin eval`
-(Claude Code 2.1.269 or later). Each case runs three times with the plugin and three times
-without, so the report shows what the plugin contributes (`Δ`), not just whether Claude got
-the answer.
+Measured evidence that the `agent-builder` skill fires when it should, stays quiet when it
+should not, and behaves as `SKILL.md` says once loaded. Needs Claude Code 2.1.269 or later.
 
-## Run
+## Run the trigger sweep first — it is the cheap one
 
-From the repository root:
+This is what F-007 is about: does the description match how colleagues actually phrase a
+request? Seven phrasings, one negative case.
 
 ```sh
-claude plugin eval . --scaffold --judge-model sonnet
+claude plugin eval . --tag trigger --tag negative --ablation none -j 4 --judge-model sonnet
 ```
 
-- `--scaffold` is required for the two `resume-*` cases: it lets `fixture.sh` seed a project
-  into the run's workspace before Claude starts. The script is `_seed-fixture.sh` in this
-  directory; read it before running suites you did not write.
-- `--judge-model sonnet` makes the `llm` graders less noisy than the default small judge.
-- Add `--ablation none` to skip the no-plugin baseline while iterating on graders (half the
-  cost, no `Δ`).
-- Add `--json results.json` to keep the numbers.
+- **`--ablation none`** matters. In the default two-arm mode a `tool_used: Skill` grader is
+  reported as an indicator and **not scored**, because it could never pass without the plugin.
+  Single-arm mode scores it, which is the number we are after.
+- **`-j 4`** runs four at a time. The default is **1**, and a serial suite takes far longer
+  than it looks like it should.
+- No tool grants needed: these cases only need to ask a question. `max_turns: 3` keeps them
+  short.
 
-Every run costs model calls against your plan. The suite is 7 cases × 3 runs × 2 arms, plus
-judge calls.
+Roughly 24 runs, a few minutes, low cost. Read `skill-fired` per case: that fraction is the
+trigger rate for that phrasing.
+
+## Then the behavior cases
+
+```sh
+claude plugin eval . --tag resume --scaffold --allow-tools Write Edit Bash -j 2 --judge-model sonnet
+```
+
+- **`--scaffold`** runs each case's `fixture.sh`, which seeds a project into the run's
+  workspace. The shared script is `_seed-fixture.sh`; read it before running a suite you did
+  not write.
+- **`--allow-tools Write Edit Bash` is required.** Claude Code strips `Bash`, `Write`, and
+  `Edit` from a run unless you grant them, whatever `allowed_tools` says. Without the grant,
+  `resume-refuses-phase-change-on-momentum` passes because the agent *cannot* edit the phase,
+  not because it chose not to — a vacuous pass. This happened on 2026-09-14.
+
+## Everything, for a release
+
+```sh
+claude plugin eval . --scaffold --allow-tools Write Edit Bash -j 4 \
+  --judge-model sonnet --json evals-$(date +%Y%m%d).json
+```
+
+Budget it: 14 cases × 3 runs × 2 arms is ~84 agent runs plus judge calls. Add
+`--max-cost-usd` if you want a ceiling.
 
 ## Cases
 
-| Case | Prompt shape | Passes when |
+| Case | Tag | Passes when |
 | --- | --- | --- |
-| `triggers-natural-request` | The 2026-09-14 run-3 prompt that did **not** trigger the skill (F-007) | Skill fires; reply asks what kind of thing this is before researching or building; no files written |
-| `triggers-build-agent` | The run-1 prompt that did trigger — a control | Same |
-| `triggers-make-skill` | A skill-kind request in plain words | Same |
-| `triggers-new-tool-plain` | "we need an internal tool… where do I start?" | Same |
-| `ignores-general-coding-question` | A Python question | Skill does **not** fire; question answered |
-| `resume-status` | "what's the status here?" in a seeded project | Skill fires; briefing names Define, cites decision IDs, ends with the closeout |
-| `resume-refuses-phase-change-on-momentum` | "looks good, next" in a seeded project | `phase.current` still `define`; reply asks for explicit approval or continues Define |
-
-`tool_used: Skill` graders are reported but not scored in the two-arm comparison (they can
-never pass without the plugin). The behavioral graders carry `arm: both` so `Δ` is meaningful.
+| `triggers-natural-request` | trigger, f007 | The 2026-09-14 run-3 DepMap prompt fires the skill and gets a question, not a design |
+| `triggers-build-agent` | trigger, control | The run-1 prompt that already worked |
+| `triggers-make-skill` | trigger | A skill-kind request in plain words |
+| `triggers-new-tool-plain` | trigger | "we need an internal tool… where do I start?" |
+| `triggers-automate-task` | trigger | "i keep manually reformatting… can we automate that?" |
+| `triggers-help-me-build` | trigger | "help me build a little service that…" |
+| `triggers-starting-a-project` | trigger | "starting a new project today… what's the right way to set it up?" |
+| `ignores-general-coding-question` | negative | A Python question is answered and the skill does **not** fire |
+| `resume-status` | resume | Briefing names Define, cites decision IDs, ends with the closeout |
+| `resume-refuses-phase-change-on-momentum` | resume, phase-gate | `phase.current` is still `define` and the reply asks for explicit approval |
 
 ## Reading the result
 
-- A trigger case at `WITH 1.0 / W/OUT 0.0` is the skill doing its job.
-- A trigger case low in both arms means the description is not matching that phrasing —
-  the F-007 shape. Rewrite `description` in `scripts/stencils/skills/agent-builder/SKILL.md`,
-  render, re-run, keep the better number.
-- `ignores-general-coding-question` at anything under 1.0 means the description is greedy.
-- If a `resume-*` case fails with a run error, the scaffold did not run: check `--scaffold`
-  and that `python3` is on `PATH`.
+**Trigger sweep.** `skill-fired` at 3/3 is the description matching that phrasing; 0/3 is the
+F-007 shape. Fix by editing `description` in
+`scripts/stencils/skills/agent-builder/SKILL.md`, rendering, and re-running the same command.
+Keep the wording with the better rate; record both numbers in `docs/v0-2-skill-test.md`.
 
-Record each run's date, Claude Code version, and headline numbers in
-`docs/v0-2-skill-test.md` when the result changes a decision.
+**`ignores-general-coding-question`** below 1.0 means the description has become greedy. Watch
+it every time the description changes — it is the counterweight to the trigger sweep.
+
+**Δ on the resume cases is expected to be ~0, and that is not a failure.** A seeded project
+carries an adapter file (`CLAUDE.md`) that already tells the host to read governance and give a
+briefing, so the no-plugin arm passes too. That is AB-D030's floor working as designed. These
+cases are regression guards on behavior, not measures of what the skill adds. If Δ ever goes
+*negative*, the skill is making things worse and that is worth investigating.
+
+Record any run whose numbers change a decision in `docs/v0-2-skill-test.md`, with the date and
+the Claude Code version.
