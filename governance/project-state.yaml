@@ -3,10 +3,13 @@ project:
   id: agent-builder
   name: Agent Builder
   template_version: 0.1.0
+  # active | paused | abandoned | archived (AB-D031). The phase says how far the work got;
+  # this says whether anyone is still doing it.
+  status: active
 
 phase:
   current: build
-  status: b7_complete_awaiting_ab_d031_then_b8
+  status: ab_d031_done_ready_for_b8
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation
@@ -103,10 +106,10 @@ checkpoint:
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    B7 is complete: the offer works through the installed plugin. Next, the author confirms or
-    rejects AB-D031 (a project.status field for scratch, paused, and abandoned projects); if
-    confirmed it lands before the release. Then B8: seed Agent Builder's own skill from its own
-    skill template, reconcile, bump to 0.2.0, tag, and hand to Review.
+    AB-D031 is confirmed and shipped. Next is B8: seed Agent Builder's own skill from its own
+    skill template, reconcile the differences, bump to 0.2.0, tag, and hand to Review. Expect
+    the template to produce a valid skill scaffold that Agent Builder has outgrown; record that
+    as a finding rather than growing the template to force a match.
     B7b rewrites the skill description against them (F-007) and re-runs. Then B8. (Superseded
     text follows.) Execute B6 as revised by AB-D030: keep seeded adapters substantive, add an explicit
     skill-invocation line, widen the skill description to cover resume, and change the resume

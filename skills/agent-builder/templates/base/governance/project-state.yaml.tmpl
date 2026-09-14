@@ -4,6 +4,9 @@ project:
   name: {{PROJECT_NAME_JSON}}
   kind: {{KIND}}
   owner: {{OWNER_JSON}}
+  # active | paused | abandoned | archived. The phase says how far the work got;
+  # this says whether anyone is still doing it. Set it when the answer changes.
+  status: active
   purpose: {{PURPOSE_JSON}}
   generated_by:
     template: agent-builder

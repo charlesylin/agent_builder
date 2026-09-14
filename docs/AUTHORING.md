@@ -49,6 +49,9 @@ host. Seed-time placeholders are `{{UPPER_CASE}}`; the list is `_context()` in
 `scripts/seed.py`. Add a test in `tests/test_agent_builder.py` for anything a kind must or
 must not contain — F-008 was a skill project inheriting an agent default.
 
+Adding a lifecycle status: extend `_PROJECT_STATUSES` in `check.py`, the comment in the
+project-state templates, and the table in `SKILL.md` §6. Keep it orthogonal to the phases.
+
 Adding a kind: create `kinds/<name>/`, add it to `SUPPORTED_KINDS` in `seed.py` and
 `_KIND_REQUIRED_FILES` in `check.py`, add its row to `references/kinds.md` and the §1 table in
 the `SKILL.md` stencil, and seed one real project with it before shipping (AB-D023).

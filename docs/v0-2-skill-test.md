@@ -584,3 +584,27 @@ first item after the Review that follows.
 Not urgent for the org test: a colleague who hits it gets an honest explanation rather than a
 wrong scaffold. It becomes urgent the first time someone accepts `agent` for a project that is
 not one.
+
+
+---
+
+# AB-D031 — a project can say it has stopped (2026-09-14)
+
+Confirmed by the author and shipped. `project.status` in `governance/project-state.yaml` is one
+of `active`, `paused`, `abandoned`, `archived`, seeded as `active`, validated by `check.py`,
+and absent means `active` so projects generated before the field keep validating.
+
+It sits **alongside** the phases, not inside them. The phase records how far the work got; the
+status records whether anyone is still doing it. A project abandoned in Define stays in Define.
+
+`SKILL.md` gains a section 6: when someone says a project is a test, scratch, on hold, dead or
+done, set the status, add a dated phase-history entry with the reason, run `check.py`, and
+commit — rather than shrugging and moving on, which is what happened twice in these tests.
+Section 3 leads the briefing with the status when it is not `active`, since a paused project is
+not waiting for its next step.
+
+This repository sets its own `status: active`.
+
+Closes F-006, which the skill raised about itself during run 2: *"the skill may need somewhere
+in-repo to record 'this is scratch' — or Define's closeout may need to run even when the answer
+is 'never mind.'"*

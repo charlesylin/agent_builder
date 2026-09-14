@@ -93,6 +93,9 @@ Then give a briefing, not a summary. The person may be picking up a colleague's 
 
 - the project and its purpose, in the ledger's own words;
 - the current phase and status, and how long it has been there;
+- if `project.status` is anything but `active`, lead with that — a paused or abandoned
+  project is not waiting for its next step, and saying so first saves the person the
+  briefing they do not need;
 - what exists (from the tree) and what the phase still owes — for Define, which planning
   files are missing;
 - every decision, with ID and status, in a short table;
@@ -135,6 +138,30 @@ ask. When approved:
    `confirmed_by`. Update `phase.current`.
 2. Run `check.py`. Commit with `<old-phase>: close` and `<new-phase>: open` in the message.
 3. State the new phase and its first step.
+
+## 6. When a project stops
+
+A project has a lifecycle separate from its phase. `project.status` in
+`governance/project-state.yaml` is one of:
+
+| status | meaning |
+| --- | --- |
+| `active` | someone is working on it; the default |
+| `paused` | deliberately set down, expected to resume |
+| `abandoned` | stopped for good; kept for the record |
+| `archived` | finished and closed; kept for reference |
+
+When the person says a project is a test, scratch, on hold, dead, or done — "this was just a
+test", "we're not doing this any more", "park it", "abandon this" — do not shrug and move on.
+Set `project.status`, add a phase-history entry with the date, `confirmed_by`, and the reason
+in `basis`, run `check.py`, and commit with a message starting `<phase>:`. It takes a minute
+and it is the difference between a colleague opening this repository in six months and
+understanding it, or reading a live project that has been dead since last spring.
+
+Do not change `phase.current` when doing this. The phase records how far the work got; the
+status records whether anyone is still doing it. A project abandoned in Define stays in Define.
+
+Reviving is the same move in reverse: set `active`, add a history entry, commit.
 
 ## Principles you are working under
 

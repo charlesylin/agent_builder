@@ -60,6 +60,10 @@ _KIND_REQUIRED_FILES = {
     ),
 }
 _DEFAULT_KIND = "agent"
+# A project's lifecycle state, independent of its phase. "active" is the default for anything
+# that does not say otherwise, including projects generated before the field existed.
+_PROJECT_STATUSES = ("active", "paused", "abandoned", "archived")
+_STATUS_LINE = re.compile(r"^  status: ([a-z]+)$", re.MULTILINE)
 _SECRET_PATTERNS = {
     "private-key": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
     "openai-style-key": re.compile(r"\bsk-[A-Za-z0-9_-]{20,}\b"),
@@ -223,10 +227,21 @@ def validate_project(root: str | Path) -> tuple[ValidationIssue, ...]:
                     )
 
     state_path = project_root / "governance/project-state.yaml"
-    if state_path.is_file() and "  current: define\n" not in state_path.read_text(encoding="utf-8"):
-        issues.append(
-            ValidationIssue("invalid-phase", "new projects must start in Define", state_path)
-        )
+    if state_path.is_file():
+        state = state_path.read_text(encoding="utf-8")
+        declared = _STATUS_LINE.search(state)
+        if declared and declared.group(1) not in _PROJECT_STATUSES:
+            issues.append(
+                ValidationIssue(
+                    "invalid-status",
+                    f"project status must be one of {', '.join(_PROJECT_STATUSES)}",
+                    state_path,
+                )
+            )
+        if "  current: define\n" not in state:
+            issues.append(
+                ValidationIssue("invalid-phase", "new projects must start in Define", state_path)
+            )
 
     gitignore_path = project_root / ".gitignore"
     if gitignore_path.is_file():

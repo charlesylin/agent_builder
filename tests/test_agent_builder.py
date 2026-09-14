@@ -333,6 +333,44 @@ class ScaffoldTests(unittest.TestCase):
                     self.assertIn("-D001", ledger)
                     self.assertIn("-D002", ledger)
 
+    def test_seeded_projects_start_active_and_reject_unknown_statuses(self) -> None:
+        # AB-D031: a project's lifecycle is separate from its phase, so a colleague opening a
+        # repository can tell "not started yet" from "nobody is doing this any more".
+        with tempfile.TemporaryDirectory() as directory:
+            for kind in ("agent", "skill"):
+                with self.subTest(kind=kind):
+                    target = Path(directory) / kind
+                    spec = ProjectSpec.create(name=f"S {kind}", purpose="Check status.", kind=kind)
+                    create_project(target, spec, generated_at=GENERATED_AT)
+                    state_path = target / "governance/project-state.yaml"
+                    self.assertIn("  status: active\n", state_path.read_text(encoding="utf-8"))
+                    self.assertEqual(validate_project(target), ())
+
+                    for status, valid in (("paused", True), ("abandoned", True), ("zombie", False)):
+                        state = state_path.read_text(encoding="utf-8")
+                        state_path.write_text(
+                            re.sub(
+                                r"^  status: \w+$",
+                                f"  status: {status}",
+                                state,
+                                count=1,
+                                flags=re.M,
+                            ),
+                            encoding="utf-8",
+                        )
+                        codes = {issue.code for issue in validate_project(target)}
+                        self.assertEqual("invalid-status" not in codes, valid, status)
+
+    def test_a_project_predating_the_status_field_still_validates(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "legacy"
+            spec = ProjectSpec.create(name="Legacy", purpose="Predates project.status.")
+            create_project(target, spec, generated_at=GENERATED_AT)
+            state_path = target / "governance/project-state.yaml"
+            state = state_path.read_text(encoding="utf-8").replace("  status: active\n", "", 1)
+            state_path.write_text(state, encoding="utf-8")
+            self.assertEqual(validate_project(target), ())
+
     def test_cli_returns_nonzero_for_an_existing_target(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             target = Path(directory) / "existing"
