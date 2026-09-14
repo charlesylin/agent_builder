@@ -68,6 +68,13 @@ independently revertible. Nothing is deleted until its replacement is tested.
 - **Done when:** existing tests pass unchanged except for the path; a generated agent project
   is byte-identical to before the move.
 
+> **B3 as built (2026-09-14):** `templates/adapters/<host>/` stays a sibling of `base/` and
+> `kinds/` rather than folding into `base/`, because adapters are selected per host and `base/`
+> is copied whole. `pyproject.toml.tmpl` and `.dockerignore.tmpl` moved to `kinds/agent/` along
+> with the files the plan listed. `README.md.tmpl`, `CONTRIBUTING.md.tmpl`, and `ci.yml.tmpl`
+> stayed in `base/` unchanged to keep output byte-identical; they still describe an agent
+> layout and B4 must give the `skill` kind overrides for them.
+
 ### B4 — The `skill` kind
 - `templates/kinds/skill/`: `SKILL.md` scaffold with `name`/`description` frontmatter and a
   `{{PURPOSE}}`-filled body, `scripts/README.md`, `references/README.md`, `evals/README.md`

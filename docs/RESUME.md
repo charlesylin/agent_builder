@@ -15,7 +15,7 @@ Read these files completely, in order:
 5. This file, then `docs/v0-1-acceptance.md`.
 
 The compact machine handoff is `governance/handoff.json`. Its schema is
-`src/agent_builder/templates/base/contracts/schemas/agent-handoff.schema.json.tmpl`.
+`templates/kinds/agent/contracts/schemas/agent-handoff.schema.json.tmpl`.
 Current governance and newer author instructions take precedence over this checkpoint.
 Check Git status and recent commits before editing. Preserve existing changes.
 

@@ -78,6 +78,23 @@ class ScaffoldTests(unittest.TestCase):
             self.assertIsNotNone(name_line)
             self.assertEqual(name_line.group(1), "generated-agent")
 
+    def test_kind_defaults_to_agent_and_rejects_unknown_kinds(self) -> None:
+        spec = ProjectSpec.create(name="Kind Test", purpose="Check kind handling.")
+        self.assertEqual(spec.kind, "agent")
+        with self.assertRaises(ValueError):
+            ProjectSpec.create(name="Kind Test", purpose="Check kind handling.", kind="mcp")
+
+    def test_agent_kind_files_come_from_the_kind_layer(self) -> None:
+        # contracts/ and src/ live in templates/kinds/agent, not templates/base.
+        self.assertTrue((ROOT / "templates/kinds/agent/contracts").is_dir())
+        self.assertFalse((ROOT / "templates/base/contracts").exists())
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "kind-layer-agent"
+            spec = ProjectSpec.create(name="Kind Layer Agent", purpose="Check the layers.")
+            create_project(target, spec, generated_at=GENERATED_AT)
+            self.assertTrue((target / "contracts/schemas/agent-handoff.schema.json").is_file())
+            self.assertTrue((target / "governance/project-state.yaml").is_file())
+
     def test_generated_project_runs_its_own_tests(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             target = Path(directory) / "self-test-agent"

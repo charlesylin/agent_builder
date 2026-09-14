@@ -59,4 +59,4 @@ decisions, uncertain decisions needing guidance, questions for the author, and *
 you be asking that you are not?** Say `None` rather than manufacturing content.
 
 Agent-to-agent handoffs use the compact schema under
-`src/agent_builder/templates/base/contracts/` instead of the prose closeout.
+`templates/kinds/agent/contracts/` instead of the prose closeout.

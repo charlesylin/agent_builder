@@ -27,7 +27,8 @@ class ScaffoldError(RuntimeError):
 
 
 def _template_root() -> Path:
-    return Path(__file__).resolve().parent / "templates"
+    # Templates are repository content, not package data: <repo>/templates/.
+    return Path(__file__).resolve().parents[2] / "templates"
 
 
 def _render(value: str, context: dict[str, str], *, source: Path) -> str:
@@ -74,11 +75,15 @@ def _context(spec: ProjectSpec, generated_at: datetime) -> dict[str, str]:
 
 def _collect_templates(spec: ProjectSpec, context: dict[str, str]) -> dict[Path, str]:
     template_root = _template_root()
-    roots = [template_root / "base"]
-    roots.extend(template_root / "adapters" / _ADAPTER_DIRECTORIES[item] for item in spec.adapters)
+    # base/ supplies what every kind gets; kinds/<kind>/ adds to it and may override a base
+    # file; adapters/<host>/ are appended per selected host and may not collide with anything.
+    layers = [(template_root / "base", False), (template_root / "kinds" / spec.kind, True)]
+    layers.extend(
+        (template_root / "adapters" / _ADAPTER_DIRECTORIES[item], False) for item in spec.adapters
+    )
 
     rendered_files: dict[Path, str] = {}
-    for root in roots:
+    for root, may_override in layers:
         if not root.is_dir():
             raise ScaffoldError(f"template directory is missing: {root}")
         for source in sorted(root.rglob("*.tmpl")):
@@ -93,7 +98,7 @@ def _collect_templates(spec: ProjectSpec, context: dict[str, str]) -> dict[Path,
             ]
             rendered_parts[-1] = rendered_parts[-1].removesuffix(".tmpl")
             destination = Path(*rendered_parts)
-            if destination in rendered_files:
+            if destination in rendered_files and not may_override:
                 raise ScaffoldError(f"template collision at {destination}")
             rendered_files[destination] = _render(
                 source.read_text(encoding="utf-8"), context, source=source

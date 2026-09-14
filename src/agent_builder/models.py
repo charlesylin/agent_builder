@@ -7,6 +7,8 @@ import unicodedata
 from dataclasses import dataclass
 
 SUPPORTED_ADAPTERS = ("codex", "claude", "gemini")
+SUPPORTED_KINDS = ("agent",)
+DEFAULT_KIND = "agent"
 
 
 def _single_line(value: str, field_name: str) -> str:
@@ -35,6 +37,7 @@ class ProjectSpec:
     slug: str
     python_package: str
     adapters: tuple[str, ...]
+    kind: str = DEFAULT_KIND
 
     @classmethod
     def create(
@@ -43,6 +46,7 @@ class ProjectSpec:
         name: str,
         purpose: str,
         adapters: tuple[str, ...] | list[str] | None = None,
+        kind: str = DEFAULT_KIND,
     ) -> ProjectSpec:
         """Normalize user input and derive stable project identifiers."""
 
@@ -68,10 +72,14 @@ class ProjectSpec:
         if not normalized_adapters:
             raise ValueError("select at least one coding-agent adapter")
 
+        if kind not in SUPPORTED_KINDS:
+            raise ValueError(f"unsupported kind {kind!r}; choose from {', '.join(SUPPORTED_KINDS)}")
+
         return cls(
             name=clean_name,
             purpose=clean_purpose,
             slug=slug,
             python_package=python_package,
             adapters=normalized_adapters,
+            kind=kind,
         )

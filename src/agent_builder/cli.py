@@ -7,7 +7,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from agent_builder.models import SUPPORTED_ADAPTERS, ProjectSpec
+from agent_builder.models import DEFAULT_KIND, SUPPORTED_ADAPTERS, SUPPORTED_KINDS, ProjectSpec
 from agent_builder.scaffold import ScaffoldError, create_project
 from agent_builder.validation import validate_project
 
@@ -23,6 +23,12 @@ def _parser() -> argparse.ArgumentParser:
     init.add_argument("target", type=Path)
     init.add_argument("--name", required=True, help="human-readable project name")
     init.add_argument("--purpose", required=True, help="one-sentence outcome owned by the agent")
+    init.add_argument(
+        "--kind",
+        choices=SUPPORTED_KINDS,
+        default=DEFAULT_KIND,
+        help=f"what is being built; selects templates/kinds/<kind> (default: {DEFAULT_KIND})",
+    )
     init.add_argument(
         "--adapter",
         action="append",
@@ -41,6 +47,7 @@ def _run_init(arguments: argparse.Namespace) -> int:
             name=arguments.name,
             purpose=arguments.purpose,
             adapters=arguments.adapter,
+            kind=arguments.kind,
         )
         files = create_project(arguments.target, spec)
     except (OSError, ValueError, ScaffoldError) as error:
@@ -48,7 +55,7 @@ def _run_init(arguments: argparse.Namespace) -> int:
         return 2
 
     target = arguments.target.expanduser().resolve()
-    print(f"Created {spec.name} at {target}")
+    print(f"Created {spec.name} ({spec.kind}) at {target}")
     print(f"Adapters: {', '.join(spec.adapters)}")
     print(f"Files: {len(files)}")
     print(f"Next: open {target} and begin the Define phase")

@@ -37,4 +37,4 @@ state and newer author instructions before continuing.
 {{principle:communication-and-handoffs|short}}
 
 Agent-to-agent handoffs use the compact schema under
-`src/agent_builder/templates/base/contracts/` instead of the prose closeout.
+`templates/kinds/agent/contracts/` instead of the prose closeout.

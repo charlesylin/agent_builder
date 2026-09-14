@@ -16,6 +16,13 @@ All notable changes to Agent Builder are documented here.
 
 ### Changed
 
+- Templates moved out of the Python package to `templates/` at the repository root and split
+  into `base/` (every project), `kinds/agent/` (contracts, deployment policy, Python package
+  skeleton, pyproject, `.dockerignore`), and `adapters/<host>/`. A kind layer may override a
+  base file; adapters may not collide with anything. `init --kind` is wired with `agent` as the
+  only kind so far. Generated output for `agent` is byte-identical to before the move. The
+  wheel no longer carries templates; the scaffolder must run from a checkout, which is the only
+  supported way to run it until the skill ships in B5.
 - Python floor lowered from 3.11 to 3.9 for the builder's own scripts (AB-D025). Entry points
   now fail with a one-sentence message and exit code 2 on an older interpreter instead of a
   stdlib traceback (closes finding F-002). CI runs on Python 3.9 and 3.12 on Ubuntu and 3.12 on
