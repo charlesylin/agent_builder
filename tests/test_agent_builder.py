@@ -284,11 +284,19 @@ class ScaffoldTests(unittest.TestCase):
     def test_since_reports_changelog_sections_newer_than_a_version(self) -> None:
         import check
 
-        newer = check.changes_since("0.1.0")
-        self.assertIn("## [Unreleased]", newer)
-        self.assertNotIn("## [0.1.0]", newer)
-        unknown = check.changes_since("9.9.9")
-        self.assertIn("No changelog heading for '9.9.9'", unknown)
+        # Structural, not tied to a particular release: whatever heading is newest, --since the
+        # first release returns everything above it and nothing from it.
+        changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+        headings = re.findall(r"^## \[([^\]]+)\]", changelog, flags=re.MULTILINE)
+        newest, oldest = headings[0], headings[-1]
+        self.assertEqual(oldest, "0.1.0")
+
+        newer = check.changes_since(oldest)
+        self.assertIn(f"## [{newest}]", newer)
+        self.assertNotIn(f"## [{oldest}]", newer)
+        self.assertIn("Nothing newer", check.changes_since(newest))
+        self.assertIn("No changelog heading for '9.9.9'", check.changes_since("9.9.9"))
+        self.assertEqual(seed.TEMPLATE_VERSION, newest, "the released version heads the changelog")
 
     def test_skill_description_covers_start_and_resume(self) -> None:
         text = (SKILL / "SKILL.md").read_text(encoding="utf-8")

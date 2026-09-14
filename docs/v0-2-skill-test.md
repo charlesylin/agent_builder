@@ -608,3 +608,47 @@ This repository sets its own `status: active`.
 Closes F-006, which the skill raised about itself during run 2: *"the skill may need somewhere
 in-repo to record 'this is scratch' — or Define's closeout may need to run even when the answer
 is 'never mind.'"*
+
+
+---
+
+# B8 — dogfood and release (2026-09-14)
+
+`seed.py --kind skill` with Agent Builder's own name, purpose, owner, and hosts produced a
+23-file project that validates and whose own tests pass. Compared against the real
+`skills/agent-builder/` and the repository around it:
+
+## F-016 — the builder has outgrown its own template, in ways worth knowing
+
+| Seeded | Real | Reading |
+| --- | --- | --- |
+| single-skill plugin: `SKILL.md` and `.claude-plugin/plugin.json` at the project root | plugin root holds `skills/agent-builder/`, `hooks/`, `evals/`; `SKILL.md` one level down | Both valid layouts. The real one exists because the plugin carries a hook and may carry more skills. |
+| `scripts/README.md`, `references/README.md` placeholders | `seed.py`, `check.py`; three references | Expected — the scaffold is where those start. |
+| — | `templates/` (38 files), `principles/`, `scripts/render.py` + stencils | Specific to a skill whose job is seeding other projects. Not template material. |
+| `planning/open-questions.md`, `planning/definition.md`… | `docs/v0-2-define.md`, `docs/v0-2-plan.md` | **A real inconsistency.** The builder tells others to plan under `planning/` and plans itself under `docs/`. Recorded for Review; renaming now is churn without a decision. |
+| `evals/001-….md` — a prose scenario | `evals/<case>/prompt.md` + `graders/` — `claude plugin eval` | **The template was wrong.** Fixed in this step: the skill kind now seeds a trigger case and a negative case in the format that actually runs. |
+| `.agent-builder.json` | none | The builder predates its own manifest. Left out rather than fabricated. |
+
+Running `check.py` against this repository as a skill project fails on the missing single-skill
+files, on the phase not being Define, and — pleasingly — on `docs/AUTHORING.md` containing a
+literal `{{UPPER_CASE}}` in prose, which the secret-and-token scan flags. All correct behavior
+for a checker pointed at something that is not what it was built to check.
+
+**Success signal 5** — "Agent Builder's own skill is produced by its own `skill` template" — is
+met in substance: the template produces a valid skill plugin that a person would grow into
+this, and reconciling it improved the template. It is not met byte-for-byte, and forcing that
+would mean growing the template to carry things no other skill needs. Recorded as such.
+
+## Release
+
+Version `0.2.0` in `plugin.json`, `pyproject.toml`, and `TEMPLATE_VERSION`; `CHANGELOG.md`
+cut; tagged `v0.2.0` on the commit that follows. Phase remains Build until the author approves
+Review. Review's acceptance test is the opt-in org install and the friction it produces.
+
+## Carried into Review
+
+- F-015 — the `project` kind, twice requested by realistic prompts.
+- F-016 — `planning/` versus `docs/` in the builder's own repository.
+- Untested: Codex on any path; `SKILL.md` §6 (marking a project paused or abandoned) in a live
+  session; the eval trigger sweep with the corrected turn cap.
+- The 48% description trigger rate is recorded with a caveat and no longer gates anything.

@@ -189,6 +189,9 @@ concretely enough that the host would otherwise just start coding.
   other way round.
 - Bump `plugin.json` to `0.2.0`; tag; hand to Review.
 - **Done when:** success signal 5 in the Define record holds.
+- **Done 2026-09-14.** The template seeded a valid skill plugin; reconciling it moved the
+  skill kind's `evals/` to `claude plugin eval` format. Layout differences are recorded as
+  F-016 rather than forced. `v0.2.0` tagged; Review awaits author approval.
 
 ## 3. What is deliberately not in the sequence
 

@@ -2,7 +2,20 @@
 
 All notable changes to Agent Builder are documented here.
 
-## [Unreleased]
+## [0.2.0] - 2026-09-14
+
+Agent Builder becomes a skill. The folder `skills/agent-builder/` — `SKILL.md`, two
+standard-library scripts, and the templates — is the product; nothing is installed with pip.
+Principles live once under `principles/` and every copy is generated and drift-checked. A
+`UserPromptSubmit` hook offers the skill when someone starts new work. Built as B1–B8 of
+`docs/v0-2-plan.md`; evidence from three hands-on runs and two eval runs is in
+`docs/v0-2-skill-test.md`. Handed to Review on this date; acceptance is still open.
+
+### Changed in B8
+
+- The `skill` kind now seeds `evals/` in `claude plugin eval` format — a trigger case and a
+  negative case with graders — instead of a prose scenario file, after seeding Agent Builder
+  from its own template showed the old format was not the one that works (F-016).
 
 ### Added
 

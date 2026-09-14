@@ -1,8 +1,28 @@
 # Evals
 
-Scenarios that check the skill does what `SKILL.md` says. Each scenario is one Markdown file
-with three sections: the prompt a person would give, the behavior expected, and the criteria a
-reviewer uses to say pass or fail. Add a scenario for every rule in `SKILL.md` that matters.
+Measured evidence that {{PROJECT_NAME}} fires when it should, stays quiet when it should not,
+and does what `SKILL.md` says once loaded. Runs with `claude plugin eval` (Claude Code 2.1.269
+or later): each case is a `prompt.md` plus one or more graders, run several times with and
+without the plugin so the report shows what the skill actually contributes.
 
-Start with `001-triggers-on-the-right-request.md`. Run the set before each release and record
-the result in `governance/decisions.yaml` or the changelog.
+```sh
+claude plugin eval . --ablation none -j 4 --judge-model sonnet   # cheap trigger check
+claude plugin eval . -j 4 --judge-model sonnet                    # with the no-plugin baseline
+```
+
+Two cases are seeded. Replace the placeholder prompts with things a person would really type,
+never the skill's name, and add a case for every rule in `SKILL.md` that matters.
+
+| Case | Passes when |
+| --- | --- |
+| `triggers-on-the-right-request/` | The skill was invoked and the reply meets `graders/criteria.md` |
+| `ignores-an-unrelated-request/` | The skill was **not** invoked |
+
+Notes that save time: a `tool_used: Skill` grader is reported but not scored in the default
+two-arm mode (it can never pass without the plugin), so use `--ablation none` when the trigger
+rate is the number you want. `Bash`, `Write`, and `Edit` are stripped from runs unless granted
+with `--allow-tools`. Give cases enough `max_turns` for the skill to load and reply — three is
+not enough.
+
+Record each run's date, Claude Code version, and headline numbers in the changelog when the
+result changes a decision.

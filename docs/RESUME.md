@@ -59,22 +59,21 @@ Two findings were carried forward rather than treated as blockers:
 
 The scheduling-agent test remains abandoned; do not resume it here.
 
-## Current phase: Build for v0.2
+## Current phase: Build for v0.2 — complete; v0.2.0 tagged; Review awaits approval
 
-Plan closed on 2026-09-13; the author confirmed AB-D025 through AB-D029 and authorized Build.
-Read `docs/v0-2-define.md` (what and why) then `docs/v0-2-plan.md` (the eight steps B1–B8).
+All eight Build steps landed on 2026-09-14 and `v0.2.0` is tagged. Read `docs/v0-2-define.md`
+(what and why), `docs/v0-2-plan.md` (how, with per-step "as built" notes), and
+`docs/v0-2-skill-test.md` (evidence: three hands-on runs, two eval runs, sixteen findings).
 
-`next_release.build_steps_done` in `governance/project-state.yaml` records which steps have
-landed. Execute the next one only, as a single commit, with the test suite green afterward.
-Stop and report after each step. The author pushes. Do not skip ahead, combine steps, or delete
-anything before its replacement is tested.
+Nothing is authorized until the author approves entering Review. Review's acceptance test is
+the opt-in organization install (`docs/INSTALL.md`, *Available for install*) and the friction
+real colleagues report; the success signals are `docs/v0-2-define.md` §7. Open items carried
+in: F-015 (the `project` kind), F-016 (`planning/` vs `docs/` here), Codex untested, `SKILL.md`
+§6 untested live.
 
-Open proposals preserved from Review, none of them confirmed product scope:
-
-- `docs/onboarding-kit-review.md` — not in v0.2.
-- `docs/existing-project-review.md` — not in v0.2; the future `project` kind is its likely home.
-- `docs/COWORK_EXISTING_PROJECT_ADOPTION.md` — derived from `1057a49`, predates Nokkvi's law.
-- `docs/SEAN_CODEX_TEST_PACKET.md` — preserves the `1057a49` baseline. Leave Sean's project as-is.
+Open proposals preserved from v0.1 Review, none of them confirmed product scope:
+`docs/onboarding-kit-review.md`, `docs/existing-project-review.md`,
+`docs/COWORK_EXISTING_PROJECT_ADOPTION.md`, `docs/SEAN_CODEX_TEST_PACKET.md`.
 
 ## Open item outside the phase
 
@@ -100,4 +99,5 @@ adherence, performance, or Windows, Claude, or ChatGPT behavior. They were not r
 
 ## Next action
 
-Execute the next undone Build step from `docs/v0-2-plan.md`. One commit. Tests green. Report.
+Ask the author whether to enter Review. If yes: record the transition, then follow
+`docs/INSTALL.md` to make the plugin *Available for install* and start collecting friction.

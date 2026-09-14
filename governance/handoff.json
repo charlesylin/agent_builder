@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-build-v0-2-2026-09-13",
-  "created_at": "2026-09-14T00:05:00Z",
+  "handoff_id": "agent-builder-v0-2-0-built-2026-09-14",
+  "created_at": "2026-09-14T20:30:00Z",
   "source_agent": "agent-builder-claude",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Build for v0.2 authorized by the author on 2026-09-13. All Define and Plan decisions AB-D019..029 confirmed. Execute B1..B8 from docs/v0-2-plan.md, one commit per step, tests green after each; governance/project-state.yaml next_release.build_steps_done tracks progress. The author pushes.",
+  "summary": "v0.2.0 is built and tagged: an org-installable skill with stdlib seeder and checker, single-source principles with drift checks, agent and skill kinds, and a UserPromptSubmit offer hook verified live through the installed plugin. Sixteen findings recorded; F-015 (project kind) and F-016 (planning/ vs docs/) carried into Review. Phase is Build until the author approves Review.",
   "decisions": [
     {
       "id": "AB-D019",
@@ -15,7 +15,7 @@
     {
       "id": "AB-D020",
       "status": "confirmed",
-      "summary": "One source per principle; all copies generated and drift-checked."
+      "summary": "One source per principle; copies generated and drift-checked."
     },
     {
       "id": "AB-D022",
@@ -25,22 +25,22 @@
     {
       "id": "AB-D023",
       "status": "confirmed",
-      "summary": "agent and skill kinds only."
+      "summary": "agent and skill kinds; project kind has its evidence (F-015)."
     },
     {
-      "id": "AB-D025",
+      "id": "AB-D030",
       "status": "confirmed",
-      "summary": "Python floor 3.9."
+      "summary": "Adapters stay substantive and point at the skill; resume is a briefing."
     },
     {
-      "id": "AB-D026",
+      "id": "AB-D031",
       "status": "confirmed",
-      "summary": "Self-contained scripts; retire src/agent_builder in B5."
+      "summary": "project.status records paused, abandoned, archived alongside the phase."
     },
     {
-      "id": "AB-D029",
+      "id": "AB-D032",
       "status": "confirmed",
-      "summary": "Build as eight green commits B1..B8."
+      "summary": "Explicit invocation first; a hook offers the skill once per session on new work."
     }
   ],
   "artifacts": [
@@ -75,9 +75,19 @@
     {
       "path": "docs/v0-2-plan.md",
       "media_type": "text/markdown"
+    },
+    {
+      "path": "docs/v0-2-skill-test.md",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "docs/INSTALL.md",
+      "media_type": "text/markdown"
     }
   ],
   "blockers": [],
-  "questions": [],
-  "next_action": "Execute the next undone step in build_steps per docs/v0-2-plan.md as one commit with tests green, then stop and report."
+  "questions": [
+    "Enter Review?"
+  ],
+  "next_action": "Obtain the author's explicit approval to enter Review; then make the plugin Available for install and collect friction per docs/INSTALL.md."
 }

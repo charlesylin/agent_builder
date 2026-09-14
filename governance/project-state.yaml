@@ -9,7 +9,7 @@ project:
 
 phase:
   current: build
-  status: ab_d031_done_ready_for_b8
+  status: b8_done_v0_2_0_tagged_awaiting_review_approval
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation
@@ -63,6 +63,10 @@ next_release:
   target: 0.2.0
   scope: org_installable_skill_with_seeder_templates_and_single_source_build
   scope_status: confirmed
+  status: built_and_tagged_awaiting_review
+  tag: v0.2.0
+  built_date: 2026-09-14
+  acceptance_strategy: opt_in_org_install_then_collect_friction
   plan_record: docs/v0-2-plan.md
   runtime_included: false
   define_record: docs/v0-2-define.md
@@ -78,7 +82,7 @@ next_release:
   kinds: [agent, skill]
   confirmed_decisions: [AB-D019, AB-D020, AB-D021, AB-D022, AB-D023, AB-D024, AB-D025, AB-D026, AB-D027, AB-D028, AB-D029]
   build_steps: [B1, B2, B3, B4, B5, B6, B7, B8]
-  build_steps_done: [B1, B2, B3, B4, B5, B6, B7a, B7b, B7c]
+  build_steps_done: [B1, B2, B3, B4, B5, B6, B7a, B7b, B7c, B8]
   inputs_resolved:
     - id: F-001
       resolution: >-
@@ -106,10 +110,10 @@ checkpoint:
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    AB-D031 is confirmed and shipped. Next is B8: seed Agent Builder's own skill from its own
-    skill template, reconcile the differences, bump to 0.2.0, tag, and hand to Review. Expect
-    the template to produce a valid skill scaffold that Agent Builder has outgrown; record that
-    as a finding rather than growing the template to force a match.
+    Build is complete: v0.2.0 is tagged. The author decides whether to enter Review. Review's
+    acceptance test is the opt-in org install (docs/INSTALL.md, "Available for install") and
+    the friction it produces; success signals are in docs/v0-2-define.md section 7. Nothing
+    else is authorized until the author says so.
     B7b rewrites the skill description against them (F-007) and re-runs. Then B8. (Superseded
     text follows.) Execute B6 as revised by AB-D030: keep seeded adapters substantive, add an explicit
     skill-invocation line, widen the skill description to cover resume, and change the resume

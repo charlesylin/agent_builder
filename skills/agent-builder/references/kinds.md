@@ -32,5 +32,6 @@ Dependabot config, and one instruction file per selected host.
 ## skill adds
 
 `SKILL.md` with `name` and `description` front matter and a procedure scaffold, `scripts/`,
-`references/`, `evals/` with a first trigger scenario, `.claude-plugin/plugin.json`,
+`references/`, `evals/` with a trigger case and a negative case in `claude plugin eval`
+format, `.claude-plugin/plugin.json`,
 `tests/test_skill.py`, and skill-flavored README, CONTRIBUTING, CI, and project state.

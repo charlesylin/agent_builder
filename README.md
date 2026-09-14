@@ -63,7 +63,7 @@ project; `--since` shows a project's owner what they would be opting into.
 
 ```sh
 python3 scripts/render.py --check           # generated files match principles/
-python3 -m unittest discover -s tests -v    # 30 tests, Python 3.9+
+python3 -m unittest discover -s tests -v    # 47 tests, Python 3.9+
 python3 -m compileall -q scripts skills tests
 python3 -m pip install "ruff==0.16.6" && ruff check . && ruff format --check .
 claude plugin eval . --scaffold --judge-model sonnet   # does the skill trigger and behave? see evals/
@@ -74,8 +74,8 @@ How to change principles, the skill, templates, or cut a release:
 
 ## Status
 
-**v0.2 is in Build**, step B7 of B8. v0.1 (governance and scaffolding only) was accepted on
-2026-09-13 and is tagged `v0.1.0`. The v0.2 vision is in
+**v0.2.0 is built and tagged, awaiting Review** — the org opt-in test is the acceptance test.
+v0.1 (governance and scaffolding only) was accepted on 2026-09-13 and is tagged `v0.1.0`. The v0.2 vision is in
 [`docs/v0-2-define.md`](docs/v0-2-define.md), the plan in
 [`docs/v0-2-plan.md`](docs/v0-2-plan.md), and the evidence from three rounds of hands-on testing
 in [`docs/v0-2-skill-test.md`](docs/v0-2-skill-test.md).
