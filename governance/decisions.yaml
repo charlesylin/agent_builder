@@ -193,7 +193,12 @@ decisions:
     provenance: author_direction_during_v0_2_define
     record: docs/v0-2-define.md
   - id: AB-D024
-    status: confirmed
+    status: superseded
+    superseded_by: AB-D030
+    superseded_date: 2026-09-14
+    superseded_scope: >-
+      Only the thin-adapter clause is withdrawn. The template version pin and the
+      check.py --since upgrade path stand and are restated in AB-D030.
     date: 2026-09-13
     confirmed_date: 2026-09-13
     confirmed_by: charles-yang-lin
@@ -267,3 +272,25 @@ decisions:
     rationale: Work small; nothing is deleted before its replacement is tested.
     provenance: plan_recommendation
     record: docs/v0-2-plan.md
+  - id: AB-D030
+    status: confirmed
+    date: 2026-09-14
+    confirmed_by: charles-yang-lin
+    decision: >-
+      Seeded adapter files stay substantive instead of becoming thin pointers, and gain an
+      explicit instruction to invoke the agent-builder skill. The skill's description is
+      widened to cover resume phrasing, and its resume step produces a full briefing rather
+      than three lines. Seeded projects still pin their template version, and
+      check.py --since remains the opt-in upgrade path.
+    rationale: >-
+      Evidence from the 2026-09-14 skill test (docs/v0-2-skill-test.md). With the plugin
+      loaded, the skill did not fire on "what's the status here?" in a seeded project; the
+      adapter file carried the work (F-003). Thinning the adapter would have left a resumed
+      project with no instruction to read governance, no phase discipline, and no closeout
+      format. AB-D024's rationale was that thin adapters drift less; AB-D020 already makes
+      drift structurally impossible, so that premise no longer supports the conclusion.
+      The author also found the fuller briefing more useful than the specified three lines,
+      because the case that matters is picking up a colleague's project cold (F-004).
+    supersedes: AB-D024
+    provenance: explicit_author_approval_after_skill_test
+    record: docs/v0-2-skill-test.md

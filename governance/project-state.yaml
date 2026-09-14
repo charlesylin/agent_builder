@@ -6,7 +6,7 @@ project:
 
 phase:
   current: build
-  status: b5_done_awaiting_push_and_ci
+  status: b5_tested_b6_redesigned_pending_author_go
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation
@@ -78,9 +78,14 @@ next_release:
   build_steps_done: [B1, B2, B3, B4, B5]
   inputs_resolved:
     - id: F-001
-      resolution: Skill is discovered by trigger; seeded repos carry in-repo skill pointers.
+      resolution: >-
+        Partly closed on 2026-09-14. A cold session recovers phase, decisions, and next step
+        from repository records with no resume prompt, but through the adapter file rather
+        than the skill. See docs/v0-2-skill-test.md.
     - id: F-002
-      resolution: Stdlib-only scripts with version preflight (AB-D021); no Python beyond the interpreter on the user's machine.
+      resolution: >-
+        Closed for the seed path on 2026-09-14: seed.py and check.py ran on the author's
+        machine with no install step. See docs/v0-2-skill-test.md.
     - id: AB-D018
       resolution: Superseded by AB-D021.
   inputs_deferred:
@@ -98,8 +103,10 @@ checkpoint:
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Execute the next undone step in next_release.build_steps per docs/v0-2-plan.md, one commit
-    per step, tests green after each. Stop and report after every step; the author pushes.
+    Execute B6 as revised by AB-D030: keep seeded adapters substantive, add an explicit
+    skill-invocation line, widen the skill description to cover resume, and change the resume
+    step to a briefing. Then B7 and B8 per docs/v0-2-plan.md. One commit per step; the author
+    pushes.
   runtime_implementation_approved: false
 
 validation:

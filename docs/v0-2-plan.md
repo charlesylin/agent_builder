@@ -116,7 +116,17 @@ independently revertible. Nothing is deleted until its replacement is tested.
 > the author to run `/plugin marketplace add` against the pushed repository; it cannot be
 > verified from the build environment.
 
-### B6 — Thin adapters, version pin, `--since`
+> **B6 revised by AB-D030 (2026-09-14), after the skill test.** The thin-adapter clause is
+> withdrawn. Evidence: with the plugin loaded, the skill did not fire on "what's the status
+> here?" in a seeded project and the adapter file carried the work; thinning it would have
+> left a resumed project with nothing. AB-D024's drift rationale was already satisfied by
+> AB-D020. B6 now: keep adapters substantive and add an explicit line telling the host to
+> invoke the `agent-builder` skill; widen the skill `description` to cover resume phrasing;
+> replace `SKILL.md` §3's "at most three lines" with the briefing shape that actually helped;
+> relax §1's "one question per turn" to batch logistics with defaults. Version pin and
+> `check.py --since` are unchanged. See `docs/v0-2-skill-test.md`.
+
+### B6 — Adapters, version pin, `--since`
 - Adapter templates shrink to: project name, current phase (read at seed time), "this project
   follows Agent Builder — use the `agent-builder` skill", and a link to the reference.
 - Seeded `.agent-builder.json` already records `template_version`; add `source_commit`.
