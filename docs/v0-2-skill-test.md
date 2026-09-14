@@ -540,3 +540,47 @@ contract, they do not check it. The thing that found all three was making the ho
 it actually received — `AGENTS_BUILDER_HOOK_LOG`, added for an unrelated reason, then used to
 pin the schema in a test. Anything this repository builds against an interface it does not own
 should be able to say what it saw. Pending an installed-plugin test.
+
+
+---
+
+# The accepted offer, and F-015 — 2026-09-14
+
+Same prompt, answered "yes" to the offer. The skill loaded, oriented, and asked the kind
+question with three options tailored to an S3 watcher rather than the four abstract kinds:
+
+1. *Deterministic plumbing* — "maps to kind `project`, which the seeder doesn't support yet —
+   I'd tell you the options before seeding anything."
+2. *Model in the loop* — maps to `agent`.
+3. *Mostly plumbing, one judgment step* — "Composite — takes its primary kind, which I'd want
+   to settle with you."
+
+## The adaptive phrasing is correct, not drift
+
+§1 says "Ask **enough of these** to settle it, **in plain words**", which licenses exactly
+this. Across the runs so far it has offered two kinds, three, or four depending on which are
+live possibilities for the request. It also honored the two harder clauses: it surfaced the
+composite case, and it named an unsupported kind before the person could pick it rather than
+steering them quietly to `agent`.
+
+The cost is that two colleagues describing similar work may see differently framed questions.
+For a tool whose value is consistency that is worth watching, but the artifact is what carries
+consistency — the ledger, the phases, the closeout are identical — and the question is the part
+that should adapt. Left as is.
+
+## F-015 — real requests keep landing on the `project` kind
+
+The most natural request in the whole test series — a service that watches a bucket and
+launches a pipeline, no model anywhere in it — is a `project`, and `project` is not shipped.
+The skill handled it honestly, but the only paths available are to seed an `agent` (which
+brings `contracts/`, `deployment/`, and an agent-handoff schema the project has no use for —
+the F-008 failure in a new guise) or to seed nothing.
+
+AB-D023 deferred `mcp` and `project` until "a real project in the organization requests one,
+with that project's friction as evidence". This is that evidence. Recorded, not acted on:
+adding a kind is scope, v0.2 is at its release step, and the sensible place for it is the
+first item after the Review that follows.
+
+Not urgent for the org test: a colleague who hits it gets an honest explanation rather than a
+wrong scaffold. It becomes urgent the first time someone accepts `agent` for a project that is
+not one.

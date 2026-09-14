@@ -192,6 +192,9 @@ decisions:
       test. Starter files for untried kinds would be scope without evidence.
     provenance: author_direction_during_v0_2_define
     record: docs/v0-2-define.md
+    evidence_for_next_kind: >-
+      F-015 (2026-09-14): an S3-watcher request with no model in the loop is a `project` and
+      has no correct kind to seed. First candidate once v0.2 Review closes.
   - id: AB-D024
     status: superseded
     superseded_by: AB-D030
