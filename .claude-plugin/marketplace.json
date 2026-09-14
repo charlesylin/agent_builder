@@ -1,0 +1,13 @@
+{
+  "name": "agent-builder",
+  "owner": {
+    "name": "Charles Yang Lin"
+  },
+  "plugins": [
+    {
+      "name": "agent-builder",
+      "source": "./",
+      "description": "Governance-first starting point for agents, skills, and projects."
+    }
+  ]
+}

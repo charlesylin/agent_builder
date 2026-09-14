@@ -3,6 +3,7 @@ project:
   id: {{PROJECT_SLUG_JSON}}
   name: {{PROJECT_NAME_JSON}}
   kind: {{KIND}}
+  owner: {{OWNER_JSON}}
   purpose: {{PURPOSE_JSON}}
   generated_by:
     template: agent-builder
@@ -19,15 +20,22 @@ phase:
   history:
     - phase: define
       effective_date: {{GENERATED_DATE}}
-      basis: Skill scaffold created; definition not yet approved.
+      basis: Project scaffold created; definition not yet approved.
 
-distribution:
-  plugin_manifest: .claude-plugin/plugin.json
-  hosts_verified: []
-  released: false
+runtime:
+  selected: false
+  profile: null
+  selection_phase: plan
+
+deployment:
+  container_standard: OCI
+  local_orchestration: docker_compose
+  artifacts_generated: false
+  reason: Runtime selection is deliberately deferred.
 
 compatibility:
-  skill_front_matter_versioned: true
+  internal_backward_compatibility_required: false
+  external_contracts_versioned: true
   template_updates_automatic: false
 
 security:

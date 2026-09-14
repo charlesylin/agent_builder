@@ -1,4 +1,4 @@
-"""Behavioral tests for the v0.1 scaffold contract."""
+"""Behavioral tests for the seeder and checker shipped inside the agent-builder skill."""
 
 from __future__ import annotations
 
@@ -14,10 +14,12 @@ from io import StringIO
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
+SKILL = ROOT / "skills" / "agent-builder"
+sys.path.insert(0, str(SKILL / "scripts"))
 
-from agent_builder import ProjectSpec, ScaffoldError, create_project, validate_project  # noqa: E402
-from agent_builder.cli import main  # noqa: E402
+import seed  # noqa: E402
+from check import validate_project  # noqa: E402
+from seed import ProjectSpec, ScaffoldError, create_project  # noqa: E402
 
 GENERATED_AT = datetime(2026, 9, 8, 12, 0, tzinfo=timezone.utc)
 
@@ -69,7 +71,7 @@ class ScaffoldTests(unittest.TestCase):
             self.assertEqual(validate_project(target), ())
 
             metadata = json.loads((target / ".agent-builder.json").read_text(encoding="utf-8"))
-            self.assertEqual(metadata["template_version"], "0.1.0")
+            self.assertEqual(metadata["template_version"], seed.TEMPLATE_VERSION)
             self.assertEqual(metadata["coding_agent_adapters"], ["codex", "gemini"])
             self.assertIsNone(metadata["runtime_profile"])
 
@@ -86,8 +88,8 @@ class ScaffoldTests(unittest.TestCase):
 
     def test_agent_kind_files_come_from_the_kind_layer(self) -> None:
         # contracts/ and src/ live in templates/kinds/agent, not templates/base.
-        self.assertTrue((ROOT / "templates/kinds/agent/contracts").is_dir())
-        self.assertFalse((ROOT / "templates/base/contracts").exists())
+        self.assertTrue((SKILL / "templates/kinds/agent/contracts").is_dir())
+        self.assertFalse((SKILL / "templates/base/contracts").exists())
         with tempfile.TemporaryDirectory() as directory:
             target = Path(directory) / "kind-layer-agent"
             spec = ProjectSpec.create(name="Kind Layer Agent", purpose="Check the layers.")
@@ -189,6 +191,70 @@ class ScaffoldTests(unittest.TestCase):
 
             self.assertIn("possible-secret", {issue.code for issue in issues})
 
+    def test_owner_is_recorded_when_given(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "owned"
+            spec = ProjectSpec.create(name="Owned", purpose="Has an owner.", owner="  sean ")
+            create_project(target, spec, generated_at=GENERATED_AT)
+            manifest = json.loads((target / ".agent-builder.json").read_text(encoding="utf-8"))
+            self.assertEqual(manifest["owner"], "sean")
+            state = (target / "governance/project-state.yaml").read_text(encoding="utf-8")
+            self.assertIn('  owner: "sean"\n', state)
+
+    def test_seed_makes_the_first_commit_on_main(self) -> None:
+        import os
+        import shutil
+
+        if shutil.which("git") is None:
+            self.skipTest("git is not installed")
+        identity = {
+            "GIT_AUTHOR_NAME": "Test",
+            "GIT_AUTHOR_EMAIL": "test@example.com",
+            "GIT_COMMITTER_NAME": "Test",
+            "GIT_COMMITTER_EMAIL": "test@example.com",
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "committed"
+            spec = ProjectSpec.create(name="Committed", purpose="Starts with history.")
+            create_project(target, spec, generated_at=GENERATED_AT)
+            previous = {key: os.environ.get(key) for key in identity}
+            os.environ.update(identity)
+            try:
+                status = seed.initialize_git(target, spec)
+            finally:
+                for key, value in previous.items():
+                    if value is None:
+                        os.environ.pop(key, None)
+                    else:
+                        os.environ[key] = value
+            self.assertIn("first commit", status)
+            branch = subprocess.run(
+                ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+                cwd=target,
+                capture_output=True,
+                text=True,
+                check=True,
+            ).stdout.strip()
+            self.assertEqual(branch, "main")
+            dirty = subprocess.run(
+                ["git", "status", "--porcelain"], cwd=target, capture_output=True, text=True
+            ).stdout
+            self.assertEqual(dirty, "")
+
+    def test_template_version_matches_the_plugin_manifest(self) -> None:
+        plugin = json.loads((ROOT / ".claude-plugin/plugin.json").read_text(encoding="utf-8"))
+        self.assertEqual(seed.TEMPLATE_VERSION, plugin["version"])
+
+    def test_agent_builder_skill_front_matter_is_well_formed(self) -> None:
+        text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
+        match = re.match(r"\A---\n(.*?)\n---\n", text, flags=re.DOTALL)
+        self.assertIsNotNone(match, "SKILL.md must begin with front matter")
+        lines = match.group(1).splitlines()
+        self.assertEqual(lines[0], "name: agent-builder")
+        self.assertTrue(lines[1].startswith("description: '") and lines[1].endswith("'"))
+        self.assertLessEqual(len(lines[1]) - len("description: ''"), 1024)
+        self.assertEqual(len(lines), 2, "front matter carries only name and description")
+
     def test_cli_returns_nonzero_for_an_existing_target(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             target = Path(directory) / "existing"
@@ -196,9 +262,8 @@ class ScaffoldTests(unittest.TestCase):
 
             error_output = StringIO()
             with redirect_stderr(error_output):
-                result = main(
+                result = seed.main(
                     (
-                        "init",
                         str(target),
                         "--name",
                         "Example",

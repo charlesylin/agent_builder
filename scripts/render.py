@@ -115,7 +115,13 @@ def render_all(principles: dict[str, dict[str, str]], stencils: list[Path]) -> d
         used.update(m.group(1) for m in TOKEN.finditer(text))
         rendered = render_text(stencil, text, principles)
         if stencil.suffix != ".tmpl":
-            rendered = GENERATED_HEADER.format(stencil=relative.as_posix()) + rendered
+            header = GENERATED_HEADER.format(stencil=relative.as_posix())
+            if rendered.startswith("---\n"):
+                # Keep YAML front matter first; hosts parse it from byte zero.
+                end = rendered.index("\n---\n", 4) + len("\n---\n")
+                rendered = rendered[:end] + header + rendered[end:]
+            else:
+                rendered = header + rendered
         outputs[ROOT / relative] = rendered
     unused = sorted(set(principles) - used)
     if unused:

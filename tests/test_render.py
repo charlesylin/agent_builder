@@ -9,11 +9,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "skills" / "agent-builder" / "scripts"))
 
 import render  # noqa: E402
-
-from agent_builder import scaffold  # noqa: E402
+import seed  # noqa: E402
 
 
 class RenderTests(unittest.TestCase):
@@ -52,7 +51,7 @@ class RenderTests(unittest.TestCase):
         # Render fills {{principle:...}} at build time; the scaffolder fills {{UPPER_CASE}}
         # at seed time. Neither may touch the other's tokens.
         self.assertIsNone(render.TOKEN.search("{{PROJECT_NAME}} {{GENERATED_DATE}}"))
-        self.assertIsNone(scaffold._TOKEN.search("{{principle:phases}} {{principle:x|short}}"))
+        self.assertIsNone(seed._TOKEN.search("{{principle:phases}} {{principle:x|short}}"))
 
     def test_check_mode_reports_a_stale_output(self) -> None:
         principles = render.load_principles()

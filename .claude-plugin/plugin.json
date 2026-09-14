@@ -1,0 +1,8 @@
+{
+  "name": "agent-builder",
+  "description": "Start and steer agents, skills, and projects with Define, Plan, Build, Review phases, a decision ledger, and deterministic checks. Seeds a governed repository from templates.",
+  "version": "0.2.0-dev",
+  "author": {
+    "name": "Charles Yang Lin"
+  }
+}
