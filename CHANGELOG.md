@@ -42,6 +42,9 @@ All notable changes to Agent Builder are documented here.
 
 ### Changed
 
+- Seeded default decisions now match the kind: skill projects no longer inherit "deploy the
+  eventual agent as an OCI container" (F-008). `SKILL.md` requires the purpose sentence to be
+  read back in full, never offered as a menu.
 - Every summarized principle in `SKILL.md`, the adapters, and root `AGENTS.md` is now prefixed
   with its name, so a session can answer "what is Nokkvi's law?" without opening the full
   agreement (F-005).

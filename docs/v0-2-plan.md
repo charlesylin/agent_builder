@@ -144,6 +144,15 @@ independently revertible. Nothing is deleted until its replacement is tested.
 > reads the builder's `CHANGELOG.md` when run from a checkout and says plainly when a copied
 > skill folder has none. `source_commit` is `null` from a copied folder for the same reason.
 
+> **B7 amended (2026-09-14) after run 3 (F-007):** evals come **first**, not last. The skill
+> triggered on two prompts that echoed its own description and did not trigger on a natural
+> one ("i want to make a thing that can quickly retrieve depmap data…"). Scenario 1 is that
+> prompt. Run `claude plugin eval` before touching the description, rewrite the description to
+> describe the shape of a request (someone wants to create a new tool, capability, automation,
+> or project, however phrased) rather than list verbs, re-run, and keep the version with the
+> better measured rate. Then INSTALL.md, AUTHORING.md, README. Also: a line in SKILL.md for
+> "this was a test / abandon this", once AB-D031 is confirmed.
+
 ### B7 — Documentation and evals
 - `docs/INSTALL.md`: Claude org marketplace (GitHub sync, *Installed by default*), Claude Code
   managed settings with the exact keys, Codex paths. Dated; sources cited.

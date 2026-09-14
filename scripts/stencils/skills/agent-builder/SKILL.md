@@ -42,7 +42,9 @@ A composite takes its primary kind. Never guess; a wrong kind seeds the wrong fi
 **Then five facts:**
 
 1. Name — human-readable, a few words.
-2. Purpose — one sentence stating the single outcome this thing owns. Read it back; get a yes.
+2. Purpose — one sentence stating the single outcome this thing owns. Write the full
+   sentence out and ask for a yes or a correction. Do not offer it as a menu of labels; the
+   sentence is what gets recorded as D001, so the person must have seen every word.
 3. Owner — the person accountable. Default to the person you are talking to; confirm.
 4. Coding hosts they will use: Claude Code, Codex, Gemini CLI. One or more.
 5. Destination folder — must not exist yet. Confirm the parent folder exists.

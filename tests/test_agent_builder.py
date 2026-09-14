@@ -318,6 +318,21 @@ class ScaffoldTests(unittest.TestCase):
             adapter = (target / "CLAUDE.md").read_text(encoding="utf-8")
             self.assertIn("**Nokkvi's law.**", adapter)
 
+    def test_seeded_default_decisions_match_the_kind(self) -> None:
+        # F-008: a skill project inherited "deploy the eventual agent as an OCI container".
+        with tempfile.TemporaryDirectory() as directory:
+            for kind, expect_oci in (("agent", True), ("skill", False)):
+                with self.subTest(kind=kind):
+                    target = Path(directory) / kind
+                    spec = ProjectSpec.create(
+                        name=f"Kind {kind}", purpose="Check defaults.", kind=kind
+                    )
+                    create_project(target, spec, generated_at=GENERATED_AT)
+                    ledger = (target / "governance/decisions.yaml").read_text(encoding="utf-8")
+                    self.assertEqual("OCI container" in ledger, expect_oci)
+                    self.assertIn("-D001", ledger)
+                    self.assertIn("-D002", ledger)
+
     def test_cli_returns_nonzero_for_an_existing_target(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             target = Path(directory) / "existing"

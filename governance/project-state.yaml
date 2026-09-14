@@ -6,7 +6,7 @@ project:
 
 phase:
   current: build
-  status: b6_verified_by_run2_f005_fixed
+  status: b6_verified_by_runs_2_and_3_f008_fixed_f007_open
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-13
   transition_requires: explicit_user_invocation_or_confirmation

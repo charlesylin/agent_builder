@@ -1,6 +1,6 @@
 # v0.2 skill test — 2026-09-14
 
-Two runs: run 1 against B5b, run 2 against B6. Run 2 is at the end of this file.
+Three runs: run 1 against B5b, run 2 against B6, run 3 (the `skill` kind) against B6. Runs 2 and 3 are at the end of this file.
 
 **Tester:** Charles Yang Lin
 **Build state:** B5b (`bd44074`), plugin version `0.2.0-dev`
@@ -197,3 +197,78 @@ that will start many projects and finish fewer, that gap matters. Recorded as AB
 ## Still not tested
 
 The `skill` kind through the skill; Codex; the counter-case; `claude plugin eval`.
+
+
+---
+
+# Run 3 — the `skill` kind, against B6 (`fa89eed`)
+
+Fresh folder (`~/tmp/skill-test-3`). Opening prompt, deliberately natural: *"i want to make a
+thing that can quickly retrieve depmap data and deploy it org wide with a few consistent ways
+of presenting the output."* Transcript not exported; findings are from the author's paste.
+
+## The skill did not trigger — **F-007**
+
+The host went straight to work: three design questions, two web searches, a forum fetch, shell
+commands. Only when the author asked *"wait, why did you dive right in without invoking the
+agent-builder skill?"* did it invoke, saying *"that's a miss on my part."*
+
+The two earlier prompts began *"I want to build something that…"* — nearly verbatim from the
+description's example list. This one said *"make a thing that…"* and named a domain (DepMap),
+an audience (org wide), and an output shape. The description matched its own examples and not
+the shape of the request. A concrete, domain-flavored ask reads to the host as "start building",
+and nothing in the description says *any* request to create a new tool or capability is in
+scope regardless of verb.
+
+This is the failure an org rollout would hit first: colleagues will not phrase requests the way
+the description does. It is also exactly what `claude plugin eval` measures. B7 is amended to
+run evals **first**, with this prompt as the opening scenario, and to rewrite the description
+against measured trigger rate rather than another guess.
+
+## After invocation: mostly right, with one template bug
+
+Once loaded, the skill oriented, and the recon it had already done was folded into Define
+honestly — the finding that DepMap no longer serves per-gene queries programmatically was
+real and useful, and it was placed as the first open question rather than pretended away.
+Kind was settled (`skill`), logistics came as one table of defaults, it asked for an explicit
+"go" before seeding, seeded correctly (22 files, first commit on `main`), asked about a
+remote, then wrote `planning/open-questions.md` with settled / open / deferred markings — work
+the Define row of the phase table permits — ran `check.py`, and committed.
+
+Two deviations to note:
+
+- **Purpose was offered as a menu**, not read back as a sentence. The author picked a label
+  ("Retrieve + present consistently"). The recorded D001 is whatever sentence sat behind that
+  label. §1 now says: write the full sentence out and ask for a yes; never a menu.
+- **F-008 — a skill project inherited agent defaults.** The seeded ledger carried D003 "Deploy
+  the eventual agent as an OCI container". The skill itself flagged it: *"a skill, worth
+  rejecting rather than leaving to rot."* Cause: `templates/base/governance/decisions.yaml`
+  carried agent defaults and the skill kind had no override. **Fixed in this commit:** base
+  carries D001–D002; the agent kind overrides with its D003–D004; the skill kind overrides with
+  a distribution D003 (skill folder plus Claude plugin). Test added.
+
+## Behaviors to keep
+
+- It seeded with a design question unsettled and said so: *"I'd rather not pretend it is… I'll
+  seed now and put the data-access question in `planning/open-questions.md` as the first thing
+  Define owes."* Seeding requires kind and purpose, not a finished Define. Correct.
+- It contradicted the author's earlier choice with evidence rather than building it quietly:
+  *"That contradicts the 'live API calls' you picked, and I'd rather say so than quietly build
+  something slower and call it what you asked for."*
+- Its closing question was again a real one: whether this should be a skill at all if the
+  honest data answer is "cache a multi-hundred-megabyte matrix" — that is infrastructure the
+  org runs, with a different owner.
+
+## Not verified
+
+Whether the second commit's message began `define:` as §4 requires. The folder was not
+connected; the author can check with `git log --oneline` in `depmap-lookup`.
+
+## Status of findings after run 3
+
+| Finding | Status |
+| --- | --- |
+| F-007 — description overfit to its own examples; natural phrasing did not trigger | **Open.** Evals first in B7; rewrite against measured rate. |
+| F-008 — skill kind inherited agent default decisions | **Closed** by this commit. |
+| F-006 — no scratch/abandoned state | Open; AB-D031 proposed. |
+| F-001 through F-005 | Closed (runs 1–2). |

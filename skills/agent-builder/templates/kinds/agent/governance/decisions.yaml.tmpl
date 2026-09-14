@@ -1,0 +1,26 @@
+schema_version: 1
+decisions:
+  - id: {{PROJECT_SLUG}}-D001
+    status: confirmed
+    date: {{GENERATED_DATE}}
+    decision: {{PURPOSE_JSON}}
+    rationale: Supplied as the project purpose during initialization.
+    provenance: project_initialization
+  - id: {{PROJECT_SLUG}}-D002
+    status: confirmed
+    date: {{GENERATED_DATE}}
+    decision: Use {{ADAPTER_LIST}} as the initial coding-agent adapter set.
+    rationale: Explicit initializer selection.
+    provenance: project_initialization
+  - id: {{PROJECT_SLUG}}-D003
+    status: proposed
+    date: {{GENERATED_DATE}}
+    decision: Deploy the eventual agent as an OCI container using Docker Compose locally.
+    rationale: Agent Builder default; confirm during project planning.
+    provenance: agent-builder-{{TEMPLATE_VERSION}}
+  - id: {{PROJECT_SLUG}}-D004
+    status: proposed
+    date: {{GENERATED_DATE}}
+    decision: Keep external contracts runtime-independent and explicitly versioned.
+    rationale: Allows internal runtimes to change without breaking collaborators.
+    provenance: agent-builder-{{TEMPLATE_VERSION}}
