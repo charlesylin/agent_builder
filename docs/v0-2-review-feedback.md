@@ -121,3 +121,25 @@ during Review, under v0.1's precedent for author-approved refinements (AB-D015, 
 0.2.1 is what Review continues against; the `CHANGELOG.md` entry lists what changed. Whether
 the four questions, the parking lot, and typed approvals actually change what novices build
 is the thing Review still has to observe — Sean is the first tester.
+
+## Review findings after 0.2.1
+
+### F-017 — the desktop app is a second, separate install, and the docs misdescribe it
+
+2026-09-15. The author already had the plugin installed in Claude Code (CLI) from the
+Dropbox-path marketplace and tried to get it into the Claude Desktop app. The two do not share
+plugin state. The working procedure in the app is **Customize → Plugins → Add → Add
+marketplace → GitHub URL**, then **Add** on `agent-builder`. The app then reports "couldn't sync
+your plugins just now" and clicking Add again does nothing; **restarting the app** is what
+completes the install. The Claude GitHub App was installed on the repository along the way,
+which is what the *Sync automatically* toggle needs, but it was not the fix for the toast.
+
+The cost was not the procedure — it was the assistant guiding the author from vendor
+documentation that describes a different UI (an "Add from a repository" option that does not
+exist, a Code-tab plugin browser that only reads CLI marketplaces), and repeatedly re-checking
+the CLI install that was already fine. Two lessons recorded: `docs/INSTALL.md` now describes
+the screen, not the docs; and when a colleague reports a UI that differs from documentation,
+ask for a screenshot first, not third.
+
+Carried into Review: whether the account-level sync also delivers hooks to Cowork (untested),
+and whether a colleague with no CLI install at all gets a clean first run from the app path.

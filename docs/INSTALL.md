@@ -82,6 +82,36 @@ Managed settings pre-register the marketplace and enable the plugin for every us
 }
 ```
 
+## Claude Desktop app (Chat and Cowork) — install for yourself
+
+The desktop app has its own plugin system, separate from Claude Code's. Nothing installed with
+`claude plugin …` or `/plugin` appears here, and nothing installed here appears in the CLI.
+Verified on the author's machine on 2026-09-15 (F-017):
+
+1. **Customize** (left sidebar) → **Plugins** → **Add** (top right) → **Add marketplace**.
+2. Paste `https://github.com/charlesylin/agent_builder` and confirm.
+3. `agent-builder` appears in the list; add it with **+**.
+
+That is the whole procedure, with one catch. The app will likely say *"This plugin is now
+enabled for your account, but Claude couldn't sync your plugins just now. It will install the
+next time a sync succeeds."* — and clicking **Add** again does not trigger that sync.
+**Quit the app fully (⌘Q) and reopen it.** The sync runs at launch; the plugin then appears
+under **Your plugins**. On the author's machine that was the entire fix after twenty minutes of
+looking elsewhere. Only if it is still missing after a restart is the log worth reading:
+`~/Library/Logs/Claude/*.log`, grep for `plugin`.
+
+Two side notes. The app labels the marketplace by repository name (`agent_builder`) while the
+CLI uses the name in `marketplace.json` (`agent-builder`); same thing. And the marketplace's
+**Sync automatically** toggle needs the Claude GitHub App installed on the repository
+(github.com/apps/claude → Configure); without it the app logs *"Automatic sync on push requires
+the Claude GitHub App"* and updates arrive only through **Check for updates**. It is installed
+on `charlesylin/agent_builder` as of 2026-09-15.
+
+The vendor documentation describes this panel differently ("Add from a repository") and
+describes a Code-tab plugin browser that only reads the CLI's marketplaces; neither matches the
+UI above. Trust the screen. Hooks and sub-agents run only in Cowork, so the offer hook is
+greyed out in Chat; the skill itself is available in Chat, Cowork, and the Code tab.
+
 ## claude.ai, Claude Desktop, Cowork — for everyone in the organization
 
 An organization admin, in admin settings → plugins:
