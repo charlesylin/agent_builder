@@ -3,8 +3,8 @@
 Checkpoint: 2026-09-22. Agent Builder **v0.2.1** is accepted and Review is closed. The author
 opened **Define** for the next iteration and confirmed its purpose, smallest deliverable, and
 success evidence. The target is **v0.3.0**, with Semantic Versioning for Agent Builder. This
-checkpoint records the author's explicit move to **Plan**. Build and implementation are not
-authorized. The v0.3.0 plan is confirmed and awaits Build authorization in
+checkpoint records the author's explicit move to **Build** after Plan closed. The confirmed
+v0.3.0 implementation scope is in
 `planning/implementation-plan.md`.
 
 ## Recover context
@@ -46,7 +46,7 @@ Acceptance rested on Sean using the organization-installed v0.2.1 plugin on Wind
 separate local setup, to reach a seeded, validated, committed Define-phase project in one
 session. See `docs/v0-2-acceptance.md` for the evidence and qualifications.
 
-## Current phase: Plan for v0.3.0
+## Current phase: Build for v0.3.0
 
 The author opened Define on 2026-09-22 after accepting v0.2.1. The confirmed purpose is to
 formally enact project mode and establish governance for logical versioning, reuse, modularity,
@@ -94,7 +94,8 @@ for targeted replacements. A [component map](../planning/spec-kit-component-map.
 identifies the assessment workflow as the first candidate and explains the upstream-update
 tradeoff. K-Dense was only an example of the build-or-adopt outcome, not a dependency or a
 hard-coded recommendation. The author removed Windows-specific compatibility as a v0.4.0
-integration gate. The release split is confirmed; Build remains unapproved.
+integration gate. The release split is confirmed. On 2026-09-22 the author said "yes, close
+plan, enter build"; the Plan exit check passed and Build is authorized for the v0.3.0 plan.
 
 The full review findings are in `docs/v0-2-review-feedback.md`. The confirmed scope above is
 the boundary for this version. The confirmed design, build slices, and acceptance cases are in
@@ -128,7 +129,7 @@ generated-project scaffold check remains inapplicable to this source repository.
 
 ## Next action
 
-The lean-v0.3.0 / Spec-Kit-dependent-v0.4.0 release split is confirmed in
-`planning/implementation-plan.md`. Do not make K-Dense part of the build or impose a
-Windows-specific Spec Kit test. Obtain explicit authorization to close Plan and enter Build
-before implementing v0.3.0; v0.4.0 receives its own Define and Plan.
+Implement the first approved slice, a minimal neutral `project` kind, then proceed through
+the remaining slices in `planning/implementation-plan.md` with a focused test and commit for
+each. Do not make K-Dense part of the build or add Spec Kit to v0.3.0. v0.4.0 receives its
+own Define and Plan after v0.3.0 Review.

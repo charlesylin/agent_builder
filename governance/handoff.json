@@ -5,7 +5,7 @@
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.2 is accepted at release 0.2.1. The author confirmed the v0.3.0 definition and opened Plan. A tagged Spec Kit v1.0.9 CLI smoke test found substantial overlap. The author confirmed a lean v0.3.0 using existing Agent Builder components, followed by a separately defined v0.4.0 with Spec Kit as a maintained dependency and targeted replacements. K-Dense DepMap is only an example of the no-build outcome, not a product dependency. Windows-specific compatibility is not a v0.4.0 gate. Build remains unapproved.",
+  "summary": "Agent Builder v0.2.1 is accepted. The author confirmed the lean v0.3.0 plan and explicitly closed Plan and entered Build on 2026-09-22. Build is authorized only for the confirmed project-mode scope using existing Agent Builder components. Spec Kit as a maintained dependency is deferred to a separately defined v0.4.0. K-Dense DepMap remains an example, not product logic. Windows-specific compatibility is not a v0.4.0 gate.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -71,6 +71,11 @@
       "id": "AB-D047",
       "status": "confirmed",
       "summary": "Confirmed release split: lean v0.3.0 without Spec Kit dependency or source copy, then separately define v0.4.0 with a maintained Spec Kit dependency and targeted replacements; no Windows-specific gate."
+    },
+    {
+      "id": "AB-D048",
+      "status": "confirmed",
+      "summary": "Close Plan and enter Build for the confirmed lean v0.3.0 plan."
     }
   ],
   "artifacts": [
@@ -120,8 +125,6 @@
     }
   ],
   "blockers": [],
-  "questions": [
-    "Will the author explicitly authorize closing Plan and entering Build for the confirmed v0.3.0 scope?"
-  ],
-  "next_action": "The Plan exit check passed. Request explicit authorization to close Plan and enter Build before implementing v0.3.0. Keep K-Dense as an example only, and do not impose a Windows-specific Spec Kit gate. Define v0.4.0 separately after v0.3.0 review."
+  "questions": [],
+  "next_action": "Implement the first approved slice: a minimal neutral project kind, with focused tests and a separate Build commit. Do not add Spec Kit or K-Dense dependencies. Define v0.4.0 separately after v0.3.0 Review."
 }

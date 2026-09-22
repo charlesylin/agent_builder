@@ -1,14 +1,14 @@
 # Agent Builder v0.3.0 plan
 
-Status: confirmed by the author; Build and a phase transition still require separate authorization.
+Status: confirmed by the author; Build authorized on 2026-09-22. Review still requires a
+separate phase transition.
 Scope and success evidence: [definition.md](definition.md).
 The focused [Spec Kit comparison](spec-kit-comparison.md) and
 [component map](spec-kit-component-map.md) document the build-or-adopt evidence from a
 tagged-release CLI smoke test. The author confirmed a lean
 v0.3.0 without a Spec Kit dependency, followed by a separately defined v0.4.0 that uses
 Spec Kit as a maintained dependency for targeted replacements. Windows-specific compatibility
-is not a gate for that integration. This confirmation is not Build authorization or a v0.4.0
-scope confirmation.
+is not a gate for that integration. The later v0.4.0 scope remains to be defined.
 
 ## Build or adopt Agent Builder itself?
 
@@ -63,7 +63,7 @@ level; no independent security audit was performed.
    four-part closeout when its empty sections add no value. Change source principles and
    skill stencils, then regenerate adapters and agreements with `scripts/render.py`.
 
-## Build sequence if the author later authorizes Build
+## Authorized Build sequence
 
 Each slice should leave the existing suite green and have a focused test that proves its
 behavior. No version bump or release tag occurs until the result is ready for Review.

@@ -8,8 +8,8 @@ project:
   status: active
 
 phase:
-  current: plan
-  status: plan_approved_awaiting_build_authorization
+  current: build
+  status: build_in_progress
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-22
   transition_requires: explicit_user_invocation_or_confirmation
@@ -77,6 +77,12 @@ phase:
       date: 2026-09-22
       confirmed_by: charles-yang-lin
       outcome: Explicitly authorized by the project author for v0.3.0.
+    - phase: build
+      date: 2026-09-22
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        The author explicitly closed Plan and entered Build for the confirmed lean v0.3.0
+        plan. Spec Kit integration remains deferred to a separately defined v0.4.0.
 
 release:
   target: 0.2.1
@@ -147,13 +153,14 @@ next_release:
     status: confirmed
     decision: AB-D042
     human_experience_decision: AB-D044
-  implementation_approved: false
+  implementation_approved: true
+  implementation_decision: AB-D048
   note: >-
     The purpose is confirmed under AB-D040 and the smallest version-sized outcome under
     AB-D041, amended by AB-D043 to require proportional plain-language governance. Success
     evidence is confirmed under AB-D042 and AB-D044. AB-D045 confirms the v0.3.0 target and
-    versioning rule. Implementation remains unapproved; a phase change still requires explicit
-    author authorization.
+    versioning rule. AB-D047 confirms the lean plan and release split; AB-D048 authorizes
+    Build of that plan. A move to Review still requires explicit author authorization.
   candidate_inputs:
     - id: F-018
       summary: Make public-solution discovery a build-or-adopt gate.
@@ -182,12 +189,11 @@ next_release:
 
 checkpoint:
   date: 2026-09-22
-  status: plan_approved_awaiting_build_authorization
-  phase_changed: false
+  status: build_opened
+  phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    The author confirmed the lean v0.3.0 / Spec-Kit-dependent v0.4.0 release split and removed
-    Windows-specific integration criteria. Keep K-Dense an example, not a build dependency.
-    Ask for explicit authorization to close Plan and enter Build before implementation;
-    v0.4.0 needs its own Define and Plan after v0.3.0 Review.
+    Implement the first approved v0.3.0 slice: a minimal, validated neutral project kind.
+    Keep K-Dense an example, not a build dependency. Spec Kit integration belongs to a later
+    v0.4.0 Define and Plan after v0.3.0 Review.
