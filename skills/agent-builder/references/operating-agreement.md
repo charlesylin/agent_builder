@@ -25,18 +25,22 @@ A substantive decision changes purpose, scope, authority, facts, architecture, c
 dependencies, security posture, data handling, outputs, or deployment. Routine mechanical work
 implementing an approved decision does not require separate approval.
 
-- Present high-confidence recommendations with their rationale and evidence, then request
-  confirmation before recording them as confirmed.
+- Present consequential recommendations with rationale and evidence. If the author has already
+  explicitly authorized the exact choice, record that confirmation without asking again;
+  otherwise request confirmation before marking the decision confirmed.
 - Surface low-confidence decisions individually with alternatives, tradeoffs, and missing
   information.
-- Record decisions with stable identifiers and one of `proposed`, `confirmed`, `rejected`, or
-  `superseded`. Never silently reverse a confirmed decision.
+- Record decisions with stable internal identifiers and one of `proposed`, `confirmed`,
+  `rejected`, or `superseded`. Explain them to people in ordinary language unless an identifier
+  is useful for audit or lookup. Never silently reverse a confirmed decision.
 - A `proposed` decision does not survive a phase close. Before the phase ends it is confirmed,
   rejected, or moved to `planning/later.md`; `check.py --leaving <phase>` refuses otherwise.
-- Approval of anything that shapes the project — purpose, smallest version, phase change,
-  seeding, a remote, or authority to send, spend, publish, or delete — is typed by the author
-  in their own words after the exact text has been read back. It is never a menu pick, a
-  numbered option, or a button; an approval that can be clicked without reading is not one.
+- Approval of a consequential choice that has not already been explicitly authorized — purpose,
+  smallest version, phase change, seeding, a remote, or authority to send, spend, publish, or
+  delete — is typed by the author in their own words after the exact choice has been read back.
+  Do not use a menu pick or button as a substitute, but do not create a second approval round
+  for the author's own clear instruction. Routine execution inside an approved plan needs no
+  extra ceremony.
 
 ## Nokkvi's law
 
@@ -142,18 +146,15 @@ indefinite freezing: vulnerable dependencies and base images must be assessed an
 
 ## Communication and handoffs
 
-Human-facing narratives use concise Markdown. Standalone HTML is encouraged when interaction,
-navigation, or visual presentation materially improves comprehension. Machine-to-machine
-handoffs are compact and use the versioned JSON Schema under `contracts/`.
+Human-facing updates use concise, plain Markdown. Explain the current status, consequential
+decisions, uncertainty that matters, and one useful next action when there is one. Do not make
+the person decode local decision IDs, finding codes, or invented process terms; keep those in
+the structured project record and cite them only when useful for traceability. Ask a question
+only when its answer changes a decision or unblocks work. Do not manufacture empty closeout
+sections or a speculative question. Standalone HTML is useful only when interaction or visual
+presentation materially improves comprehension.
 
-Every human-facing closeout contains:
-
-1. decisions and recommendations made with high confidence;
-2. uncertain decisions requiring guidance;
-3. questions for the project author; and
-4. **What should you be asking that you are not?** — one question, the one that matters
-   most, not a list.
-
-Say `None` rather than inventing an issue. An answer to the fourth question goes to
-`planning/later.md` unless the author asks, in their own words, for work on it now; a closeout
-is not a place to grow the project.
+Agent-to-agent handoffs use a compact, versioned contract when the project defines one. Other
+projects keep an agent-readable state and decision record without assuming agent contracts.
+Do not turn a human closeout into a machine handoff, or use it to grow scope: ideas that are
+not needed for the current version go to `planning/later.md` until the author requests them.

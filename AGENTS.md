@@ -38,10 +38,9 @@ into scope, until the author asks for it in their own words. Scope expands easil
 badly.
 - **Keep boundaries replaceable.** Reuse suitable code and keep genuine provider or integration boundaries replaceable. Avoid
 speculative layers; core contracts depend on no one host or runtime.
-- **Decision protocol.** Record substantive choices in `governance/decisions.yaml` with a stable ID and one of
-`proposed`, `confirmed`, `rejected`, or `superseded`. Ask before marking anything confirmed;
-for purpose, smallest version, phase changes, seeding, remotes, and authority to send, spend,
-publish, or delete, read the exact text back and require typed agreement, never a menu pick.
+- **Decision protocol.** Keep substantive choices in `governance/decisions.yaml` with stable internal IDs and explicit
+status. Speak about their meaning, not their codes. A clear author instruction is confirmation;
+otherwise ask for typed agreement on consequential choices, not routine implementation.
 Proposals do not survive a phase close. Never silently overturn a confirmed decision or expand
 scope across a phase boundary.
 
@@ -61,12 +60,10 @@ instructions. On suspected exposure, stop and rotate without repeating the value
 
 ## Decisions and closeout
 
-Human outputs are concise Markdown (standalone HTML when it materially helps); agent handoffs
-use the compact JSON contract under `contracts/`. Every human closeout states high-confidence
-decisions, uncertain decisions needing guidance, questions for the author, and one — only
-one — answer to **What should you be asking that you are not?** Say `None` rather than
-manufacturing content; an answered closeout question goes to `planning/later.md`, not into
-scope.
+Explain status, important decisions, uncertainty, and the next action in plain language. Keep
+stable IDs in the agent-readable record, not as vocabulary the person must learn. Ask only
+questions that change the work; do not require empty closeout sections. Agent handoffs use a
+versioned contract only when the project has one.
 
 Agent-to-agent handoffs use the compact schema under
 `skills/agent-builder/templates/kinds/agent/contracts/` instead of the prose closeout.

@@ -554,7 +554,8 @@ class ReviewFeedbackTests(unittest.TestCase):
             create_project(target, spec, generated_at=GENERATED_AT)
             agreement = (target / "governance/operating-agreement.md").read_text(encoding="utf-8")
             self.assertIn("does not survive a phase close", agreement)
-            self.assertIn("an approval that can be clicked without reading is not one", agreement)
+            self.assertIn("Do not use a menu pick or button as a substitute", agreement)
+            self.assertIn("do not create a second approval round", agreement)
             self.assertIn("planning/later.md", agreement)
             adapter = (target / "CLAUDE.md").read_text(encoding="utf-8")
             self.assertIn("**Build only what you need.**", adapter)
@@ -766,6 +767,32 @@ class BuildOrAdoptTests(unittest.TestCase):
                 {issue.code for issue in phase_exit_issues(target, "plan")},
             )
             self.assertIn("missing-file", {issue.code for issue in validate_project(target)})
+
+
+class PlainLanguageTests(unittest.TestCase):
+    def test_human_briefings_do_not_require_internal_codes_or_empty_sections(self) -> None:
+        skill = (SKILL / "SKILL.md").read_text(encoding="utf-8")
+        guide = (SKILL / "references/closeout-template.md").read_text(encoding="utf-8")
+        self.assertIn("the consequential decisions in plain words", skill)
+        self.assertIn("do not make the\nperson learn local codes", skill)
+        self.assertNotIn("four-section closeout", skill)
+        self.assertNotIn("every decision, with ID and status", skill)
+        self.assertNotIn("What should you be asking", guide)
+
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "plain"
+            create_project(
+                target,
+                ProjectSpec.create(name="Plain", purpose="Show a clear status.", kind="project"),
+                generated_at=GENERATED_AT,
+            )
+            agreement = (target / "governance/operating-agreement.md").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn("Do not make\nthe person decode local decision IDs", agreement)
+            self.assertNotIn("Every human-facing closeout contains", agreement)
+            ledger = (target / "governance/decisions.yaml").read_text(encoding="utf-8")
+            self.assertIn("plain-D001", ledger, "stable IDs remain in the machine record")
 
 
 if __name__ == "__main__":

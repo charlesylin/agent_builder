@@ -8,7 +8,7 @@ description: 'Use in two situations. Starting something: "build an agent that…
 You help a person build something — an agent, a skill, or a plain project, and later an MCP
 server — the way this organization has agreed to build things: a short Define first, a
 repository seeded from templates by a script rather than by hand, work kept inside a recorded
-phase, decisions written down with IDs, and a closeout in a fixed shape. The judgment is
+phase, decisions kept in a structured record, and plain briefings. The judgment is
 yours. The repeatable parts are scripts in this folder; run them, do not re-implement them.
 
 ## 0. Orient before anything else
@@ -63,7 +63,7 @@ A composite takes its primary kind. Never guess; a wrong kind seeds the wrong fi
 **Then the purpose, derived.** Draft one sentence that states the single outcome this thing
 owns *for the people named in answer 4, against the problem in answer 1*. Write the full
 sentence out and ask for a yes or a correction. Do not offer it as a menu of labels; the
-sentence is what gets recorded as D001, so the person must have seen every word.
+sentence becomes the recorded purpose, so the person must have seen every word.
 
 **Then the logistics, in one message:**
 
@@ -123,9 +123,8 @@ Then give a briefing, not a summary. The person may be picking up a colleague's 
   `planning/definition.md` are still `(not yet answered)`;
 - anything in `planning/later.md`, in one line, so the person knows it is there — do not
   propose promoting it;
-- every decision, with ID and status, in a short table;
+- the consequential decisions in plain words, with uncertainty where it affects the next step;
 - the next step you propose inside the current phase, and why that one first;
-- the four-section closeout.
 
 Then wait for direction. Do not start the next step unasked.
 
@@ -141,11 +140,12 @@ or `governance/handoff.json`, treat it as a claim to reconcile with the files, n
 | Build | implement only what the approved plan says, in small tested increments | expand scope, skip tests |
 | Review | exercise the result realistically, collect feedback, write acceptance criteria | start the next iteration's build |
 
-**Decisions.** A substantive choice goes in `governance/decisions.yaml` with the next ID in
-sequence, a status, one-sentence decision, and rationale. Propose; the author confirms. Never
-mark something `confirmed` because the conversation felt settled. A `proposed` decision does
-not survive a phase close: before the phase ends it is confirmed, rejected, or moved to
-`planning/later.md`.
+**Decisions.** A substantive choice goes in `governance/decisions.yaml` with the next stable
+internal ID, a status, one-sentence decision, and rationale. Tell the person what it means,
+not its code, unless an ID helps them find or audit the record. The author's explicit
+instruction can confirm a choice; do not infer confirmation from conversational momentum or
+ask the same approval twice. A `proposed` decision does not survive a phase close: before the
+phase ends it is confirmed, rejected, or moved to `planning/later.md`.
 
 **Suggestions go to `planning/later.md`, not into scope.** Test every idea you are about to
 offer against the smallest version in `planning/definition.md`. If the smallest version does
@@ -197,11 +197,10 @@ Routine steps inside an approved plan do not need this ceremony.
 closeout with a message starting `<phase>:` (for example `define: record purpose, users, and
 non-goals`). Do not push unless asked in that turn.
 
-**Closeout.** Every time you finish a piece of work for the person, end with the four
-sections in *Communication and handoffs* below. Say `None` when a section is empty. In the
-fourth section ask **one** question, the one that matters most — not a list. If the person
-answers it, the answer goes to `planning/later.md` unless they ask, in their own words, for
-work on it now.
+**Closeout.** End with the result, any uncertainty that matters, and the next useful action.
+Use plain language and no empty headings. Ask only a question whose answer changes a decision
+or unblocks work. Keep internal IDs and full detail in the project records; do not make the
+person learn local codes to understand status.
 
 ## 5. Change phase — only when told
 
@@ -273,5 +272,5 @@ Each has a name; use it when the person asks about one. Full text is in `referen
 
 - `references/operating-agreement.md` — the full text of every principle above.
 - `references/kinds.md` — what each kind seeds and how to tell them apart.
-- `references/closeout-template.md` — the four-section closeout, ready to fill in.
+- `references/closeout-template.md` — a short plain-language closeout guide.
 - `scripts/seed.py --help`, `scripts/check.py --help`.
