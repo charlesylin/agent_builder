@@ -1,0 +1,17 @@
+# Contributing
+
+Read the selected coding-agent instruction file, `governance/operating-agreement.md`, and
+`governance/project-state.yaml` before beginning work.
+
+- Stay within the current phase and approved version-sized scope.
+- Search for suitable maintained solutions before proposing custom implementation.
+- Record substantive decisions and dependency license obligations.
+- Keep changes small and testable; add product-specific checks as the implementation takes
+  shape.
+- Never include secrets or sensitive personal data in code, fixtures, prompts, or logs.
+
+Run the current deterministic checks before requesting review:
+
+```sh
+python3 -m unittest discover -s tests -v
+```

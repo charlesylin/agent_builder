@@ -1,0 +1,32 @@
+schema_version: 1
+project:
+  id: {{PROJECT_SLUG_JSON}}
+  name: {{PROJECT_NAME_JSON}}
+  kind: project
+  owner: {{OWNER_JSON}}
+  # active | paused | abandoned | archived. This is independent of the phase.
+  status: active
+  purpose: {{PURPOSE_JSON}}
+  generated_by:
+    template: agent-builder
+    version: "{{TEMPLATE_VERSION}}"
+    generated_at: "{{GENERATED_AT}}"
+  coding_agent_adapters:
+{{ADAPTERS_YAML}}
+
+phase:
+  current: define
+  status: awaiting_definition
+  transition_requires: explicit_project_author_invocation_or_confirmation
+  inferred_transitions_permitted: false
+  history:
+    - phase: define
+      effective_date: {{GENERATED_DATE}}
+      basis: Neutral project scaffold created; definition not yet approved.
+
+compatibility:
+  template_updates_automatic: false
+
+security:
+  secret_values_in_repository: forbidden
+  secret_values_in_model_context: forbidden

@@ -5,16 +5,15 @@ file with the same path as a base file replaces it.
 
 ## Telling them apart
 
-| Ask | agent | skill |
-| --- | --- | --- |
-| Does it call an AI model and act on the answer? | yes | no — a model runs *it* |
-| Who invokes it? | a schedule, an event, or a person; may run unattended | a person, through Claude or Codex |
-| What is the deliverable? | a running service, eventually a container | a `SKILL.md` folder the host loads |
-| Where does repeatable logic live? | `src/<package>/` with tests | `scripts/` with tests |
+| Ask | agent | skill | project |
+| --- | --- | --- | --- |
+| Does it call an AI model and act on the answer? | yes | no — a model runs *it* | not assumed |
+| Who invokes it? | a schedule, an event, or a person; may run unattended | a person, through Claude or Codex | depends on what is built |
+| What is the deliverable? | a running service, eventually a container | a `SKILL.md` folder the host loads | defined by the project author |
+| Where does repeatable logic live? | `src/<package>/` with tests | `scripts/` with tests | chosen after Define and Plan |
 
-Not yet supported: `mcp` (a server exposing tools or data to models) and `project` (software
-with phases and a decision ledger but no AI). Say so plainly and offer the nearest kind. They
-will be added when a real project in the organization needs one.
+Not yet supported: `mcp` (a server exposing tools or data to models). A neutral `project`
+does not assume an agent runtime, skill manifest, application language, or deployment model.
 
 ## What every kind gets (base)
 
@@ -35,3 +34,10 @@ Dependabot config, and one instruction file per selected host.
 `references/`, `evals/` with a trigger case and a negative case in `claude plugin eval`
 format, `.claude-plugin/plugin.json`,
 `tests/test_skill.py`, and skill-flavored README, CONTRIBUTING, CI, and project state.
+
+## project adds
+
+A neutral project state, README, planning questions, and scaffold tests. It overrides the
+common CI to check only its current scaffold and keeps Dependabot limited to GitHub Actions.
+It does not seed agent contracts, an agent runtime, deployment policy, skill manifest, or
+application code.

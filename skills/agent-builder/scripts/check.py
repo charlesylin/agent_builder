@@ -60,6 +60,7 @@ _KIND_REQUIRED_FILES = {
         Path(".claude-plugin/plugin.json"),
         Path("evals/README.md"),
     ),
+    "project": (),
 }
 _DEFAULT_KIND = "agent"
 # A project's lifecycle state, independent of its phase. "active" is the default for anything

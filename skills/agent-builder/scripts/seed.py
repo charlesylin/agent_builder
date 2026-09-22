@@ -8,7 +8,7 @@ touch a path that already exists.
 
 Usage:
     python3 seed.py PATH --name "Lab Equipment Scout" --purpose "One sentence." \
-        [--kind agent|skill] [--owner NAME] [--adapter codex|claude|gemini]... [--no-git]
+        [--kind agent|skill|project] [--owner NAME] [--adapter codex|claude|gemini]... [--no-git]
 """
 
 from __future__ import annotations
@@ -60,7 +60,7 @@ def source_commit() -> str | None:
 
 
 SUPPORTED_ADAPTERS = ("codex", "claude", "gemini")
-SUPPORTED_KINDS = ("agent", "skill")
+SUPPORTED_KINDS = ("agent", "skill", "project")
 DEFAULT_KIND = "agent"
 
 

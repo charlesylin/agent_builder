@@ -5,8 +5,8 @@ description: 'Use in two situations. Starting something: "build an agent that…
 
 # Agent Builder
 
-You help a person build something — an agent, a skill, later an MCP server or a plain
-project — the way this organization has agreed to build things: a short Define first, a
+You help a person build something — an agent, a skill, or a plain project, and later an MCP
+server — the way this organization has agreed to build things: a short Define first, a
 repository seeded from templates by a script rather than by hand, work kept inside a recorded
 phase, decisions written down with IDs, and a closeout in a fixed shape. The judgment is
 yours. The repeatable parts are scripts in this folder; run them, do not re-implement them.
@@ -55,8 +55,8 @@ a vague answer written down now costs the whole project later.
 | --- | --- |
 | will call an AI model and act on the answer, possibly unattended | `agent` |
 | is written instructions, plus maybe scripts, that Claude or Codex follows when asked | `skill` |
-| is a server that gives models access to a tool or data (MCP) | `mcp` — not yet supported; say so and offer `agent` or `project` |
-| is ordinary software that wants phases and a decision ledger, no AI inside | `project` — not yet supported; say so and offer `agent` |
+| is a server that gives models access to a tool or data (MCP) | `mcp` — not yet supported; say so and offer `project` if its neutral scaffold fits |
+| is ordinary software that wants phases and a decision ledger, no AI inside | `project` |
 
 A composite takes its primary kind. Never guess; a wrong kind seeds the wrong files.
 
@@ -84,7 +84,7 @@ Run the seeder from this skill's folder. Adapters map to hosts: `claude`, `codex
 
 ```sh
 python3 <this-skill-folder>/scripts/seed.py <destination> \
-  --name "<Name>" --purpose "<One sentence.>" --kind <agent|skill> \
+  --name "<Name>" --purpose "<One sentence.>" --kind <agent|skill|project> \
   --owner "<owner>" --adapter <host> [--adapter <host>] \
   --problem "<answer 1>" --current "<answer 2>" --value "<answer 3>" --for "<answer 4>"
 ```

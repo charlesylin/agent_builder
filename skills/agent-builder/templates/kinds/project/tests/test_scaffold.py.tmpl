@@ -1,0 +1,28 @@
+"""Dependency-free checks that remain useful as this neutral project evolves."""
+
+from __future__ import annotations
+
+import json
+import re
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class ProjectScaffoldTests(unittest.TestCase):
+    def test_manifest_identifies_this_project(self) -> None:
+        manifest = json.loads((ROOT / ".agent-builder.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["kind"], "project")
+        self.assertEqual(manifest["project_slug"], {{PROJECT_SLUG_JSON}})
+        self.assertTrue(manifest["coding_agent_adapters"])
+
+    def test_phase_is_recognized(self) -> None:
+        state = (ROOT / "governance/project-state.yaml").read_text(encoding="utf-8")
+        match = re.search(r"^  current: (\w+)$", state, flags=re.MULTILINE)
+        self.assertIsNotNone(match)
+        self.assertIn(match.group(1), {"define", "plan", "build", "review"})
+
+
+if __name__ == "__main__":
+    unittest.main()

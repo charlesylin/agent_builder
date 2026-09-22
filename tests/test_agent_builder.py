@@ -83,6 +83,10 @@ class ScaffoldTests(unittest.TestCase):
     def test_kind_defaults_to_agent_and_rejects_unknown_kinds(self) -> None:
         spec = ProjectSpec.create(name="Kind Test", purpose="Check kind handling.")
         self.assertEqual(spec.kind, "agent")
+        project = ProjectSpec.create(
+            name="Plain Project", purpose="Check neutral kind.", kind="project"
+        )
+        self.assertEqual(project.kind, "project")
         with self.assertRaises(ValueError):
             ProjectSpec.create(name="Kind Test", purpose="Check kind handling.", kind="mcp")
 
@@ -123,6 +127,42 @@ class ScaffoldTests(unittest.TestCase):
             self.assertFalse((target / "src").exists())
             self.assertFalse((target / ".dockerignore").exists())
 
+    def test_project_kind_seeds_a_neutral_valid_scaffold(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "s3-watcher"
+            spec = ProjectSpec.create(
+                name="S3 Watcher",
+                purpose="Notice new input files and start the approved process.",
+                kind="project",
+                adapters=("codex", "claude"),
+            )
+            create_project(target, spec, generated_at=GENERATED_AT)
+
+            self.assertEqual(validate_project(target), ())
+            manifest = json.loads((target / ".agent-builder.json").read_text(encoding="utf-8"))
+            self.assertEqual(manifest["kind"], "project")
+            self.assertNotIn("runtime_profile", manifest)
+            self.assertNotIn("python_package", manifest)
+
+            state = (target / "governance/project-state.yaml").read_text(encoding="utf-8")
+            self.assertIn("  kind: project\n", state)
+            self.assertIn("  current: define\n", state)
+            self.assertNotIn("\nruntime:\n", state)
+            self.assertNotIn("\ndeployment:\n", state)
+            agreement = (target / "governance/operating-agreement.md").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn("neutral project", agreement)
+            self.assertNotIn("Docker Compose", agreement)
+
+            for relative in ("contracts", "deployment", "src", "SKILL.md", ".claude-plugin"):
+                self.assertFalse((target / relative).exists(), relative)
+            ci = (target / ".github/workflows/ci.yml").read_text(encoding="utf-8")
+            self.assertIn("unittest discover", ci)
+            self.assertNotIn("compileall -q src", ci)
+            dependabot = (target / ".github/dependabot.yml").read_text(encoding="utf-8")
+            self.assertNotIn("package-ecosystem: pip", dependabot)
+
     def test_validator_requires_kind_specific_files(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             target = Path(directory) / "broken-skill"
@@ -145,7 +185,7 @@ class ScaffoldTests(unittest.TestCase):
             self.assertEqual(validate_project(target), ())
 
     def test_generated_project_runs_its_own_tests(self) -> None:
-        for kind in ("agent", "skill"):
+        for kind in ("agent", "skill", "project"):
             with self.subTest(kind=kind), tempfile.TemporaryDirectory() as directory:
                 target = Path(directory) / f"self-test-{kind}"
                 spec = ProjectSpec.create(
@@ -162,7 +202,7 @@ class ScaffoldTests(unittest.TestCase):
                 )
 
                 self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-            self.assertIn("Ran 3 tests", result.stderr)
+            self.assertIn("Ran 2 tests" if kind == "project" else "Ran 3 tests", result.stderr)
 
     def test_refuses_to_overwrite_an_existing_target(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -214,32 +254,39 @@ class ScaffoldTests(unittest.TestCase):
             "GIT_COMMITTER_EMAIL": "test@example.com",
         }
         with tempfile.TemporaryDirectory() as directory:
-            target = Path(directory) / "committed"
-            spec = ProjectSpec.create(name="Committed", purpose="Starts with history.")
-            create_project(target, spec, generated_at=GENERATED_AT)
-            previous = {key: os.environ.get(key) for key in identity}
-            os.environ.update(identity)
-            try:
-                status = seed.initialize_git(target, spec)
-            finally:
-                for key, value in previous.items():
-                    if value is None:
-                        os.environ.pop(key, None)
-                    else:
-                        os.environ[key] = value
-            self.assertIn("first commit", status)
-            branch = subprocess.run(
-                ["git", "rev-parse", "--abbrev-ref", "HEAD"],
-                cwd=target,
-                capture_output=True,
-                text=True,
-                check=True,
-            ).stdout.strip()
-            self.assertEqual(branch, "main")
-            dirty = subprocess.run(
-                ["git", "status", "--porcelain"], cwd=target, capture_output=True, text=True
-            ).stdout
-            self.assertEqual(dirty, "")
+            for kind in ("agent", "project"):
+                with self.subTest(kind=kind):
+                    target = Path(directory) / f"committed-{kind}"
+                    spec = ProjectSpec.create(
+                        name=f"Committed {kind}", purpose="Starts with history.", kind=kind
+                    )
+                    create_project(target, spec, generated_at=GENERATED_AT)
+                    previous = {key: os.environ.get(key) for key in identity}
+                    os.environ.update(identity)
+                    try:
+                        status = seed.initialize_git(target, spec)
+                    finally:
+                        for key, value in previous.items():
+                            if value is None:
+                                os.environ.pop(key, None)
+                            else:
+                                os.environ[key] = value
+                    self.assertIn("first commit", status)
+                    branch = subprocess.run(
+                        ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+                        cwd=target,
+                        capture_output=True,
+                        text=True,
+                        check=True,
+                    ).stdout.strip()
+                    self.assertEqual(branch, "main")
+                    dirty = subprocess.run(
+                        ["git", "status", "--porcelain"],
+                        cwd=target,
+                        capture_output=True,
+                        text=True,
+                    ).stdout
+                    self.assertEqual(dirty, "")
 
     def test_template_version_matches_the_plugin_manifest(self) -> None:
         plugin = json.loads((ROOT / ".claude-plugin/plugin.json").read_text(encoding="utf-8"))
@@ -329,7 +376,7 @@ class ScaffoldTests(unittest.TestCase):
     def test_seeded_default_decisions_match_the_kind(self) -> None:
         # F-008: a skill project inherited "deploy the eventual agent as an OCI container".
         with tempfile.TemporaryDirectory() as directory:
-            for kind, expect_oci in (("agent", True), ("skill", False)):
+            for kind, expect_oci in (("agent", True), ("skill", False), ("project", False)):
                 with self.subTest(kind=kind):
                     target = Path(directory) / kind
                     spec = ProjectSpec.create(
@@ -345,7 +392,7 @@ class ScaffoldTests(unittest.TestCase):
         # AB-D031: a project's lifecycle is separate from its phase, so a colleague opening a
         # repository can tell "not started yet" from "nobody is doing this any more".
         with tempfile.TemporaryDirectory() as directory:
-            for kind in ("agent", "skill"):
+            for kind in ("agent", "skill", "project"):
                 with self.subTest(kind=kind):
                     target = Path(directory) / kind
                     spec = ProjectSpec.create(name=f"S {kind}", purpose="Check status.", kind=kind)
