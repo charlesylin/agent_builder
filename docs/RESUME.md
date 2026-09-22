@@ -78,6 +78,14 @@ install*) and the friction real colleagues report; the success signals are
 (`planning/` vs `docs/` here), Codex untested, `SKILL.md` §6 untested live, and whether 0.2.1's
 changes alter what novices actually build (unobserved until Sean's next project).
 
+On 2026-09-22 the author supplied eight extended-use findings, recorded as F-018 through F-025
+in `docs/v0-2-review-feedback.md`. They cover a build-or-adopt gate, a minimum viable outcome
+per versioned cycle, organizational code reuse, capability and skill discovery, real-use
+support for the neutral `project` kind, technical-quality checks on novice recommendations,
+standard versioning, and author-defined tests and controls. They are provisionally classified
+as inputs to the next Define rather than v0.2.1 acceptance blockers; that classification and
+v0.2.1 acceptance still require the author's explicit decision.
+
 Open proposals preserved from v0.1 Review, none of them confirmed product scope:
 `docs/onboarding-kit-review.md`, `docs/existing-project-review.md`,
 `docs/COWORK_EXISTING_PROJECT_ADOPTION.md`, `docs/SEAN_CODEX_TEST_PACKET.md`.
@@ -99,7 +107,8 @@ agent adherence; that is what Review measures.
 
 ## Next action
 
-After the push: `/plugin marketplace update agent-builder` and `/reload-plugins` in Claude Code,
-then follow `docs/INSTALL.md` to make the plugin *Available for install*. Watch Sean's next
-project for whether the four questions get real answers and `later.md` fills up. Record what
-happens as findings; do not start v0.3 Define without the author's words.
+Reconcile the accumulated Review evidence against the five success signals in
+`docs/v0-2-define.md` §7. If the author accepts v0.2.1 with F-018 through F-025 carried into the
+next iteration, write the acceptance record, run the Review exit check, and ask for explicit
+typed authorization to close Review. Opening the next Define is a separate explicit phase
+decision; do not infer it from acceptance or conversational momentum.

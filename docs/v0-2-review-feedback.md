@@ -143,3 +143,122 @@ ask for a screenshot first, not third.
 
 Carried into Review: whether the account-level sync also delivers hooks to Cowork (untested),
 and whether a colleague with no CLI install at all gets a clean first run from the app path.
+
+## Extended-use findings — author, 2026-09-22
+
+The author supplied these findings after a week of using Agent Builder across projects. They
+are Review evidence, not decisions for the next iteration. Several strengthen principles that
+already exist but have proved too weak or too late in the workflow; the distinction matters
+because the next Define should solve the observed behavior rather than merely repeat the
+current wording more emphatically.
+
+### F-018 — search must be a build-or-adopt gate, not only implementation guidance
+
+Agent Builder already says to search for validated open-source solutions before building
+(AB-D003), but the observed behavior does not make that search a required project-level
+decision. Before committing to a build, it should determine whether an existing public solution
+satisfies the project's requirements. When one does, it should recommend using it and stopping
+the project, with the reason recorded, rather than inventing work to justify the scaffold.
+
+Open for the next Define: whether "public" means only open-source software or also hosted,
+commercial, standards-based, and other generally available solutions; and what evidence is
+enough to conclude that the requirements are satisfied.
+
+### F-019 — every cycle needs its own minimum viable outcome
+
+"Build only what you need" (AB-D034) reduced feature accumulation, but a project's stated
+smallest version can still be interpreted as the whole intended product. Agent Builder should
+scope each Define → Plan → Build → Review cycle to one useful, testable step rather than
+trying to complete the full product in a single cycle. Later capabilities remain visible but
+out of the current version.
+
+This is coupled to F-024: the cycle boundary needs a versioned name so "minimum" has a concrete
+meaning for the author and the implementation agent.
+
+### F-020 — reuse includes organizational code, and new code should be reusable
+
+The current search principle covers open source, and replaceable boundaries cover coupling,
+but neither requires discovery of code the organization already owns. Agent Builder should
+ask about—or be configured with—organizational code sources before planning. For Two River Bio,
+the named source is <https://github.com/tworiverbio>; it must not be hard-coded into a general
+utility.
+
+Two candidate mechanisms were identified, with no decision yet:
+
+1. ask each project author which codebases, organizations, or repository sets should be
+   searched; or
+2. load user- or organization-level Agent Builder configuration that declares them.
+
+The same principle runs in the other direction: when new code is genuinely needed, prefer
+small modules with explicit contracts that can be reused without coupling future projects to
+the current implementation.
+
+### F-021 — capability and skill discovery belongs before planning
+
+Agent Builder should know which skills and other approved capabilities are available in the
+current environment, or load a configured organizational baseline, before proposing how to
+build. The concrete example is Grafify: the organization wants it used to help manage codebase
+structure, and wants existing reference repositories checked for prior Grafify structure
+before new structure is imposed.
+
+Open for the next Define: whether capability inventory is host discovery, configuration, or a
+combination; how optional or unavailable skills are represented; and whether Agent Builder
+invokes such skills itself or records them as required capabilities for the generated project.
+
+### F-022 — the neutral `project` kind has real-use support
+
+The author reports that the `project` format works well: it brings the governance workflow
+without presupposing that the result is an agent or a skill. Together with F-015, this supplies
+the real requesting-project evidence AB-D023 required before adding another kind. It is input
+to the next Define, not authorization to implement the kind during Review.
+
+### F-023 — novice recommendations need a technical-quality gate
+
+In observed use, Agent Builder can talk a novice into implementing approaches that an
+experienced developer would reject. Before recommending an approach, it should reason about at
+least four questions: is this the most efficient route to the current MVP; does an existing or
+organizational tool already solve it; is the approach robust enough for the stated use; and is
+its scaling path proportionate to realistic demand? The author's example is sideloading a
+browser for an agent, which failed all four tests.
+
+This finding is broader than typed approval (AB-D036). Making a novice type approval does not
+improve a poor recommendation. The recommendation itself needs an evidence-backed quality
+check, with uncertainty and tradeoffs exposed rather than fluently rationalized.
+
+### F-024 — versions should be explicit, useful stepping stones
+
+Agent Builder should use standard versioning conventions and treat important versions as
+"good enough" states to deploy, use, and test. During big-picture onboarding it should ask the
+author what outcome belongs in the first version—for example, "What do you want to tackle for
+v0.1?"—and keep later outcomes outside that cycle.
+
+Open for the next Define: the default versioning convention, how it applies to non-software
+projects, and whether each completed Review necessarily produces a release.
+
+### F-025 — the author should help define tests, expected results, and controls
+
+Mechanical smoke and unit testing already appears in plans and builds, but the project author
+is not systematically involved in defining what evidence would count as success. Before Build,
+Agent Builder should elicit expected outcomes, representative examples, failure cases, and any
+available control datasets. Where the work is empirical, prospective hypotheses and positive
+and negative controls are first-class acceptance inputs rather than retrospective explanations.
+
+Open for the next Define: which test commitments belong in Define versus Plan, what minimum
+evidence every project kind must supply, and how unavailable or sensitive control data is
+recorded without weakening security rules.
+
+## Provisional Review classification
+
+These findings do not contradict v0.2's scoped deliverable: an installable skill, deterministic
+seeder and checker, generated governance, and tested phase behavior. They show that the next
+iteration must improve the quality and boundaries of the technical work that governance
+permits. The recommended classification is therefore **inputs to the next Define, not v0.2.1
+acceptance blockers**, subject to the author's explicit acceptance decision.
+
+The main themes for that Define are:
+
+1. decide whether to build at all, after public and organizational discovery;
+2. define one version-sized MVP and its evidence before planning implementation;
+3. use configured repositories and capabilities, including skills, before inventing code;
+4. require technically prudent recommendations for novice users; and
+5. add the neutral `project` kind now that real-use evidence exists.
