@@ -557,3 +557,22 @@ decisions:
       This makes the AB-D043 human-experience requirement observable in real use while
       preserving structured internal records for agents.
     provenance: explicit_author_approval_during_define
+  - id: AB-D045
+    status: confirmed
+    date: 2026-09-22
+    confirmed_date: 2026-09-22
+    confirmed_by: charles-yang-lin
+    confirmation: Author typed "yes, approved" after the versioning rule and v0.3.0 target were read back.
+    decision: >-
+      Target v0.3.0 for Agent Builder's next release and use Semantic Versioning 2.0.0 for
+      Agent Builder. Each governed project tracks its own deliverable versions independently,
+      with one usable outcome per cycle. When adopting an existing solution satisfies the need
+      without a custom build, record the adopted solution's version and archive the project
+      without inventing a new project release.
+    rationale: >-
+      Adding neutral project mode and its governance is a substantial new capability after
+      v0.2.1, so a new 0.x minor version is a clear stepping stone. Independent project
+      versions avoid conflating a project's deliverable with the Agent Builder template that
+      created it. The adoption outcome must be representable without claiming a release of
+      software the organization did not build.
+    provenance: explicit_author_approval_during_define

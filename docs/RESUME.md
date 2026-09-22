@@ -2,8 +2,8 @@
 
 Checkpoint: 2026-09-22. Agent Builder **v0.2.1** is accepted and Review is closed. The author
 opened **Define** for the next iteration and confirmed its purpose, smallest deliverable, and
-success evidence. The release version is still open. This checkpoint authorizes Define work
-only: no Plan, Build, or implementation.
+success evidence. The target is **v0.3.0**, with Semantic Versioning for Agent Builder. This
+checkpoint authorizes Define work only: no Plan, Build, or implementation.
 
 ## Recover context
 
@@ -22,7 +22,8 @@ Git status and recent commits before editing; preserve existing changes.
 
 The root `CLAUDE.md` and `GEMINI.md` direct their coding hosts to `AGENTS.md`. This repository
 predates Agent Builder's generated `.agent-builder.json`; the previous review records that
-legacy difference. Do not fabricate the manifest or treat its absence as corruption.
+legacy difference. Do not fabricate the manifest or treat its absence as corruption. The
+current Define answers and confirmed outcome are in `planning/definition.md`.
 
 ## Accepted releases
 
@@ -75,15 +76,20 @@ In real use, a member should understand status, important decisions, and next ac
 decoding internal identifiers; each approval has a concrete consequence; and user feedback
 finds the process clear and appropriately lightweight.
 
-Define must now establish the release version. No architecture, configuration mechanism,
-implementation, or transition to Plan has been approved.
+Agent Builder targets v0.3.0. Governed projects track their own deliverable versions, one
+usable outcome per cycle. When adoption resolves a request without a build, the project records
+the adopted solution's version and closes without inventing its own release.
+
+The Define record is complete in `planning/definition.md`. No architecture, configuration
+mechanism, implementation, or transition to Plan has been approved.
 
 The full review findings are in `docs/v0-2-review-feedback.md`. The confirmed scope above is
-the boundary for this version. Next confirm the release version.
+the boundary for this version. Next, the author must explicitly authorize entry to Plan.
 
 ## Items not promoted into scope
 
-- This source repository uses `docs/` where generated projects use `planning/`.
+- This source repository still lacks several generated-project scaffold paths and stores its
+  historical records in `docs/`.
 - Cowork hook delivery and a clean desktop first run remain untested.
 - Codex support beyond v0.2's accepted best-effort level.
 - Runtime and environment profiles remain deferred.
@@ -97,9 +103,11 @@ closeout passed `check.py --leaving review`, `scripts/render.py --check`, compil
 54 unit and behavioral tests. Ruff 0.16.6 was not installed in the active local environment
 for the documentation and governance closeout. The full generated-project scaffold check does
 not apply to this legacy source repository; the previous review records its intentional
-differences. The phase-specific Review exit gate passed before transition.
+differences. The phase-specific Review exit gate passed before transition. For this Define
+checkpoint, `check.py --leaving define`, all 54 tests, generated-file drift check, YAML and
+JSON parsing, and whitespace validation passed.
 
 ## Next action
 
-Confirm a standard version number for this stepping stone. Do not select implementation
-solutions. Entering Plan requires a separate explicit author decision.
+Request explicit author authorization to close Define and enter Plan. Do not select
+implementation solutions until the phase changes.

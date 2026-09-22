@@ -80,8 +80,9 @@ after Sean completed the organization-install acceptance test on Windows. See th
 [`Review findings`](docs/v0-2-review-feedback.md). The next iteration's scope and success
 evidence are confirmed: a usable neutral `project` mode with proportional governance for
 adopting existing solutions, small versioned outcomes, reuse, and technical quality. Its
-release number remains open. v0.1 (governance and scaffolding only) was accepted on 2026-09-13
-and is tagged `v0.1.0`.
+target is **v0.3.0**; the project remains in Define until the author explicitly opens Plan.
+See the [current definition](planning/definition.md). v0.1 (governance and scaffolding only)
+was accepted on 2026-09-13 and is tagged `v0.1.0`.
 
 This repository is developed under its own phases; see
 [`governance/`](governance/) and [`docs/RESUME.md`](docs/RESUME.md).

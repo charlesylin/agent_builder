@@ -5,7 +5,7 @@
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.2 is accepted at release 0.2.1. Review is closed and Define is open. The purpose, smallest project-mode outcome, adoption and user-feedback evidence, proportional human-facing governance, and its real-use evidence are confirmed. The release version remains undecided.",
+  "summary": "Agent Builder v0.2 is accepted at release 0.2.1. Define has a confirmed purpose, smallest project-mode outcome, success evidence, proportional human-facing governance, and v0.3.0 target under Semantic Versioning. The phase remains Define until the author explicitly authorizes Plan.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -56,6 +56,11 @@
       "id": "AB-D044",
       "status": "confirmed",
       "summary": "Validate that real users understand status, decisions, and next action without decoding internal labels, and find approvals consequential and the process lightweight."
+    },
+    {
+      "id": "AB-D045",
+      "status": "confirmed",
+      "summary": "Target Agent Builder v0.3.0, version project deliverables independently, and archive no-build adoptions without inventing a project release."
     }
   ],
   "artifacts": [
@@ -80,6 +85,10 @@
       "media_type": "text/markdown"
     },
     {
+      "path": "planning/definition.md",
+      "media_type": "text/markdown"
+    },
+    {
       "path": "docs/v0-2-acceptance.md",
       "media_type": "text/markdown"
     },
@@ -90,7 +99,7 @@
   ],
   "blockers": [],
   "questions": [
-    "What standard release version should identify this stepping stone?"
+    "Will the author explicitly close Define and enter Plan?"
   ],
-  "next_action": "Confirm a standard release version. Do not select implementation solutions or enter Plan without explicit author approval."
+  "next_action": "Check the Define exit record and request explicit author authorization to close Define and enter Plan. Do not change phase or select implementation solutions before authorization."
 }
