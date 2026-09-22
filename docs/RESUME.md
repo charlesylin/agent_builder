@@ -1,9 +1,9 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-09-14. Agent Builder is in **Review** for v0.2, entered on 2026-09-14 by the
-project author. v0.2.0 is tagged; **v0.2.1** incorporates the first Review feedback (Sean's,
-`docs/v0-2-review-feedback.md`) under AB-D038 and is the version Review continues against.
-This checkpoint authorizes nothing beyond Review: no v0.3 Define, no new Build.
+Checkpoint: 2026-09-22. Agent Builder v0.2 is accepted at release **v0.2.1** under AB-D039.
+Review is closed. The project author explicitly opened **Define** for the next iteration; its
+version number and scope are not yet decided. This checkpoint authorizes Define work only: no
+Plan, Build, or implementation.
 
 ## Recover context
 
@@ -13,102 +13,77 @@ Read these files completely, in order:
 2. `governance/project-state.yaml`
 3. `governance/operating-agreement.md`
 4. `governance/decisions.yaml`
-5. This file, then `docs/v0-1-acceptance.md`.
+5. This file, then `docs/v0-2-acceptance.md` and `docs/v0-2-review-feedback.md`.
 
 The compact machine handoff is `governance/handoff.json`. Its schema is
 `skills/agent-builder/templates/kinds/agent/contracts/schemas/agent-handoff.schema.json.tmpl`.
-Current governance and newer author instructions take precedence over this checkpoint.
-Check Git status and recent commits before editing. Preserve existing changes.
+Current governance and newer author instructions take precedence over this checkpoint. Check
+Git status and recent commits before editing; preserve existing changes.
 
-The root `CLAUDE.md` and `GEMINI.md` direct their coding hosts to `AGENTS.md`. In any chat
-environment without repository access, ask the author to supply the required files. Do not
-claim to have read unavailable files or assume account memory includes previous sessions.
-Instruction files guide behavior; they do not guarantee host enforcement or automatic loading.
+The root `CLAUDE.md` and `GEMINI.md` direct their coding hosts to `AGENTS.md`. This repository
+predates Agent Builder's generated `.agent-builder.json`; F-016 records that legacy difference.
+Do not fabricate the manifest or treat its absence as corruption.
 
-## What v0.1 shipped, and what it did not
+## Accepted releases
 
-- A Python 3.11+ scaffold generator and structural validator with no runtime dependencies.
-  v0.1 entry points were `scripts/new_agent.py` and `scripts/validate_project.py`; since B5
-  they are `skills/agent-builder/scripts/seed.py` and `check.py`.
-- Generated projects start in Define and select Codex, Claude Code, and/or Gemini CLI adapters.
-- Define → Plan → Build → Review with explicit author-approved transitions.
-- Engineering defaults: lean Python; deterministic execution; model judgment for orchestration;
-  open-source evaluation before custom work; replaceable providers and interfaces.
-- Deployment defaults recorded as policy, not artifacts: standalone OCI containers for
-  generated agents, Docker Compose locally. External contracts are versioned.
-- Secrets never enter committed files, prompts, logs, images, or handoffs.
-- Nokkvi's law and practical persistence guidance (AB-D015, AB-D016), committed in `453d8cb`.
+### v0.1.0 — accepted 2026-09-13
 
-No runtime, model client, MCP server, custom API, Dockerfile, or Compose service is supplied.
-The initializer refuses existing destinations. Generated projects never update automatically.
-Template version remains 0.1.0; record the source Git commit or the `v0.1.0` tag when
-comparing tests.
+Governance and project scaffolding, accepted under AB-D017. See
+`docs/v0-1-acceptance.md`. It did not include a runtime, model client, MCP server, custom API,
+Dockerfile, or Compose service.
 
-## Acceptance outcome
+### v0.2.1 — accepted 2026-09-22
 
-The author accepted v0.1 on 2026-09-13 under AB-D017, based on Sean's generated sourcing
-project taken through Define and Plan and on additional use cases outside this repository.
-Those transcripts and repositories are not in this checkout. `docs/v0-1-acceptance.md` records
-what acceptance rested on and what it did not close.
+An organization-installable Agent Builder skill, deterministic seeder and checker, agent and
+skill templates, single-source principles with drift checks, a Claude Code offer hook, evals,
+typed consequential approvals, a parking lot for suggestions, phase-exit checks, and fuller
+resume briefings. v0.2.1 incorporates the first Review feedback on top of v0.2.0.
 
-Two findings were carried forward rather than treated as blockers:
+Acceptance rested on Sean using the organization-installed v0.2.1 plugin on Windows, without
+separate local setup, to reach a seeded, validated, committed Define-phase project in one
+session. See `docs/v0-2-acceptance.md` for the evidence and qualifications.
 
-- **F-001** — resume from repository records works, but the 2026-09-13 test still relied on an
-  author-supplied prompt naming the files to read. Unprompted instruction discovery is untested.
-- **F-002** — Agent Builder itself requires host Python 3.11+, with no preflight check and no
-  container of its own. AB-D018 (proposed) records one candidate response.
+## Current phase: Define for the next iteration
 
-The scheduling-agent test remains abandoned; do not resume it here.
+The author opened Define on 2026-09-22 after accepting v0.2.1. Define must establish one
+problem and one version-sized outcome before Plan. No version number, scope, architecture,
+configuration mechanism, new project kind, or implementation has been approved.
 
-## Current phase: Review for v0.2 — against 0.2.1
+F-018 through F-025 in `docs/v0-2-review-feedback.md` are unprioritized inputs:
 
-Build closed and Review opened on 2026-09-14 (`governance/project-state.yaml` history). Read
-`docs/v0-2-define.md` (what and why), `docs/v0-2-plan.md` (how, with per-step "as built"
-notes), `docs/v0-2-skill-test.md` (evidence: three hands-on runs, two eval runs, sixteen
-findings), and `docs/v0-2-review-feedback.md` (why 0.2.1 exists).
+- a required build-or-adopt gate after public-solution discovery;
+- one minimum viable outcome per versioned cycle;
+- discovery and reuse of organizational code plus reusable new modules;
+- discovery of available or configured skills and capabilities;
+- a neutral `project` kind, now supported by real-use evidence;
+- an evidence-backed technical-quality gate for novice recommendations;
+- standard versions as useful, testable stepping stones; and
+- author-defined expected results, cases, hypotheses, and controls.
 
-0.2.1 changed the Define conversation (problem before purpose), seeded `planning/definition.md`
-and `planning/later.md`, added `check.py --leaving <phase>`, typed approvals, one closeout
-question, the *Build only what you need* principle, and the outward form of Nokkvi's law.
-`CHANGELOG.md` has the full list with decision IDs.
+They are evidence, not confirmed scope. The first Define question is: **What single problem
+should the next iteration solve?** After that, establish how it is handled today, its value,
+who benefits, the smallest version-sized outcome, exclusions, and success evidence.
 
-Review's acceptance test is the opt-in organization install (`docs/INSTALL.md`, *Available for
-install*) and the friction real colleagues report; the success signals are
-`docs/v0-2-define.md` §7. Open items carried in: F-015 (the `project` kind), F-016
-(`planning/` vs `docs/` here), Codex untested, `SKILL.md` §6 untested live, and whether 0.2.1's
-changes alter what novices actually build (unobserved until Sean's next project).
+## Items not promoted into scope
 
-On 2026-09-22 the author supplied eight extended-use findings, recorded as F-018 through F-025
-in `docs/v0-2-review-feedback.md`. They cover a build-or-adopt gate, a minimum viable outcome
-per versioned cycle, organizational code reuse, capability and skill discovery, real-use
-support for the neutral `project` kind, technical-quality checks on novice recommendations,
-standard versioning, and author-defined tests and controls. They are provisionally classified
-as inputs to the next Define rather than v0.2.1 acceptance blockers; that classification and
-v0.2.1 acceptance still require the author's explicit decision.
-
-Open proposals preserved from v0.1 Review, none of them confirmed product scope:
-`docs/onboarding-kit-review.md`, `docs/existing-project-review.md`,
-`docs/COWORK_EXISTING_PROJECT_ADOPTION.md`, `docs/SEAN_CODEX_TEST_PACKET.md`.
-
-## Open item outside the phase
-
-Dependabot PR #1 bumps the development-only pin `prek` 0.4.11 → 0.5.2 in `pyproject.toml`. It
-was deliberately left open so the `v0.1.0` tag matches the pins the validation evidence was
-produced against. `prek` is not a runtime dependency and CI does not use it. If it is merged,
-run `prek install` once locally to confirm the `repo = "builtin"` hooks still resolve under
-0.5.x.
+- F-016: this source repository uses `docs/` where generated projects use `planning/`.
+- Remaining F-017 observations: Cowork hook delivery and a clean desktop first run.
+- Codex support beyond v0.2's accepted best-effort level.
+- Runtime and environment profiles deferred by AB-D008.
+- The old onboarding and existing-project proposals under `docs/`.
+- Dependabot PR #1 for development-only `prek`; assess separately if it is merged.
 
 ## Verification
 
-The gate for every commit is in `docs/AUTHORING.md`: `scripts/render.py --check`, ruff check and
-format, the unit tests under Python 3.10 and 3.9, and `compileall`. For the 0.2.1 release all
-of it passed locally on 2026-09-14 and CI runs the same on push. Structural tests do not prove
-agent adherence; that is what Review measures.
+The accepted v0.2.1 release passed its pinned full gate on 2026-09-14. The 2026-09-22 Review
+closeout passed `check.py --leaving review`, `scripts/render.py --check`, compilation, and all
+54 unit and behavioral tests. Ruff 0.16.6 was not installed in the active local environment
+for the documentation and governance closeout. The full generated-project scaffold check does
+not apply to this legacy source repository; F-016 records its intentional differences. The
+phase-specific Review exit gate passed before transition.
 
 ## Next action
 
-Reconcile the accumulated Review evidence against the five success signals in
-`docs/v0-2-define.md` §7. If the author accepts v0.2.1 with F-018 through F-025 carried into the
-next iteration, write the acceptance record, run the Review exit check, and ask for explicit
-typed authorization to close Review. Opening the next Define is a separate explicit phase
-decision; do not infer it from acceptance or conversational momentum.
+Ask the author what single problem the next iteration should solve. Continue the Define
+conversation without selecting solutions or treating F-018 through F-025 as a bundled scope.
+Entering Plan requires a separate explicit author decision.

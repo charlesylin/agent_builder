@@ -74,13 +74,12 @@ How to change principles, the skill, templates, or cut a release:
 
 ## Status
 
-**In Review.** v0.2.0 shipped 2026-09-14; the first colleague's feedback is in
-[`docs/v0-2-review-feedback.md`](docs/v0-2-review-feedback.md) and is incorporated in **v0.2.1**
-(see [`CHANGELOG.md`](CHANGELOG.md)). The org opt-in install is the acceptance test.
-v0.1 (governance and scaffolding only) was accepted on 2026-09-13 and is tagged `v0.1.0`. The v0.2 vision is in
-[`docs/v0-2-define.md`](docs/v0-2-define.md), the plan in
-[`docs/v0-2-plan.md`](docs/v0-2-plan.md), and the evidence from three rounds of hands-on testing
-in [`docs/v0-2-skill-test.md`](docs/v0-2-skill-test.md).
+**In Define for the next iteration.** v0.2 was accepted at release **v0.2.1** on 2026-09-22
+after Sean completed the organization-install acceptance test on Windows. See the
+[`acceptance record`](docs/v0-2-acceptance.md) and
+[`Review findings`](docs/v0-2-review-feedback.md). The next version number and scope are not
+yet decided. v0.1 (governance and scaffolding only) was accepted on 2026-09-13 and is tagged
+`v0.1.0`.
 
 This repository is developed under its own phases; see
 [`governance/`](governance/) and [`docs/RESUME.md`](docs/RESUME.md).

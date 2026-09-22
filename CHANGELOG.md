@@ -9,6 +9,10 @@ AB-D038. v0.2 opened projects well and closed nothing; 0.2.1 makes a project sta
 before its purpose, keeps suggestions out of scope, and refuses phase changes with loose ends.
 Evidence and reasoning: `docs/v0-2-review-feedback.md`.
 
+Accepted on 2026-09-22 under AB-D039 after Sean completed the organization-install acceptance
+test on Windows; see `docs/v0-2-acceptance.md`. F-018 through F-025 are carried into the next
+Define iteration rather than treated as acceptance blockers.
+
 ### Added
 
 - **Problem framing before purpose (AB-D033).** The Define conversation now starts with four

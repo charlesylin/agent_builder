@@ -433,3 +433,27 @@ decisions:
       refinement inside Review.
     provenance: explicit_author_direction_during_review
     record: docs/v0-2-review-feedback.md
+  - id: AB-D039
+    status: confirmed
+    date: 2026-09-22
+    confirmed_date: 2026-09-22
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      After confirming that Sean used the organization-installed v0.2.1 plugin on Windows,
+      with no separate local setup, to reach a seeded, validated, committed Define-phase
+      project in one session, the author directed: "let's close review and move to the next
+      define step".
+    decision: >-
+      Accept Agent Builder v0.2 at release 0.2.1, close Review, carry F-018 through F-025 as
+      unconfirmed inputs rather than acceptance blockers, and open the next Define iteration
+      with its version and scope undecided.
+    rationale: >-
+      The opt-in organization-install acceptance test succeeded with the intended novice
+      Windows user. The deterministic seeder, checker, render pipeline, phase behavior, and
+      skill-template dogfood evidence also support the scoped v0.2 deliverable. Extended use
+      produced substantive findings about build-versus-adopt decisions, cycle-sized MVPs,
+      organizational reuse, capability discovery, recommendation quality, project kind,
+      versioning, and author-defined tests. Those findings describe the next problem space;
+      they do not invalidate the installable governance skill accepted here.
+    provenance: explicit_author_acceptance_and_phase_transition
+    record: docs/v0-2-acceptance.md

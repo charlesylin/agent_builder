@@ -8,10 +8,10 @@ project:
   status: active
 
 phase:
-  current: review
-  status: acceptance_testing_with_0_2_1_refinement_in_progress
+  current: define
+  status: defining_next_iteration
   last_confirmed_by: charles-yang-lin
-  last_confirmed_date: 2026-09-14
+  last_confirmed_date: 2026-09-22
   transition_requires: explicit_user_invocation_or_confirmation
   history:
     - phase: define
@@ -55,72 +55,80 @@ phase:
       outcome: >-
         Explicitly authorized by the project author on receiving Sean's feedback. A 0.2.1
         refinement (AB-D033..037) is authorized inside Review (AB-D038).
+    - phase: review
+      date: 2026-09-22
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        Closed. Agent Builder v0.2 accepted at release 0.2.1 under AB-D039 after Sean
+        completed the organization-install acceptance test on Windows.
+    - phase: define
+      date: 2026-09-22
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        Explicitly authorized by the project author after v0.2.1 acceptance. The next
+        iteration's version and scope are open and not yet determined.
 
 release:
-  target: 0.1.0
-  scope: governance_and_project_scaffold
+  target: 0.2.1
+  scope: org_installable_skill_with_seeder_templates_and_single_source_build
   runtime_included: false
-  acceptance_strategy: build_first_real_agent_then_capture_feedback
+  acceptance_strategy: opt_in_org_install_then_collect_friction
   status: accepted
-  accepted_date: 2026-09-13
+  accepted_date: 2026-09-22
   accepted_by: charles-yang-lin
-  decision: AB-D017
-  tag: v0.1.0
-  acceptance_record: docs/v0-1-acceptance.md
+  decision: AB-D039
+  tag: v0.2.1
+  acceptance_record: docs/v0-2-acceptance.md
+  previous:
+    target: 0.1.0
+    status: accepted
+    accepted_date: 2026-09-13
+    decision: AB-D017
+    tag: v0.1.0
+    acceptance_record: docs/v0-1-acceptance.md
 
 next_release:
-  target: 0.2.0
-  scope: org_installable_skill_with_seeder_templates_and_single_source_build
-  scope_status: confirmed
-  status: built_and_tagged_awaiting_review
-  tag: v0.2.0
-  built_date: 2026-09-14
-  acceptance_strategy: opt_in_org_install_then_collect_friction
-  plan_record: docs/v0-2-plan.md
-  runtime_included: false
-  define_record: docs/v0-2-define.md
-  deliverables:
-    - id: skill
-      summary: skills/agent-builder/SKILL.md in Agent Skills format, packaged as a Claude plugin, usable by Codex.
-    - id: seeder
-      summary: skills/agent-builder/scripts/seed.py creates a project from templates/base plus one kind; check.py validates one.
-    - id: templates
-      summary: templates/base plus templates/kinds/agent and templates/kinds/skill, inside this repository.
-    - id: build
-      summary: build/render.py assembles generated files from principles/; a CI test fails on drift.
-  kinds: [agent, skill]
-  confirmed_decisions: [AB-D019, AB-D020, AB-D021, AB-D022, AB-D023, AB-D024, AB-D025, AB-D026, AB-D027, AB-D028, AB-D029]
-  build_steps: [B1, B2, B3, B4, B5, B6, B7, B8]
-  build_steps_done: [B1, B2, B3, B4, B5, B6, B7a, B7b, B7c, B8]
-  inputs_resolved:
-    - id: F-001
-      resolution: >-
-        Closed 2026-09-14 (run 2). A cold session given only "what's the current status?"
-        invoked the skill unprompted and delivered the full briefing from repository records.
-        See docs/v0-2-skill-test.md.
-    - id: F-002
-      resolution: >-
-        Closed for the seed path on 2026-09-14: seed.py and check.py ran on the author's
-        machine with no install step. See docs/v0-2-skill-test.md.
-    - id: AB-D018
-      resolution: Superseded by AB-D021.
-  inputs_deferred:
-    - id: AB-R001
-      summary: Onboarding kit review. Not in v0.2 scope.
-    - id: AB-R004
-      summary: Existing-project adoption. Not in v0.2 scope; the project kind is the likely future home.
-    - id: AB-D008
-      summary: Runtime and environment profiles remain deferred.
+  target: null
+  version_status: open_for_define
+  scope: undetermined
+  scope_status: open_for_define
+  implementation_approved: false
+  note: >-
+    F-018 through F-025 are unprioritized inputs to Define, not confirmed scope or selected
+    solutions. Define must identify one problem and one version-sized outcome before Plan.
+  candidate_inputs:
+    - id: F-018
+      summary: Make public-solution discovery a build-or-adopt gate.
+      source: docs/v0-2-review-feedback.md
+    - id: F-019
+      summary: Scope each cycle to one minimum viable outcome.
+      source: docs/v0-2-review-feedback.md
+    - id: F-020
+      summary: Discover and reuse organizational code; make new code modular and reusable.
+      source: docs/v0-2-review-feedback.md
+    - id: F-021
+      summary: Discover available and configured skills and capabilities before planning.
+      source: docs/v0-2-review-feedback.md
+    - id: F-022
+      summary: Add the neutral project kind, now supported by real-use evidence.
+      source: docs/v0-2-review-feedback.md
+    - id: F-023
+      summary: Apply an evidence-backed technical-quality gate to novice recommendations.
+      source: docs/v0-2-review-feedback.md
+    - id: F-024
+      summary: Use explicit standard versions as useful, testable stepping stones.
+      source: docs/v0-2-review-feedback.md
+    - id: F-025
+      summary: Have authors define expected results, examples, hypotheses, and controls.
+      source: docs/v0-2-review-feedback.md
 
 checkpoint:
-  date: 2026-09-14
-  status: review_in_progress_against_0_2_1
+  date: 2026-09-22
+  status: define_opened_for_next_iteration
   phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Review is open against v0.2.1, which incorporates Sean's feedback (AB-D033..037) under
-    AB-D038. Push with tags, update the installed plugin, make it Available for install per
-    docs/INSTALL.md, and observe Sean's next project: do the four problem questions get real
-    answers, does planning/later.md fill up, do typed approvals slow the click-through. Record
-    findings. Nothing beyond Review is authorized.
+    Ask the author what single problem the next iteration should solve. Establish the current
+    approach, value, beneficiaries, version-sized outcome, exclusions, and success evidence.
+    Do not select solutions or enter Plan without explicit author approval.

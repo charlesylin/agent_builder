@@ -247,13 +247,15 @@ Open for the next Define: which test commitments belong in Define versus Plan, w
 evidence every project kind must supply, and how unavailable or sensitive control data is
 recorded without weakening security rules.
 
-## Provisional Review classification
+## Review outcome
 
 These findings do not contradict v0.2's scoped deliverable: an installable skill, deterministic
 seeder and checker, generated governance, and tested phase behavior. They show that the next
 iteration must improve the quality and boundaries of the technical work that governance
-permits. The recommended classification is therefore **inputs to the next Define, not v0.2.1
-acceptance blockers**, subject to the author's explicit acceptance decision.
+permits. On 2026-09-22 the author confirmed that Sean completed the organization-install
+acceptance test on Windows, accepted v0.2.1, closed Review, and opened the next Define under
+AB-D039. F-018 through F-025 are therefore **inputs to the next Define, not v0.2.1 acceptance
+blockers**.
 
 The main themes for that Define are:
 
