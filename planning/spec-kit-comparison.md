@@ -48,12 +48,12 @@ download its manifest, so the local tagged bundle manifest was used for this off
 1. **Ignore Spec Kit.** Lowest immediate change, but knowingly miss tested patterns for
    counterevidence, stopping, thin MVP slices, Lean templates, and curated reuse. Not
    recommended.
-2. **Incorporate the relevant patterns into Agent Builder.** Recommended for this release,
-   with a deliberately narrow interpretation: strengthen its mandatory build-or-adopt gate,
-   independent testable slice, and plain human experience. Keep the accepted install path and
-   project lifecycle. Reference Spec Kit's MIT-licensed ideas; copy code only if a concrete
-   implementation need justifies it, with attribution and license review. Substantial
-   refactoring is allowed, not presumed.
+2. **Incorporate the relevant parts into Agent Builder.** Recommended for this release,
+   provisionally. The [component map](spec-kit-component-map.md) separates borrowing a
+   pattern from directly using a maintained Spec Kit component. Preserve the accepted entry
+   point and lifecycle; test the assessment workflow as the first possible direct-use seam.
+   Copy code only if a concrete implementation need justifies it, with attribution and
+   license review. Substantial refactoring is allowed, not presumed.
 3. **Stop Agent Builder and move to Spec Kit.** Plausible, not dismissed. Spec Kit overlaps
    strongly and has a larger maintained ecosystem. Do this only if a paired real-user pilot
    shows that a configured Spec Kit bundle/preset reaches the DepMap adopt-and-close case and
@@ -70,12 +70,16 @@ few consistent ways of presenting the output" (`docs/v0-2-skill-test.md`, Run 3)
 "help me build a little service that watches our S3 bucket for new FASTQs and kicks off the
 pipeline" (`evals/triggers-help-me-build/prompt.md`).
 
-For the decisive paired test, use fresh folders, the same Claude host and public-search
-access, and a Two River Bio member who has not read either tool's instructions. Configure
+First test whether a thin Agent Builder-to-Spec Kit assessment seam gives the required
+adopt-and-archive result without adding unacceptable setup or artifact overhead. If full
+replacement remains plausible, use a paired novice test with fresh folders, the same
+Claude host and public-search access, and a Two River Bio member who has not read either
+tool's instructions. Configure
 Spec Kit with the first-party assessment bundle and Lean preset; use the accepted Agent
 Builder installation for the other arm. Check whether each independently finds and verifies
 a suitable DepMap solution, recommends adoption and a no-build close, scopes the S3 watcher
 to one usable version, states its next action plainly, and avoids unjustified complexity.
-Record elapsed time, setup steps, user confusion, and artifacts. The author should confirm
-the exact DepMap skill collection they adopted so the test can check whether either system
-finds the right candidate. Keep Build closed until the author chooses the architecture.
+Record elapsed time, setup steps, user confusion, and artifacts. The author confirmed the
+adopted collection was [K-Dense's DepMap skills](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/depmap);
+the exact installed revision remains unknown. Check whether either system finds and assesses
+that candidate. Keep Build closed until the author chooses the architecture.

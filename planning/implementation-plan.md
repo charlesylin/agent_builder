@@ -2,8 +2,11 @@
 
 Status: proposed for author review. This plan does not authorize Build.
 Scope and success evidence: [definition.md](definition.md).
-The focused [Spec Kit comparison](spec-kit-comparison.md) updates the provisional
-build-or-adopt recommendation below after a tagged-release CLI smoke test.
+The focused [Spec Kit comparison](spec-kit-comparison.md) and
+[component map](spec-kit-component-map.md) update the provisional build-or-adopt
+recommendation below after a tagged-release CLI smoke test. In particular, direct use of
+Spec Kit's assessment workflow remains an open alternative to building the proposed short
+Agent Builder evidence record; no dependency choice has been confirmed.
 
 ## Build or adopt Agent Builder itself?
 
@@ -14,7 +17,7 @@ obligations would apply if source is copied later.
 
 | Candidate | Evidence | Fit for this version | Recommendation |
 | --- | --- | --- | --- |
-| [GitHub Spec Kit](https://github.com/github/spec-kit) | MIT; about 138k stars; tests and active releases ([v1.0.9, 2026-09-21](https://github.com/github/spec-kit/releases)). Its optional [assessment extension](https://github.github.io/spec-kit/guides/assessment.html) researches prior art, includes counterevidence, and can stop when a better alternative exists. Its core spec template supports independently testable MVP slices; Lean presets and organization-curated bundles reduce ceremony and support reuse. The [tagged-release smoke test](spec-kit-comparison.md) succeeded. | Substantial overlap, including neutral projects and a no-build outcome. The first-party assessment workflow can require research, although separate stage use does not; the stock decision does not record a distinct adopt-and-archive result. The tested CLI path adds installation and initialization to the accepted organization-plugin path. Its extension system could close these gaps, but that needs a comparative novice pilot. | Provisionally incorporate the relevant patterns into Agent Builder. Keep Spec Kit replacement open as a serious alternative until the pilot. |
+| [GitHub Spec Kit](https://github.com/github/spec-kit) | MIT; about 138k stars; tests and active releases ([v1.0.9, 2026-09-21](https://github.com/github/spec-kit/releases)). Its optional [assessment extension](https://github.github.io/spec-kit/guides/assessment.html) researches prior art, includes counterevidence, and can stop when a better alternative exists. Its core spec template supports independently testable MVP slices; Lean presets and organization-curated bundles reduce ceremony and support reuse. The [tagged-release smoke test](spec-kit-comparison.md) succeeded. | Substantial overlap, including neutral projects and a no-build outcome. The first-party assessment workflow can require research, although separate stage use does not; the stock decision does not record a distinct adopt-and-archive result. The tested CLI path adds installation and initialization to the accepted organization-plugin path. Its extension system could close these gaps, but that needs a comparative novice pilot. | Provisionally incorporate the relevant parts into Agent Builder. Test direct use of the assessment workflow before deciding whether to build the short evidence record; keep broader replacement open until a novice pilot. |
 | [OpenSpec](https://github.com/Fission-AI/OpenSpec) | MIT; about 70k stars; tests and active [releases](https://github.com/Fission-AI/OpenSpec/releases), including recent archive and security fixes. | Useful short spec and archive workflow. Its documented [setup](https://github.com/Fission-AI/OpenSpec/blob/main/docs/installation.md) requires Node.js 20.19+ and a CLI install; its archive follows a change workflow. The documented default does not require an existing-solution decision before Build or represent adoption as a completed project without a custom release. | Do not replace Agent Builder or add it as a dependency for v0.3.0. |
 | Agent Builder v0.2.1 | Organization-installed skill already passed the Windows novice acceptance test without separate setup; seeder, checker, template layers, project status, and single-source principles are in this repo and tested. | The missing behavior is bounded: a neutral kind, a decision before Build, a project release target, and a plainer human interface. | Extend the existing system. Recommend public tools directly to future project authors when they satisfy that project's need. |
 

@@ -88,8 +88,11 @@ The draft recommends extending the existing skill, seeder, checker, and template
 comparing GitHub Spec Kit and OpenSpec. A tagged Spec Kit v1.0.9 CLI/scaffold smoke test
 subsequently found more overlap than the first draft acknowledged, especially in prior-art
 research, stopping, MVP slices, and organization bundles. The revised draft provisionally
-recommends incorporating those patterns without a new dependency; a paired novice pilot
-would decide whether full replacement is better. Its architecture decision is proposed, not
+recommends incorporating the relevant parts while preserving Agent Builder's accepted
+front door and lifecycle. A [component map](../planning/spec-kit-component-map.md)
+identifies the assessment workflow as the first direct-reuse candidate and explains the
+upstream-update tradeoff. No new dependency is confirmed; a paired novice pilot would
+decide whether full replacement is better. The architecture decision is proposed, not
 confirmed. Build remains unapproved.
 
 The full review findings are in `docs/v0-2-review-feedback.md`. The confirmed scope above is
