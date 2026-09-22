@@ -4,20 +4,21 @@ Status: proposed for author review. This plan does not authorize Build.
 Scope and success evidence: [definition.md](definition.md).
 The focused [Spec Kit comparison](spec-kit-comparison.md) and
 [component map](spec-kit-component-map.md) update the provisional build-or-adopt
-recommendation below after a tagged-release CLI smoke test. In particular, direct use of
-Spec Kit's assessment workflow remains an open alternative to building the proposed short
-Agent Builder evidence record; no dependency choice has been confirmed.
+recommendation below after a tagged-release CLI smoke test. The author proposes a lean
+v0.3.0 without a Spec Kit dependency, followed by a separately defined v0.4.0 that uses
+Spec Kit as a maintained dependency for targeted replacements. This release split is still
+a Plan proposal, not Build authorization or a v0.4.0 scope confirmation.
 
 ## Build or adopt Agent Builder itself?
 
 Checked 2026-09-22 against the approved outcome, using the projects' own documentation and
 release records. GitHub stars indicate interest, not verified active use. No third-party
-source or runtime dependency is proposed for the Agent Builder release; MIT notice
-obligations would apply if source is copied later.
+source or runtime dependency is proposed for v0.3.0. No Spec Kit source is to be copied
+for this version.
 
 | Candidate | Evidence | Fit for this version | Recommendation |
 | --- | --- | --- | --- |
-| [GitHub Spec Kit](https://github.com/github/spec-kit) | MIT; about 138k stars; tests and active releases ([v1.0.9, 2026-09-21](https://github.com/github/spec-kit/releases)). Its optional [assessment extension](https://github.github.io/spec-kit/guides/assessment.html) researches prior art, includes counterevidence, and can stop when a better alternative exists. Its core spec template supports independently testable MVP slices; Lean presets and organization-curated bundles reduce ceremony and support reuse. The [tagged-release smoke test](spec-kit-comparison.md) succeeded. | Substantial overlap, including neutral projects and a no-build outcome. The first-party assessment workflow can require research, although separate stage use does not; the stock decision does not record a distinct adopt-and-archive result. The tested CLI path adds installation and initialization to the accepted organization-plugin path. Its extension system could close these gaps, but that needs a comparative novice pilot. | Provisionally incorporate the relevant parts into Agent Builder. Test direct use of the assessment workflow before deciding whether to build the short evidence record; keep broader replacement open until a novice pilot. |
+| [GitHub Spec Kit](https://github.com/github/spec-kit) | MIT; about 138k stars; tests and active releases ([v1.0.9, 2026-09-21](https://github.com/github/spec-kit/releases)). Its optional [assessment extension](https://github.github.io/spec-kit/guides/assessment.html) researches prior art, includes counterevidence, and can stop when a better alternative exists. Its core spec template supports independently testable MVP slices; Lean presets and organization-curated bundles reduce ceremony and support reuse. The [tagged-release smoke test](spec-kit-comparison.md) succeeded. | Substantial overlap, including neutral projects and a no-build outcome. The first-party assessment workflow can require research, although separate stage use does not; the stock decision does not record a distinct adopt-and-archive result. The tested CLI path adds installation and initialization to the accepted organization-plugin path. Its extension system could close these gaps, but that needs a comparative novice pilot. | Borrow only the relevant ideas for lean v0.3.0. Defer a maintained Spec Kit dependency and targeted substitutions to a separately defined v0.4.0. |
 | [OpenSpec](https://github.com/Fission-AI/OpenSpec) | MIT; about 70k stars; tests and active [releases](https://github.com/Fission-AI/OpenSpec/releases), including recent archive and security fixes. | Useful short spec and archive workflow. Its documented [setup](https://github.com/Fission-AI/OpenSpec/blob/main/docs/installation.md) requires Node.js 20.19+ and a CLI install; its archive follows a change workflow. The documented default does not require an existing-solution decision before Build or represent adoption as a completed project without a custom release. | Do not replace Agent Builder or add it as a dependency for v0.3.0. |
 | Agent Builder v0.2.1 | Organization-installed skill already passed the Windows novice acceptance test without separate setup; seeder, checker, template layers, project status, and single-source principles are in this repo and tested. | The missing behavior is bounded: a neutral kind, a decision before Build, a project release target, and a plainer human interface. | Extend the existing system. Recommend public tools directly to future project authors when they satisfy that project's need. |
 
@@ -40,7 +41,8 @@ level; no independent security audit was performed.
    what was searched and why. The skill must recommend adoption and ending the custom project
    when a candidate meets the need. After typed author confirmation, it records the adopted
    component and version, archives the project, and does not enter Build. No repository or
-   skill registry is hard-coded.
+   skill registry is hard-coded. The K-Dense DepMap example informs acceptance only; it adds
+   no package, skill installation, repository-specific rule, or preferred candidate.
 3. For work that continues, store a separate deliverable version target in project state;
    keep it distinct from `generated_by.version`. The skill asks what would make v0.1.0 usable,
    or what the next appropriate SemVer stepping stone is for an existing project, and records
@@ -79,11 +81,18 @@ behavior. No version bump or release tag occurs until the result is ready for Re
    record commands, outputs, and unknowns. Collect Two River Bio user feedback in Review.
    Bump release metadata together only when cutting v0.3.0 in the authorized release workflow.
 
+Spec Kit integration is excluded from this Build sequence. A later v0.4.0 Define/Plan should
+select a pinned upstream release, test the assessment workflow as the first replacement seam,
+and decide which other seams merit replacement without editing Spec Kit-managed files. It
+must verify the accepted Windows/no-separate-setup path and explicit upgrade behavior. This
+direction does not pre-authorize a v0.4.0 Build or a phase transition.
+
 ## Acceptance and limits
 
 - A `project` seed is validated and committed, with no agent or skill-specific files.
 - A DepMap-like skill request yields an evidence-backed adoption recommendation and, after
-  author confirmation, an archived project with no Build or invented project release.
+  author confirmation, an archived project with no Build or invented project release. The
+  capability is solution-agnostic; K-Dense is not encoded as a dependency or preferred answer.
 - A proposed browser side-load or similarly fragile shortcut is challenged with evidence and
   a simpler version-sized route.
 - A novice can explain status and next action without decoding IDs; the internal ledger remains

@@ -87,13 +87,14 @@ on 2026-09-22. Plan may research options and draft the architecture and implemen
 The draft recommends extending the existing skill, seeder, checker, and templates after
 comparing GitHub Spec Kit and OpenSpec. A tagged Spec Kit v1.0.9 CLI/scaffold smoke test
 subsequently found more overlap than the first draft acknowledged, especially in prior-art
-research, stopping, MVP slices, and organization bundles. The revised draft provisionally
-recommends incorporating the relevant parts while preserving Agent Builder's accepted
-front door and lifecycle. A [component map](../planning/spec-kit-component-map.md)
-identifies the assessment workflow as the first direct-reuse candidate and explains the
-upstream-update tradeoff. No new dependency is confirmed; a paired novice pilot would
-decide whether full replacement is better. The architecture decision is proposed, not
-confirmed. Build remains unapproved.
+research, stopping, MVP slices, and organization bundles. The revised draft records the
+author's proposed release split: a lean v0.3.0 using existing Agent Builder components,
+then a separately defined v0.4.0 integrating Spec Kit as a maintained dependency
+for targeted replacements. A [component map](../planning/spec-kit-component-map.md)
+identifies the assessment workflow as the first candidate and explains the upstream-update
+tradeoff. K-Dense was only an example of the build-or-adopt outcome, not a dependency or a
+hard-coded recommendation. The release split is proposed, not confirmed. Build remains
+unapproved.
 
 The full review findings are in `docs/v0-2-review-feedback.md`. The confirmed scope above is
 the boundary for this version. The proposed design, build slices, and acceptance cases are in
@@ -123,7 +124,6 @@ JSON parsing, and whitespace validation passed.
 
 ## Next action
 
-Confirm the exact DepMap skill collection the author adopted. If feasible, run the paired
-novice pilot described in `planning/spec-kit-comparison.md`, then ask the author to confirm or
-revise the proposed architecture in `planning/implementation-plan.md`. Implementation requires
-separate Build authorization.
+Ask the author to confirm or revise the proposed lean-v0.3.0 / Spec-Kit-dependent-v0.4.0
+release split in `planning/implementation-plan.md`. Do not make K-Dense part of the build.
+Implementation requires separate Build authorization; v0.4.0 receives its own Define and Plan.

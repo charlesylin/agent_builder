@@ -61,10 +61,11 @@ project without claiming a new project release.
 The main real-use case is a DepMap-like request. Agent Builder identifies a suitable public
 solution, records evidence of fit, utilization, maintenance, testing, security history, and
 license obligations, recommends adoption, and archives the project after typed author
-confirmation without entering Build. Additional Two River Bio feedback should show at least
-one of: a shorter path to a useful outcome, more evidence-backed adoption recommendations, or
-effective pushback that reduces product sprawl. Do not invent numerical thresholds before a
-baseline exists.
+confirmation without entering Build. This is an example of the required decision behavior,
+not a named skill or vendor to build into Agent Builder. Additional Two River Bio feedback
+should show at least one of: a shorter path to a useful outcome, more evidence-backed
+adoption recommendations, or effective pushback that reduces product sprawl. Do not invent
+numerical thresholds before a baseline exists.
 
 In real use, a member should understand status, important decisions, and next action without
 decoding internal identifiers. Each approval should have a concrete consequence, and user

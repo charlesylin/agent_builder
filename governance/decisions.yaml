@@ -591,24 +591,26 @@ decisions:
     status: proposed
     date: 2026-09-22
     decision: >-
-      For v0.3.0, provisionally extend the existing Agent Builder skill, seeder, checker, and
-      templates while incorporating the relevant Spec Kit assessment and MVP-slicing
-      patterns, rather than ignoring Spec Kit or replacing Agent Builder immediately. Add a
-      neutral project kind, one common build-or-adopt evidence record and Plan exit gate for
-      new projects, independent deliverable version targets, evidence-backed technical-quality
-      guidance, and plain human-facing status while retaining structured machine records.
-      Reconsider replacement after a paired novice pilot of both configured systems.
+      Deliver a lean v0.3.0 using Agent Builder's existing skill, seeder, checker, and templates
+      for the confirmed project-mode scope. Do not add Spec Kit as a dependency or copy its
+      source into v0.3.0. Use relevant assessment and MVP-slicing ideas without importing
+      Spec Kit's workflow. After v0.3.0 is reviewed, define a v0.4.0 iteration that integrates
+      Spec Kit as a maintained, pinned dependency and makes targeted replacements where
+      evidence shows a simpler, better-supported user experience. Keep Agent Builder's
+      distinctive entry point, project lifecycle, and deterministic validation unless a
+      later test supports replacing them.
     rationale: >-
       A tagged Spec Kit v1.0.9 CLI smoke test showed substantial overlap: prior-art and
       counterevidence research, a documented stop when a better alternative exists,
       independently testable MVP slices, and curated bundles. It also confirmed that the
-      tested path requires CLI installation and initialization. Its first-party workflow can
-      require research, but the stock decision does not record Agent Builder's distinct
-      adopt-and-archive lifecycle.
-      Agent Builder's organization-installed novice path is already accepted, and its existing
-      template layers and checker can carry the bounded v0.3.0 behavior without a new runtime
-      dependency. This is a provisional judgment pending author review and real-user comparison,
-      not a claim that Spec Kit is generally inferior.
-    provenance: plan_recommendation_pending_author_review
+      tested path requires CLI installation and initialization. Agent Builder's
+      organization-installed novice path is already accepted, and its existing template layers
+      and checker can carry the bounded v0.3.0 behavior without a new dependency. Deferring
+      integration avoids making v0.3.0 carry both project-mode work and a distribution/migration
+      change. A maintained Spec Kit dependency in a later version would reduce the lag inherent
+      in copying ideas, but only if upgrade and compatibility behavior are tested. The author's
+      K-Dense DepMap experience is an illustrative adoption case, not a product dependency or
+      a hard-coded candidate.
+    provenance: author_proposal_during_plan_pending_confirmation
     record: planning/implementation-plan.md
     comparison: planning/spec-kit-comparison.md

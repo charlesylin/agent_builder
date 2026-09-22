@@ -48,12 +48,11 @@ download its manifest, so the local tagged bundle manifest was used for this off
 1. **Ignore Spec Kit.** Lowest immediate change, but knowingly miss tested patterns for
    counterevidence, stopping, thin MVP slices, Lean templates, and curated reuse. Not
    recommended.
-2. **Incorporate the relevant parts into Agent Builder.** Recommended for this release,
-   provisionally. The [component map](spec-kit-component-map.md) separates borrowing a
-   pattern from directly using a maintained Spec Kit component. Preserve the accepted entry
-   point and lifecycle; test the assessment workflow as the first possible direct-use seam.
-   Copy code only if a concrete implementation need justifies it, with attribution and
-   license review. Substantial refactoring is allowed, not presumed.
+2. **Incorporate the relevant parts into Agent Builder.** The author's proposed release
+   sequence makes this two steps: borrow useful research and MVP-slicing ideas in lean v0.3.0
+   without a Spec Kit dependency or source copy; in a separately defined v0.4.0, integrate
+   a maintained Spec Kit dependency and test targeted substitutions. The
+   [component map](spec-kit-component-map.md) identifies the seams and upgrade tradeoffs.
 3. **Stop Agent Builder and move to Spec Kit.** Plausible, not dismissed. Spec Kit overlaps
    strongly and has a larger maintained ecosystem. Do this only if a paired real-user pilot
    shows that a configured Spec Kit bundle/preset reaches the DepMap adopt-and-close case and
@@ -63,23 +62,24 @@ download its manifest, so the local tagged bundle manifest was used for this off
 ## Decision limit
 
 This was a CLI smoke test plus inspection of the tagged workflow, not a head-to-head novice
-behavior test. It supports option 2 as the provisional v0.3.0 plan but does not establish
-that Agent Builder is superior. The repository already records two usable pilot prompts:
+behavior test. It supports the proposed release sequence but does not establish that Agent
+Builder is superior. The repository already records two usable pilot prompts:
 "i want to make a thing that can quickly retrieve depmap data and deploy it org wide with a
 few consistent ways of presenting the output" (`docs/v0-2-skill-test.md`, Run 3), and
 "help me build a little service that watches our S3 bucket for new FASTQs and kicks off the
 pipeline" (`evals/triggers-help-me-build/prompt.md`).
 
-First test whether a thin Agent Builder-to-Spec Kit assessment seam gives the required
-adopt-and-archive result without adding unacceptable setup or artifact overhead. If full
-replacement remains plausible, use a paired novice test with fresh folders, the same
-Claude host and public-search access, and a Two River Bio member who has not read either
-tool's instructions. Configure
-Spec Kit with the first-party assessment bundle and Lean preset; use the accepted Agent
-Builder installation for the other arm. Check whether each independently finds and verifies
+For v0.4.0 planning, first test whether a thin Agent Builder-to-Spec Kit assessment seam
+gives the required adopt-and-archive result without adding unacceptable setup or artifact
+overhead. If broader replacement remains plausible, use a paired novice test with fresh
+folders, the same Claude host and public-search access, and a Two River Bio member who has
+not read either tool's instructions. Configure Spec Kit with the first-party assessment
+bundle and Lean preset; use the accepted Agent Builder installation for the other arm.
+Check whether each independently finds and verifies
 a suitable DepMap solution, recommends adoption and a no-build close, scopes the S3 watcher
 to one usable version, states its next action plainly, and avoids unjustified complexity.
-Record elapsed time, setup steps, user confusion, and artifacts. The author confirmed the
-adopted collection was [K-Dense's DepMap skills](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/depmap);
-the exact installed revision remains unknown. Check whether either system finds and assesses
-that candidate. Keep Build closed until the author chooses the architecture.
+Record elapsed time, setup steps, user confusion, and artifacts. The author's earlier
+[K-Dense DepMap adoption](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/depmap)
+is an illustrative historical case, not an Agent Builder dependency, integration target, or
+canned expected answer. Any real comparison must assess candidate fit independently.
+Keep Build closed until the author approves a release plan and phase transition.

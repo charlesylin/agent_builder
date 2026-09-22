@@ -6,10 +6,10 @@ Status: Plan-phase component audit, not a dependency or migration decision. Chec
 The tagged CLI was smoke-tested in a disposable directory, but no novice ran the
 assessment workflow. See [the comparison](spec-kit-comparison.md) for test limits.
 
-The real DepMap example used [K-Dense's DepMap skill](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/depmap),
-as confirmed by the author. The installed revision and its suitability for a new user's
-requirements have not been independently verified here. It is a reference case, not an
-automatic adoption recommendation for every DepMap request.
+The author's past DepMap example used
+[K-Dense's DepMap skill](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/depmap).
+That is only an example of a successful no-build decision. It is not part of Agent Builder's
+implementation, a required dependency, or a preferred answer to future DepMap requests.
 
 ## Component-level fit
 
@@ -45,11 +45,10 @@ the parts we only borrow as ideas.
 
 ## Recommendation for this Plan
 
-Do not replace Agent Builder's front door, lifecycle, seeder, or deterministic checker in
-v0.3.0 on the current evidence. Keep direct reuse of Spec Kit's **assessment workflow** open
-as the first, bounded substitution to test against the proposed short Agent Builder
-build-or-adopt record. The comparison should measure setup and time to a trustworthy
-adopt-and-archive outcome for the K-Dense DepMap case, not just the number of features or
-artifacts. If that substitution does not make the novice path simpler, borrow its research
-and counterevidence pattern and explicitly review upstream at subsequent release planning.
+Do not add Spec Kit as a v0.3.0 dependency or replace Agent Builder's front door, lifecycle,
+seeder, or deterministic checker in that release. The author proposes a lean v0.3.0, then a
+separately defined v0.4.0 that uses Spec Kit as a maintained dependency rather than copying
+its source. Test the **assessment workflow** as the first bounded substitution; evaluate
+other replacements against setup burden, upgrade behavior, and the accepted novice path.
+Use solution-agnostic adoption cases, not a K-Dense-specific integration or canned answer.
 No Build-phase work is authorized by this map.

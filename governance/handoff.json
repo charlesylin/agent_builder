@@ -5,7 +5,7 @@
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.2 is accepted at release 0.2.1. The author confirmed the v0.3.0 definition and opened Plan. A tagged Spec Kit v1.0.9 CLI smoke test found substantial overlap with Agent Builder. The revised plan provisionally recommends incorporating useful Spec Kit patterns while keeping replacement open pending a paired novice pilot. Its architecture decision awaits author review; Build remains unapproved.",
+  "summary": "Agent Builder v0.2 is accepted at release 0.2.1. The author confirmed the v0.3.0 definition and opened Plan. A tagged Spec Kit v1.0.9 CLI smoke test found substantial overlap. The author now proposes a lean v0.3.0 using existing Agent Builder components, followed by a separately defined v0.4.0 with Spec Kit as a maintained dependency and targeted replacements. K-Dense DepMap is only an example of the no-build outcome, not a product dependency. The architecture remains proposed; Build is unapproved.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -70,7 +70,7 @@
     {
       "id": "AB-D047",
       "status": "proposed",
-      "summary": "Provisionally extend Agent Builder using relevant Spec Kit assessment and MVP patterns; consider replacement after a paired novice pilot. The architecture remains proposed."
+      "summary": "Proposed release split: lean v0.3.0 without Spec Kit dependency or source copy, then separately define v0.4.0 with a maintained Spec Kit dependency and targeted replacements. The architecture remains proposed."
     }
   ],
   "artifacts": [
@@ -107,6 +107,10 @@
       "media_type": "text/markdown"
     },
     {
+      "path": "planning/spec-kit-component-map.md",
+      "media_type": "text/markdown"
+    },
+    {
       "path": "docs/v0-2-acceptance.md",
       "media_type": "text/markdown"
     },
@@ -117,7 +121,7 @@
   ],
   "blockers": [],
   "questions": [
-    "Which exact DepMap skill collection and version did the author adopt, so a paired novice pilot can check discovery and fit?"
+    "Does the author confirm the proposed release split: lean v0.3.0 without Spec Kit dependency, then a separately defined v0.4.0 with Spec Kit as a maintained dependency for targeted replacement?"
   ],
-  "next_action": "Confirm the exact adopted DepMap skill collection, run a paired novice pilot if feasible, then resolve the proposed architecture decision with the author. Do not implement before Build authorization."
+  "next_action": "Ask the author to confirm or revise the proposed release split. Keep K-Dense as an example only. Do not implement before Build authorization; define v0.4.0 separately after v0.3.0 review."
 }

@@ -186,6 +186,6 @@ checkpoint:
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Confirm the exact adopted DepMap skill collection, run a paired novice pilot if feasible,
-    then resolve the proposed architecture decision with the author. Do not implement or enter
-    Build without explicit authorization.
+    Ask the author to confirm or revise the proposed lean v0.3.0 / Spec-Kit-dependent v0.4.0
+    release split. Keep K-Dense an example, not a build dependency. Do not implement or enter
+    Build without explicit authorization; v0.4.0 needs its own Define and Plan.
