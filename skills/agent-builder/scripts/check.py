@@ -76,6 +76,21 @@ _SECRET_PATTERNS = {
 }
 _FORBIDDEN_SECRET_FILES = {".env", ".env.local", ".env.production"}
 _TOKEN = re.compile(r"\{\{[A-Z0-9_]+\}\}")
+_VERSION = re.compile(r"^(\d+)\.(\d+)\.(\d+)(?:[-+].*)?$")
+_SOLUTION_FIELDS = (
+    "Need",
+    "Search date",
+    "Public sources searched",
+    "User-provided codebases checked",
+    "Candidate fit",
+    "Utilization and maintenance",
+    "Tests and security history",
+    "License obligations",
+    "Setup and operating burden",
+    "Evidence-backed reason",
+    "Author confirmation",
+)
+_SOLUTION_LINE = re.compile(r"^- ([A-Za-z][A-Za-z -]+):[ \t]*(.*)$", re.MULTILINE)
 
 
 @dataclass(frozen=True)
@@ -144,6 +159,74 @@ def _scan_text_files(root: Path, issues: list[ValidationIssue]) -> None:
                 issues.append(ValidationIssue("possible-secret", f"matched {name}", relative))
 
 
+def _uses_solution_gate(manifest: object) -> bool:
+    """Keep pre-0.3 agent and skill projects on their original contract."""
+    if not isinstance(manifest, dict):
+        return False
+    if manifest.get("kind") == "project":
+        return True  # The neutral kind first ships with this gate.
+    version = manifest.get("template_version")
+    match = _VERSION.fullmatch(version) if isinstance(version, str) else None
+    return bool(match and tuple(map(int, match.groups())) >= (0, 3, 0))
+
+
+def _solution_record_issues(root: Path, state: str, ledger: str) -> tuple[ValidationIssue, ...]:
+    path = root / "planning/solution-evaluation.md"
+    if not path.is_file():
+        return (ValidationIssue("missing-solution-evaluation", "record build-or-adopt evidence", path),)
+
+    fields = dict(_SOLUTION_LINE.findall(path.read_text(encoding="utf-8")))
+    issues: list[ValidationIssue] = []
+    for name in _SOLUTION_FIELDS:
+        value = fields.get(name, "").strip()
+        if not value or value.startswith("(not yet"):
+            issues.append(ValidationIssue("missing-solution-evidence", f"fill in {name}", path))
+
+    outcome = fields.get("Outcome", "").strip().lower()
+    if outcome not in {"adopt", "adapt", "build"}:
+        issues.append(
+            ValidationIssue("missing-solution-decision", "choose adopt, adapt, or build", path)
+        )
+    decision_id = fields.get("Decision record", "").strip()
+    if not decision_id or decision_id.startswith("(not yet"):
+        issues.append(
+            ValidationIssue("missing-decision-record", "name the confirmed decision record", path)
+        )
+    else:
+        entries = list(_DECISION_ID.finditer(ledger))
+        statuses = {}
+        for index, entry in enumerate(entries):
+            end = entries[index + 1].start() if index + 1 < len(entries) else len(ledger)
+            match = _DECISION_STATUS.search(ledger, entry.end(), end)
+            statuses[entry.group(1)] = match.group(1) if match else None
+        if statuses.get(decision_id) != "confirmed":
+            issues.append(
+                ValidationIssue(
+                    "unconfirmed-solution-decision",
+                    f"{decision_id} must be confirmed in governance/decisions.yaml",
+                    root / "governance/decisions.yaml",
+                )
+            )
+    if outcome == "adopt":
+        adopted = fields.get("Adopted solution and version", "").strip().lower()
+        if not adopted or adopted == "not applicable" or adopted.startswith("(not yet"):
+            issues.append(
+                ValidationIssue(
+                    "missing-adopted-version", "name the adopted solution and its version", path
+                )
+            )
+        status = _STATUS_LINE.search(state)
+        if not status or status.group(1) != "archived":
+            issues.append(
+                ValidationIssue(
+                    "adoption-not-archived",
+                    "archive the project after author confirmation; do not enter Build",
+                    root / "governance/project-state.yaml",
+                )
+            )
+    return tuple(issues)
+
+
 def validate_project(root: str | Path) -> tuple[ValidationIssue, ...]:
     """Return structural and secret-safety issues without mutating the project."""
 
@@ -176,6 +259,17 @@ def validate_project(root: str | Path) -> tuple[ValidationIssue, ...]:
             issues.append(
                 ValidationIssue("missing-file", "required scaffold file is missing", relative)
             )
+
+    if _uses_solution_gate(manifest) and not (
+        project_root / "planning/solution-evaluation.md"
+    ).is_file():
+        issues.append(
+            ValidationIssue(
+                "missing-file",
+                "required build-or-adopt record is missing",
+                Path("planning/solution-evaluation.md"),
+            )
+        )
 
     if isinstance(manifest, dict):
         adapters = manifest.get("coding_agent_adapters")
@@ -241,9 +335,9 @@ def validate_project(root: str | Path) -> tuple[ValidationIssue, ...]:
                     state_path,
                 )
             )
-        if "  current: define\n" not in state:
+        if not re.search(r"^  current: (?:define|plan|build|review)$", state, re.MULTILINE):
             issues.append(
-                ValidationIssue("invalid-phase", "new projects must start in Define", state_path)
+                ValidationIssue("invalid-phase", "project must have a recognized phase", state_path)
             )
 
     gitignore_path = project_root / ".gitignore"
@@ -358,6 +452,13 @@ def phase_exit_issues(root: str | Path, phase: str) -> tuple[ValidationIssue, ..
                             definition_path,
                         )
                     )
+    elif phase == "plan":
+        manifest_path = project_root / ".agent-builder.json"
+        manifest = _load_json(manifest_path, issues) if manifest_path.is_file() else None
+        if _uses_solution_gate(manifest):
+            state = state_path.read_text(encoding="utf-8") if state_path.is_file() else ""
+            ledger = ledger_path.read_text(encoding="utf-8") if ledger_path.is_file() else ""
+            issues.extend(_solution_record_issues(project_root, state, ledger))
     return tuple(issues)
 
 

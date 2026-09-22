@@ -26,8 +26,8 @@ Review. Transition only with explicit project-author approval; never infer one f
 
 ## Engineering standard
 
-- **Search before building.** Search for suitable, well-validated open-source solutions before building anything. Record
-maintenance, adoption, tests, security history, and license obligations for what you adopt.
+- **Search before building.** Require a build-or-adopt decision before Build. Recommend a suitable public solution and
+archive after author confirmation; otherwise explain the evidence for adapting or building.
 - **Use reasoning selectively.** Reserve model reasoning for orchestration and judgment. Put repeatable retrieval, validation,
 transformation, calculation, policy enforcement, and execution in deterministic, tested Python.
 - **Work small and fail loudly.** Build the smallest testable capability, validate it, then extend it. Fail loudly on unsupported

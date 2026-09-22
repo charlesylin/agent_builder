@@ -21,6 +21,7 @@ does not assume an agent runtime, skill manifest, application language, or deplo
 questions), `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `CHANGELOG.md`, `.gitignore`,
 `.env.example`, `.agent-builder.json` (kind, owner, template version, adapters), a CI workflow,
 Dependabot config, and one instruction file per selected host.
+The base planning layer also seeds a short build-or-adopt evidence record for the Plan gate.
 
 ## agent adds
 

@@ -137,7 +137,7 @@ or `governance/handoff.json`, treat it as a claim to reconcile with the files, n
 | Phase | You may | You may not |
 | --- | --- | --- |
 | Define | ask, clarify, write `planning/open-questions.md` and `planning/definition.md`, record decisions | select a runtime, write code, design contracts |
-| Plan | research options, write `planning/architecture.md` and `implementation-plan.md`, propose decisions | implement |
+| Plan | research existing solutions, record a build-or-adopt decision, write only the architecture and implementation plan needed for the version, propose decisions | implement |
 | Build | implement only what the approved plan says, in small tested increments | expand scope, skip tests |
 | Review | exercise the result realistically, collect feedback, write acceptance criteria | start the next iteration's build |
 
@@ -154,6 +154,19 @@ did — one line. Do not ask whether to add it. A person who says "sure" to a su
 not decided anything; only a request in their own words moves an item out of `later.md`, and
 then it becomes a decision. Novices in particular say yes to everything; the kindest thing
 you can do is offer less.
+
+**Build or adopt before Build.** During Plan, use `planning/solution-evaluation.md` to search
+the public domain for an existing solution. Ask whether the person has an organizational or
+other codebase to consider; do not hard-code one. Assess actual fit, use, maintenance, tests,
+security history, license obligations, and setup burden, citing what was checked and when.
+Compare `adopt`, `adapt`, and `build`. If a suitable public skill or tool meets the need,
+recommend using it and ending this custom project. Do not pitch a bespoke build merely to
+keep the project alive. Ask the author to confirm the outcome in their own words, then record
+the consequential decision. For `adopt`, name the adopted component and version, set
+`project.status: archived` with the reason and confirming author in phase history, and keep
+`phase.current: plan`. Do not enter Build or assign this project a release. For `adapt` or
+`build`, explain the gap the existing options leave and what will be reused. The checker
+ensures the evidence fields are present; you must assess whether they are credible.
 
 **Approval is typed, never clicked.** For the decisions that shape the project — the purpose,
 the smallest version, a phase change, seeding, creating a remote, and any grant of authority
@@ -180,7 +193,8 @@ Plan", "enter Build", "close Review". "Looks good", "great, next", or silence is
 ask, and ask for typed words, not a menu pick. Before you ask, run
 `python3 <this-skill-folder>/scripts/check.py . --leaving <old-phase>`. It refuses while any
 decision is still `proposed`, and refuses to leave Define while any answer in
-`planning/definition.md` is `(not yet answered)`. Resolve what it lists — with the person,
+`planning/definition.md` is `(not yet answered)`. For projects seeded with v0.3.0 or later,
+it also refuses to close Plan without a completed build-or-adopt record. Resolve what it lists — with the person,
 not by editing statuses yourself — and run it again. When it passes and the author approves:
 
 1. Add a history entry to `governance/project-state.yaml` with the new phase, the date, and

@@ -566,7 +566,135 @@ class ReviewFeedbackTests(unittest.TestCase):
             with self.subTest(path=path.name):
                 text = path.read_text(encoding="utf-8")
                 self.assertIn("you got this!", text)
-                self.assertIn("frustrat", text)
+            self.assertIn("frustrat", text)
+
+
+class BuildOrAdoptTests(unittest.TestCase):
+    """The v0.3 gate distinguishes evidence, a confirmed decision, and archiving."""
+
+    def _planned(self, directory: str, *, kind: str = "project") -> Path:
+        target = Path(directory) / "candidate"
+        spec = ProjectSpec.create(name="Candidate", purpose="Meet one need.", kind=kind)
+        create_project(target, spec, generated_at=GENERATED_AT)
+        state_path = target / "governance/project-state.yaml"
+        state_path.write_text(
+            state_path.read_text(encoding="utf-8").replace("  current: define\n", "  current: plan\n"),
+            encoding="utf-8",
+        )
+        ledger_path = target / "governance/decisions.yaml"
+        ledger_path.write_text(
+            ledger_path.read_text(encoding="utf-8").replace("status: proposed", "status: rejected"),
+            encoding="utf-8",
+        )
+        return target
+
+    def _record(self, target: Path, outcome: str) -> None:
+        path = target / "planning/solution-evaluation.md"
+        text = path.read_text(encoding="utf-8")
+        values = {
+            "Need": "Read an existing dependency dataset.",
+            "Search date": "2026-09-22",
+            "Public sources searched": "Public skill registry and GitHub; links recorded in notes.",
+            "User-provided codebases checked": "None offered by the author.",
+            "Candidate fit": "A maintained skill covers the requested read-only workflow.",
+            "Utilization and maintenance": "Releases this year and visible community usage.",
+            "Tests and security history": "CI tests pass; security history reviewed.",
+            "License obligations": "MIT; retain notice.",
+            "Setup and operating burden": "Install one skill; no service to run.",
+            "Evidence-backed reason": "Existing skill is a smaller path to the same outcome.",
+            "Author confirmation": "The author typed approval of this recommendation.",
+            "Decision record": "candidate-D003",
+        }
+        for field, value in values.items():
+            text = re.sub(rf"^- {re.escape(field)}: .*?$", f"- {field}: {value}", text, flags=re.M)
+        text = text.replace("- Outcome: pending", f"- Outcome: {outcome}")
+        if outcome == "adopt":
+            text = text.replace(
+                "- Adopted solution and version: not applicable",
+                "- Adopted solution and version: Public Skill 1.2.0",
+            )
+        path.write_text(text, encoding="utf-8")
+        ledger_path = target / "governance/decisions.yaml"
+        ledger_path.write_text(
+            ledger_path.read_text(encoding="utf-8")
+            + "  - id: candidate-D003\n"
+            + "    status: confirmed\n"
+            + f"    decision: {outcome} the available solution.\n"
+            + "    confirmed_by: author\n",
+            encoding="utf-8",
+        )
+
+    def test_missing_evidence_blocks_plan_exit(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = self._planned(directory)
+            codes = {issue.code for issue in phase_exit_issues(target, "plan")}
+            self.assertIn("missing-solution-evidence", codes)
+            self.assertIn("missing-solution-decision", codes)
+            self.assertIn("missing-decision-record", codes)
+            self.assertEqual(validate_project(target), ())
+
+    def test_adoption_requires_version_and_archived_status(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = self._planned(directory)
+            self._record(target, "adopt")
+            codes = {issue.code for issue in phase_exit_issues(target, "plan")}
+            self.assertEqual(codes, {"adoption-not-archived"})
+            state_path = target / "governance/project-state.yaml"
+            state_path.write_text(
+                state_path.read_text(encoding="utf-8").replace("  status: active\n", "  status: archived\n"),
+                encoding="utf-8",
+            )
+            self.assertEqual(phase_exit_issues(target, "plan"), ())
+            self.assertEqual(validate_project(target), ())
+            self.assertIn("  current: plan\n", state_path.read_text(encoding="utf-8"))
+            record = target / "planning/solution-evaluation.md"
+            record.write_text(
+                record.read_text(encoding="utf-8").replace(
+                    "Public Skill 1.2.0", "not applicable"
+                ),
+                encoding="utf-8",
+            )
+            self.assertIn(
+                "missing-adopted-version",
+                {issue.code for issue in phase_exit_issues(target, "plan")},
+            )
+
+    def test_adapt_and_build_pass_with_a_completed_record(self) -> None:
+        for outcome in ("adapt", "build"):
+            with self.subTest(outcome=outcome), tempfile.TemporaryDirectory() as directory:
+                target = self._planned(directory)
+                self._record(target, outcome)
+                self.assertEqual(phase_exit_issues(target, "plan"), ())
+
+                ledger_path = target / "governance/decisions.yaml"
+                ledger_path.write_text(
+                    ledger_path.read_text(encoding="utf-8").replace(
+                        "  - id: candidate-D003\n    status: confirmed",
+                        "  - id: candidate-D003\n    status: rejected",
+                    ),
+                    encoding="utf-8",
+                )
+                self.assertIn(
+                    "unconfirmed-solution-decision",
+                    {issue.code for issue in phase_exit_issues(target, "plan")},
+                )
+
+    def test_old_agent_projects_are_not_retroactively_gated(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = self._planned(directory, kind="agent")
+            (target / "planning/solution-evaluation.md").unlink()
+            self.assertEqual(phase_exit_issues(target, "plan"), ())
+            self.assertEqual(validate_project(target), ())
+
+            manifest_path = target / ".agent-builder.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["template_version"] = "0.3.0"
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+            self.assertIn(
+                "missing-solution-evaluation",
+                {issue.code for issue in phase_exit_issues(target, "plan")},
+            )
+            self.assertIn("missing-file", {issue.code for issue in validate_project(target)})
 
 
 if __name__ == "__main__":
