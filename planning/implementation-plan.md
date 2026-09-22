@@ -1,13 +1,14 @@
 # Agent Builder v0.3.0 plan
 
-Status: proposed for author review. This plan does not authorize Build.
+Status: confirmed by the author; Build and a phase transition still require separate authorization.
 Scope and success evidence: [definition.md](definition.md).
 The focused [Spec Kit comparison](spec-kit-comparison.md) and
-[component map](spec-kit-component-map.md) update the provisional build-or-adopt
-recommendation below after a tagged-release CLI smoke test. The author proposes a lean
+[component map](spec-kit-component-map.md) document the build-or-adopt evidence from a
+tagged-release CLI smoke test. The author confirmed a lean
 v0.3.0 without a Spec Kit dependency, followed by a separately defined v0.4.0 that uses
-Spec Kit as a maintained dependency for targeted replacements. This release split is still
-a Plan proposal, not Build authorization or a v0.4.0 scope confirmation.
+Spec Kit as a maintained dependency for targeted replacements. Windows-specific compatibility
+is not a gate for that integration. This confirmation is not Build authorization or a v0.4.0
+scope confirmation.
 
 ## Build or adopt Agent Builder itself?
 
@@ -20,7 +21,7 @@ for this version.
 | --- | --- | --- | --- |
 | [GitHub Spec Kit](https://github.com/github/spec-kit) | MIT; about 138k stars; tests and active releases ([v1.0.9, 2026-09-21](https://github.com/github/spec-kit/releases)). Its optional [assessment extension](https://github.github.io/spec-kit/guides/assessment.html) researches prior art, includes counterevidence, and can stop when a better alternative exists. Its core spec template supports independently testable MVP slices; Lean presets and organization-curated bundles reduce ceremony and support reuse. The [tagged-release smoke test](spec-kit-comparison.md) succeeded. | Substantial overlap, including neutral projects and a no-build outcome. The first-party assessment workflow can require research, although separate stage use does not; the stock decision does not record a distinct adopt-and-archive result. The tested CLI path adds installation and initialization to the accepted organization-plugin path. Its extension system could close these gaps, but that needs a comparative novice pilot. | Borrow only the relevant ideas for lean v0.3.0. Defer a maintained Spec Kit dependency and targeted substitutions to a separately defined v0.4.0. |
 | [OpenSpec](https://github.com/Fission-AI/OpenSpec) | MIT; about 70k stars; tests and active [releases](https://github.com/Fission-AI/OpenSpec/releases), including recent archive and security fixes. | Useful short spec and archive workflow. Its documented [setup](https://github.com/Fission-AI/OpenSpec/blob/main/docs/installation.md) requires Node.js 20.19+ and a CLI install; its archive follows a change workflow. The documented default does not require an existing-solution decision before Build or represent adoption as a completed project without a custom release. | Do not replace Agent Builder or add it as a dependency for v0.3.0. |
-| Agent Builder v0.2.1 | Organization-installed skill already passed the Windows novice acceptance test without separate setup; seeder, checker, template layers, project status, and single-source principles are in this repo and tested. | The missing behavior is bounded: a neutral kind, a decision before Build, a project release target, and a plainer human interface. | Extend the existing system. Recommend public tools directly to future project authors when they satisfy that project's need. |
+| Agent Builder v0.2.1 | Organization-installed skill passed its accepted novice test; seeder, checker, template layers, project status, and single-source principles are in this repo and tested. | The missing behavior is bounded: a neutral kind, a decision before Build, a project release target, and a plainer human interface. | Extend the existing system. Recommend public tools directly to future project authors when they satisfy that project's need. |
 
 This is a recommendation for this version, not a claim that either public tool is generally
 inferior. Spec Kit v1.0.9 was installed in a disposable environment for CLI and scaffold
@@ -84,8 +85,8 @@ behavior. No version bump or release tag occurs until the result is ready for Re
 Spec Kit integration is excluded from this Build sequence. A later v0.4.0 Define/Plan should
 select a pinned upstream release, test the assessment workflow as the first replacement seam,
 and decide which other seams merit replacement without editing Spec Kit-managed files. It
-must verify the accepted Windows/no-separate-setup path and explicit upgrade behavior. This
-direction does not pre-authorize a v0.4.0 Build or a phase transition.
+must verify explicit upgrade and compatibility behavior. Windows-specific compatibility is
+not a gate. This direction does not pre-authorize a v0.4.0 Build or a phase transition.
 
 ## Acceptance and limits
 

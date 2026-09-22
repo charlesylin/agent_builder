@@ -1,7 +1,8 @@
 # Where Spec Kit could fit Agent Builder
 
-Status: Plan-phase component audit, not a dependency or migration decision. Checked
-2026-09-22 against [Spec Kit v1.0.9](https://github.com/github/spec-kit/releases/tag/v1.0.9)
+Status: Plan-phase component audit; the release split is confirmed, but v0.4.0 substitutions
+remain to be defined and tested. Checked 2026-09-22 against
+[Spec Kit v1.0.9](https://github.com/github/spec-kit/releases/tag/v1.0.9)
 (`3b895d16bd55a0cdaad16d086ffc6b10eef34614`) and Agent Builder v0.2.1.
 The tagged CLI was smoke-tested in a disposable directory, but no novice ran the
 assessment workflow. See [the comparison](spec-kit-comparison.md) for test limits.
@@ -15,8 +16,8 @@ implementation, a required dependency, or a preferred answer to future DepMap re
 
 | Agent Builder responsibility today or in the v0.3.0 draft | Spec Kit counterpart | Fit and boundary |
 | --- | --- | --- |
-| Organization-installed skill, Claude offer hook, pre-seed novice conversation | Per-project `specify init` and a coding-agent integration | **Keep Agent Builder's entry point for now.** The accepted Windows test began without a separate local setup. Spec Kit's tested path needed CLI installation, initialization, and explicit assessment enablement. Central installation might close the gap, but has not been tested. |
-| Seed and commit agent/skill projects with base, kind, and host-adapter layers | General project initializer, coding-agent integrations, optional [Git extension](https://github.com/github/spec-kit/tree/v1.0.9/extensions/git) | **Possible later replacement for neutral project scaffolding**, not a drop-in for all kinds. Spec Kit can seed a neutral project. Its Git extension can initialize and commit, but auto-commit is disabled by default and the tested `init` did neither. Agent/skill-specific files and the one-session seeded/validated/committed outcome still need a mapping and Windows test. |
+| Organization-installed skill, Claude offer hook, pre-seed novice conversation | Per-project `specify init` and a coding-agent integration | **Keep Agent Builder's entry point for now.** Spec Kit's tested path needed CLI installation, initialization, and explicit assessment enablement. Compare the general user and maintenance cost when designing v0.4.0; Windows-specific compatibility is not a gate. |
+| Seed and commit agent/skill projects with base, kind, and host-adapter layers | General project initializer, coding-agent integrations, optional [Git extension](https://github.com/github/spec-kit/tree/v1.0.9/extensions/git) | **Possible later replacement for neutral project scaffolding**, not a drop-in for all kinds. Spec Kit can seed a neutral project. Its Git extension can initialize and commit, but auto-commit is disabled by default and the tested `init` did neither. Agent/skill-specific files and the seeded/validated/committed outcome still need a mapping and functional test. |
 | Require a public-solution search, compare alternatives, and stop custom work when one fits | Optional [assess extension](https://github.github.io/spec-kit/reference/agentic-assessment.html), including research, counterevidence, options, and a `kill` verdict; bundled workflow can order the steps | **Strongest direct-reuse candidate.** A configured assessment workflow could supplant much of the planned bespoke research dialogue. Agent Builder would still need to make the gate unavoidable before Build and represent an explicit adopt/version/archive outcome. Invoking assessment stages individually does not force research. Five assessment artifacts may be too much for a small project; test the actual user experience before replacing the proposed short record. |
 | One useful deliverable version per cycle and explicit exclusions | Independently testable user stories in the [spec template](https://github.com/github/spec-kit/blob/v1.0.9/templates/spec-template.md), plus a [Lean preset](https://github.com/github/spec-kit/tree/v1.0.9/presets/lean) | **Augment.** Use the independently testable slice and leaner wording. Keep Agent Builder's separate project-deliverable version and adopt-without-new-release rule; the smoke test did not find those as stock lifecycle fields. |
 | Project phase, status, decisions, author approvals, and resumption | Assessment verdicts; [workflows](https://github.github.io/spec-kit/reference/workflows.html) with human gates and resumable runs; project constitution | **Keep Agent Builder's lifecycle contract.** Spec Kit has useful checkpoints, but a workflow run state is not the same as a project's active/archived status, typed consequential approval, or cross-cycle decision ledger. A future bridge could call Spec Kit within these boundaries. |
@@ -46,7 +47,7 @@ the parts we only borrow as ideas.
 ## Recommendation for this Plan
 
 Do not add Spec Kit as a v0.3.0 dependency or replace Agent Builder's front door, lifecycle,
-seeder, or deterministic checker in that release. The author proposes a lean v0.3.0, then a
+seeder, or deterministic checker in that release. The author confirmed a lean v0.3.0, then a
 separately defined v0.4.0 that uses Spec Kit as a maintained dependency rather than copying
 its source. Test the **assessment workflow** as the first bounded substitution; evaluate
 other replacements against setup burden, upgrade behavior, and the accepted novice path.

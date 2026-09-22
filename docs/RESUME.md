@@ -4,7 +4,7 @@ Checkpoint: 2026-09-22. Agent Builder **v0.2.1** is accepted and Review is close
 opened **Define** for the next iteration and confirmed its purpose, smallest deliverable, and
 success evidence. The target is **v0.3.0**, with Semantic Versioning for Agent Builder. This
 checkpoint records the author's explicit move to **Plan**. Build and implementation are not
-authorized. A v0.3.0 plan draft is ready for author review in
+authorized. The v0.3.0 plan is confirmed and awaits Build authorization in
 `planning/implementation-plan.md`.
 
 ## Recover context
@@ -84,20 +84,20 @@ the adopted solution's version and closes without inventing its own release.
 
 The Define record is complete in `planning/definition.md`. The author explicitly opened Plan
 on 2026-09-22. Plan may research options and draft the architecture and implementation steps.
-The draft recommends extending the existing skill, seeder, checker, and templates after
+The confirmed plan extends the existing skill, seeder, checker, and templates after
 comparing GitHub Spec Kit and OpenSpec. A tagged Spec Kit v1.0.9 CLI/scaffold smoke test
 subsequently found more overlap than the first draft acknowledged, especially in prior-art
 research, stopping, MVP slices, and organization bundles. The revised draft records the
-author's proposed release split: a lean v0.3.0 using existing Agent Builder components,
+author's confirmed release split: a lean v0.3.0 using existing Agent Builder components,
 then a separately defined v0.4.0 integrating Spec Kit as a maintained dependency
 for targeted replacements. A [component map](../planning/spec-kit-component-map.md)
 identifies the assessment workflow as the first candidate and explains the upstream-update
 tradeoff. K-Dense was only an example of the build-or-adopt outcome, not a dependency or a
-hard-coded recommendation. The release split is proposed, not confirmed. Build remains
-unapproved.
+hard-coded recommendation. The author removed Windows-specific compatibility as a v0.4.0
+integration gate. The release split is confirmed; Build remains unapproved.
 
 The full review findings are in `docs/v0-2-review-feedback.md`. The confirmed scope above is
-the boundary for this version. The proposed design, build slices, and acceptance cases are in
+the boundary for this version. The confirmed design, build slices, and acceptance cases are in
 `planning/implementation-plan.md`; the focused Spec Kit evidence is in
 `planning/spec-kit-comparison.md`.
 
@@ -122,8 +122,13 @@ differences. The phase-specific Review exit gate passed before transition. For t
 checkpoint, `check.py --leaving define`, all 54 tests, generated-file drift check, YAML and
 JSON parsing, and whitespace validation passed.
 
+For this Plan approval checkpoint, `check.py --leaving plan` passed with nothing unresolved;
+all 54 tests, render drift, YAML/JSON syntax, and whitespace checks passed. The generic
+generated-project scaffold check remains inapplicable to this source repository.
+
 ## Next action
 
-Ask the author to confirm or revise the proposed lean-v0.3.0 / Spec-Kit-dependent-v0.4.0
-release split in `planning/implementation-plan.md`. Do not make K-Dense part of the build.
-Implementation requires separate Build authorization; v0.4.0 receives its own Define and Plan.
+The lean-v0.3.0 / Spec-Kit-dependent-v0.4.0 release split is confirmed in
+`planning/implementation-plan.md`. Do not make K-Dense part of the build or impose a
+Windows-specific Spec Kit test. Obtain explicit authorization to close Plan and enter Build
+before implementing v0.3.0; v0.4.0 receives its own Define and Plan.

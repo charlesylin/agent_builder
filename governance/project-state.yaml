@@ -9,7 +9,7 @@ project:
 
 phase:
   current: plan
-  status: plan_draft_awaiting_author_review
+  status: plan_approved_awaiting_build_authorization
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-22
   transition_requires: explicit_user_invocation_or_confirmation
@@ -105,7 +105,8 @@ next_release:
   definition_record: planning/definition.md
   plan_record: planning/implementation-plan.md
   plan_comparison: planning/spec-kit-comparison.md
-  plan_status: proposed
+  plan_status: confirmed
+  plan_decision: AB-D047
   purpose: >-
     Formally enact project mode and establish governance for logical versioning, reuse,
     modularity, and simplicity, so Two River Bio members can build useful project increments
@@ -181,11 +182,12 @@ next_release:
 
 checkpoint:
   date: 2026-09-22
-  status: plan_draft_ready_for_author_review
-  phase_changed: true
+  status: plan_approved_awaiting_build_authorization
+  phase_changed: false
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Ask the author to confirm or revise the proposed lean v0.3.0 / Spec-Kit-dependent v0.4.0
-    release split. Keep K-Dense an example, not a build dependency. Do not implement or enter
-    Build without explicit authorization; v0.4.0 needs its own Define and Plan.
+    The author confirmed the lean v0.3.0 / Spec-Kit-dependent v0.4.0 release split and removed
+    Windows-specific integration criteria. Keep K-Dense an example, not a build dependency.
+    Ask for explicit authorization to close Plan and enter Build before implementation;
+    v0.4.0 needs its own Define and Plan after v0.3.0 Review.

@@ -5,7 +5,7 @@
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.2 is accepted at release 0.2.1. The author confirmed the v0.3.0 definition and opened Plan. A tagged Spec Kit v1.0.9 CLI smoke test found substantial overlap. The author now proposes a lean v0.3.0 using existing Agent Builder components, followed by a separately defined v0.4.0 with Spec Kit as a maintained dependency and targeted replacements. K-Dense DepMap is only an example of the no-build outcome, not a product dependency. The architecture remains proposed; Build is unapproved.",
+  "summary": "Agent Builder v0.2 is accepted at release 0.2.1. The author confirmed the v0.3.0 definition and opened Plan. A tagged Spec Kit v1.0.9 CLI smoke test found substantial overlap. The author confirmed a lean v0.3.0 using existing Agent Builder components, followed by a separately defined v0.4.0 with Spec Kit as a maintained dependency and targeted replacements. K-Dense DepMap is only an example of the no-build outcome, not a product dependency. Windows-specific compatibility is not a v0.4.0 gate. Build remains unapproved.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -69,8 +69,8 @@
     },
     {
       "id": "AB-D047",
-      "status": "proposed",
-      "summary": "Proposed release split: lean v0.3.0 without Spec Kit dependency or source copy, then separately define v0.4.0 with a maintained Spec Kit dependency and targeted replacements. The architecture remains proposed."
+      "status": "confirmed",
+      "summary": "Confirmed release split: lean v0.3.0 without Spec Kit dependency or source copy, then separately define v0.4.0 with a maintained Spec Kit dependency and targeted replacements; no Windows-specific gate."
     }
   ],
   "artifacts": [
@@ -121,7 +121,7 @@
   ],
   "blockers": [],
   "questions": [
-    "Does the author confirm the proposed release split: lean v0.3.0 without Spec Kit dependency, then a separately defined v0.4.0 with Spec Kit as a maintained dependency for targeted replacement?"
+    "Will the author explicitly authorize closing Plan and entering Build for the confirmed v0.3.0 scope?"
   ],
-  "next_action": "Ask the author to confirm or revise the proposed release split. Keep K-Dense as an example only. Do not implement before Build authorization; define v0.4.0 separately after v0.3.0 review."
+  "next_action": "The Plan exit check passed. Request explicit authorization to close Plan and enter Build before implementing v0.3.0. Keep K-Dense as an example only, and do not impose a Windows-specific Spec Kit gate. Define v0.4.0 separately after v0.3.0 review."
 }

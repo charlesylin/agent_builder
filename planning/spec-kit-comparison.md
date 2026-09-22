@@ -40,7 +40,7 @@ download its manifest, so the local tagged bundle manifest was used for this off
 | Start a neutral S3-watcher project | The CLI initialized a general project successfully with no agent or skill product kind. | Spec Kit already serves neutral projects; this is not a unique Agent Builder capability. Agent Builder's reason to keep its project kind is compatibility with its installed skill and existing governance. |
 | Deliver one usable version-sized outcome | The core [spec template](https://github.com/github/spec-kit/blob/v1.0.9/templates/spec-template.md) requires independently testable, deployable user stories and treats one story as a viable MVP. A bundled [Lean preset](https://github.com/github/spec-kit/blob/v1.0.9/presets/lean/README.md) reduces template ceremony. Neither the tested default nor assessment artifacts require a separate deliverable SemVer target or one release-sized story per cycle. | Borrow independently testable value slices and proportional templates; keep the project deliverable version distinct from the framework version. |
 | Challenge a fragile novice recommendation | Assessment compares options, appetite, rabbit holes, risks, and counterevidence. The existing-project guide asks plans to reuse existing architecture. This is strong upstream guidance, but the trial did not establish that a model will reject a browser side-load in practice. | Test actual pushback with the same prompt in both systems before claiming success. |
-| Low-friction organization onboarding and resumption | Spec Kit supports Claude, Codex, Gemini, bundles, catalogs, and update manifests. The tested path required a Python 3.11+ CLI install, project initialization, and opting into assessment. Its first-party assessment workflow has an approve/reject verdict gate, but the default artifacts are feature/assessment records rather than Agent Builder's explicit project phase and active/archived status. Agent Builder v0.2.1 has a confirmed Windows, organization-installed, no-separate-setup novice result. | Spec Kit may be distributable centrally, but replacing the accepted path needs a comparable Windows/novice test and migration design. Do not treat setup difference as proof of intrinsic inferiority. |
+| Organization onboarding and resumption | Spec Kit supports Claude, Codex, Gemini, bundles, catalogs, and update manifests. The tested path required a Python 3.11+ CLI install, project initialization, and opting into assessment. Its first-party assessment workflow has an approve/reject verdict gate, but the default artifacts are feature/assessment records rather than Agent Builder's explicit project phase and active/archived status. Agent Builder v0.2.1 has a confirmed organization-installed novice result. | Compare setup, migration, and lifecycle behavior in v0.4.0 planning. The author explicitly removed Windows-specific compatibility as a decision gate. |
 | Organization-wide reuse and maintenance | [Bundles and catalogs](https://github.github.io/spec-kit/reference/bundles.html) provide versioned, composable, organization-curated distribution and update paths. Agent Builder does not yet have an equivalent. | This is a real Spec Kit advantage to learn from; organization-level configuration remains outside the confirmed v0.3.0 scope. |
 
 ## The three options
@@ -48,7 +48,7 @@ download its manifest, so the local tagged bundle manifest was used for this off
 1. **Ignore Spec Kit.** Lowest immediate change, but knowingly miss tested patterns for
    counterevidence, stopping, thin MVP slices, Lean templates, and curated reuse. Not
    recommended.
-2. **Incorporate the relevant parts into Agent Builder.** The author's proposed release
+2. **Incorporate the relevant parts into Agent Builder.** The author's confirmed release
    sequence makes this two steps: borrow useful research and MVP-slicing ideas in lean v0.3.0
    without a Spec Kit dependency or source copy; in a separately defined v0.4.0, integrate
    a maintained Spec Kit dependency and test targeted substitutions. The
@@ -62,7 +62,7 @@ download its manifest, so the local tagged bundle manifest was used for this off
 ## Decision limit
 
 This was a CLI smoke test plus inspection of the tagged workflow, not a head-to-head novice
-behavior test. It supports the proposed release sequence but does not establish that Agent
+behavior test. It supports the confirmed release sequence but does not establish that Agent
 Builder is superior. The repository already records two usable pilot prompts:
 "i want to make a thing that can quickly retrieve depmap data and deploy it org wide with a
 few consistent ways of presenting the output" (`docs/v0-2-skill-test.md`, Run 3), and

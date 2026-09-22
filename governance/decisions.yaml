@@ -588,8 +588,14 @@ decisions:
       are confirmed. The phase-specific Define exit check reports nothing unresolved.
     provenance: explicit_author_phase_transition
   - id: AB-D047
-    status: proposed
+    status: confirmed
     date: 2026-09-22
+    confirmed_date: 2026-09-22
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      After the release split was read back, the author replied: "ignore the windows stuff.
+      that seems to be a non issue. confirmed on everything else". Windows-specific
+      compatibility is therefore not an acceptance gate for the Spec Kit integration.
     decision: >-
       Deliver a lean v0.3.0 using Agent Builder's existing skill, seeder, checker, and templates
       for the confirmed project-mode scope. Do not add Spec Kit as a dependency or copy its
@@ -598,19 +604,20 @@ decisions:
       Spec Kit as a maintained, pinned dependency and makes targeted replacements where
       evidence shows a simpler, better-supported user experience. Keep Agent Builder's
       distinctive entry point, project lifecycle, and deterministic validation unless a
-      later test supports replacing them.
+      later test supports replacing them. Do not make Windows-specific compatibility a gate
+      for that later integration.
     rationale: >-
       A tagged Spec Kit v1.0.9 CLI smoke test showed substantial overlap: prior-art and
       counterevidence research, a documented stop when a better alternative exists,
       independently testable MVP slices, and curated bundles. It also confirmed that the
-      tested path requires CLI installation and initialization. Agent Builder's
-      organization-installed novice path is already accepted, and its existing template layers
-      and checker can carry the bounded v0.3.0 behavior without a new dependency. Deferring
-      integration avoids making v0.3.0 carry both project-mode work and a distribution/migration
-      change. A maintained Spec Kit dependency in a later version would reduce the lag inherent
-      in copying ideas, but only if upgrade and compatibility behavior are tested. The author's
+      tested path requires CLI installation and initialization. Agent Builder's existing
+      template layers and checker can carry the bounded v0.3.0 behavior without a new
+      dependency. Deferring integration avoids making v0.3.0 carry both project-mode work and
+      a distribution/migration change. A maintained Spec Kit dependency in a later version
+      would reduce the lag inherent in copying ideas, but only if upgrade and compatibility
+      behavior are tested. The author's
       K-Dense DepMap experience is an illustrative adoption case, not a product dependency or
       a hard-coded candidate.
-    provenance: author_proposal_during_plan_pending_confirmation
+    provenance: explicit_author_confirmation_during_plan
     record: planning/implementation-plan.md
     comparison: planning/spec-kit-comparison.md
