@@ -4,8 +4,9 @@ Checkpoint: 2026-09-22. Agent Builder **v0.2.1** is accepted and Review is close
 opened **Define** for the next iteration and confirmed its purpose, smallest deliverable, and
 success evidence. The target is **v0.3.0**, with Semantic Versioning for Agent Builder. This
 checkpoint records the author's explicit move to **Build** after Plan closed. The confirmed
-v0.3.0 implementation scope is in
-`planning/implementation-plan.md`.
+v0.3.0 implementation scope is in `planning/implementation-plan.md`. All approved Build slices
+have now been implemented and verified; the phase remains Build until the author explicitly
+opens Review.
 
 ## Recover context
 
@@ -25,7 +26,7 @@ Git status and recent commits before editing; preserve existing changes.
 The root `CLAUDE.md` and `GEMINI.md` direct their coding hosts to `AGENTS.md`. This repository
 predates Agent Builder's generated `.agent-builder.json`; the previous review records that
 legacy difference. Do not fabricate the manifest or treat its absence as corruption. The
-current Define answers and confirmed outcome are in `planning/definition.md`.
+v0.3.0 Define answers and confirmed outcome are in `planning/definition.md`.
 
 ## Accepted releases
 
@@ -100,7 +101,8 @@ plan, enter build"; the Plan exit check passed and Build is authorized for the v
 The full review findings are in `docs/v0-2-review-feedback.md`. The confirmed scope above is
 the boundary for this version. The confirmed design, build slices, and acceptance cases are in
 `planning/implementation-plan.md`; the focused Spec Kit evidence is in
-`planning/spec-kit-comparison.md`.
+`planning/spec-kit-comparison.md`. The Build evidence and remaining live-use questions are in
+`docs/v0-3-build-verification.md`. No v0.3.0 release metadata or tag has been cut.
 
 ## Items not promoted into scope
 
@@ -127,9 +129,15 @@ For this Plan approval checkpoint, `check.py --leaving plan` passed with nothing
 all 54 tests, render drift, YAML/JSON syntax, and whitespace checks passed. The generic
 generated-project scaffold check remains inapplicable to this source repository.
 
+The v0.3.0 Build slices passed 64 tests, render drift, Python compilation, and whitespace
+checks. `check.py --leaving build` passed. A CLI S3-watcher seed validated and committed a
+neutral project; a simulated DepMap-like adoption archived a project in Plan and blocked
+entry to Build. These are mechanical checks, not live Two River Bio user feedback.
+
 ## Next action
 
-Implement the first approved slice, a minimal neutral `project` kind, then proceed through
-the remaining slices in `planning/implementation-plan.md` with a focused test and commit for
-each. Do not make K-Dense part of the build or add Spec Kit to v0.3.0. v0.4.0 receives its
-own Define and Plan after v0.3.0 Review.
+Ask the author to authorize entry to Review; do not infer that transition from Build
+completion. In Review, run a real adoption-and-archive conversation and a technical-quality
+pushback case with a Two River Bio member, then collect plain-status feedback. Do not make
+K-Dense part of the build or add Spec Kit to v0.3.0. v0.4.0 receives its own Define and Plan
+after v0.3.0 Review.

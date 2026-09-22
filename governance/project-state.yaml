@@ -9,7 +9,7 @@ project:
 
 phase:
   current: build
-  status: build_in_progress
+  status: build_complete_awaiting_review_authorization
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-22
   transition_requires: explicit_user_invocation_or_confirmation
@@ -189,11 +189,12 @@ next_release:
 
 checkpoint:
   date: 2026-09-22
-  status: build_opened
-  phase_changed: true
+  status: build_slices_complete
+  phase_changed: false
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Implement the first approved v0.3.0 slice: a minimal, validated neutral project kind.
-    Keep K-Dense an example, not a build dependency. Spec Kit integration belongs to a later
-    v0.4.0 Define and Plan after v0.3.0 Review.
+    Seek explicit author authorization to enter Review for v0.3.0. Use
+    docs/v0-3-build-verification.md as the Build evidence, then collect live Two River Bio
+    feedback on adoption, simplification, and plain status. Do not cut a release, tag, or
+    push before the authorized review and release workflow.

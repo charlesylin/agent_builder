@@ -188,7 +188,9 @@ def _uses_solution_gate(manifest: object) -> bool:
 def _solution_record_issues(root: Path, state: str, ledger: str) -> tuple[ValidationIssue, ...]:
     path = root / "planning/solution-evaluation.md"
     if not path.is_file():
-        return (ValidationIssue("missing-solution-evaluation", "record build-or-adopt evidence", path),)
+        return (
+            ValidationIssue("missing-solution-evaluation", "record build-or-adopt evidence", path),
+        )
 
     fields = dict(_SOLUTION_LINE.findall(path.read_text(encoding="utf-8")))
     issues: list[ValidationIssue] = []
@@ -206,7 +208,9 @@ def _solution_record_issues(root: Path, state: str, ledger: str) -> tuple[Valida
         for name in _QUALITY_FIELDS:
             value = fields.get(name, "").strip()
             if not value or value.startswith("(not yet"):
-                issues.append(ValidationIssue("missing-technical-rationale", f"fill in {name}", path))
+                issues.append(
+                    ValidationIssue("missing-technical-rationale", f"fill in {name}", path)
+                )
     decision_id = fields.get("Decision record", "").strip()
     if not decision_id or decision_id.startswith("(not yet"):
         issues.append(
@@ -261,6 +265,14 @@ def _deliverable_issues(root: Path, state: str, outcome: str) -> tuple[Validatio
             ),
         )
     fields = dict(re.findall(r"^  ([a-z_]+):[ \t]*(.*)$", block.group(1), re.MULTILINE))
+    if not {"target_version", "goal"}.issubset(fields):
+        return (
+            ValidationIssue(
+                "incomplete-deliverable-record",
+                "record both target_version and goal, using null for an adoption",
+                path,
+            ),
+        )
     version = fields.get("target_version", "").strip().strip('"\'')
     goal = fields.get("goal", "").strip().strip('"\'')
     if outcome == "adopt":
@@ -268,7 +280,7 @@ def _deliverable_issues(root: Path, state: str, outcome: str) -> tuple[Validatio
             return (
                 ValidationIssue(
                     "adoption-has-project-release",
-                    "leave the project's deliverable target unset when adopting an existing solution",
+                    "leave the project's deliverable target unset when adopting a solution",
                     path,
                 ),
             )
@@ -285,7 +297,9 @@ def _deliverable_issues(root: Path, state: str, outcome: str) -> tuple[Validatio
         )
     if goal in {"", "null"}:
         issues.append(
-            ValidationIssue("missing-deliverable-goal", "name one usable outcome for this version", path)
+            ValidationIssue(
+                "missing-deliverable-goal", "name one usable outcome for this version", path
+            )
         )
 
     definition_path = root / "planning/definition.md"
@@ -539,6 +553,20 @@ def phase_exit_issues(root: str | Path, phase: str) -> tuple[ValidationIssue, ..
             state = state_path.read_text(encoding="utf-8") if state_path.is_file() else ""
             ledger = ledger_path.read_text(encoding="utf-8") if ledger_path.is_file() else ""
             issues.extend(_solution_record_issues(project_root, state, ledger))
+            record_path = project_root / "planning/solution-evaluation.md"
+            if record_path.is_file():
+                fields = dict(_SOLUTION_LINE.findall(record_path.read_text(encoding="utf-8")))
+                status = _STATUS_LINE.search(state)
+                if fields.get("Outcome", "").strip().lower() == "adopt" and (
+                    status and status.group(1) == "archived"
+                ):
+                    issues.append(
+                        ValidationIssue(
+                            "adoption-complete",
+                            "project is archived in Plan; do not enter Build",
+                            state_path,
+                        )
+                    )
     return tuple(issues)
 
 

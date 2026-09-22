@@ -164,9 +164,11 @@ recommend using it and ending this custom project. Do not pitch a bespoke build 
 keep the project alive. Ask the author to confirm the outcome in their own words, then record
 the consequential decision. For `adopt`, name the adopted component and version, set
 `project.status: archived` with the reason and confirming author in phase history, and keep
-`phase.current: plan`. Do not enter Build or assign this project a release. For `adapt` or
-`build`, explain the gap the existing options leave and what will be reused. The checker
-ensures the evidence fields are present; you must assess whether they are credible.
+`phase.current: plan`. `check.py --leaving plan` deliberately refuses an archived adoption;
+use the normal scaffold check to validate its record. Do not enter Build or assign this project
+a release. For `adapt` or `build`, explain the gap the existing options leave and what will be
+reused. The checker ensures the evidence fields are present; you must assess whether they are
+credible.
 
 **One usable version, not the whole product.** Ask what would make `v0.1.0` useful for a new
 project, or the next appropriate Semantic Versioning `MAJOR.MINOR.PATCH` step for an existing

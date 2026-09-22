@@ -579,7 +579,9 @@ class BuildOrAdoptTests(unittest.TestCase):
         create_project(target, spec, generated_at=GENERATED_AT)
         state_path = target / "governance/project-state.yaml"
         state_path.write_text(
-            state_path.read_text(encoding="utf-8").replace("  current: define\n", "  current: plan\n"),
+            state_path.read_text(encoding="utf-8").replace(
+                "  current: define\n", "  current: plan\n"
+            ),
             encoding="utf-8",
         )
         ledger_path = target / "governance/decisions.yaml"
@@ -609,9 +611,15 @@ class BuildOrAdoptTests(unittest.TestCase):
         if outcome in {"adapt", "build"}:
             values.update(
                 {
-                    "Reused components and replaceable boundary": "Reuse the documented API behind one adapter.",
-                    "Failure behavior and robustness": "Reject unavailable or malformed input clearly.",
-                    "Why this is the simpler, maintainable option": "One small service beats a custom browser side-load.",
+                    "Reused components and replaceable boundary": (
+                        "Reuse the documented API behind one adapter."
+                    ),
+                    "Failure behavior and robustness": (
+                        "Reject unavailable or malformed input clearly."
+                    ),
+                    "Why this is the simpler, maintainable option": (
+                        "One small service beats a custom browser side-load."
+                    ),
                 }
             )
         for field, value in values.items():
@@ -665,10 +673,15 @@ class BuildOrAdoptTests(unittest.TestCase):
             self.assertEqual(codes, {"adoption-not-archived"})
             state_path = target / "governance/project-state.yaml"
             state_path.write_text(
-                state_path.read_text(encoding="utf-8").replace("  status: active\n", "  status: archived\n"),
+                state_path.read_text(encoding="utf-8").replace(
+                    "  status: active\n", "  status: archived\n"
+                ),
                 encoding="utf-8",
             )
-            self.assertEqual(phase_exit_issues(target, "plan"), ())
+            self.assertEqual(
+                {issue.code for issue in phase_exit_issues(target, "plan")},
+                {"adoption-complete"},
+            )
             self.assertEqual(validate_project(target), ())
             self.assertIn("  current: plan\n", state_path.read_text(encoding="utf-8"))
             record = target / "planning/solution-evaluation.md"
@@ -793,6 +806,64 @@ class PlainLanguageTests(unittest.TestCase):
             self.assertNotIn("Every human-facing closeout contains", agreement)
             ledger = (target / "governance/decisions.yaml").read_text(encoding="utf-8")
             self.assertIn("plain-D001", ledger, "stable IDs remain in the machine record")
+
+
+class ReviewReadinessTests(unittest.TestCase):
+    def test_s3_watcher_neutral_project_cli_is_seeded_validated_and_committed(self) -> None:
+        import os
+        import shutil
+
+        if shutil.which("git") is None:
+            self.skipTest("git is not installed")
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "s3-watcher"
+            environment = dict(os.environ)
+            environment.update(
+                GIT_AUTHOR_NAME="Test",
+                GIT_AUTHOR_EMAIL="test@example.com",
+                GIT_COMMITTER_NAME="Test",
+                GIT_COMMITTER_EMAIL="test@example.com",
+            )
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(SKILL / "scripts/seed.py"),
+                    str(target),
+                    "--name", "S3 Watcher",
+                    "--purpose", "Notice approved new inputs for the lab team.",
+                    "--kind", "project",
+                    "--problem", "Approved input files arrive without a timely signal.",
+                    "--current", "A team member checks the bucket by hand.",
+                    "--value", "The team starts one process promptly.",
+                    "--for", "The lab team.",
+                ],
+                env=environment,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn("Created S3 Watcher (project)", result.stdout)
+            self.assertIn("first commit", result.stdout)
+            self.assertEqual(validate_project(target), ())
+            self.assertFalse((target / "src").exists())
+            self.assertFalse((target / "contracts").exists())
+            self.assertEqual(
+                subprocess.run(
+                    ["git", "status", "--porcelain"],
+                    cwd=target,
+                    capture_output=True,
+                    text=True,
+                    check=True,
+                ).stdout,
+                "",
+            )
+
+    def test_skill_guidance_challenges_fragile_browser_shortcuts(self) -> None:
+        skill = (SKILL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("Challenge fragile shortcuts and product sprawl", skill)
+        self.assertIn("side-load a browser", skill)
+        self.assertIn("installation, permissions, updates, and unattended operation", skill)
 
 
 if __name__ == "__main__":
