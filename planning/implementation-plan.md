@@ -2,24 +2,27 @@
 
 Status: proposed for author review. This plan does not authorize Build.
 Scope and success evidence: [definition.md](definition.md).
+The focused [Spec Kit comparison](spec-kit-comparison.md) updates the provisional
+build-or-adopt recommendation below after a tagged-release CLI smoke test.
 
 ## Build or adopt Agent Builder itself?
 
 Checked 2026-09-22 against the approved outcome, using the projects' own documentation and
-release records. GitHub stars indicate interest, not verified active use. No third-party source
-will be copied or installed in v0.3.0; MIT notice obligations would apply if that changes.
+release records. GitHub stars indicate interest, not verified active use. No third-party
+source or runtime dependency is proposed for the Agent Builder release; MIT notice
+obligations would apply if source is copied later.
 
 | Candidate | Evidence | Fit for this version | Recommendation |
 | --- | --- | --- | --- |
-| [GitHub Spec Kit](https://github.com/github/spec-kit) | MIT; about 138k stars; tests and active releases ([v1.0.9, 2026-09-21](https://github.com/github/spec-kit/releases)); recent release notes include security hardening. Its [assessment extension](https://github.github.io/spec-kit/guides/assessment.html) gathers opposing evidence and can end with a documented stop decision. | Strong model for evidence and stopping. Its five assessment stages and Python 3.11 plus uv setup would add a second installed workflow to the organization-installed Agent Builder skill. It does not directly carry this project's existing phase ledger, lifecycle status, and independent deliverable version convention. | Reference the assessment pattern. Do not replace Agent Builder or add it as a dependency for v0.3.0. |
+| [GitHub Spec Kit](https://github.com/github/spec-kit) | MIT; about 138k stars; tests and active releases ([v1.0.9, 2026-09-21](https://github.com/github/spec-kit/releases)). Its optional [assessment extension](https://github.github.io/spec-kit/guides/assessment.html) researches prior art, includes counterevidence, and can stop when a better alternative exists. Its core spec template supports independently testable MVP slices; Lean presets and organization-curated bundles reduce ceremony and support reuse. The [tagged-release smoke test](spec-kit-comparison.md) succeeded. | Substantial overlap, including neutral projects and a no-build outcome. The first-party assessment workflow can require research, although separate stage use does not; the stock decision does not record a distinct adopt-and-archive result. The tested CLI path adds installation and initialization to the accepted organization-plugin path. Its extension system could close these gaps, but that needs a comparative novice pilot. | Provisionally incorporate the relevant patterns into Agent Builder. Keep Spec Kit replacement open as a serious alternative until the pilot. |
 | [OpenSpec](https://github.com/Fission-AI/OpenSpec) | MIT; about 70k stars; tests and active [releases](https://github.com/Fission-AI/OpenSpec/releases), including recent archive and security fixes. | Useful short spec and archive workflow. Its documented [setup](https://github.com/Fission-AI/OpenSpec/blob/main/docs/installation.md) requires Node.js 20.19+ and a CLI install; its archive follows a change workflow. The documented default does not require an existing-solution decision before Build or represent adoption as a completed project without a custom release. | Do not replace Agent Builder or add it as a dependency for v0.3.0. |
 | Agent Builder v0.2.1 | Organization-installed skill already passed the Windows novice acceptance test without separate setup; seeder, checker, template layers, project status, and single-source principles are in this repo and tested. | The missing behavior is bounded: a neutral kind, a decision before Build, a project release target, and a plainer human interface. | Extend the existing system. Recommend public tools directly to future project authors when they satisfy that project's need. |
 
 This is a recommendation for this version, not a claim that either public tool is generally
-inferior. The documented setup and workflow differences are enough to rule out replacing the
-accepted installation path for this release, so neither CLI was installed. Revisit hands-on
-evaluation if replacement becomes a live option. Their published tests and security history
-were inspected at repository level; no independent security audit was performed.
+inferior. Spec Kit v1.0.9 was installed in a disposable environment for CLI and scaffold
+testing; OpenSpec was not installed. The Spec Kit trial did not run the agent-facing assessment
+or test a novice user. Published tests and security history were inspected at repository
+level; no independent security audit was performed.
 
 ## Design
 

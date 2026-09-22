@@ -5,7 +5,7 @@
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.2 is accepted at release 0.2.1. The author confirmed the v0.3.0 definition and opened Plan. The v0.3.0 plan draft compares public alternatives and proposes a minimal extension of the existing skill, seeder, checker, and templates. Its architecture decision awaits author review; Build remains unapproved.",
+  "summary": "Agent Builder v0.2 is accepted at release 0.2.1. The author confirmed the v0.3.0 definition and opened Plan. A tagged Spec Kit v1.0.9 CLI smoke test found substantial overlap with Agent Builder. The revised plan provisionally recommends incorporating useful Spec Kit patterns while keeping replacement open pending a paired novice pilot. Its architecture decision awaits author review; Build remains unapproved.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -70,7 +70,7 @@
     {
       "id": "AB-D047",
       "status": "proposed",
-      "summary": "Extend the existing Agent Builder machinery with a neutral project kind, shared build-or-adopt gate, independent deliverable versions, quality guidance, and plain human-facing status."
+      "summary": "Provisionally extend Agent Builder using relevant Spec Kit assessment and MVP patterns; consider replacement after a paired novice pilot. The architecture remains proposed."
     }
   ],
   "artifacts": [
@@ -103,6 +103,10 @@
       "media_type": "text/markdown"
     },
     {
+      "path": "planning/spec-kit-comparison.md",
+      "media_type": "text/markdown"
+    },
+    {
       "path": "docs/v0-2-acceptance.md",
       "media_type": "text/markdown"
     },
@@ -113,7 +117,7 @@
   ],
   "blockers": [],
   "questions": [
-    "Does the author approve the proposed v0.3.0 architecture and build sequence, or want revisions?"
+    "Which exact DepMap skill collection and version did the author adopt, so a paired novice pilot can check discovery and fit?"
   ],
-  "next_action": "Review the v0.3.0 plan draft and resolve the proposed architecture decision with the author. Do not implement before Build authorization."
+  "next_action": "Confirm the exact adopted DepMap skill collection, run a paired novice pilot if feasible, then resolve the proposed architecture decision with the author. Do not implement before Build authorization."
 }

@@ -81,7 +81,8 @@ after Sean completed the organization-install acceptance test on Windows. See th
 evidence are confirmed: a usable neutral `project` mode with proportional governance for
 adopting existing solutions, small versioned outcomes, reuse, and technical quality. Its
 target is **v0.3.0**; the author explicitly opened Plan on 2026-09-22.
-See the [current definition](planning/definition.md) and [plan draft](planning/implementation-plan.md).
+See the [current definition](planning/definition.md), [plan draft](planning/implementation-plan.md),
+and [Spec Kit comparison](planning/spec-kit-comparison.md).
 v0.1 (governance and scaffolding only) was accepted on 2026-09-13 and is tagged `v0.1.0`.
 
 This repository is developed under its own phases; see

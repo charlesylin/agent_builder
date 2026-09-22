@@ -104,6 +104,7 @@ next_release:
   version_decision: AB-D045
   definition_record: planning/definition.md
   plan_record: planning/implementation-plan.md
+  plan_comparison: planning/spec-kit-comparison.md
   plan_status: proposed
   purpose: >-
     Formally enact project mode and establish governance for logical versioning, reuse,
@@ -185,5 +186,6 @@ checkpoint:
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Review the v0.3.0 plan and resolve its proposed architecture decision with the author.
-    Do not implement or enter Build without explicit author authorization.
+    Confirm the exact adopted DepMap skill collection, run a paired novice pilot if feasible,
+    then resolve the proposed architecture decision with the author. Do not implement or enter
+    Build without explicit authorization.
