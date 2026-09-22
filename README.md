@@ -63,7 +63,7 @@ project; `--since` shows a project's owner what they would be opting into.
 
 ```sh
 python3 scripts/render.py --check           # generated files match principles/
-python3 -m unittest discover -s tests -v    # 47 tests, Python 3.9+
+python3 -m unittest discover -s tests -v    # test suite, Python 3.9+
 python3 -m compileall -q scripts skills tests
 python3 -m pip install "ruff==0.16.6" && ruff check . && ruff format --check .
 claude plugin eval . --scaffold --judge-model sonnet   # does the skill trigger and behave? see evals/
@@ -81,8 +81,8 @@ after Sean completed the organization-install acceptance test on Windows. See th
 evidence are confirmed: a usable neutral `project` mode with proportional governance for
 adopting existing solutions, small versioned outcomes, reuse, and technical quality. Its
 target is **v0.3.0**; the author explicitly opened Plan on 2026-09-22.
-See the [current definition](planning/definition.md). v0.1 (governance and scaffolding only)
-was accepted on 2026-09-13 and is tagged `v0.1.0`.
+See the [current definition](planning/definition.md) and [plan draft](planning/implementation-plan.md).
+v0.1 (governance and scaffolding only) was accepted on 2026-09-13 and is tagged `v0.1.0`.
 
 This repository is developed under its own phases; see
 [`governance/`](governance/) and [`docs/RESUME.md`](docs/RESUME.md).

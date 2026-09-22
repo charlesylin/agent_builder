@@ -9,7 +9,7 @@ project:
 
 phase:
   current: plan
-  status: planning_v0_3_0
+  status: plan_draft_awaiting_author_review
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-22
   transition_requires: explicit_user_invocation_or_confirmation
@@ -103,6 +103,8 @@ next_release:
   version_scheme: semantic_versioning_2_0_0
   version_decision: AB-D045
   definition_record: planning/definition.md
+  plan_record: planning/implementation-plan.md
+  plan_status: proposed
   purpose: >-
     Formally enact project mode and establish governance for logical versioning, reuse,
     modularity, and simplicity, so Two River Bio members can build useful project increments
@@ -178,10 +180,10 @@ next_release:
 
 checkpoint:
   date: 2026-09-22
-  status: plan_opened_for_v0_3_0
+  status: plan_draft_ready_for_author_review
   phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Research established solutions and inspect existing project-mode infrastructure. Draft
-    the smallest v0.3.0 plan for author review. Do not implement before Build is authorized.
+    Review the v0.3.0 plan and resolve its proposed architecture decision with the author.
+    Do not implement or enter Build without explicit author authorization.

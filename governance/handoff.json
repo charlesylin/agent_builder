@@ -5,7 +5,7 @@
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.2 is accepted at release 0.2.1. The author confirmed the v0.3.0 purpose, smallest project-mode outcome, success evidence, and versioning rule, then explicitly closed Define and opened Plan. Build remains unapproved.",
+  "summary": "Agent Builder v0.2 is accepted at release 0.2.1. The author confirmed the v0.3.0 definition and opened Plan. The v0.3.0 plan draft compares public alternatives and proposes a minimal extension of the existing skill, seeder, checker, and templates. Its architecture decision awaits author review; Build remains unapproved.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -66,6 +66,11 @@
       "id": "AB-D046",
       "status": "confirmed",
       "summary": "Close Define and enter Plan for v0.3.0."
+    },
+    {
+      "id": "AB-D047",
+      "status": "proposed",
+      "summary": "Extend the existing Agent Builder machinery with a neutral project kind, shared build-or-adopt gate, independent deliverable versions, quality guidance, and plain human-facing status."
     }
   ],
   "artifacts": [
@@ -94,6 +99,10 @@
       "media_type": "text/markdown"
     },
     {
+      "path": "planning/implementation-plan.md",
+      "media_type": "text/markdown"
+    },
+    {
       "path": "docs/v0-2-acceptance.md",
       "media_type": "text/markdown"
     },
@@ -103,6 +112,8 @@
     }
   ],
   "blockers": [],
-  "questions": [],
-  "next_action": "Inspect the existing implementation, research suitable solutions, and draft the smallest v0.3.0 plan for author review. Do not implement before Build authorization."
+  "questions": [
+    "Does the author approve the proposed v0.3.0 architecture and build sequence, or want revisions?"
+  ],
+  "next_action": "Review the v0.3.0 plan draft and resolve the proposed architecture decision with the author. Do not implement before Build authorization."
 }

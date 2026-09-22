@@ -4,7 +4,8 @@ Checkpoint: 2026-09-22. Agent Builder **v0.2.1** is accepted and Review is close
 opened **Define** for the next iteration and confirmed its purpose, smallest deliverable, and
 success evidence. The target is **v0.3.0**, with Semantic Versioning for Agent Builder. This
 checkpoint records the author's explicit move to **Plan**. Build and implementation are not
-authorized.
+authorized. A v0.3.0 plan draft is ready for author review in
+`planning/implementation-plan.md`.
 
 ## Recover context
 
@@ -83,11 +84,13 @@ the adopted solution's version and closes without inventing its own release.
 
 The Define record is complete in `planning/definition.md`. The author explicitly opened Plan
 on 2026-09-22. Plan may research options and draft the architecture and implementation steps.
-Build remains unapproved.
+The draft recommends extending the existing skill, seeder, checker, and templates after
+comparing GitHub Spec Kit and OpenSpec. Its single architecture decision is proposed, not
+confirmed. Build remains unapproved.
 
 The full review findings are in `docs/v0-2-review-feedback.md`. The confirmed scope above is
-the boundary for this version. The first Plan step is to inspect the existing implementation
-and research established solutions that could satisfy the project-mode requirements.
+the boundary for this version. The public-solution comparison, proposed design, build slices,
+and acceptance cases are in `planning/implementation-plan.md`.
 
 ## Items not promoted into scope
 
@@ -112,6 +115,5 @@ JSON parsing, and whitespace validation passed.
 
 ## Next action
 
-Inspect the current seeder, checker, skill, principles, and templates. Research suitable
-existing solutions, then draft the smallest v0.3.0 plan for author review. Implementation
-requires separate Build authorization.
+Ask the author to review `planning/implementation-plan.md` and confirm or revise the proposed
+architecture decision. Implementation requires separate Build authorization.

@@ -587,3 +587,21 @@ decisions:
       The purpose, smallest usable outcome, exclusions, success evidence, and versioning rule
       are confirmed. The phase-specific Define exit check reports nothing unresolved.
     provenance: explicit_author_phase_transition
+  - id: AB-D047
+    status: proposed
+    date: 2026-09-22
+    decision: >-
+      For v0.3.0, extend the existing Agent Builder skill, seeder, checker, and templates
+      instead of adopting Spec Kit or OpenSpec as a replacement. Add a neutral project kind,
+      one common build-or-adopt evidence record and Plan exit gate for new projects,
+      independent deliverable version targets, evidence-backed technical-quality guidance,
+      and plain human-facing status while retaining structured machine records.
+    rationale: >-
+      Public alternatives have strong maintenance and evidence-assessment patterns but add
+      runtime setup and a second workflow without directly preserving the accepted
+      organization-install experience, lifecycle ledger, and no-build adoption path. The
+      existing template layers and checker can carry the bounded v0.3.0 behavior with no new
+      runtime dependency. Technical judgment remains subject to realistic review rather than
+      being claimed as mechanically proven by file presence.
+    provenance: plan_recommendation_pending_author_review
+    record: planning/implementation-plan.md
