@@ -8,8 +8,8 @@ project:
   status: active
 
 phase:
-  current: define
-  status: define_record_complete_awaiting_author_transition
+  current: plan
+  status: planning_v0_3_0
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-09-22
   transition_requires: explicit_user_invocation_or_confirmation
@@ -67,6 +67,16 @@ phase:
       outcome: >-
         Explicitly authorized by the project author after v0.2.1 acceptance. The next
         iteration's version and scope are open and not yet determined.
+    - phase: define
+      date: 2026-09-22
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        Closed after the author confirmed the v0.3.0 purpose, smallest project-mode outcome,
+        exclusions, success evidence, and versioning rule. Define exit check passed.
+    - phase: plan
+      date: 2026-09-22
+      confirmed_by: charles-yang-lin
+      outcome: Explicitly authorized by the project author for v0.3.0.
 
 release:
   target: 0.2.1
@@ -168,10 +178,10 @@ next_release:
 
 checkpoint:
   date: 2026-09-22
-  status: define_record_complete_awaiting_plan_authorization
+  status: plan_opened_for_v0_3_0
   phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Check the Define exit record, then request explicit author authorization to close Define
-    and enter Plan. Do not select implementation solutions or change phase before authorization.
+    Research established solutions and inspect existing project-mode infrastructure. Draft
+    the smallest v0.3.0 plan for author review. Do not implement before Build is authorized.

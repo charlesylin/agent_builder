@@ -1,7 +1,7 @@
 # Agent Builder: next usable version
 
-Target: v0.3.0. Phase: Define. The author has confirmed the purpose, scope, version, and
-success evidence. Moving to Plan requires a separate, explicit decision.
+Target: v0.3.0. Define closed and Plan opened by the author on 2026-09-22. The author has
+confirmed the purpose, scope, version, and success evidence.
 
 ## What problem does this solve?
 

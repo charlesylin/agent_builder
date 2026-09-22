@@ -3,7 +3,8 @@
 Checkpoint: 2026-09-22. Agent Builder **v0.2.1** is accepted and Review is closed. The author
 opened **Define** for the next iteration and confirmed its purpose, smallest deliverable, and
 success evidence. The target is **v0.3.0**, with Semantic Versioning for Agent Builder. This
-checkpoint authorizes Define work only: no Plan, Build, or implementation.
+checkpoint records the author's explicit move to **Plan**. Build and implementation are not
+authorized.
 
 ## Recover context
 
@@ -44,7 +45,7 @@ Acceptance rested on Sean using the organization-installed v0.2.1 plugin on Wind
 separate local setup, to reach a seeded, validated, committed Define-phase project in one
 session. See `docs/v0-2-acceptance.md` for the evidence and qualifications.
 
-## Current phase: Define for the next iteration
+## Current phase: Plan for v0.3.0
 
 The author opened Define on 2026-09-22 after accepting v0.2.1. The confirmed purpose is to
 formally enact project mode and establish governance for logical versioning, reuse, modularity,
@@ -80,11 +81,13 @@ Agent Builder targets v0.3.0. Governed projects track their own deliverable vers
 usable outcome per cycle. When adoption resolves a request without a build, the project records
 the adopted solution's version and closes without inventing its own release.
 
-The Define record is complete in `planning/definition.md`. No architecture, configuration
-mechanism, implementation, or transition to Plan has been approved.
+The Define record is complete in `planning/definition.md`. The author explicitly opened Plan
+on 2026-09-22. Plan may research options and draft the architecture and implementation steps.
+Build remains unapproved.
 
 The full review findings are in `docs/v0-2-review-feedback.md`. The confirmed scope above is
-the boundary for this version. Next, the author must explicitly authorize entry to Plan.
+the boundary for this version. The first Plan step is to inspect the existing implementation
+and research established solutions that could satisfy the project-mode requirements.
 
 ## Items not promoted into scope
 
@@ -109,5 +112,6 @@ JSON parsing, and whitespace validation passed.
 
 ## Next action
 
-Request explicit author authorization to close Define and enter Plan. Do not select
-implementation solutions until the phase changes.
+Inspect the current seeder, checker, skill, principles, and templates. Research suitable
+existing solutions, then draft the smallest v0.3.0 plan for author review. Implementation
+requires separate Build authorization.

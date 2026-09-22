@@ -74,13 +74,13 @@ How to change principles, the skill, templates, or cut a release:
 
 ## Status
 
-**In Define for the next iteration.** v0.2 was accepted at release **v0.2.1** on 2026-09-22
+**In Plan for v0.3.0.** v0.2 was accepted at release **v0.2.1** on 2026-09-22
 after Sean completed the organization-install acceptance test on Windows. See the
 [`acceptance record`](docs/v0-2-acceptance.md) and
 [`Review findings`](docs/v0-2-review-feedback.md). The next iteration's scope and success
 evidence are confirmed: a usable neutral `project` mode with proportional governance for
 adopting existing solutions, small versioned outcomes, reuse, and technical quality. Its
-target is **v0.3.0**; the project remains in Define until the author explicitly opens Plan.
+target is **v0.3.0**; the author explicitly opened Plan on 2026-09-22.
 See the [current definition](planning/definition.md). v0.1 (governance and scaffolding only)
 was accepted on 2026-09-13 and is tagged `v0.1.0`.
 

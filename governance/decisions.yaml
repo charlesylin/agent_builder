@@ -576,3 +576,14 @@ decisions:
       created it. The adoption outcome must be representable without claiming a release of
       software the organization did not build.
     provenance: explicit_author_approval_during_define
+  - id: AB-D046
+    status: confirmed
+    date: 2026-09-22
+    confirmed_date: 2026-09-22
+    confirmed_by: charles-yang-lin
+    confirmation: Author said "yeah, let's enter plan" after the completed Define record and v0.3.0 target were read back.
+    decision: Close Define for v0.3.0 and enter Plan.
+    rationale: >-
+      The purpose, smallest usable outcome, exclusions, success evidence, and versioning rule
+      are confirmed. The phase-specific Define exit check reports nothing unresolved.
+    provenance: explicit_author_phase_transition
