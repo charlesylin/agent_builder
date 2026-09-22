@@ -5,7 +5,7 @@
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.2 is accepted at release 0.2.1 under AB-D039 after Sean completed the organization-install acceptance test on Windows. Review is closed and the author explicitly opened Define for the next iteration. Its version and scope are undecided. F-018 through F-025 are inputs, not confirmed scope or selected solutions.",
+  "summary": "Agent Builder v0.2 is accepted at release 0.2.1. Review is closed and Define is open. The purpose, smallest project-mode outcome, adoption and user-feedback evidence, proportional human-facing governance, and its real-use evidence are confirmed. The release version remains undecided.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -31,6 +31,31 @@
       "id": "AB-D039",
       "status": "confirmed",
       "summary": "Accept v0.2.1, close Review, carry F-018 through F-025 as inputs, and open the next Define with version and scope undecided."
+    },
+    {
+      "id": "AB-D040",
+      "status": "confirmed",
+      "summary": "Formalize project mode and governance for logical versioning, reuse, modularity, and simplicity while constraining Agent Builder to what users need."
+    },
+    {
+      "id": "AB-D041",
+      "status": "confirmed",
+      "summary": "Deliver one usable neutral project mode with required build-or-adopt, version-sized MVP, modular reuse, and evidence-backed technical-quality behavior."
+    },
+    {
+      "id": "AB-D042",
+      "status": "confirmed",
+      "summary": "Require a DepMap-like adopt-and-archive scenario plus concrete user feedback on cycle time, evidence-backed reuse, or simplification."
+    },
+    {
+      "id": "AB-D043",
+      "status": "confirmed",
+      "summary": "Keep project memory structured for agents while making human-facing governance plain, descriptive, and proportional to real consequences."
+    },
+    {
+      "id": "AB-D044",
+      "status": "confirmed",
+      "summary": "Validate that real users understand status, decisions, and next action without decoding internal labels, and find approvals consequential and the process lightweight."
     }
   ],
   "artifacts": [
@@ -65,7 +90,7 @@
   ],
   "blockers": [],
   "questions": [
-    "What single problem should the next iteration solve?"
+    "What standard release version should identify this stepping stone?"
   ],
-  "next_action": "Conduct Define for one version-sized iteration: establish the problem, current approach, value, beneficiaries, smallest outcome, exclusions, and success evidence. Do not select solutions or enter Plan without explicit author approval."
+  "next_action": "Confirm a standard release version. Do not select implementation solutions or enter Plan without explicit author approval."
 }

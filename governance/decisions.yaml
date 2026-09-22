@@ -457,3 +457,103 @@ decisions:
       they do not invalidate the installable governance skill accepted here.
     provenance: explicit_author_acceptance_and_phase_transition
     record: docs/v0-2-acceptance.md
+  - id: AB-D040
+    status: confirmed
+    date: 2026-09-22
+    confirmed_date: 2026-09-22
+    confirmed_by: charles-yang-lin
+    confirmation: Author typed "approved" after the proposed purpose was read back in full.
+    decision: >-
+      The next Agent Builder version will formally enact project mode and establish governance
+      for logical versioning, reuse, modularity, and simplicity, so Two River Bio members can
+      build useful project increments without spaghetti code, reinventing existing solutions,
+      or making choices that cannot scale across the organization. It will also constrain
+      Agent Builder from proposing more than the user needs.
+    rationale: >-
+      The author described the present failure mode as vibe coding that creates spaghetti
+      code, reinvents the wheel, and does not scale to an organization. The near-term value is
+      a formal project mode that helps people building projects while making Agent Builder
+      constrain and simplify the user instead of suggesting too much. The primary users remain
+      members of the Two River Bio organization.
+    provenance: explicit_author_approval_during_define
+  - id: AB-D041
+    status: confirmed
+    date: 2026-09-22
+    confirmed_date: 2026-09-22
+    confirmed_by: charles-yang-lin
+    confirmation: Author typed "approved" after the smallest-version statement and exclusions were read back in full.
+    decision: >-
+      Deliver a usable, validated neutral project mode that guides a Two River Bio member
+      through one version-sized MVP. Before Build, the project must make an evidence-backed
+      build-or-adopt decision, choose a standard version stepping stone, prefer reusable
+      modular components, and reject technical recommendations that lack evidence for
+      simplicity, robustness, and organizational scalability.
+    rationale: >-
+      This is one outcome rather than five independent features: finalized project mode. The
+      four governance rules are required behavior of that mode. Organizational-repository
+      configuration, Grafify or skill discovery, and formal testing or control improvements
+      are excluded from this version and remain candidates for later work.
+    provenance: explicit_author_approval_during_define
+  - id: AB-D042
+    status: confirmed
+    date: 2026-09-22
+    confirmed_date: 2026-09-22
+    confirmed_by: charles-yang-lin
+    confirmation: Author typed "approved" after the combined success-evidence standard was read back in full.
+    decision: >-
+      The must-pass real-use scenario is a DepMap-like request where Agent Builder finds a
+      suitable existing public solution, documents evidence of fit, utilization, maintenance,
+      testing, security history, and license obligations, recommends adoption instead of a
+      custom build, and, after typed author confirmation, archives the project with the reason
+      recorded without proceeding to Build. Additional validation comes from Two River Bio
+      user feedback showing one or more of: shorter time to a useful decision or outcome; more
+      evidence-backed recommendations to adopt existing skills or code; or effective pushback
+      that reduces product sprawl to a simpler, version-sized MVP.
+    rationale: >-
+      The author's DepMap skill project is the concrete reference case: a well-used existing
+      skill set satisfied the need, so the correct outcome was no build. AB-D031 already
+      distinguishes abandoned work from a successfully finished and archived project, so this
+      version reuses that lifecycle model. No numerical improvement threshold is invented
+      before a baseline exists; concrete user observations are recorded as the initial
+      evidence.
+    provenance: explicit_author_approval_during_define
+  - id: AB-D043
+    status: confirmed
+    date: 2026-09-22
+    confirmed_date: 2026-09-22
+    confirmed_by: charles-yang-lin
+    confirmation: Author typed "approved" after the proportional-governance addition was read back in full.
+    decision: >-
+      Agent Builder must maintain structured, agent-readable project memory while keeping the
+      human experience plain and proportionate. Human-facing interactions and documents use
+      descriptive language and introduce governance only when it controls a real decision,
+      authority, risk, phase transition, or evidence requirement. Stable internal identifiers
+      may remain as machine metadata, but invented labels such as AB-D039 and F-018 are not
+      presented as meaningful standards or required for human participation. Avoid acronyms,
+      ritualized templates, and formulaic steps unless they materially improve traceability,
+      safety, or execution.
+    rationale: >-
+      The current finding and decision codes create an appearance of external formality even
+      though their syntax is local and invented. Internal structure remains important for an
+      agent-readable knowledge base, but ceremony that does not change authority, scope,
+      evidence, risk, or execution makes the system harder for people to interpret. This
+      amends the AB-D041 project-mode outcome as another required simplicity behavior.
+    provenance: explicit_author_approval_during_define
+    amends: AB-D041
+  - id: AB-D044
+    status: confirmed
+    date: 2026-09-22
+    confirmed_date: 2026-09-22
+    confirmed_by: charles-yang-lin
+    confirmation: Author typed "approved" after the proposed human-experience evidence was read back in full.
+    decision: >-
+      In a real Two River Bio project, the user can understand the project's status,
+      important decisions, and next action without decoding internal identifiers or invented
+      terminology. Human-facing approvals each correspond to a concrete consequence, such as
+      scope, authority, risk, evidence, or a phase transition, and unnecessary ceremony is
+      absent. User feedback confirms that the process felt clear and appropriately lightweight
+      rather than formal for formality's sake.
+    rationale: >-
+      This makes the AB-D043 human-experience requirement observable in real use while
+      preserving structured internal records for agents.
+    provenance: explicit_author_approval_during_define

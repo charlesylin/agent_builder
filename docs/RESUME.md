@@ -1,9 +1,9 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-09-22. Agent Builder v0.2 is accepted at release **v0.2.1** under AB-D039.
-Review is closed. The project author explicitly opened **Define** for the next iteration; its
-version number and scope are not yet decided. This checkpoint authorizes Define work only: no
-Plan, Build, or implementation.
+Checkpoint: 2026-09-22. Agent Builder **v0.2.1** is accepted and Review is closed. The author
+opened **Define** for the next iteration and confirmed its purpose, smallest deliverable, and
+success evidence. The release version is still open. This checkpoint authorizes Define work
+only: no Plan, Build, or implementation.
 
 ## Recover context
 
@@ -21,14 +21,14 @@ Current governance and newer author instructions take precedence over this check
 Git status and recent commits before editing; preserve existing changes.
 
 The root `CLAUDE.md` and `GEMINI.md` direct their coding hosts to `AGENTS.md`. This repository
-predates Agent Builder's generated `.agent-builder.json`; F-016 records that legacy difference.
-Do not fabricate the manifest or treat its absence as corruption.
+predates Agent Builder's generated `.agent-builder.json`; the previous review records that
+legacy difference. Do not fabricate the manifest or treat its absence as corruption.
 
 ## Accepted releases
 
 ### v0.1.0 — accepted 2026-09-13
 
-Governance and project scaffolding, accepted under AB-D017. See
+Governance and project scaffolding. See
 `docs/v0-1-acceptance.md`. It did not include a runtime, model client, MCP server, custom API,
 Dockerfile, or Compose service.
 
@@ -45,31 +45,48 @@ session. See `docs/v0-2-acceptance.md` for the evidence and qualifications.
 
 ## Current phase: Define for the next iteration
 
-The author opened Define on 2026-09-22 after accepting v0.2.1. Define must establish one
-problem and one version-sized outcome before Plan. No version number, scope, architecture,
-configuration mechanism, new project kind, or implementation has been approved.
+The author opened Define on 2026-09-22 after accepting v0.2.1. The confirmed purpose is to
+formally enact project mode and establish governance for logical versioning, reuse, modularity,
+and simplicity, so Two River Bio members can build useful project increments without spaghetti
+code, reinventing existing solutions, or making choices that cannot scale across the
+organization, while constraining Agent Builder from proposing more than the user needs.
 
-F-018 through F-025 in `docs/v0-2-review-feedback.md` are unprioritized inputs:
+The smallest version is a usable, validated neutral `project` mode that guides a Two River Bio
+member through one version-sized MVP. Before Build, it must require an evidence-backed
+build-or-adopt decision, a standard version stepping stone, reusable modular components, and
+evidence for the simplicity, robustness, and organizational scalability of technical
+recommendations. Organizational-repository configuration, Grafify or skill discovery, and
+formal testing or control improvements are excluded.
 
-- a required build-or-adopt gate after public-solution discovery;
-- one minimum viable outcome per versioned cycle;
-- discovery and reuse of organizational code plus reusable new modules;
-- discovery of available or configured skills and capabilities;
-- a neutral `project` kind, now supported by real-use evidence;
-- an evidence-backed technical-quality gate for novice recommendations;
-- standard versions as useful, testable stepping stones; and
-- author-defined expected results, cases, hypotheses, and controls.
+The main acceptance case is a DepMap-like real request in which Agent Builder documents a
+suitable public solution, recommends adoption rather than a custom build, and archives the
+project after typed author confirmation without entering Build. Additional evidence is concrete
+Two River Bio user feedback showing at least one of: a shorter path to a useful result, more
+evidence-backed reuse, or effective pushback that simplifies product sprawl. Numerical
+thresholds wait for a baseline.
 
-They are evidence, not confirmed scope. The first Define question is: **What single problem
-should the next iteration solve?** After that, establish how it is handled today, its value,
-who benefits, the smallest version-sized outcome, exclusions, and success evidence.
+The project also requires structured agent-readable memory with a plain, proportionate human
+experience. Human-facing interactions and documents use descriptive language; internal
+identifiers are metadata rather than a vocabulary the user must learn. Governance ceremony is
+justified only when it changes a real decision, authority, risk, phase, evidence requirement,
+traceability, safety, or execution.
+
+In real use, a member should understand status, important decisions, and next action without
+decoding internal identifiers; each approval has a concrete consequence; and user feedback
+finds the process clear and appropriately lightweight.
+
+Define must now establish the release version. No architecture, configuration mechanism,
+implementation, or transition to Plan has been approved.
+
+The full review findings are in `docs/v0-2-review-feedback.md`. The confirmed scope above is
+the boundary for this version. Next confirm the release version.
 
 ## Items not promoted into scope
 
-- F-016: this source repository uses `docs/` where generated projects use `planning/`.
-- Remaining F-017 observations: Cowork hook delivery and a clean desktop first run.
+- This source repository uses `docs/` where generated projects use `planning/`.
+- Cowork hook delivery and a clean desktop first run remain untested.
 - Codex support beyond v0.2's accepted best-effort level.
-- Runtime and environment profiles deferred by AB-D008.
+- Runtime and environment profiles remain deferred.
 - The old onboarding and existing-project proposals under `docs/`.
 - Dependabot PR #1 for development-only `prek`; assess separately if it is merged.
 
@@ -79,11 +96,10 @@ The accepted v0.2.1 release passed its pinned full gate on 2026-09-14. The 2026-
 closeout passed `check.py --leaving review`, `scripts/render.py --check`, compilation, and all
 54 unit and behavioral tests. Ruff 0.16.6 was not installed in the active local environment
 for the documentation and governance closeout. The full generated-project scaffold check does
-not apply to this legacy source repository; F-016 records its intentional differences. The
-phase-specific Review exit gate passed before transition.
+not apply to this legacy source repository; the previous review records its intentional
+differences. The phase-specific Review exit gate passed before transition.
 
 ## Next action
 
-Ask the author what single problem the next iteration should solve. Continue the Define
-conversation without selecting solutions or treating F-018 through F-025 as a bundled scope.
-Entering Plan requires a separate explicit author decision.
+Confirm a standard version number for this stepping stone. Do not select implementation
+solutions. Entering Plan requires a separate explicit author decision.

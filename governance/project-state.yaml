@@ -90,12 +90,52 @@ release:
 next_release:
   target: null
   version_status: open_for_define
-  scope: undetermined
-  scope_status: open_for_define
+  purpose: >-
+    Formally enact project mode and establish governance for logical versioning, reuse,
+    modularity, and simplicity, so Two River Bio members can build useful project increments
+    without spaghetti code, reinventing existing solutions, or making choices that cannot
+    scale across the organization, while constraining Agent Builder from proposing more than
+    the user needs.
+  purpose_status: confirmed
+  purpose_decision: AB-D040
+  scope: >-
+    A usable, validated neutral project mode that governs one version-sized MVP through an
+    evidence-backed build-or-adopt decision, standard version stepping stone, reusable modular
+    components, and an evidence-backed quality gate for simplicity, robustness, and
+    organizational scalability. It maintains structured agent-readable memory while keeping
+    human-facing governance plain, descriptive, and proportional to real decisions, authority,
+    risk, phase transitions, and evidence requirements.
+  scope_status: confirmed
+  scope_decision: AB-D041
+  scope_amendment: AB-D043
+  exclusions:
+    - Organizational-repository configuration.
+    - Grafify or skill discovery.
+    - Formal testing or control improvements.
+  success_evidence:
+    must_pass: >-
+      In a real DepMap-like request, Agent Builder documents evidence for a suitable public
+      solution, recommends adoption instead of custom implementation, and, after typed author
+      confirmation, archives the project with the reason recorded without entering Build.
+    additional_user_feedback:
+      - Shorter time to a useful decision or outcome.
+      - More evidence-backed recommendations to adopt existing skills or code.
+      - Effective pushback that reduces product sprawl to a simpler version-sized MVP.
+    measurement_note: Record concrete user observations; do not invent a numerical threshold before a baseline exists.
+    human_experience: >-
+      In real use, a Two River Bio member understands status, important decisions, and the
+      next action without decoding internal identifiers or invented terms. Each human-facing
+      approval has a concrete consequence, unnecessary ceremony is absent, and user feedback
+      confirms the process feels clear and appropriately lightweight.
+    status: confirmed
+    decision: AB-D042
+    human_experience_decision: AB-D044
   implementation_approved: false
   note: >-
-    F-018 through F-025 are unprioritized inputs to Define, not confirmed scope or selected
-    solutions. Define must identify one problem and one version-sized outcome before Plan.
+    The purpose is confirmed under AB-D040 and the smallest version-sized outcome under
+    AB-D041, amended by AB-D043 to require proportional plain-language governance. Success
+    evidence is confirmed under AB-D042 and AB-D044. Define must still confirm the release
+    version before Plan.
   candidate_inputs:
     - id: F-018
       summary: Make public-solution discovery a build-or-adopt gate.
@@ -124,11 +164,10 @@ next_release:
 
 checkpoint:
   date: 2026-09-22
-  status: define_opened_for_next_iteration
+  status: define_scope_and_evidence_confirmed
   phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Ask the author what single problem the next iteration should solve. Establish the current
-    approach, value, beneficiaries, version-sized outcome, exclusions, and success evidence.
-    Do not select solutions or enter Plan without explicit author approval.
+    Confirm a standard release version for this stepping stone. Do not select implementation
+    solutions or enter Plan without explicit author approval.
