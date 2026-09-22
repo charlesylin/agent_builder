@@ -169,6 +169,23 @@ the consequential decision. For `adopt`, name the adopted component and version,
 `build`, explain the gap the existing options leave and what will be reused. The checker
 ensures the evidence fields are present; you must assess whether they are credible.
 
+**One usable version, not the whole product.** Ask what would make `v0.1.0` useful for a new
+project, or the next appropriate Semantic Versioning `MAJOR.MINOR.PATCH` step for an existing
+one. Record that project's target and one-sentence usable goal under `deliverable` in
+`governance/project-state.yaml`; this is separate from `project.generated_by.version`.
+Name the exclusions in `planning/definition.md`. Keep one outcome per cycle and move other
+ideas to `planning/later.md`. An `adopt` result leaves the project's deliverable target unset.
+
+**Technical recommendation quality.** For `adapt` or `build`, record the reused components,
+the smallest real boundary that keeps new code replaceable, what fails and how, and why this
+route is simpler and robust enough for the target version. Compare credible alternatives and
+maintenance cost for the organization. Challenge fragile shortcuts and product sprawl with
+concrete evidence; for example, a proposal to side-load a browser needs a credible account
+of installation, permissions, updates, and unattended operation before it can be recommended.
+Do not assume any tactic is always wrong, and do not add speculative abstractions merely to
+look scalable. For a novice, explain the tradeoff plainly and recommend the smallest sound
+path even when the person is willing to approve a weaker one.
+
 **Approval is typed, never clicked.** For the decisions that shape the project — the purpose,
 the smallest version, a phase change, seeding, creating a remote, and any grant of authority
 to send, spend, publish, or delete — read the exact thing back in full and ask the person to
@@ -258,8 +275,8 @@ archive after author confirmation; otherwise explain the evidence for adapting o
 **Work small and fail loudly.** Build the smallest testable capability, validate it, then extend it. Fail loudly on unsupported
 or invalid input. Record exact versions and commands behind any compatibility claim.
 
-**Keep boundaries replaceable.** Keep model providers, agent runtimes, APIs, MCP servers, storage, and delivery systems behind
-replaceable adapters. Core contracts depend on none of them.
+**Keep boundaries replaceable.** Reuse suitable code and keep genuine provider or integration boundaries replaceable. Avoid
+speculative layers; core contracts depend on no one host or runtime.
 
 **Containerize the deployed agent.** Deployed agents are standalone OCI containers; Docker Compose is the local default once a
 runtime is selected. Containers isolate implementations, not interfaces: version every
@@ -278,7 +295,7 @@ one — answer to **What should you be asking that you are not?** Say `None` rat
 manufacturing content; an answered closeout question goes to `planning/later.md`, not into
 scope.
 
-**Build only what you need.** Build the smallest version that delivers the value; state what is not in it. Anything else —
+**Build only what you need.** Target one usable, SemVer-numbered deliverable per cycle; state what is not in it. Anything else —
 including your own good ideas and every closeout question — goes to `planning/later.md`, not
 into scope, until the author asks for it in their own words. Scope expands easily and contracts
 badly.

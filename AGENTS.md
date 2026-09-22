@@ -32,12 +32,12 @@ archive after author confirmation; otherwise explain the evidence for adapting o
 transformation, calculation, policy enforcement, and execution in deterministic, tested Python.
 - **Work small and fail loudly.** Build the smallest testable capability, validate it, then extend it. Fail loudly on unsupported
 or invalid input. Record exact versions and commands behind any compatibility claim.
-- **Build only what you need.** Build the smallest version that delivers the value; state what is not in it. Anything else —
+- **Build only what you need.** Target one usable, SemVer-numbered deliverable per cycle; state what is not in it. Anything else —
 including your own good ideas and every closeout question — goes to `planning/later.md`, not
 into scope, until the author asks for it in their own words. Scope expands easily and contracts
 badly.
-- **Keep boundaries replaceable.** Keep model providers, agent runtimes, APIs, MCP servers, storage, and delivery systems behind
-replaceable adapters. Core contracts depend on none of them.
+- **Keep boundaries replaceable.** Reuse suitable code and keep genuine provider or integration boundaries replaceable. Avoid
+speculative layers; core contracts depend on no one host or runtime.
 - **Decision protocol.** Record substantive choices in `governance/decisions.yaml` with a stable ID and one of
 `proposed`, `confirmed`, `rejected`, or `superseded`. Ask before marking anything confirmed;
 for purpose, smallest version, phase changes, seeding, remotes, and authority to send, spend,

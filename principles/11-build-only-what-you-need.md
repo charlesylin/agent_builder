@@ -8,13 +8,17 @@ does twelve right. Scope can expand as the project matures; it cannot easily con
 people depend on it.
 
 Every project states, in `planning/definition.md`, the smallest version that delivers its value
-and what is deliberately not in the first version. A proposal that is not needed for the
-smallest version goes to `planning/later.md`, not into scope, however good it is. Ideas are
-kept; they are not built until the author asks for them in their own words.
+and what is deliberately not in the first version. Record its own next deliverable as a
+Semantic Versioning `MAJOR.MINOR.PATCH` target in `governance/project-state.yaml`, separate
+from the Agent Builder template version. Ask what would make `v0.1.0` usable for a new project,
+or what the next appropriate stepping stone is for an existing one. Each cycle delivers one
+usable result, not the whole imagined product. A proposal that is not needed for that result
+goes to `planning/later.md`, not into scope, however good it is. Ideas are kept; they are not
+built until the author asks for them in their own words.
 
 ## Short form
 
-Build the smallest version that delivers the value; state what is not in it. Anything else —
+Target one usable, SemVer-numbered deliverable per cycle; state what is not in it. Anything else —
 including your own good ideas and every closeout question — goes to `planning/later.md`, not
 into scope, until the author asks for it in their own words. Scope expands easily and contracts
 badly.

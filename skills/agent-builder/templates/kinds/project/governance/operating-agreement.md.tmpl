@@ -96,15 +96,22 @@ does twelve right. Scope can expand as the project matures; it cannot easily con
 people depend on it.
 
 Every project states, in `planning/definition.md`, the smallest version that delivers its value
-and what is deliberately not in the first version. A proposal that is not needed for the
-smallest version goes to `planning/later.md`, not into scope, however good it is. Ideas are
-kept; they are not built until the author asks for them in their own words.
+and what is deliberately not in the first version. Record its own next deliverable as a
+Semantic Versioning `MAJOR.MINOR.PATCH` target in `governance/project-state.yaml`, separate
+from the Agent Builder template version. Ask what would make `v0.1.0` usable for a new project,
+or what the next appropriate stepping stone is for an existing one. Each cycle delivers one
+usable result, not the whole imagined product. A proposal that is not needed for that result
+goes to `planning/later.md`, not into scope, however good it is. Ideas are kept; they are not
+built until the author asks for them in their own words.
 
 ### Keep boundaries replaceable
 
-Core project contracts remain independent of Codex, Claude, Gemini, any model provider,
+Reuse suitable existing code and make new code modular where a real reuse or change boundary
+exists. Core project contracts remain independent of Codex, Claude, Gemini, any model provider,
 agent runtime, API framework, MCP implementation, data source, storage engine, or delivery
 channel. Provider-specific capabilities are optional adapters that declare their coupling.
+Do not add layers merely to look scalable; explain the smaller boundary and its maintenance
+cost for the organization.
 
 ## Security and authority
 

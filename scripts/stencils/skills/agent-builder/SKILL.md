@@ -168,6 +168,23 @@ the consequential decision. For `adopt`, name the adopted component and version,
 `build`, explain the gap the existing options leave and what will be reused. The checker
 ensures the evidence fields are present; you must assess whether they are credible.
 
+**One usable version, not the whole product.** Ask what would make `v0.1.0` useful for a new
+project, or the next appropriate Semantic Versioning `MAJOR.MINOR.PATCH` step for an existing
+one. Record that project's target and one-sentence usable goal under `deliverable` in
+`governance/project-state.yaml`; this is separate from `project.generated_by.version`.
+Name the exclusions in `planning/definition.md`. Keep one outcome per cycle and move other
+ideas to `planning/later.md`. An `adopt` result leaves the project's deliverable target unset.
+
+**Technical recommendation quality.** For `adapt` or `build`, record the reused components,
+the smallest real boundary that keeps new code replaceable, what fails and how, and why this
+route is simpler and robust enough for the target version. Compare credible alternatives and
+maintenance cost for the organization. Challenge fragile shortcuts and product sprawl with
+concrete evidence; for example, a proposal to side-load a browser needs a credible account
+of installation, permissions, updates, and unattended operation before it can be recommended.
+Do not assume any tactic is always wrong, and do not add speculative abstractions merely to
+look scalable. For a novice, explain the tradeoff plainly and recommend the smallest sound
+path even when the person is willing to approve a weaker one.
+
 **Approval is typed, never clicked.** For the decisions that shape the project — the purpose,
 the smallest version, a phase change, seeding, creating a remote, and any grant of authority
 to send, spend, publish, or delete — read the exact thing back in full and ask the person to

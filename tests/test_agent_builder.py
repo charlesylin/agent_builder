@@ -605,6 +605,14 @@ class BuildOrAdoptTests(unittest.TestCase):
             "Author confirmation": "The author typed approval of this recommendation.",
             "Decision record": "candidate-D003",
         }
+        if outcome in {"adapt", "build"}:
+            values.update(
+                {
+                    "Reused components and replaceable boundary": "Reuse the documented API behind one adapter.",
+                    "Failure behavior and robustness": "Reject unavailable or malformed input clearly.",
+                    "Why this is the simpler, maintainable option": "One small service beats a custom browser side-load.",
+                }
+            )
         for field, value in values.items():
             text = re.sub(rf"^- {re.escape(field)}: .*?$", f"- {field}: {value}", text, flags=re.M)
         text = text.replace("- Outcome: pending", f"- Outcome: {outcome}")
@@ -614,6 +622,21 @@ class BuildOrAdoptTests(unittest.TestCase):
                 "- Adopted solution and version: Public Skill 1.2.0",
             )
         path.write_text(text, encoding="utf-8")
+        if outcome in {"adapt", "build"}:
+            state_path = target / "governance/project-state.yaml"
+            state_path.write_text(
+                state_path.read_text(encoding="utf-8")
+                .replace("  target_version: null\n", '  target_version: "0.1.0"\n')
+                .replace("  goal: null\n", '  goal: "Read one approved dataset reliably."\n'),
+                encoding="utf-8",
+            )
+            definition_path = target / "planning/definition.md"
+            definition_path.write_text(
+                definition_path.read_text(encoding="utf-8").replace(
+                    "(not yet answered)", "One documented read-only workflow.",
+                ),
+                encoding="utf-8",
+            )
         ledger_path = target / "governance/decisions.yaml"
         ledger_path.write_text(
             ledger_path.read_text(encoding="utf-8")
@@ -678,6 +701,54 @@ class BuildOrAdoptTests(unittest.TestCase):
                     "unconfirmed-solution-decision",
                     {issue.code for issue in phase_exit_issues(target, "plan")},
                 )
+
+    def test_version_and_quality_evidence_are_required_for_a_build(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = self._planned(directory)
+            self._record(target, "build")
+            state_path = target / "governance/project-state.yaml"
+            state_path.write_text(
+                state_path.read_text(encoding="utf-8").replace('"0.1.0"', '"01.0.0"'),
+                encoding="utf-8",
+            )
+            record_path = target / "planning/solution-evaluation.md"
+            record_path.write_text(
+                record_path.read_text(encoding="utf-8").replace(
+                    "One small service beats a custom browser side-load.", "(not yet recorded)"
+                ),
+                encoding="utf-8",
+            )
+            codes = {issue.code for issue in phase_exit_issues(target, "plan")}
+            self.assertIn("invalid-deliverable-version", codes)
+            self.assertIn("missing-technical-rationale", codes)
+
+            state_path.write_text(
+                state_path.read_text(encoding="utf-8").replace('"01.0.0"', '"0.1.0-rc.1"'),
+                encoding="utf-8",
+            )
+            record_path.write_text(
+                record_path.read_text(encoding="utf-8").replace(
+                    "(not yet recorded)", "One adapter has a small, reviewable support cost.",
+                ),
+                encoding="utf-8",
+            )
+            self.assertEqual(phase_exit_issues(target, "plan"), ())
+
+    def test_adoption_cannot_claim_a_new_project_release(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = self._planned(directory)
+            self._record(target, "adopt")
+            state_path = target / "governance/project-state.yaml"
+            state_path.write_text(
+                state_path.read_text(encoding="utf-8")
+                .replace("  status: active\n", "  status: archived\n")
+                .replace("  target_version: null\n", '  target_version: "0.1.0"\n'),
+                encoding="utf-8",
+            )
+            self.assertIn(
+                "adoption-has-project-release",
+                {issue.code for issue in phase_exit_issues(target, "plan")},
+            )
 
     def test_old_agent_projects_are_not_retroactively_gated(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

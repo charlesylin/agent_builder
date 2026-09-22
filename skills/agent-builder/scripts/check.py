@@ -77,6 +77,16 @@ _SECRET_PATTERNS = {
 _FORBIDDEN_SECRET_FILES = {".env", ".env.local", ".env.production"}
 _TOKEN = re.compile(r"\{\{[A-Z0-9_]+\}\}")
 _VERSION = re.compile(r"^(\d+)\.(\d+)\.(\d+)(?:[-+].*)?$")
+# SemVer 2.0.0: numeric core identifiers cannot have leading zeroes; prerelease numeric
+# identifiers cannot either. Build metadata permits them. https://semver.org/spec/v2.0.0.html
+_SEMVER_CORE = r"(?:0|[1-9][0-9]*)"
+_SEMVER_PRE = r"(?:0|[1-9][0-9]*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)"
+_SEMVER_BUILD = r"[0-9A-Za-z-]+"
+_SEMVER = re.compile(
+    rf"{_SEMVER_CORE}\.{_SEMVER_CORE}\.{_SEMVER_CORE}"
+    rf"(?:-{_SEMVER_PRE}(?:\.{_SEMVER_PRE})*)?"
+    rf"(?:\+{_SEMVER_BUILD}(?:\.{_SEMVER_BUILD})*)?"
+)
 _SOLUTION_FIELDS = (
     "Need",
     "Search date",
@@ -90,7 +100,12 @@ _SOLUTION_FIELDS = (
     "Evidence-backed reason",
     "Author confirmation",
 )
-_SOLUTION_LINE = re.compile(r"^- ([A-Za-z][A-Za-z -]+):[ \t]*(.*)$", re.MULTILINE)
+_SOLUTION_LINE = re.compile(r"^- ([^:\n]+):[ \t]*(.*)$", re.MULTILINE)
+_QUALITY_FIELDS = (
+    "Reused components and replaceable boundary",
+    "Failure behavior and robustness",
+    "Why this is the simpler, maintainable option",
+)
 
 
 @dataclass(frozen=True)
@@ -187,6 +202,11 @@ def _solution_record_issues(root: Path, state: str, ledger: str) -> tuple[Valida
         issues.append(
             ValidationIssue("missing-solution-decision", "choose adopt, adapt, or build", path)
         )
+    if outcome in {"adapt", "build"}:
+        for name in _QUALITY_FIELDS:
+            value = fields.get(name, "").strip()
+            if not value or value.startswith("(not yet"):
+                issues.append(ValidationIssue("missing-technical-rationale", f"fill in {name}", path))
     decision_id = fields.get("Decision record", "").strip()
     if not decision_id or decision_id.startswith("(not yet"):
         issues.append(
@@ -222,6 +242,66 @@ def _solution_record_issues(root: Path, state: str, ledger: str) -> tuple[Valida
                     "adoption-not-archived",
                     "archive the project after author confirmation; do not enter Build",
                     root / "governance/project-state.yaml",
+                )
+            )
+    if outcome in {"adopt", "adapt", "build"}:
+        issues.extend(_deliverable_issues(root, state, outcome))
+    return tuple(issues)
+
+
+def _deliverable_issues(root: Path, state: str, outcome: str) -> tuple[ValidationIssue, ...]:
+    path = root / "governance/project-state.yaml"
+    block = re.search(r"^deliverable:\n((?:[ \t]+.*\n)*)", state, re.MULTILINE)
+    if not block:
+        return (
+            ValidationIssue(
+                "missing-deliverable-record",
+                "add a deliverable record separate from the Agent Builder template version",
+                path,
+            ),
+        )
+    fields = dict(re.findall(r"^  ([a-z_]+):[ \t]*(.*)$", block.group(1), re.MULTILINE))
+    version = fields.get("target_version", "").strip().strip('"\'')
+    goal = fields.get("goal", "").strip().strip('"\'')
+    if outcome == "adopt":
+        if version not in {"", "null"} or goal not in {"", "null"}:
+            return (
+                ValidationIssue(
+                    "adoption-has-project-release",
+                    "leave the project's deliverable target unset when adopting an existing solution",
+                    path,
+                ),
+            )
+        return ()
+
+    issues: list[ValidationIssue] = []
+    if not _SEMVER.fullmatch(version):
+        issues.append(
+            ValidationIssue(
+                "invalid-deliverable-version",
+                "set deliverable.target_version to a SemVer MAJOR.MINOR.PATCH value",
+                path,
+            )
+        )
+    if goal in {"", "null"}:
+        issues.append(
+            ValidationIssue("missing-deliverable-goal", "name one usable outcome for this version", path)
+        )
+
+    definition_path = root / "planning/definition.md"
+    definition = definition_path.read_text(encoding="utf-8") if definition_path.is_file() else ""
+    for heading in ("Smallest version that delivers the value", "Not in the first version"):
+        match = re.search(
+            rf"^## {re.escape(heading)}\n(.*?)(?=^## |\Z)",
+            definition,
+            re.MULTILINE | re.DOTALL,
+        )
+        if not match or not match.group(1).strip() or _UNANSWERED in match.group(1):
+            issues.append(
+                ValidationIssue(
+                    "unbounded-deliverable",
+                    f"complete '{heading}' before Build",
+                    definition_path,
                 )
             )
     return tuple(issues)
