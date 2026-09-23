@@ -149,9 +149,7 @@ class ScaffoldTests(unittest.TestCase):
             self.assertIn("  current: define\n", state)
             self.assertNotIn("\nruntime:\n", state)
             self.assertNotIn("\ndeployment:\n", state)
-            agreement = (target / "governance/operating-agreement.md").read_text(
-                encoding="utf-8"
-            )
+            agreement = (target / "governance/operating-agreement.md").read_text(encoding="utf-8")
             self.assertIn("neutral project", agreement)
             self.assertNotIn("Docker Compose", agreement)
 
@@ -642,7 +640,8 @@ class BuildOrAdoptTests(unittest.TestCase):
             definition_path = target / "planning/definition.md"
             definition_path.write_text(
                 definition_path.read_text(encoding="utf-8").replace(
-                    "(not yet answered)", "One documented read-only workflow.",
+                    "(not yet answered)",
+                    "One documented read-only workflow.",
                 ),
                 encoding="utf-8",
             )
@@ -686,9 +685,7 @@ class BuildOrAdoptTests(unittest.TestCase):
             self.assertIn("  current: plan\n", state_path.read_text(encoding="utf-8"))
             record = target / "planning/solution-evaluation.md"
             record.write_text(
-                record.read_text(encoding="utf-8").replace(
-                    "Public Skill 1.2.0", "not applicable"
-                ),
+                record.read_text(encoding="utf-8").replace("Public Skill 1.2.0", "not applicable"),
                 encoding="utf-8",
             )
             self.assertIn(
@@ -742,7 +739,8 @@ class BuildOrAdoptTests(unittest.TestCase):
             )
             record_path.write_text(
                 record_path.read_text(encoding="utf-8").replace(
-                    "(not yet recorded)", "One adapter has a small, reviewable support cost.",
+                    "(not yet recorded)",
+                    "One adapter has a small, reviewable support cost.",
                 ),
                 encoding="utf-8",
             )
@@ -799,9 +797,7 @@ class PlainLanguageTests(unittest.TestCase):
                 ProjectSpec.create(name="Plain", purpose="Show a clear status.", kind="project"),
                 generated_at=GENERATED_AT,
             )
-            agreement = (target / "governance/operating-agreement.md").read_text(
-                encoding="utf-8"
-            )
+            agreement = (target / "governance/operating-agreement.md").read_text(encoding="utf-8")
             self.assertIn("Do not make\nthe person decode local decision IDs", agreement)
             self.assertNotIn("Every human-facing closeout contains", agreement)
             ledger = (target / "governance/decisions.yaml").read_text(encoding="utf-8")
@@ -829,13 +825,20 @@ class ReviewReadinessTests(unittest.TestCase):
                     sys.executable,
                     str(SKILL / "scripts/seed.py"),
                     str(target),
-                    "--name", "S3 Watcher",
-                    "--purpose", "Notice approved new inputs for the lab team.",
-                    "--kind", "project",
-                    "--problem", "Approved input files arrive without a timely signal.",
-                    "--current", "A team member checks the bucket by hand.",
-                    "--value", "The team starts one process promptly.",
-                    "--for", "The lab team.",
+                    "--name",
+                    "S3 Watcher",
+                    "--purpose",
+                    "Notice approved new inputs for the lab team.",
+                    "--kind",
+                    "project",
+                    "--problem",
+                    "Approved input files arrive without a timely signal.",
+                    "--current",
+                    "A team member checks the bucket by hand.",
+                    "--value",
+                    "The team starts one process promptly.",
+                    "--for",
+                    "The lab team.",
                 ],
                 env=environment,
                 capture_output=True,

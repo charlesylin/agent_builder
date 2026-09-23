@@ -273,8 +273,8 @@ def _deliverable_issues(root: Path, state: str, outcome: str) -> tuple[Validatio
                 path,
             ),
         )
-    version = fields.get("target_version", "").strip().strip('"\'')
-    goal = fields.get("goal", "").strip().strip('"\'')
+    version = fields.get("target_version", "").strip().strip("\"'")
+    goal = fields.get("goal", "").strip().strip("\"'")
     if outcome == "adopt":
         if version not in {"", "null"} or goal not in {"", "null"}:
             return (
@@ -354,9 +354,10 @@ def validate_project(root: str | Path) -> tuple[ValidationIssue, ...]:
                 ValidationIssue("missing-file", "required scaffold file is missing", relative)
             )
 
-    if _uses_solution_gate(manifest) and not (
-        project_root / "planning/solution-evaluation.md"
-    ).is_file():
+    if (
+        _uses_solution_gate(manifest)
+        and not (project_root / "planning/solution-evaluation.md").is_file()
+    ):
         issues.append(
             ValidationIssue(
                 "missing-file",
