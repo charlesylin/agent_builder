@@ -1,7 +1,7 @@
 # Agent Builder v0.3.0 plan
 
-Status: confirmed by the author; Build authorized on 2026-09-22. Review still requires a
-separate phase transition.
+Status: confirmed by the author; Build opened on 2026-09-22 and closed after mechanical
+verification. The author opened Review on 2026-09-23. Release acceptance remains open.
 Scope and success evidence: [definition.md](definition.md).
 The focused [Spec Kit comparison](spec-kit-comparison.md) and
 [component map](spec-kit-component-map.md) document the build-or-adopt evidence from a

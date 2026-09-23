@@ -634,3 +634,16 @@ decisions:
       or the illustrative K-Dense example as dependencies.
     provenance: explicit_author_phase_transition
     record: planning/implementation-plan.md
+  - id: AB-D049
+    status: confirmed
+    date: 2026-09-23
+    confirmed_date: 2026-09-23
+    confirmed_by: charles-yang-lin
+    confirmation: Author said "oh right, let's enter review" after the Build status and release gate were explained.
+    decision: Close Build and enter Review for the lean v0.3.0 implementation.
+    rationale: >-
+      All approved Build slices are committed and the Build exit check reports nothing
+      unresolved. Mechanical verification is not the real-use acceptance required before
+      release, so v0.3.0 remains untagged while Review collects that evidence.
+    provenance: explicit_author_phase_transition
+    record: docs/v0-3-build-verification.md

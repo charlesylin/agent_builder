@@ -8,10 +8,10 @@ project:
   status: active
 
 phase:
-  current: build
-  status: build_complete_awaiting_review_authorization
+  current: review
+  status: review_in_progress
   last_confirmed_by: charles-yang-lin
-  last_confirmed_date: 2026-09-22
+  last_confirmed_date: 2026-09-23
   transition_requires: explicit_user_invocation_or_confirmation
   history:
     - phase: define
@@ -83,6 +83,12 @@ phase:
       outcome: >-
         The author explicitly closed Plan and entered Build for the confirmed lean v0.3.0
         plan. Spec Kit integration remains deferred to a separately defined v0.4.0.
+    - phase: review
+      date: 2026-09-23
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        The author explicitly closed Build and entered Review for v0.3.0 after all approved
+        Build slices passed mechanical verification. Real-use acceptance remains open.
 
 release:
   target: 0.2.1
@@ -155,12 +161,14 @@ next_release:
     human_experience_decision: AB-D044
   implementation_approved: true
   implementation_decision: AB-D048
+  review_status: in_progress
+  review_decision: AB-D049
   note: >-
     The purpose is confirmed under AB-D040 and the smallest version-sized outcome under
     AB-D041, amended by AB-D043 to require proportional plain-language governance. Success
     evidence is confirmed under AB-D042 and AB-D044. AB-D045 confirms the v0.3.0 target and
-    versioning rule. AB-D047 confirms the lean plan and release split; AB-D048 authorizes
-    Build of that plan. A move to Review still requires explicit author authorization.
+    versioning rule. AB-D047 confirms the lean plan and release split; AB-D048 authorized
+    Build of that plan; AB-D049 authorized Review. Release acceptance and tagging remain open.
   candidate_inputs:
     - id: F-018
       summary: Make public-solution discovery a build-or-adopt gate.
@@ -188,13 +196,12 @@ next_release:
       source: docs/v0-2-review-feedback.md
 
 checkpoint:
-  date: 2026-09-22
-  status: build_slices_complete
-  phase_changed: false
+  date: 2026-09-23
+  status: review_opened
+  phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Seek explicit author authorization to enter Review for v0.3.0. Use
-    docs/v0-3-build-verification.md as the Build evidence, then collect live Two River Bio
-    feedback on adoption, simplification, and plain status. Do not cut a release, tag, or
-    push before the authorized review and release workflow.
+    Exercise v0.3.0 with a real Two River Bio user: test an evidence-backed adopt-and-archive
+    recommendation, technical-quality pushback, and plain project status. Record observations
+    and obtain explicit release acceptance before updating metadata or tagging v0.3.0.

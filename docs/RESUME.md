@@ -1,12 +1,12 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-09-22. Agent Builder **v0.2.1** is accepted and Review is closed. The author
+Checkpoint: 2026-09-23. Agent Builder **v0.2.1** is accepted and its Review is closed. The author
 opened **Define** for the next iteration and confirmed its purpose, smallest deliverable, and
 success evidence. The target is **v0.3.0**, with Semantic Versioning for Agent Builder. This
 checkpoint records the author's explicit move to **Build** after Plan closed. The confirmed
 v0.3.0 implementation scope is in `planning/implementation-plan.md`. All approved Build slices
-have now been implemented and verified; the phase remains Build until the author explicitly
-opens Review.
+have been implemented and verified. The author explicitly opened **Review** on 2026-09-23;
+real-use acceptance and release remain open.
 
 ## Recover context
 
@@ -47,7 +47,7 @@ Acceptance rested on Sean using the organization-installed v0.2.1 plugin on Wind
 separate local setup, to reach a seeded, validated, committed Define-phase project in one
 session. See `docs/v0-2-acceptance.md` for the evidence and qualifications.
 
-## Current phase: Build for v0.3.0
+## Current phase: Review for v0.3.0
 
 The author opened Define on 2026-09-22 after accepting v0.2.1. The confirmed purpose is to
 formally enact project mode and establish governance for logical versioning, reuse, modularity,
@@ -103,6 +103,8 @@ the boundary for this version. The confirmed design, build slices, and acceptanc
 `planning/implementation-plan.md`; the focused Spec Kit evidence is in
 `planning/spec-kit-comparison.md`. The Build evidence and remaining live-use questions are in
 `docs/v0-3-build-verification.md`. No v0.3.0 release metadata or tag has been cut.
+The author said "oh right, let's enter review" on 2026-09-23 after the Build exit check
+passed. Review is now open; v0.3.0 has not been accepted.
 
 ## Items not promoted into scope
 
@@ -136,8 +138,7 @@ entry to Build. These are mechanical checks, not live Two River Bio user feedbac
 
 ## Next action
 
-Ask the author to authorize entry to Review; do not infer that transition from Build
-completion. In Review, run a real adoption-and-archive conversation and a technical-quality
-pushback case with a Two River Bio member, then collect plain-status feedback. Do not make
+Run a real adoption-and-archive conversation and a technical-quality pushback case with a
+Two River Bio member, then collect plain-status feedback. Do not make
 K-Dense part of the build or add Spec Kit to v0.3.0. v0.4.0 receives its own Define and Plan
-after v0.3.0 Review.
+after v0.3.0 Review. Obtain explicit acceptance before updating release metadata or tagging.
