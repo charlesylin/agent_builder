@@ -647,3 +647,25 @@ decisions:
       release, so v0.3.0 remains untagged while Review collects that evidence.
     provenance: explicit_author_phase_transition
     record: docs/v0-3-build-verification.md
+  - id: AB-D050
+    status: confirmed
+    date: 2026-09-24
+    confirmed_date: 2026-09-24
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      The author reported that all three agreed Review tests passed, then confirmed the
+      read-back to accept and tag v0.3.0, close Review, and enter v0.4.0 Define. The author
+      explicitly requested updating the remaining v0.2.1 release markers. Before this
+      closeout was committed, the author clarified: "wrap that up so i can push and we can
+      use it for a bit before advancing to v0.4". The newer direction defers v0.4.0.
+    decision: >-
+      Accept Agent Builder v0.3.0, update its release metadata, and tag it locally. Keep
+      Review current for post-release use and observations; do not open v0.4.0 Define yet.
+    rationale: >-
+      The author reported passing adoption instead of building, one small usable project
+      version, and cold-resume scenarios. Mechanical Build evidence is recorded separately.
+      The live sessions' transcripts, host details, and source commits were not supplied for
+      independent review. The prior Spec Kit release split provides a candidate direction
+      for v0.4.0, but the latest author instruction defers that phase transition.
+    provenance: explicit_author_acceptance_and_deferred_phase_transition
+    record: docs/v0-3-acceptance.md

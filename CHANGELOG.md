@@ -2,6 +2,31 @@
 
 All notable changes to Agent Builder are documented here.
 
+## [0.3.0] - 2026-09-24
+
+Accepted after the author reported all three real-use Review scenarios passed. See
+`docs/v0-3-acceptance.md` for the evidence and its limits. This release makes neutral projects
+and one usable, version-sized outcome first-class without adding Spec Kit as a dependency.
+
+### Added
+
+- Neutral `project` kind with a validated, committed scaffold and no agent runtime or skill
+  packaging files.
+- A required Plan-stage build-or-adopt evaluation of public solutions and any user-provided
+  codebase. A suitable existing solution can be adopted, recorded by version, and archived
+  without entering Build or claiming a new project release.
+- A separate Semantic Versioning target for each project's next usable deliverable, with
+  explicit exclusions and the rest deferred.
+- Evidence fields for reuse, the smallest replaceable boundary, failure behavior, credible
+  alternatives, and organizational maintenance cost before recommending a custom build.
+
+### Changed
+
+- Human-facing status and approvals are plain and proportional to consequential choices;
+  structured internal identifiers remain available for agent-readable records.
+- The checker enforces the new Plan gate for projects seeded at 0.3.0 or later while keeping
+  older projects valid without an automatic migration.
+
 ## [0.2.1] - 2026-09-14
 
 Review feedback from the first colleague to use v0.2 (Sean), incorporated during Review under

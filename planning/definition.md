@@ -1,7 +1,8 @@
-# Agent Builder: next usable version
+# Agent Builder v0.3.0 definition (historical)
 
-Target: v0.3.0. Define closed and Plan opened by the author on 2026-09-22. The author has
-confirmed the purpose, scope, version, and success evidence.
+Target: v0.3.0. Define closed and Plan opened by the author on 2026-09-22. The author
+confirmed the purpose, scope, version, and success evidence. v0.3.0 was accepted on
+2026-09-24; this remains its definition record, not the open v0.4.0 definition.
 
 ## What problem does this solve?
 

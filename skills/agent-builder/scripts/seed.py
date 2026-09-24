@@ -42,7 +42,7 @@ except ImportError as error:  # pragma: no cover - only when the skill folder is
     raise SystemExit(f"seed.py needs check.py beside it in {HERE}: {error}") from error
 
 # Kept equal to "version" in the repository's .claude-plugin/plugin.json; a test enforces it.
-TEMPLATE_VERSION = "0.2.1"
+TEMPLATE_VERSION = "0.3.0"
 # The marker check.py looks for in planning/definition.md. Keep the two in sync.
 UNANSWERED = "(not yet answered)"
 

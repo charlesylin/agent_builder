@@ -765,12 +765,14 @@ class BuildOrAdoptTests(unittest.TestCase):
     def test_old_agent_projects_are_not_retroactively_gated(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             target = self._planned(directory, kind="agent")
+            manifest_path = target / ".agent-builder.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["template_version"] = "0.2.1"
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
             (target / "planning/solution-evaluation.md").unlink()
             self.assertEqual(phase_exit_issues(target, "plan"), ())
             self.assertEqual(validate_project(target), ())
 
-            manifest_path = target / ".agent-builder.json"
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
             manifest["template_version"] = "0.3.0"
             manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
             self.assertIn(
