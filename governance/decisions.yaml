@@ -682,3 +682,20 @@ decisions:
       direction, but v0.4.0 purpose, smallest outcome, and success evidence still require
       author confirmation in Define.
     provenance: explicit_author_phase_transition
+  - id: AB-D052
+    status: confirmed
+    date: 2026-09-25
+    confirmed_date: 2026-09-25
+    confirmed_by: charles-yang-lin
+    decision: >-
+      Evaluate Spec Kit for a specific seamless replacement or improvement to Agent Builder;
+      do not add a dependency or degrade the working v0.3.0 experience merely for reuse.
+      Present any beneficial change that materially changes the user experience separately
+      for author evaluation. Retaining the current component is a valid outcome.
+    rationale: >-
+      The author reports v0.3.0 has worked fine. The earlier v0.4.0 release split favored a
+      maintained Spec Kit dependency, but this clarification makes demonstrated net benefit
+      and preservation of Agent Builder's valued core the gate for using it.
+    provenance: explicit_author_clarification_during_define
+    amends: AB-D047
+    record: planning/v0-4-definition.md

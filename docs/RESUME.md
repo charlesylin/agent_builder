@@ -28,8 +28,11 @@ make the generated-project scaffold check pass.
 
 ## Current phase: Define for v0.4.0
 
-The prior confirmed release split names a maintained Spec Kit dependency and targeted
-replacements as a candidate direction. The comparison is in
+The prior release split names a maintained Spec Kit dependency and targeted replacements as
+a candidate direction. The author clarified that v0.3.0 works well: any dependency or
+replacement must demonstrate a net improvement without degrading the core experience.
+An experience-changing improvement should be proposed separately, and leaving a component
+unchanged is valid. The comparison is in
 `planning/spec-kit-comparison.md` and `planning/spec-kit-component-map.md`. Those records do
 not predetermine the exact v0.4.0 scope. Define the problem, value, and smallest useful
 outcome before selecting a technical approach.

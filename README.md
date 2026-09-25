@@ -82,9 +82,9 @@ How to change principles, the skill, templates, or cut a release:
 **v0.3.0 accepted; v0.4.0 in Define.** The author reported all three v0.3 real-use Review
 scenarios passed and accepted the release on 2026-09-24. See the
 [v0.3 acceptance record](docs/v0-3-acceptance.md). The author opened v0.4.0 Define on
-2026-09-25. Its candidate direction is a maintained Spec Kit dependency with targeted
-replacements, but its purpose and smallest outcome are not yet defined. v0.2.1 and v0.1.0
-remain [previous accepted releases](docs/RESUME.md).
+2026-09-25. It will evaluate whether a maintained Spec Kit dependency offers a specific net
+improvement without degrading the working core; its smallest outcome is not yet defined.
+v0.2.1 and v0.1.0 remain [previous accepted releases](docs/RESUME.md).
 
 This repository is developed under its own phases; see
 [`governance/`](governance/) and [`docs/RESUME.md`](docs/RESUME.md).

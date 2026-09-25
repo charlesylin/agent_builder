@@ -5,7 +5,7 @@
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.3.0 is accepted and tagged. The author explicitly closed Review and opened v0.4.0 Define on 2026-09-25. The candidate direction is a maintained Spec Kit dependency with targeted replacements, but purpose, smallest outcome, exclusions, and success evidence remain open. No v0.4.0 Plan or Build work is authorized.",
+  "summary": "Agent Builder v0.3.0 is accepted and working well. In v0.4.0 Define, the author wants to evaluate Spec Kit for a specific net improvement without degrading Agent Builder's core experience. A dependency or replacement is conditional, and a beneficial user-experience change needs separate evaluation. Purpose, smallest outcome, exclusions, and success evidence remain open; no Plan or Build work is authorized.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -91,6 +91,11 @@
       "id": "AB-D051",
       "status": "confirmed",
       "summary": "Close v0.3.0 Review and open v0.4.0 Define with scope and success evidence still open."
+    },
+    {
+      "id": "AB-D052",
+      "status": "confirmed",
+      "summary": "Use Spec Kit only for a demonstrated net improvement; preserve Agent Builder's working core and separately evaluate user-experience changes."
     }
   ],
   "artifacts": [
@@ -116,6 +121,10 @@
     },
     {
       "path": "planning/definition.md",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "planning/v0-4-definition.md",
       "media_type": "text/markdown"
     },
     {
@@ -148,6 +157,6 @@
     }
   ],
   "blockers": [],
-  "questions": ["Which problem should v0.4.0 solve, and what value would solving it bring?"],
-  "next_action": "Ask the author which problem v0.4.0 should solve; then define one smallest usable outcome before entering Plan."
+  "questions": ["What should a Two River Bio member be able to do better after v0.4.0 than with v0.3.0?"],
+  "next_action": "Clarify the concrete user benefit v0.4.0 should deliver, then define one smallest usable outcome before entering Plan."
 }
