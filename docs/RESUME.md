@@ -1,9 +1,9 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-09-24. Agent Builder **v0.3.0** is accepted and tagged locally. The author
-reported all three agreed real-use Review scenarios passed and asked to use this release for
-a while before advancing to v0.4.0. **Review remains the current phase** for post-release
-observations. No v0.4.0 Define transition has been made.
+Checkpoint: 2026-09-25. Agent Builder **v0.3.0** is accepted and tagged. The author reported
+all three agreed real-use Review scenarios passed, then explicitly closed Review and opened
+**v0.4.0 Define**. Its purpose, smallest outcome, exclusions, and success evidence remain
+open; no Plan or Build work is authorized.
 
 ## Recover context
 
@@ -26,13 +26,13 @@ make the generated-project scaffold check pass.
 - **v0.1.0 — accepted 2026-09-13.** Governance and scaffolding without a runtime; see
   `docs/v0-1-acceptance.md`.
 
-## Current phase: Review, v0.3.0 accepted and in use
+## Current phase: Define for v0.4.0
 
-Collect any friction from using v0.3.0. The prior confirmed release split names a maintained
-Spec Kit dependency and targeted replacements as the candidate direction for v0.4.0. The
-comparison is in `planning/spec-kit-comparison.md` and
-`planning/spec-kit-component-map.md`. Those records do not predetermine the exact v0.4.0
-scope. No new architecture or implementation work is authorized by this release closeout.
+The prior confirmed release split names a maintained Spec Kit dependency and targeted
+replacements as a candidate direction. The comparison is in
+`planning/spec-kit-comparison.md` and `planning/spec-kit-component-map.md`. Those records do
+not predetermine the exact v0.4.0 scope. Define the problem, value, and smallest useful
+outcome before selecting a technical approach.
 
 A quick existing-solution screen before seeding was discussed during v0.3.0 Review; v0.3.0
 requires the full documented decision in Plan, not an early screen in Define. Whether an
@@ -51,5 +51,4 @@ projects generated from the new templates.
 
 ## Next action
 
-The author may push the release commit and `v0.3.0` tag, then use the release and report
-observations. Enter v0.4.0 Define only after renewed explicit direction.
+Ask the author which problem v0.4.0 should solve and what value solving it would bring.

@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-v0-3-release-2026-09-24",
-  "created_at": "2026-09-24T23:03:37Z",
+  "handoff_id": "agent-builder-v0-4-define-2026-09-25",
+  "created_at": "2026-09-25T17:18:41Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.3.0 is accepted after the author reported all three real-use Review scenarios passed. Release metadata is 0.3.0 and a local v0.3.0 tag identifies the release commit; the author intends to push it. Review remains current for post-release use and observations. v0.4.0 Define is deferred; a maintained Spec Kit dependency with targeted replacements is only the candidate direction.",
+  "summary": "Agent Builder v0.3.0 is accepted and tagged. The author explicitly closed Review and opened v0.4.0 Define on 2026-09-25. The candidate direction is a maintained Spec Kit dependency with targeted replacements, but purpose, smallest outcome, exclusions, and success evidence remain open. No v0.4.0 Plan or Build work is authorized.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -86,6 +86,11 @@
       "id": "AB-D050",
       "status": "confirmed",
       "summary": "Accept and locally tag v0.3.0; use it before opening v0.4.0 Define."
+    },
+    {
+      "id": "AB-D051",
+      "status": "confirmed",
+      "summary": "Close v0.3.0 Review and open v0.4.0 Define with scope and success evidence still open."
     }
   ],
   "artifacts": [
@@ -143,6 +148,6 @@
     }
   ],
   "blockers": [],
-  "questions": [],
-  "next_action": "The author may push the release commit and v0.3.0 tag, then use the release and report friction. Enter v0.4.0 Define only after renewed explicit direction."
+  "questions": ["Which problem should v0.4.0 solve, and what value would solving it bring?"],
+  "next_action": "Ask the author which problem v0.4.0 should solve; then define one smallest usable outcome before entering Plan."
 }

@@ -669,3 +669,16 @@ decisions:
       for v0.4.0, but the latest author instruction defers that phase transition.
     provenance: explicit_author_acceptance_and_deferred_phase_transition
     record: docs/v0-3-acceptance.md
+  - id: AB-D051
+    status: confirmed
+    date: 2026-09-25
+    confirmed_date: 2026-09-25
+    confirmed_by: charles-yang-lin
+    confirmation: Author said "cool! let's move to v0.4 define".
+    decision: Close v0.3.0 Review and open Define for v0.4.0.
+    rationale: >-
+      v0.3.0 is accepted and its local release tag is on main. The Review exit check found
+      nothing unresolved. The earlier release split names Spec Kit integration as a candidate
+      direction, but v0.4.0 purpose, smallest outcome, and success evidence still require
+      author confirmation in Define.
+    provenance: explicit_author_phase_transition
