@@ -699,3 +699,35 @@ decisions:
     provenance: explicit_author_clarification_during_define
     amends: AB-D047
     record: planning/v0-4-definition.md
+  - id: AB-D053
+    status: confirmed
+    date: 2026-09-29
+    confirmed_date: 2026-09-29
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      The author said the Claude Chat and Cowork installation paths are unused and to
+      "nix that" after requesting v0.4.0 coverage for Claude, Codex, and every build kind.
+    decision: >-
+      Target Claude Code and Codex, for agent, project, and skill builds, with equivalent
+      v0.4.0 Spec Kit-backed capabilities after one Agent Builder installation. Exclude
+      Claude Chat, Cowork, and claude.ai plugin paths from the v0.4.0 release requirement.
+    rationale: >-
+      The author reports no use of the Chat/Cowork paths. The narrower host matrix keeps
+      v0.4.0 focused without treating Codex or any supported build kind as best-effort.
+      This scope decision does not uninstall an existing plugin or change prior releases.
+    provenance: explicit_author_scope_clarification_during_define
+    record: planning/v0-4-definition.md
+  - id: AB-D054
+    status: confirmed
+    date: 2026-09-29
+    confirmed_date: 2026-09-29
+    confirmed_by: charles-yang-lin
+    confirmation: Author said "i'm happy w/ the define. move to plan".
+    decision: Close v0.4.0 Define and enter Plan for the approved scope.
+    rationale: >-
+      The author confirmed the v0.4.0 direction and host/kind coverage recorded in
+      planning/v0-4-definition.md. The Define exit check found nothing unresolved.
+      Dependency packaging, exact integration boundaries, and acceptance tests require
+      Plan work before any Build authorization.
+    provenance: explicit_author_phase_transition
+    record: planning/v0-4-definition.md

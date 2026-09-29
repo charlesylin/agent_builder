@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-v0-4-define-2026-09-25",
-  "created_at": "2026-09-25T17:18:41Z",
+  "handoff_id": "agent-builder-v0-4-plan-2026-09-29",
+  "created_at": "2026-09-29T16:40:57Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.3.0 is accepted and working well. In v0.4.0 Define, the author wants to evaluate Spec Kit for a specific net improvement without degrading Agent Builder's core experience. A dependency or replacement is conditional, and a beneficial user-experience change needs separate evaluation. Purpose, smallest outcome, exclusions, and success evidence remain open; no Plan or Build work is authorized.",
+  "summary": "Agent Builder v0.3.0 is accepted and working well. The author approved v0.4.0 Define and opened Plan. The release aims for a maintained Spec Kit dependency with targeted idea-assessment replacement and proportional specification and planning augmentation, after one Agent Builder install on Claude Code or Codex for agent, skill, and project builds. Preserve Agent Builder's core workflow and avoid duplicate records or a net regression. Packaging and integration design remain for Plan; Build is not authorized.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -96,6 +96,16 @@
       "id": "AB-D052",
       "status": "confirmed",
       "summary": "Use Spec Kit only for a demonstrated net improvement; preserve Agent Builder's working core and separately evaluate user-experience changes."
+    },
+    {
+      "id": "AB-D053",
+      "status": "confirmed",
+      "summary": "Target Claude Code and Codex across agent, project, and skill builds; exclude Chat, Cowork, and claude.ai from v0.4.0."
+    },
+    {
+      "id": "AB-D054",
+      "status": "confirmed",
+      "summary": "Close v0.4.0 Define and open Plan for the approved scope."
     }
   ],
   "artifacts": [
@@ -157,6 +167,6 @@
     }
   ],
   "blockers": [],
-  "questions": ["What should a Two River Bio member be able to do better after v0.4.0 than with v0.3.0?"],
-  "next_action": "Clarify the concrete user benefit v0.4.0 should deliver, then define one smallest usable outcome before entering Plan."
+  "questions": ["Can a maintained Spec Kit dependency provide the agreed capability on Claude Code and Codex without separate member setup, duplicate records, or a net regression from v0.3.0?"],
+  "next_action": "Test the dependency and distribution paths, compare selected Spec Kit functions with the current workflow, and propose the smallest v0.4.0 implementation and Review tests before seeking Build approval."
 }

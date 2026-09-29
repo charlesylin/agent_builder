@@ -1,9 +1,7 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-09-25. Agent Builder **v0.3.0** is accepted and tagged. The author reported
-all three agreed real-use Review scenarios passed, then explicitly closed Review and opened
-**v0.4.0 Define**. Its purpose, smallest outcome, exclusions, and success evidence remain
-open; no Plan or Build work is authorized.
+Checkpoint: 2026-09-29. Agent Builder **v0.3.0** is accepted and tagged. The author approved
+the v0.4.0 Define record and explicitly opened **v0.4.0 Plan**. No Build work is authorized.
 
 ## Recover context
 
@@ -26,32 +24,35 @@ make the generated-project scaffold check pass.
 - **v0.1.0 — accepted 2026-09-13.** Governance and scaffolding without a runtime; see
   `docs/v0-1-acceptance.md`.
 
-## Current phase: Define for v0.4.0
+## Current phase: Plan for v0.4.0
 
-The prior release split names a maintained Spec Kit dependency and targeted replacements as
-a candidate direction. The author clarified that v0.3.0 works well: any dependency or
-replacement must demonstrate a net improvement without degrading the core experience.
-An experience-changing improvement should be proposed separately, and leaving a component
-unchanged is valid. The comparison is in
-`planning/spec-kit-comparison.md` and `planning/spec-kit-component-map.md`. Those records do
-not predetermine the exact v0.4.0 scope. Define the problem, value, and smallest useful
-outcome before selecting a technical approach.
+The approved [Define record](../planning/v0-4-definition.md) targets a maintained Spec Kit
+dependency for a partial replacement of idea assessment and proportionate augmentation of
+specification, clarification, checklist, plan, tasks, and analysis. The member-facing result
+must work after one Agent Builder installation on Claude Code or Codex, for agent, skill, and
+project builds. Claude Chat, Cowork, and claude.ai are not v0.4.0 targets. Preserve Agent
+Builder's lifecycle, approvals, versioning, and deterministic checks; avoid duplicate records
+and a net regression from v0.3.0. No dependency packaging or integration design is approved
+yet. The prior comparison is in `planning/spec-kit-comparison.md` and
+`planning/spec-kit-component-map.md`.
 
-A quick existing-solution screen before seeding was discussed during v0.3.0 Review; v0.3.0
-requires the full documented decision in Plan, not an early screen in Define. Whether an
-earlier screen materially shortens the path to an adopt decision is an open Define input.
-Organizational-repository configuration, Grafify or skill discovery, and formal test/control
-improvements were excluded from v0.3.0; none is automatically v0.4.0 scope.
+Plan should test Spec Kit dependency/distribution feasibility on both hosts; compare the
+selected functions with Agent Builder's current flow; record a build-or-adopt evaluation;
+and propose only the integration boundaries and acceptance tests needed for v0.4.0. If a
+maintained dependency cannot deliver the agreed outcome without regression, return to the
+author for a decision rather than silently weakening the release criterion.
 
 ## Verification and limits
 
 The v0.3.0 Build passed 64 tests, rendering drift, compilation, and the phase-specific Build
 exit check. The Review exit check found nothing unresolved. The acceptance sessions are
 author-reported without transcripts, project links, host details, or tested source commits.
+The v0.4.0 Define exit check reported nothing unresolved on 2026-09-29.
 The generic generated-project scaffold check does not apply to this legacy source repository:
 it intentionally lacks `.agent-builder.json` and contains template tokens. It does pass on
 projects generated from the new templates.
 
 ## Next action
 
-Ask the author which problem v0.4.0 should solve and what value solving it would bring.
+Begin the bounded Spec Kit feasibility and component-fit evaluation before proposing the
+v0.4.0 implementation plan or seeking Build approval.

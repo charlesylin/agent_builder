@@ -8,10 +8,10 @@ project:
   status: active
 
 phase:
-  current: define
-  status: define_in_progress
+  current: plan
+  status: plan_in_progress
   last_confirmed_by: charles-yang-lin
-  last_confirmed_date: 2026-09-25
+  last_confirmed_date: 2026-09-29
   transition_requires: explicit_user_invocation_or_confirmation
   history:
     - phase: define
@@ -104,6 +104,18 @@ phase:
         The author explicitly closed v0.3.0 Review and opened v0.4.0 Define. The Review exit
         check found nothing unresolved. v0.4.0 purpose, smallest outcome, exclusions, and
         success evidence remain open.
+    - phase: define
+      date: 2026-09-29
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        Closed after the author approved the v0.4.0 Define record: targeted Spec Kit
+        improvement without v0.3.0 regression, Claude Code and Codex coverage for agent,
+        skill, and project builds, and no separate member installation. The Define exit
+        check found nothing unresolved.
+    - phase: plan
+      date: 2026-09-29
+      confirmed_by: charles-yang-lin
+      outcome: Explicitly authorized by the author for v0.4.0.
 
 release:
   target: 0.3.0
@@ -133,29 +145,31 @@ release:
 
 next_release:
   target: 0.4.0
-  version_status: confirmed_for_define
+  version_status: confirmed_for_plan
   version_scheme: semantic_versioning_2_0_0
   version_decision: AB-D051
   definition_record: planning/v0-4-definition.md
-  purpose_status: open
-  scope_status: open
-  success_evidence_status: open
+  purpose_status: confirmed
+  scope_status: confirmed
+  success_evidence_status: confirmed_for_planning
   candidate_direction: >-
-    Evaluate whether a maintained Spec Kit dependency can replace or improve a specific
-    Agent Builder component without degrading the v0.3.0 experience. An experience-changing
-    improvement needs a separate author decision. Keeping working components unchanged is
-    valid under AB-D052; exact scope and success evidence remain open.
+    Use a maintained Spec Kit dependency for a targeted partial replacement of idea
+    assessment and proportional augmentation of specification, clarification, checklist,
+    plan, tasks, and analysis. Preserve Agent Builder's working governance and avoid
+    separate member setup or duplicate records. Target Claude Code and Codex across agent,
+    skill, and project builds; Plan must test feasibility and net benefit before Build.
   note: >-
-    v0.4.0 Define is open, not Plan or Build. A quick pre-seed existing-solution check was
-    discussed during v0.3.0 Review but not adopted as a requirement; see
-    docs/v0-3-acceptance.md.
+    v0.4.0 Plan is open, not Build. A quick pre-seed existing-solution check was discussed
+    during v0.3.0 Review but not adopted as a separate requirement; see
+    docs/v0-3-acceptance.md. No Spec Kit installation mechanism has been selected.
 
 checkpoint:
-  date: 2026-09-25
-  status: define_opened
+  date: 2026-09-29
+  status: plan_opened
   phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Clarify the concrete user benefit v0.4.0 should deliver, then confirm one smallest
-    usable outcome. Spec Kit is a conditional candidate, not a required dependency.
+    Evaluate Spec Kit's maintained dependency and distribution paths on Claude Code and
+    Codex, compare the proposed augmentations with the working v0.3.0 flow, and draft the
+    smallest implementation plan and review tests before seeking Build approval.
