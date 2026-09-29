@@ -21,6 +21,26 @@ implementation plan.
 >
 > we don't want to degrade agent-builder just in the name of reuse
 
+## Further direction from the author (2026-09-29)
+
+> ok in this build cycle, i'm in favor of:
+>
+> Idea assessment - partial replacement
+> Specify, clarify, checklist - augmentation
+> Plan, tasks, analyze - augmentation
+>
+> to do this we need to make spec kit a dependency and make sure that when agent-builder is
+> installed, spec kit comes along for the ride
+
+This is a preferred v0.4.0 direction, not authorization to enter Plan or Build. The proposed
+member outcome is one coherent path: assess whether to adopt an existing solution; if building
+is justified, clarify one version-sized outcome and expose inconsistencies between its
+requirements, plan, and tasks before implementation. A member should not need to install Spec
+Kit separately or maintain duplicate records. The installation mechanism and whether each
+supported host can satisfy that experience remain to be tested in Plan. Agent Builder retains
+its project lifecycle, approvals, versioning, and deterministic checks unless separately
+changed with author approval.
+
 ## Problem and proposed means
 
 The desired outcome is more consistent, reusable agents, code, and skills that can be used
@@ -32,6 +52,7 @@ regression or improved with limited disruption. If a stronger change would impro
 experience while altering it, present that as a distinct proposal for author evaluation.
 Leaving a working Agent Builder component unchanged is a valid outcome.
 
-Still to establish: the concrete value a member should gain over v0.3.0, the smallest useful
-v0.4.0 result, exclusions, and real-use success evidence. No Spec Kit replacement or dependency
+Still to establish: author confirmation of the concrete member outcome and smallest useful
+v0.4.0 result, exclusions, and real-use success evidence. The author has named preferred Spec
+Kit components and a bundled-install requirement; no implementation or installation mechanism
 has been selected in Define.
