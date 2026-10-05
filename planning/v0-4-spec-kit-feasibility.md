@@ -94,3 +94,50 @@ step is to compare these routes against the actual Claude Code and Codex install
 surfaces, then define one authoritative artifact mapping and a six-case host/kind acceptance
 matrix. If none can meet the approved one-install experience without net regression, return
 the tradeoff to the author before requesting Build.
+
+## Follow-up: the handoff seam (2026-10-05)
+
+The author agreed with using the CLI *behind* Agent Builder, rather than making members run
+Spec Kit as a second workflow. This is direction to continue Plan investigation, not approval
+of a packaging route or permission to enter Build. The source check below used the same
+v1.0.13 commit named above; the installed host CLIs on this machine reported Claude Code
+2.1.271 and Codex CLI 0.159.2. No live cross-skill invocation was run.
+
+- The tagged [`speckit.assess.research` command](https://github.com/github/spec-kit/blob/v1.0.13/extensions/assess/commands/speckit.assess.research.md)
+  explicitly permits research to be the first
+  assessment step. Without `intake.md`, it requires substantive idea text in the invocation;
+  a slug alone is insufficient. It writes only
+  `.specify/assessments/<slug>/research.md`, including prior art and counterevidence, and
+  expressly does **not** render a verdict. Agent Builder can supply the already-confirmed
+  problem from `planning/definition.md`, use this upstream step for research, then retain
+  its own adopt/adapt/build decision and author-confirmed archive behavior. Running all five
+  assessment steps by default would repeat Agent Builder's Define and decision records.
+- Spec Kit renders each agent-facing step as a project skill: Claude Code under
+  `.claude/skills/` and Codex under `.agents/skills/`, with names such as
+  `speckit-assess-research`. [Spec Kit's integration guide](https://github.github.io/spec-kit/reference/integrations.html)
+  distinguishes these in-agent steps from terminal setup. [Claude Code's skill guide](https://code.claude.com/docs/en/skills)
+  documents model invocation; [official OpenAI documentation](https://developers.openai.com/plugins/concepts/skills)
+  describes metadata-based loading when a request matches or the user invokes a skill. Neither
+  establishes a deterministic, cross-host API by which one skill executes another. Reading
+  `SKILL.md` as an ordinary file is not automatically equivalent to native invocation:
+  generated Spec Kit skills use argument placeholders such as `$ARGUMENTS`.
+- The narrow Plan hypothesis is for Agent Builder to remain the member-facing entry point,
+  arrange the pinned upstream CLI and project skills, direct the active host to the selected
+  upstream skill, and verify the expected artifact before proceeding. A behavioral trial must
+  show that this actually activates the upstream skill on **both** hosts without asking the
+  member to invoke it manually. If that fails, do not claim the dependency is integrated.
+- Proposed artifact ownership: Agent Builder remains authoritative for problem/purpose,
+  project phase and status, approvals, version target, and final build-or-adopt decision.
+  Spec Kit's `research.md` is supporting evidence linked from the short Agent Builder
+  solution evaluation. On a justified build, Spec Kit's `spec.md`, `plan.md`, and `tasks.md`
+  can be the detailed delivery artifacts. Its constitution cannot be a second editable
+  authority: `analyze` treats that file as binding, so Plan must test a generated view of
+  Agent Builder's operating agreement or another single-source mapping.
+
+This narrows the behavioral test but not the distribution problem. Spec Kit v1.0.13 still
+requires Python 3.11+ for its CLI, while Agent Builder's shipped scripts support 3.9+.
+The plugin/skill installation paths still have no demonstrated way to install that Python
+package automatically. A release-time vendored artifact would reduce member setup but must
+be evaluated against the author's preference for a maintained dependency rather than a
+copied fork. A managed first-use installation or unified organization deployment could keep
+the CLI upstream-pinned, but neither has yet passed a clean one-install trial.
