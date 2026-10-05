@@ -756,3 +756,39 @@ decisions:
       a net improvement over v0.3.0.
     provenance: explicit_author_confirmation_during_v0_4_plan
     record: planning/v0-4-spec-kit-feasibility.md
+  - id: AB-D056
+    status: proposed
+    date: 2026-10-05
+    decision: >-
+      Adapt Agent Builder with a pinned Spec Kit v1.1.0 release-build payload: keep
+      upstream-generated host instructions as non-discoverable data inside the Agent
+      Builder skill, use explicit argument binding and artifact checks, seed only the
+      selected Bash helpers and templates, and derive the Spec Kit constitution from
+      Agent Builder's operating agreement. Keep Agent Builder authoritative for phase,
+      approvals, version, purpose, and the final build-or-adopt outcome.
+    rationale: >-
+      A repeated v1.1.0 generation produced identical selected assets; a filtered
+      payload coexisted with all three Agent Builder kinds and its helpers ran without
+      a member Spec Kit CLI. Direct native skill-to-skill activation was not reliably
+      observed on Codex, and stock Spec Kit initialization exposed excluded workflows
+      and duplicate records. A single Agent Builder entry point with an explicit
+      upstream-file adapter is the smallest proposed boundary. It still needs live
+      behavior and clean-install validation.
+    provenance: plan_recommendation_awaiting_author_confirmation
+    record: planning/v0-4-implementation-plan.md
+  - id: AB-D057
+    status: proposed
+    date: 2026-10-05
+    decision: >-
+      Treat the still-unobserved authenticated Claude Code and end-to-end Codex
+      Agent Builder-to-Spec Kit handoffs as a first Build-slice stop/go test. Do not
+      proceed with the rest of v0.4.0 or claim host parity unless both pass with
+      Agent Builder as the only member-invoked skill; return to Plan if either fails.
+    rationale: >-
+      Plan proved the pinned payload and helper scripts structurally, but Claude Code
+      is not authenticated on this machine and the earlier Codex file-reading probe
+      only established artifact shape without live public research. The minimal
+      adapter must exist to test the real handoff. Moving that uncertainty into
+      a bounded, reversible Build slice is a consequential risk choice for the author.
+    provenance: plan_recommendation_awaiting_author_confirmation
+    record: planning/v0-4-implementation-plan.md

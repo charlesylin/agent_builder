@@ -162,17 +162,18 @@ next_release:
     v0.4.0 Plan is open, not Build. A quick pre-seed existing-solution check was discussed
     during v0.3.0 Review but not adopted as a separate requirement; see
     docs/v0-3-acceptance.md. The author chose a pinned, release-time-generated Spec Kit
-    dependency payload over a separate member CLI installation; packaging and behavioral
-    acceptance tests remain open.
+    dependency payload over a separate member CLI installation. A filtered v1.1.0 payload
+    passed disposable structural and helper-script probes. The implementation plan and
+    the proposed first-slice live host gate await author approval.
 
 checkpoint:
   date: 2026-10-05
-  status: plan_in_progress
+  status: plan_ready_for_author_review
   phase_changed: false
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Test a reproducible filtered Spec Kit payload, its script compatibility and refresh
-    path, one authoritative artifact mapping, and behavior on Claude Code and Codex
-    across agent, skill, and project builds. Then draft the smallest implementation plan
-    and review tests before seeking Build approval.
+    Read back the proposed v0.4.0 implementation plan and its two consequential choices:
+    a filtered Spec Kit v1.1.0 asset boundary with one owner per artifact, and a first
+    Build-slice stop/go gate for still-unobserved live host handoff. Obtain author
+    confirmation before closing Plan or entering Build.

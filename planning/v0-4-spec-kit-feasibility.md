@@ -212,3 +212,44 @@ implementation or Build authorization. Next, test a reproducible filtered payloa
 Python-script compatibility, single-source constitution, and the selected handoffs across
 Claude Code and Codex and all three build kinds. Do not claim a pass solely from the
 successful local virtual-environment test.
+
+## Follow-up: v1.1.0 filtered-payload probe (2026-10-05)
+
+[Spec Kit v1.1.0](https://github.com/github/spec-kit/releases/tag/v1.1.0), released
+2026-10-02, superseded v1.0.13 as the newest checked tag. The tested source commit was
+`f1d3a4f8337ebbd3ae22760a9c12e3352b93a175`. An isolated Python 3.14 virtual
+environment already holding the CLI's eight declared Python dependencies imported the
+v1.1.0 source checkout directly. These commands generated the two host variants:
+
+```text
+python -c 'import sys; sys.path.insert(0, "src"); from specify_cli import main; main()' init <temp>/claude-110 --integration claude --script sh --extension assess --non-interactive
+python -c 'import sys; sys.path.insert(0, "src"); from specify_cli import main; main()' init <temp>/codex-110 --integration codex --script sh --extension assess --non-interactive
+```
+
+Both exited 0. A repeated Claude generation was byte-identical for the seven selected
+skills (`assess-research`, `specify`, `clarify`, `checklist`, `plan`, `tasks`, `analyze`),
+six Bash helpers, and templates (`diff -qr` for each selected directory returned 0).
+The v1.1.0 selected skill files and templates were identical to the v1.0.13 output;
+`common.sh` and `create-new-feature.sh` changed, so the pin must cover scripts too.
+The full stock init still emitted excluded skills; the Plan fixture instead copied only
+the selected assets. This is a tested allowlist **shape**, not yet a committed generator.
+
+Three fresh Agent Builder v0.3.0 seeds (`agent`, `skill`, `project`), each with Claude and
+Codex adapters, received that filtered payload by mechanical copy. Each passed the
+Agent Builder scaffold checker. In the `project` seed, `command -v specify` found no CLI;
+the bundled Bash `create-new-feature.sh`, `check-prerequisites.sh --json --paths-only`,
+`setup-plan.sh --json`, and `setup-tasks.sh --json` all exited 0 in sequence. After the
+returned tasks template was manually copied to `tasks.md`, the prerequisite check
+requiring a spec and tasks also exited 0. The helper output included the expected
+feature directory and paths. Copying `governance/operating-agreement.md` to
+`.specify/memory/constitution.md` produced a byte-identical view (`cmp -s` exited 0).
+The temporary payload had 26 files and occupied 336 KiB, including one unused
+constitution template; the proposed Build allowlist omits that template.
+
+The probe ran on macOS arm64, not every operating system. It proves that the selected
+project assets can coexist with all three kinds and run without a member CLI, not that a
+clean Claude plugin/Codex skill installation or a model-mediated handoff passes. Claude
+Code remains unauthenticated here. The proposed
+[`v0-4-implementation-plan.md`](v0-4-implementation-plan.md) makes live handoff a first
+Build-slice stop/go gate before extending the rest of Agent Builder. A failed host gate
+returns the design to Plan; structural success must not be reported as host parity.
