@@ -731,3 +731,28 @@ decisions:
       Plan work before any Build authorization.
     provenance: explicit_author_phase_transition
     record: planning/v0-4-definition.md
+  - id: AB-D055
+    status: confirmed
+    date: 2026-10-05
+    confirmed_date: 2026-10-05
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      After the release-time-generated dependency route was read back against requiring
+      a separate member CLI installation, the author said, "i think your plan is better
+      than forcing everyone to install speckit CLI".
+    decision: >-
+      For v0.4.0, use a pinned upstream Spec Kit CLI during the Agent Builder release
+      build to generate and bundle only the selected upstream assets. A member's Agent
+      Builder installation must not require a separate Spec Kit CLI installation.
+      Treat the bundled output as a versioned build-time dependency, with upstream
+      provenance, license, and an explicit refresh path; do not hand-maintain a fork.
+    rationale: >-
+      The current Claude Code plugin and Codex skill installation paths do not provision
+      the CLI or its Python 3.11+ runtime. Stock initialization also exposes excluded
+      workflows and a placeholder constitution. A selective release-time payload can
+      preserve the one-install experience and avoid those defaults, but its script
+      compatibility, update process, host behavior, and artifact ownership still need
+      Plan tests. This choice does not authorize Build or relax the requirement to show
+      a net improvement over v0.3.0.
+    provenance: explicit_author_confirmation_during_v0_4_plan
+    record: planning/v0-4-spec-kit-feasibility.md

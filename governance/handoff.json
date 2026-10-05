@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-v0-4-plan-2026-09-29",
-  "created_at": "2026-09-29T16:40:57Z",
+  "handoff_id": "agent-builder-v0-4-plan-2026-10-05",
+  "created_at": "2026-10-05T20:37:00Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.3.0 is accepted and working well. The author approved v0.4.0 Define and opened Plan. The release aims for a maintained Spec Kit dependency with targeted idea-assessment replacement and proportional specification and planning augmentation, after one Agent Builder install on Claude Code or Codex for agent, skill, and project builds. Preserve Agent Builder's core workflow and avoid duplicate records or a net regression. Packaging and integration design remain for Plan; Build is not authorized.",
+  "summary": "Agent Builder v0.3.0 is accepted and working well. The author approved v0.4.0 Define and opened Plan. The author chose a pinned Spec Kit CLI as a release-build dependency that generates a filtered payload bundled with Agent Builder; members must not install the CLI separately. Target partial idea-assessment replacement and proportional specification and planning augmentation after one Agent Builder install on Claude Code or Codex for agent, skill, and project builds. Preserve Agent Builder's core workflow and avoid duplicate records or a net regression. Packaging and integration behavior remain to prove in Plan; Build is not authorized.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -106,6 +106,11 @@
       "id": "AB-D054",
       "status": "confirmed",
       "summary": "Close v0.4.0 Define and open Plan for the approved scope."
+    },
+    {
+      "id": "AB-D055",
+      "status": "confirmed",
+      "summary": "Use a pinned Spec Kit CLI at release time to generate and bundle selected upstream assets; do not require a separate member CLI installation."
     }
   ],
   "artifacts": [
@@ -150,6 +155,10 @@
       "media_type": "text/markdown"
     },
     {
+      "path": "planning/v0-4-spec-kit-feasibility.md",
+      "media_type": "text/markdown"
+    },
+    {
       "path": "docs/v0-2-acceptance.md",
       "media_type": "text/markdown"
     },
@@ -167,6 +176,6 @@
     }
   ],
   "blockers": [],
-  "questions": ["Can a maintained Spec Kit dependency provide the agreed capability on Claude Code and Codex without separate member setup, duplicate records, or a net regression from v0.3.0?"],
-  "next_action": "Test the dependency and distribution paths, compare selected Spec Kit functions with the current workflow, and propose the smallest v0.4.0 implementation and Review tests before seeking Build approval."
+  "questions": ["Can a reproducible filtered Spec Kit payload work after one Agent Builder install on Claude Code and Codex, without duplicate records, script incompatibility, or a net regression from v0.3.0?"],
+  "next_action": "Test the filtered release-build payload, script compatibility, upstream refresh path, artifact ownership, and host/kind handoffs; then propose the smallest v0.4.0 implementation and Review tests before seeking Build approval."
 }

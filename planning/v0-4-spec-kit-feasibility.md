@@ -74,7 +74,7 @@ The stock initialization also exposes `implement` and `converge` skills even tho
 are excluded from the approved v0.4.0 scope. The Plan must prevent these from appearing
 to be Agent Builder's recommended next step.
 
-## Distribution routes to compare, not yet chosen
+## Distribution routes compared
 
 1. **Organization-managed CLI prerequisite.** Administrators provision a pinned
    `specify-cli` alongside Agent Builder on both hosts. This is simple for members but is
@@ -86,14 +86,14 @@ to be Agent Builder's recommended next step.
    cache ownership, upgrades, and Codex/Claude permissions need explicit tests.
 3. **Ship a pinned upstream-built artifact with the plugin.** This removes first-run network
    dependence but increases release size and cross-platform dependency packaging work. It
-   must remain an upstream package with provenance and a tested update path, not a copied
+   must preserve upstream provenance and a tested update path, not become a hand-maintained
    local fork disguised as a dependency.
 
-No route is approved merely because the CLI smoke test succeeded. The smallest next Plan
-step is to compare these routes against the actual Claude Code and Codex installation
-surfaces, then define one authoritative artifact mapping and a six-case host/kind acceptance
-matrix. If none can meet the approved one-install experience without net regression, return
-the tradeoff to the author before requesting Build.
+The CLI smoke test alone approved no route. The author subsequently selected the
+release-time-generated dependency payload described below. The host/kind acceptance
+matrix and single-source artifact mapping still need Plan evidence. If the selected route
+cannot meet the approved one-install experience without net regression, return the tradeoff
+to the author before requesting Build.
 
 ## Follow-up: the handoff seam (2026-10-05)
 
@@ -180,7 +180,7 @@ Builder gate field (utilization, maintenance, tests, security history, license, 
 and its URL trust policy prompts or skips many non-allowlisted sites. Agent Builder must keep
 those evidence obligations rather than treating the upstream artifact as a complete gate.
 
-## Distribution implication to decide in Plan
+## Distribution decision and remaining tests
 
 The isolated `specify-cli` installation needed network access to resolve its Python
 dependencies, but `specify init` subsequently ran from its bundled assets in the network-
@@ -188,22 +188,27 @@ restricted sandbox. A stock init is too broad for the approved v0.4.0 experience
 installs and advertises `implement` and `converge`, and leaves a placeholder constitution.
 No selective-core-skill option appeared in v1.0.13's `init` or `integration install` help.
 
-This makes a **release-time generated dependency payload** worth comparing with a
-member-machine CLI install. In that candidate, Agent Builder's release process would pin
-and run the unmodified upstream CLI, preserve its provenance and license, and package only
-the upstream-generated skills and infrastructure needed for the selected v0.4.0 steps.
+The author confirmed a **release-time generated dependency payload** on 2026-10-05,
+over a separate member-machine CLI install. In this direction, Agent Builder's release
+process would pin and run the unmodified upstream CLI, preserve its provenance and license,
+and package only the upstream-generated skills and infrastructure needed for the selected
+v0.4.0 steps.
 Agent Builder's seeder would copy that immutable payload and create a single-source
 constitution view. Members would install Agent Builder once and need no Spec Kit CLI or
 network download at first use. This is build-time vendoring of generated dependency output,
-not a runtime `specify-cli` installation or automatic upstream updates. It may be at odds
-with the author's explicit preference for a maintained dependency over lifting code, so
-it needs a separate decision before Build. It also needs a script-variant and upgrade test;
-the tested Python script variant would raise the project-script floor above Agent Builder's
-3.9 baseline.
+not a runtime `specify-cli` installation or automatic upstream updates. To honor the
+preference for a maintained dependency over lifted code, the release process must keep
+the upstream pin, provenance, license, and refresh test visible. It also needs a
+script-variant and upgrade test; the tested Python script variant would raise the
+project-script floor above Agent Builder's 3.9 baseline.
 
 The competing **runtime CLI** route preserves upstream's own project initialization and
 update machinery, but the current Claude plugin and Codex skill installation surfaces do
 not install Python 3.11+ or `specify-cli` automatically. A first-use bootstrap would require
 those prerequisites and possibly network or an offline wheel bundle; an organization-wide
 installer would change the installation path. Neither is yet a proven one-install result.
-Do not choose either route solely on the successful local virtual-environment test.
+The selected release-time route remains a Plan direction, not a proven packaging
+implementation or Build authorization. Next, test a reproducible filtered payload,
+Python-script compatibility, single-source constitution, and the selected handoffs across
+Claude Code and Codex and all three build kinds. Do not claim a pass solely from the
+successful local virtual-environment test.

@@ -1,6 +1,6 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-09-29. Agent Builder **v0.3.0** is accepted and tagged. The author approved
+Checkpoint: 2026-10-05. Agent Builder **v0.3.0** is accepted and tagged. The author approved
 the v0.4.0 Define record and explicitly opened **v0.4.0 Plan**. No Build work is authorized.
 
 ## Recover context
@@ -32,9 +32,12 @@ specification, clarification, checklist, plan, tasks, and analysis. The member-f
 must work after one Agent Builder installation on Claude Code or Codex, for agent, skill, and
 project builds. Claude Chat, Cowork, and claude.ai are not v0.4.0 targets. Preserve Agent
 Builder's lifecycle, approvals, versioning, and deterministic checks; avoid duplicate records
-and a net regression from v0.3.0. No dependency packaging or integration design is approved
-yet. The prior comparison is in `planning/spec-kit-comparison.md` and
-`planning/spec-kit-component-map.md`.
+and a net regression from v0.3.0. The author chose a pinned Spec Kit CLI as a release-build
+dependency that generates a filtered payload bundled with Agent Builder, so members do not
+install the CLI separately. The exact packaging and integration design is not yet proven or
+approved for Build. Evidence and remaining tests are in
+`planning/v0-4-spec-kit-feasibility.md`; the earlier comparison is in
+`planning/spec-kit-comparison.md` and `planning/spec-kit-component-map.md`.
 
 Plan should test Spec Kit dependency/distribution feasibility on both hosts; compare the
 selected functions with Agent Builder's current flow; record a build-or-adopt evaluation;
@@ -54,5 +57,8 @@ projects generated from the new templates.
 
 ## Next action
 
-Begin the bounded Spec Kit feasibility and component-fit evaluation before proposing the
-v0.4.0 implementation plan or seeking Build approval.
+Test that the release-build payload is reproducible, preserves upstream provenance and
+license, excludes out-of-scope skills, and works without a member CLI. Resolve script
+compatibility and single-source artifact ownership, then test the intended handoffs on
+Claude Code and Codex across all three build kinds before proposing the v0.4.0
+implementation plan or seeking Build approval.

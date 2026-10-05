@@ -161,15 +161,18 @@ next_release:
   note: >-
     v0.4.0 Plan is open, not Build. A quick pre-seed existing-solution check was discussed
     during v0.3.0 Review but not adopted as a separate requirement; see
-    docs/v0-3-acceptance.md. No Spec Kit installation mechanism has been selected.
+    docs/v0-3-acceptance.md. The author chose a pinned, release-time-generated Spec Kit
+    dependency payload over a separate member CLI installation; packaging and behavioral
+    acceptance tests remain open.
 
 checkpoint:
-  date: 2026-09-29
-  status: plan_opened
-  phase_changed: true
+  date: 2026-10-05
+  status: plan_in_progress
+  phase_changed: false
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Evaluate Spec Kit's maintained dependency and distribution paths on Claude Code and
-    Codex, compare the proposed augmentations with the working v0.3.0 flow, and draft the
-    smallest implementation plan and review tests before seeking Build approval.
+    Test a reproducible filtered Spec Kit payload, its script compatibility and refresh
+    path, one authoritative artifact mapping, and behavior on Claude Code and Codex
+    across agent, skill, and project builds. Then draft the smallest implementation plan
+    and review tests before seeking Build approval.
