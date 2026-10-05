@@ -1,6 +1,8 @@
-# Agent Builder v0.4.0 — proposed implementation plan
+# Agent Builder v0.4.0 — implementation plan
 
-**Status:** Plan proposal for author review, 2026-10-05. This is not Build authorization.
+**Status:** Approved by the author on 2026-10-05; Build is authorized with the
+first-slice host handoff as a stop/go gate.
+
 The approved outcome and exclusions are in [`v0-4-definition.md`](v0-4-definition.md);
 the build-or-adopt recommendation is in
 [`v0-4-solution-evaluation.md`](v0-4-solution-evaluation.md). One release-sized result:
@@ -95,8 +97,8 @@ rewrites an existing project. The normal test suite should not require network a
    mention or file-read the upstream step without producing the artifact, and that
    uncertainty is explicit when public research is unavailable. If either host cannot
    provide equivalent behavior without a second member invocation, stop Build and return
-   to Plan before implementing the rest. The author is being asked to approve this
-   remaining live-host uncertainty explicitly with the plan.
+   to Plan before implementing the rest. The author approved moving this
+   remaining live-host uncertainty into the bounded first Build slice.
 2. **Reproducible release payload.** Add the pinned generator/allowlist, version and hash
    manifest, MIT notice, and drift/exclusion tests. The released Agent Builder skill must
    contain everything needed for the selected steps. A clean install requires no Spec Kit
@@ -143,8 +145,8 @@ There is no Windows-specific acceptance gate (the author's earlier direction), n
 Chat/Cowork path, no Spec Kit runtime CLI, no upstream implementation/convergence
 workflow, and no automated migration of existing projects in this version.
 
-## Decision needed before Build
+## Approved Build boundary
 
-Approve this scoped adaptation, including the explicit first-slice stop/go test for the
-still-unobserved live Claude Code handoff, or correct the design. A general wish to move
-forward is not taken as confirmation of this newly specified integration boundary.
+The author approved this scoped adaptation and its first-slice stop/go test after
+the complete plan was read back. This is Build authorization for the sequence above,
+not evidence that the live host handoff works or that v0.4.0 is accepted.

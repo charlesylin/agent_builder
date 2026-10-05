@@ -8,10 +8,10 @@ project:
   status: active
 
 phase:
-  current: plan
-  status: plan_in_progress
+  current: build
+  status: build_in_progress
   last_confirmed_by: charles-yang-lin
-  last_confirmed_date: 2026-09-29
+  last_confirmed_date: 2026-10-05
   transition_requires: explicit_user_invocation_or_confirmation
   history:
     - phase: define
@@ -116,6 +116,20 @@ phase:
       date: 2026-09-29
       confirmed_by: charles-yang-lin
       outcome: Explicitly authorized by the author for v0.4.0.
+    - phase: plan
+      date: 2026-10-05
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        Closed after the author approved the filtered Spec Kit v1.1.0 dependency
+        boundary and first-slice live-host stop/go test. The Plan exit check
+        found nothing unresolved.
+    - phase: build
+      date: 2026-10-05
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        Explicitly authorized by the author for the scoped v0.4.0 plan. The
+        first slice tests authenticated Claude Code and Codex handoff before
+        any further integration work.
 
 release:
   target: 0.3.0
@@ -145,35 +159,36 @@ release:
 
 next_release:
   target: 0.4.0
-  version_status: confirmed_for_plan
+  version_status: confirmed_for_build
   version_scheme: semantic_versioning_2_0_0
   version_decision: AB-D051
   definition_record: planning/v0-4-definition.md
   purpose_status: confirmed
   scope_status: confirmed
-  success_evidence_status: confirmed_for_planning
+  success_evidence_status: confirmed_for_build
   candidate_direction: >-
     Use a maintained Spec Kit dependency for a targeted partial replacement of idea
     assessment and proportional augmentation of specification, clarification, checklist,
     plan, tasks, and analysis. Preserve Agent Builder's working governance and avoid
     separate member setup or duplicate records. Target Claude Code and Codex across agent,
-    skill, and project builds; Plan must test feasibility and net benefit before Build.
+    skill, and project builds; Plan tested feasibility and net benefit before Build.
   note: >-
-    v0.4.0 Plan is open, not Build. A quick pre-seed existing-solution check was discussed
-    during v0.3.0 Review but not adopted as a separate requirement; see
+    v0.4.0 Build is open under the approved implementation plan. A quick pre-seed
+    existing-solution check was discussed during v0.3.0 Review but not adopted
+    as a separate requirement; see
     docs/v0-3-acceptance.md. The author chose a pinned, release-time-generated Spec Kit
     dependency payload over a separate member CLI installation. A filtered v1.1.0 payload
-    passed disposable structural and helper-script probes. The implementation plan and
-    the proposed first-slice live host gate await author approval.
+    passed disposable structural and helper-script probes. The first Build slice is
+    a live Claude Code and Codex handoff stop/go gate; host parity remains unverified.
 
 checkpoint:
   date: 2026-10-05
-  status: plan_ready_for_author_review
-  phase_changed: false
+  status: build_opened
+  phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Read back the proposed v0.4.0 implementation plan and its two consequential choices:
-    a filtered Spec Kit v1.1.0 asset boundary with one owner per artifact, and a first
-    Build-slice stop/go gate for still-unobserved live host handoff. Obtain author
-    confirmation before closing Plan or entering Build.
+    Execute the first Build slice in disposable projects: implement the smallest
+    Agent Builder-to-bundled-asset adapter and verify a substantive research
+    artifact through authenticated Claude Code and Codex. Stop and return to
+    Plan if either host cannot complete the handoff without a second member invocation.

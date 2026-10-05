@@ -757,8 +757,13 @@ decisions:
     provenance: explicit_author_confirmation_during_v0_4_plan
     record: planning/v0-4-spec-kit-feasibility.md
   - id: AB-D056
-    status: proposed
+    status: confirmed
     date: 2026-10-05
+    confirmed_date: 2026-10-05
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      After the complete v0.4.0 implementation plan and its first-slice host gate were
+      read back, the author said "close plan and enter build".
     decision: >-
       Adapt Agent Builder with a pinned Spec Kit v1.1.0 release-build payload: keep
       upstream-generated host instructions as non-discoverable data inside the Agent
@@ -774,11 +779,16 @@ decisions:
       and duplicate records. A single Agent Builder entry point with an explicit
       upstream-file adapter is the smallest proposed boundary. It still needs live
       behavior and clean-install validation.
-    provenance: plan_recommendation_awaiting_author_confirmation
+    provenance: author_approved_plan_recommendation
     record: planning/v0-4-implementation-plan.md
   - id: AB-D057
-    status: proposed
+    status: confirmed
     date: 2026-10-05
+    confirmed_date: 2026-10-05
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      After the complete v0.4.0 implementation plan and its first-slice host gate were
+      read back, the author said "close plan and enter build".
     decision: >-
       Treat the still-unobserved authenticated Claude Code and end-to-end Codex
       Agent Builder-to-Spec Kit handoffs as a first Build-slice stop/go test. Do not
@@ -790,5 +800,24 @@ decisions:
       only established artifact shape without live public research. The minimal
       adapter must exist to test the real handoff. Moving that uncertainty into
       a bounded, reversible Build slice is a consequential risk choice for the author.
-    provenance: plan_recommendation_awaiting_author_confirmation
+    provenance: author_approved_plan_recommendation
+    record: planning/v0-4-implementation-plan.md
+  - id: AB-D058
+    status: confirmed
+    date: 2026-10-05
+    confirmed_date: 2026-10-05
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      The author said "close plan and enter build" after the full v0.4.0 plan,
+      including the first-slice live-host stop/go gate, was read back.
+    decision: >-
+      Close v0.4.0 Plan and enter Build for the approved scoped Spec Kit adaptation.
+      Begin with the live Claude Code and Codex handoff test; if either host fails,
+      stop the remaining Build work and return to Plan for a corrected design.
+    rationale: >-
+      The Plan exit check found nothing unresolved after the author confirmed the
+      filtered dependency boundary and the bounded host risk. Build is limited to
+      the implementation sequence in planning/v0-4-implementation-plan.md; this
+      transition does not tag, publish, or claim v0.4.0 acceptance.
+    provenance: explicit_author_phase_transition
     record: planning/v0-4-implementation-plan.md
