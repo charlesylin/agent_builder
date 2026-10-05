@@ -101,7 +101,7 @@ The author agreed with using the CLI *behind* Agent Builder, rather than making 
 Spec Kit as a second workflow. This is direction to continue Plan investigation, not approval
 of a packaging route or permission to enter Build. The source check below used the same
 v1.0.13 commit named above; the installed host CLIs on this machine reported Claude Code
-2.1.271 and Codex CLI 0.159.2. No live cross-skill invocation was run.
+2.1.271 and Codex CLI 0.159.2. Read-only invocation probes are described below.
 
 - The tagged [`speckit.assess.research` command](https://github.com/github/spec-kit/blob/v1.0.13/extensions/assess/commands/speckit.assess.research.md)
   explicitly permits research to be the first
@@ -139,5 +139,71 @@ requires Python 3.11+ for its CLI, while Agent Builder's shipped scripts support
 The plugin/skill installation paths still have no demonstrated way to install that Python
 package automatically. A release-time vendored artifact would reduce member setup but must
 be evaluated against the author's preference for a maintained dependency rather than a
-copied fork. A managed first-use installation or unified organization deployment could keep
+copied fork. It is not automatically Python-free: the tested `--script py` output has
+project scripts using Python 3.10+ syntax, and `speckit-plan` calls one of those scripts.
+A managed first-use installation or unified organization deployment could keep
 the CLI upstream-pinned, but neither has yet passed a clean one-install trial.
+
+A fresh disposable repeat on 2026-10-05 installed the tagged source into an isolated
+Python 3.14 virtual environment, seeded an Agent Builder `project` with both host adapters,
+and ran `specify init --here --force --non-interactive --integration claude --script py
+--extension assess`, followed by `specify integration install codex --script py` and
+`specify integration use codex`. Both host directories then contained
+`speckit-assess-research/SKILL.md`; Agent Builder's scaffold check still passed. This is
+an installation/structure result, not proof of a live handoff. Initialization also exposed
+`speckit-implement` and `speckit-converge` in both host directories, and its next-step text
+advertised them. If v0.4.0 must not present these excluded workflows, Plan needs a supported
+way to suppress them or an explicit author decision about their incidental presence.
+
+Read-only Codex CLI 0.159.2 probes in that disposable project found a sharper boundary:
+an initial plain-language request to use `speckit-assess-research` led Codex to read the
+`SKILL.md` as a file; a direct user `$speckit-assess-research` invocation loaded it natively
+as a skill message. Adding a test-only Agent Builder-style instruction to the project
+`AGENTS.md` to load that upstream skill, then asking without the skill name, again produced
+an ordinary file read rather than observed native skill activation. These are single probes,
+not reliability measurements, and none ran the research step or wrote an artifact. They
+rule out treating skill-to-skill native invocation on Codex as already solved. A deliberate
+file-reading adapter could still use the pinned upstream instructions, but it would need to
+bind `$ARGUMENTS` explicitly and pass behavior tests; it is not the same as native skill
+invocation. A Claude Code 2.1.271 live probe could not start because that CLI was not logged
+in on this machine. Its documented model-invocation support remains a claim to verify in an
+authenticated session, not an observed pass.
+
+One further disposable Codex probe read the upstream research `SKILL.md` as a file, bound
+`$ARGUMENTS` to a supplied CSV-date-formatting idea, and followed its instructions without
+native skill activation. It produced only the expected `research.md`, with prior-art gaps,
+counterevidence hypotheses, explicit `ASSUMPTION` labels, and low overall confidence.
+Web access was deliberately excluded, so this proves that file-based instruction reuse can
+produce the expected *shape* on Codex, not that it finds real public solutions or improves
+the adoption judgment. The upstream research step also does not itself cover every Agent
+Builder gate field (utilization, maintenance, tests, security history, license, setup burden)
+and its URL trust policy prompts or skips many non-allowlisted sites. Agent Builder must keep
+those evidence obligations rather than treating the upstream artifact as a complete gate.
+
+## Distribution implication to decide in Plan
+
+The isolated `specify-cli` installation needed network access to resolve its Python
+dependencies, but `specify init` subsequently ran from its bundled assets in the network-
+restricted sandbox. A stock init is too broad for the approved v0.4.0 experience: it
+installs and advertises `implement` and `converge`, and leaves a placeholder constitution.
+No selective-core-skill option appeared in v1.0.13's `init` or `integration install` help.
+
+This makes a **release-time generated dependency payload** worth comparing with a
+member-machine CLI install. In that candidate, Agent Builder's release process would pin
+and run the unmodified upstream CLI, preserve its provenance and license, and package only
+the upstream-generated skills and infrastructure needed for the selected v0.4.0 steps.
+Agent Builder's seeder would copy that immutable payload and create a single-source
+constitution view. Members would install Agent Builder once and need no Spec Kit CLI or
+network download at first use. This is build-time vendoring of generated dependency output,
+not a runtime `specify-cli` installation or automatic upstream updates. It may be at odds
+with the author's explicit preference for a maintained dependency over lifting code, so
+it needs a separate decision before Build. It also needs a script-variant and upgrade test;
+the tested Python script variant would raise the project-script floor above Agent Builder's
+3.9 baseline.
+
+The competing **runtime CLI** route preserves upstream's own project initialization and
+update machinery, but the current Claude plugin and Codex skill installation surfaces do
+not install Python 3.11+ or `specify-cli` automatically. A first-use bootstrap would require
+those prerequisites and possibly network or an offline wheel bundle; an organization-wide
+installer would change the installation path. Neither is yet a proven one-install result.
+Do not choose either route solely on the successful local virtual-environment test.
