@@ -76,4 +76,6 @@ adopt recommendation; a novel-build case must produce one version-sized spec, pl
 tasks, and an analysis of contradictions. See `docs/v0-4-build-verification.md` for
 exactly what passed and what remains. Inspect the test projects and author feedback
 before accepting or tagging v0.4.0.
-No push was authorized by the Review transition alone.
+The author subsequently requested and authorized pushing the Review candidate to
+`main` for Erico's Codex test; see `docs/v0-4-codex-review-handoff-erico.md`. No
+v0.4.0 tag or acceptance has been authorized.
