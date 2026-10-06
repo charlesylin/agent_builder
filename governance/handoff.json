@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-v0-4-build-2026-10-05",
-  "created_at": "2026-10-05T21:04:27Z",
+  "handoff_id": "agent-builder-v0-4-review-2026-10-06",
+  "created_at": "2026-10-06T13:03:32Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.3.0 is accepted and tagged. The author approved the scoped v0.4.0 Build, which has implemented a pinned release-time Spec Kit v1.1.0 bundle behind the single Agent Builder entry point; members do not install the Spec Kit CLI. Claude Code and Codex each produced the expected research artifact in disposable live handoff pilots. Six copied-skill host/kind seeds and mechanical checks passed. Public-source verification and real-use benefit remain for Review. The project remains in Build pending explicit author approval to change phase; no v0.4.0 tag or push is authorized.",
+  "summary": "Agent Builder v0.3.0 is accepted and tagged. The author explicitly closed v0.4.0 Build and opened Review on 2026-10-06. The candidate bundles pinned Spec Kit v1.1.0 behind the Agent Builder entry point; members do not install its CLI. Claude Code and Codex produced the expected research artifact in disposable pilots, and six copied-skill host/kind seeds plus mechanical checks passed. Public-source verification, installed-plugin behavior, and real-use benefit remain to be tested on separate projects. v0.4.0 is not accepted, tagged, or pushed by this transition.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -126,6 +126,11 @@
       "id": "AB-D058",
       "status": "confirmed",
       "summary": "Close v0.4.0 Plan and open Build for the approved scoped integration, beginning with the live-host gate."
+    },
+    {
+      "id": "AB-D059",
+      "status": "confirmed",
+      "summary": "Close v0.4.0 Build and open Review; acceptance and tagging remain open."
     }
   ],
   "artifacts": [
@@ -204,5 +209,5 @@
   ],
   "blockers": [],
   "questions": [],
-  "next_action": "Ask the author to explicitly close Build and enter Review. Then use the installed v0.4.0 candidate on a separate project for sourced adopt and version-sized build controls; do not accept or tag before reviewing that evidence."
+  "next_action": "Use the installed v0.4.0 candidate in separate test projects for sourced adoption and a version-sized build. Inspect both projects and author feedback before accepting or tagging the release."
 }

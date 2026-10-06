@@ -1,8 +1,8 @@
 # v0.4.0 Build verification
 
-Checkpoint: 2026-10-05. The scoped Build implementation is mechanically complete and
-ready for the author's Review decision. This is **not** acceptance or a release tag.
-Agent Builder's recorded phase remains Build.
+Checkpoint: 2026-10-05. The scoped Build implementation is mechanically complete.
+The author closed Build and opened Review on 2026-10-06. This is **not** acceptance
+or a release tag.
 
 ## What was built
 
@@ -47,7 +47,7 @@ Agent Builder's recorded phase remains Build.
 
 ## Still to test in Review
 
-Run the installed v0.4.0 Agent Builder on a **separate project**. First ask its version:
+Run the installed v0.4.0 Agent Builder in **separate test projects**. First ask its version:
 the plugin and the new project's `.agent-builder.json` should report `0.4.0`, and
 `.specify/spec-kit-provenance.json` should report upstream `1.1.0` at the commit above.
 In Plan, before the final build-or-adopt decision, it should create and link a sourced

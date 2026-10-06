@@ -1,9 +1,8 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-10-05. Agent Builder **v0.3.0** is accepted and tagged. The author approved
-the v0.4.0 Define record, then approved the scoped implementation plan and explicitly
-closed Plan and opened **v0.4.0 Build**. The scoped Build implementation is ready for an
-author-approved Review transition; the phase has **not** changed yet.
+Checkpoint: 2026-10-06. Agent Builder **v0.3.0** is accepted and tagged. The author
+approved the scoped v0.4.0 plan, Build completed, and the author explicitly closed
+Build and opened **v0.4.0 Review**. The candidate is not yet accepted or tagged.
 
 ## Recover context
 
@@ -26,7 +25,7 @@ make the generated-project scaffold check pass.
 - **v0.1.0 — accepted 2026-09-13.** Governance and scaffolding without a runtime; see
   `docs/v0-1-acceptance.md`.
 
-## Current phase: Build for v0.4.0
+## Current phase: Review for v0.4.0
 
 The approved [Define record](../planning/v0-4-definition.md) targets a maintained Spec Kit
 dependency for a partial replacement of idea assessment and proportionate augmentation of
@@ -66,12 +65,15 @@ public research or full organization-plugin installation.
 The generic generated-project scaffold check does not apply to this legacy source repository:
 it intentionally lacks `.agent-builder.json` and contains template tokens. It does pass on
 projects generated from the new templates.
+The Build exit check reported no unresolved decisions on 2026-10-06, and the author
+explicitly opened Review. No v0.4.0 acceptance or tag is recorded.
 
 ## Next action
 
-Ask the author to explicitly close Build and enter Review. Once authorized, have them
-refresh/install this v0.4.0 candidate and run Agent Builder on a separate project. A
-suitable-public-solution case must produce sourced research and an adopt recommendation;
-a novel-build case must produce one version-sized spec, plan, tasks, and an analysis of
-contradictions. See `docs/v0-4-build-verification.md` for exactly what passed and what
-remains. No v0.4.0 tag or push has been authorized by the Build phase alone.
+Have the author refresh/install this v0.4.0 candidate and run Agent Builder in separate
+test projects. A suitable-public-solution case must produce sourced research and an
+adopt recommendation; a novel-build case must produce one version-sized spec, plan,
+tasks, and an analysis of contradictions. See `docs/v0-4-build-verification.md` for
+exactly what passed and what remains. Inspect the test projects and author feedback
+before accepting or tagging v0.4.0.
+No push was authorized by the Review transition alone.

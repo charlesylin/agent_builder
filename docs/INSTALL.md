@@ -4,7 +4,7 @@ Agent Builder is a skill. Installing it means getting the folder `skills/agent-b
 front of a coding agent. Nothing is installed with pip; the two scripts inside need only
 Python 3.9 or newer. Mechanics verified against vendor documentation on 2026-09-13.
 
-The **v0.4.0 Build candidate** bundles selected generated assets from pinned Spec Kit
+The **v0.4.0 Review candidate** bundles selected generated assets from pinned Spec Kit
 v1.1.0. Members install Agent Builder once; they do not install or invoke `specify`.
 The bundled upstream instructions are internal data, not extra visible skills. New
 Claude Code and Codex seeds of kind `agent`, `skill`, or `project` receive the needed
@@ -72,7 +72,7 @@ installed, and the offer will never fire.
 Update later with `/plugin marketplace update agent-builder`. Updates arrive only when
 `version` in `.claude-plugin/plugin.json` changes — so while iterating on the hook, bump the
 version or reinstall; editing the file alone is not enough.
-For a local v0.4.0 test, refresh or reinstall the plugin after the Build commit you intend
+For a local v0.4.0 test, refresh or reinstall the plugin after the candidate commit you intend
 to test; a cached v0.3.0 plugin will keep seeding v0.3.0 projects.
 
 ## Claude Code — for everyone in the organization

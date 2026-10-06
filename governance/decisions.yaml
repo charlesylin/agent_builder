@@ -821,3 +821,19 @@ decisions:
       transition does not tag, publish, or claim v0.4.0 acceptance.
     provenance: explicit_author_phase_transition
     record: planning/v0-4-implementation-plan.md
+  - id: AB-D059
+    status: confirmed
+    date: 2026-10-06
+    confirmed_date: 2026-10-06
+    confirmed_by: charles-yang-lin
+    confirmation: Author said "close build enter review" after the v0.4.0 Build results and open real-use tests were read back.
+    decision: Close v0.4.0 Build and enter Review for the pinned Spec Kit integration.
+    rationale: >-
+      The scoped integration is committed, 74 tests passed on Python 3.9 and 3.14,
+      lint and bundle checks passed, and both target hosts produced the expected
+      research artifact in disposable handoff pilots. The Build exit check found
+      nothing unresolved. Public-source verification, installed-plugin behavior,
+      and net user benefit remain Review evidence; this transition does not accept,
+      tag, or publish v0.4.0.
+    provenance: explicit_author_phase_transition
+    record: docs/v0-4-build-verification.md
