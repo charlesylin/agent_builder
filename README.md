@@ -81,13 +81,11 @@ How to change principles, the skill, templates, or cut a release:
 
 ## Status
 
-**v0.3.0 accepted; v0.4.0 in Review.** The author reported all three v0.3 real-use Review
-scenarios passed and accepted the release on 2026-09-24. See the
-[v0.3 acceptance record](docs/v0-3-acceptance.md). The v0.4.0 candidate integrates a pinned,
-filtered Spec Kit v1.1.0 payload without a member CLI installation. It is not yet an
-accepted release; [Build verification](docs/v0-4-build-verification.md) records the host
-handoff, clean-copy checks, and what the real-use Review must still prove.
-v0.2.1 and v0.1.0 remain [previous accepted releases](docs/RESUME.md).
+**v0.4.0 accepted for organization use.** It integrates a pinned, filtered Spec Kit
+v1.1.0 payload without a member CLI installation. The
+[acceptance record](docs/v0-4-acceptance.md) explains the real-use evidence and its
+limits; some planned Review scenarios remain untested. No next build iteration is open.
+v0.3.0, v0.2.1, and v0.1.0 remain [previous accepted releases](docs/RESUME.md).
 
 This repository is developed under its own phases; see
 [`governance/`](governance/) and [`docs/RESUME.md`](docs/RESUME.md).

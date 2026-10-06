@@ -1,90 +1,57 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-10-06. Agent Builder **v0.3.0** is accepted and tagged. The author
-approved the scoped v0.4.0 plan, Build completed, and the author explicitly closed
-Build and opened **v0.4.0 Review**. The candidate is not yet accepted or tagged.
+Checkpoint: 2026-10-06. Agent Builder **v0.4.0** was accepted for organization use.
+Review is closed and the release tag is `v0.4.0`. The next Define iteration has not
+opened; the author wants members to use this version before more building.
 
 ## Recover context
 
 Read `AGENTS.md`, `governance/project-state.yaml`, `governance/operating-agreement.md`, and
-`governance/decisions.yaml`; then reconcile this checkpoint with current Git state and newer
-author instructions. The compact machine handoff is `governance/handoff.json`. This source
-repository predates Agent Builder's generated `.agent-builder.json`; do not fabricate one to
-make the generated-project scaffold check pass.
+`governance/decisions.yaml`; reconcile this checkpoint with current Git state and newer
+author instructions. The compact machine record is `governance/handoff.json`. This source
+repository predates Agent Builder's generated `.agent-builder.json`; do not fabricate one
+to make the generated-project scaffold check pass.
 
 ## Accepted releases
 
-- **v0.3.0 — accepted 2026-09-24.** Neutral `project` mode, a required Plan-stage
-  build-or-adopt gate, version-sized outcomes, reuse and technical-quality evidence, and
-  plainer human-facing governance. The author reported passing adopt-instead-of-build,
-  small-project, and cold-resume sessions. See `docs/v0-3-acceptance.md` for what was and was
-  not independently observed. Mechanical results are in `docs/v0-3-build-verification.md`.
+- **v0.4.0 — accepted 2026-10-06.** A pinned Spec Kit 1.1.0 release-build payload gives
+  new Claude Code and Codex projects research and proportional specification/planning
+  guidance through the single Agent Builder skill. Members do not install the Spec Kit
+  CLI. See [the acceptance record](v0-4-acceptance.md) for Erico's Codex test, the
+  packaging correction, and explicit untested controls.
+- **v0.3.0 — accepted 2026-09-24.** Neutral `project` mode, build-or-adopt gate,
+  version-sized outcomes, reuse and technical-quality evidence, and plain governance.
+  See [the acceptance record](v0-3-acceptance.md).
 - **v0.2.1 — accepted 2026-09-22.** Organization-installable skill and deterministic
-  seeding/checking. Sean reached a seeded, validated, committed Define project from the
-  organization-installed plugin on Windows; see `docs/v0-2-acceptance.md`.
-- **v0.1.0 — accepted 2026-09-13.** Governance and scaffolding without a runtime; see
-  `docs/v0-1-acceptance.md`.
+  seeding/checking; see [the acceptance record](v0-2-acceptance.md).
+- **v0.1.0 — accepted 2026-09-13.** Governance and scaffolding without a runtime;
+  see [the acceptance record](v0-1-acceptance.md).
 
-## Current phase: Review for v0.4.0
+## Current project state
 
-The approved [Define record](../planning/v0-4-definition.md) targets a maintained Spec Kit
-dependency for a partial replacement of idea assessment and proportionate augmentation of
-specification, clarification, checklist, plan, tasks, and analysis. The member-facing result
-must work after one Agent Builder installation on Claude Code or Codex, for agent, skill, and
-project builds. Claude Chat, Cowork, and claude.ai are not v0.4.0 targets. Preserve Agent
-Builder's lifecycle, approvals, versioning, and deterministic checks; avoid duplicate records
-and a net regression from v0.3.0. The author chose a pinned Spec Kit CLI as a release-build
-dependency that generates a filtered payload bundled with Agent Builder, so members do not
-install the CLI separately. The pinned v1.1.0 payload is generated, bundled, seeded, and
-validated in the v0.4.0 Build candidate. Both live hosts produced the expected research
-artifact in disposable first-slice tests, though neither verified public sources in that
-environment. The approved design, Build slices, and Review tests are in
-`planning/v0-4-implementation-plan.md`; evidence is in
-`docs/v0-4-build-verification.md` and `planning/v0-4-spec-kit-feasibility.md`; the earlier comparison is in
-`planning/spec-kit-comparison.md` and `planning/spec-kit-component-map.md`.
+`governance/project-state.yaml` keeps `review` as the last phase but marks it closed;
+no new phase has been authorized. The project remains active for post-release
+observations, not for an unapproved next build. The v0.4.0 purpose and limits are in
+the [Define record](../planning/v0-4-definition.md), approved design in the
+[implementation plan](../planning/v0-4-implementation-plan.md), and completed Build
+checks in [Build verification](v0-4-build-verification.md).
 
-The [build-or-adopt evaluation](../planning/v0-4-solution-evaluation.md) recommends a
-targeted adaptation rather than wholesale Spec Kit adoption or a custom rewrite. The
-approved plan keeps a single Agent Builder entry point, a filtered upstream asset bundle,
-and one owner per artifact. The first Build-slice handoff gate passed on both hosts; a
-sourced real-use adopt/build test remains for Review. Do not treat low-confidence pilot
-research as a validated public-solution recommendation.
+Erico's real Codex skill project reported sourced research, an adapt recommendation,
+one feature specification, plan, tasks, and a consistency analysis. The supplied
+execution record says Agent Builder read bundled Spec Kit instructions; no separate
+member CLI was installed. It is an agent-authored account with supporting artifacts,
+not a full transcript. A later packaging correction changed the bundled instruction
+filenames, leaving their contents unchanged; a fresh Codex inventory showed only
+Agent Builder as a skill. The repository checks passed, but a live project session
+was not rerun after that rename.
 
-## Verification and limits
-
-The v0.3.0 Build passed 64 tests, rendering drift, compilation, and the phase-specific Build
-exit check. The Review exit check found nothing unresolved. The acceptance sessions are
-author-reported without transcripts, project links, host details, or tested source commits.
-The v0.4.0 Define exit check reported nothing unresolved on 2026-09-29.
-The 2026-10-05 v0.4.0 Plan passed 64 repository tests, render-drift, YAML/JSON
-parsing, and diff checks. After the author confirmed the architecture and risk choices,
-the Plan exit check found nothing unresolved. Build passed 74 tests under Python 3.9.6
-and 3.14.0, Ruff lint/format, render and vendor drift checks, and the six clean-copy
-host/kind seeding cases. The live pilot proved artifact-producing handoff, not sourced
-public research or full organization-plugin installation.
-The generic generated-project scaffold check does not apply to this legacy source repository:
-it intentionally lacks `.agent-builder.json` and contains template tokens. It does pass on
-projects generated from the new templates.
-The Build exit check reported no unresolved decisions on 2026-10-06, and the author
-explicitly opened Review. No v0.4.0 acceptance or tag is recorded.
+The adopt-and-archive case, planted contradiction, full real-use host/kind matrix,
+and measured v0.3 comparison were not completed before release. They are evidence
+limits, not passed tests. The author explicitly accepted the release with those
+limits visible so the organization can use it and report actual outcomes.
 
 ## Next action
 
-Have the author refresh/install this v0.4.0 candidate and run Agent Builder in separate
-test projects. A suitable-public-solution case must produce sourced research and an
-adopt recommendation; a novel-build case must produce one version-sized spec, plan,
-tasks, and an analysis of contradictions. See `docs/v0-4-build-verification.md` for
-exactly what passed and what remains. Inspect the test projects and author feedback
-before accepting or tagging v0.4.0.
-The author subsequently requested and authorized pushing the Review candidate to
-`main` for Erico's Codex test; see `docs/v0-4-codex-review-handoff-erico.md`. No
-v0.4.0 tag or acceptance has been authorized.
-Erico's Computerator feedback supports the Codex skill/adapt path but leaves the
-adopt-and-archive control and his own v0.3 comparison open. A separate local Codex
-observation found that the bundled upstream `SKILL.md` files appeared as 14 standalone
-skills. The author approved a narrow Review correction: package those unchanged
-instructions as non-skill reference files, preserving Agent Builder as the sole entry
-point. A fresh Codex 0.159.2 CLI skill-inventory preview after the correction showed
-only Agent Builder, with no Spec Kit entries. Recheck the model-mediated Spec Kit
-handoff before acceptance; do not infer that Erico's successful session used a
-second workflow.
+Use the tagged v0.4.0 release in the organization and record concrete successes,
+failures, and friction. Do not choose a next version or open Define until the author
+explicitly requests it.

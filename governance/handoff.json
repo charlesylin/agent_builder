@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-v0-4-review-2026-10-06",
-  "created_at": "2026-10-06T13:03:32Z",
+  "handoff_id": "agent-builder-v0-4-release-2026-10-06",
+  "created_at": "2026-10-06T19:37:23Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.3.0 is accepted and tagged. The author explicitly closed v0.4.0 Build and opened Review on 2026-10-06. The candidate bundles pinned Spec Kit v1.1.0 behind the Agent Builder entry point; members do not install its CLI. Claude Code and Codex produced the expected research artifact in disposable pilots, and six copied-skill host/kind seeds plus mechanical checks passed. Public-source verification, installed-plugin behavior, and real-use benefit remain to be tested on separate projects. v0.4.0 is not accepted, tagged, or pushed by this transition.",
+  "summary": "Agent Builder v0.4.0 was accepted on 2026-10-06 for organization use. Review is closed; the next Define iteration is not open. The release bundles pinned Spec Kit v1.1.0 instructions behind Agent Builder without a member CLI. Erico's real Codex skill project reported sourced research, a justified adapt recommendation, and specification, plan, tasks, and analysis artifacts. The author accepted the release with explicit untested controls documented in docs/v0-4-acceptance.md. Collect organization feedback before proposing another version.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -131,6 +131,11 @@
       "id": "AB-D059",
       "status": "confirmed",
       "summary": "Close v0.4.0 Build and open Review; acceptance and tagging remain open."
+    },
+    {
+      "id": "AB-D060",
+      "status": "confirmed",
+      "summary": "Accept v0.4.0 for organization use, close Review, publish the tag, and defer the next Define iteration while members use the release."
     }
   ],
   "artifacts": [
@@ -205,9 +210,13 @@
     {
       "path": "docs/v0-3-acceptance.md",
       "media_type": "text/markdown"
+    },
+    {
+      "path": "docs/v0-4-acceptance.md",
+      "media_type": "text/markdown"
     }
   ],
   "blockers": [],
   "questions": [],
-  "next_action": "Use the installed v0.4.0 candidate in separate test projects for sourced adoption and a version-sized build. Inspect both projects and author feedback before accepting or tagging the release."
+  "next_action": "Use the tagged v0.4.0 release in the organization, record concrete successes and failures, and wait for explicit author direction before opening the next Define iteration."
 }

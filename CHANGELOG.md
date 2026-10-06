@@ -2,15 +2,16 @@
 
 All notable changes to Agent Builder are documented here.
 
-## [0.4.0] - Review candidate (not yet accepted)
+## [0.4.0] - 2026-10-06
 
-This version is under Review and is not a release tag. It bundles selected, pinned Spec Kit
-v1.1.0 assets at release time; members do not install its CLI. New Claude Code and Codex
-projects of all three supported kinds receive the selected Bash helpers and templates,
-a checked constitution view, an upstream provenance marker, and Agent Builder guidance
-for research-led adoption or proportional specification and planning. Existing projects
-are not modified; Gemini-only projects retain their earlier path. Real-use acceptance is
-pending Review.
+Accepted for organization use; see [the acceptance record](docs/v0-4-acceptance.md) for
+the supporting evidence and what has not been tested. This version bundles selected,
+pinned Spec Kit v1.1.0 assets at release time; members do not install its CLI. New
+Claude Code and Codex projects of all three supported kinds receive the selected Bash
+helpers and templates, a checked constitution view, an upstream provenance marker,
+and Agent Builder guidance for research-led adoption or proportional specification
+and planning. Existing projects are not modified; Gemini-only projects retain their
+earlier path.
 
 During Review, the bundled upstream instruction files were renamed from `SKILL.md` to
 `instructions.md` without changing their contents. This keeps Agent Builder as the only

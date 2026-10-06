@@ -837,3 +837,30 @@ decisions:
       tag, or publish v0.4.0.
     provenance: explicit_author_phase_transition
     record: docs/v0-4-build-verification.md
+  - id: AB-D060
+    status: confirmed
+    date: 2026-10-06
+    confirmed_date: 2026-10-06
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      After reviewing Erico's Codex feedback, the Spec Kit usage evidence, and the
+      standalone-skill packaging correction, the author said he was happy, directed
+      Review to close, and requested the version tag be pushed for organization use
+      before another build iteration.
+    decision: >-
+      Accept Agent Builder v0.4.0 for organization use, close its Review, and publish
+      the v0.4.0 tag and main branch. Leave the next Define iteration unopened while
+      members use the release and provide feedback.
+    rationale: >-
+      Erico's real Codex skill project used the bundled Spec Kit research,
+      specification, planning, task, and analysis instructions through Agent Builder;
+      both target hosts produced research artifacts in earlier pilots. The 14 bundled
+      upstream instruction files were renamed without content changes so they are not
+      separately discoverable Codex skills; a fresh Codex inventory and repository
+      checks passed. The author accepts the release with explicit evidence limits:
+      the adopt-and-archive case, a planted contradiction, full installed-host/kind
+      coverage, a post-rename live project run, and a measured v0.3 comparison have
+      not been completed. Organization use will collect those observations rather
+      than presenting them as passed tests.
+    provenance: explicit_author_acceptance_and_publication_request
+    record: docs/v0-4-acceptance.md
