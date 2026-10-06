@@ -2,7 +2,8 @@
 
 Checkpoint: 2026-10-05. Agent Builder **v0.3.0** is accepted and tagged. The author approved
 the v0.4.0 Define record, then approved the scoped implementation plan and explicitly
-closed Plan and opened **v0.4.0 Build**. The first Build slice is a live-host stop/go test.
+closed Plan and opened **v0.4.0 Build**. The scoped Build implementation is ready for an
+author-approved Review transition; the phase has **not** changed yet.
 
 ## Recover context
 
@@ -35,20 +36,20 @@ project builds. Claude Chat, Cowork, and claude.ai are not v0.4.0 targets. Prese
 Builder's lifecycle, approvals, versioning, and deterministic checks; avoid duplicate records
 and a net regression from v0.3.0. The author chose a pinned Spec Kit CLI as a release-build
 dependency that generates a filtered payload bundled with Agent Builder, so members do not
-install the CLI separately. A filtered v1.1.0 payload passed disposable structural and
-helper-script probes. The author approved the integration design and Build sequence, but live
-host behavior remains unverified. The approved design, Build slices, and Review tests are in
+install the CLI separately. The pinned v1.1.0 payload is generated, bundled, seeded, and
+validated in the v0.4.0 Build candidate. Both live hosts produced the expected research
+artifact in disposable first-slice tests, though neither verified public sources in that
+environment. The approved design, Build slices, and Review tests are in
 `planning/v0-4-implementation-plan.md`; evidence is in
-`planning/v0-4-spec-kit-feasibility.md`; the earlier comparison is in
+`docs/v0-4-build-verification.md` and `planning/v0-4-spec-kit-feasibility.md`; the earlier comparison is in
 `planning/spec-kit-comparison.md` and `planning/spec-kit-component-map.md`.
 
 The [build-or-adopt evaluation](../planning/v0-4-solution-evaluation.md) recommends a
 targeted adaptation rather than wholesale Spec Kit adoption or a custom rewrite. The
 approved plan keeps a single Agent Builder entry point, a filtered upstream asset bundle,
-one owner per artifact, and a first Build-slice stop/go test for model-mediated handoff.
-The author explicitly accepted moving this uncertainty across the phase boundary. If
-either host fails, stop the remaining Build work and return to Plan rather than weaken
-v0.4.0.
+and one owner per artifact. The first Build-slice handoff gate passed on both hosts; a
+sourced real-use adopt/build test remains for Review. Do not treat low-confidence pilot
+research as a validated public-solution recommendation.
 
 ## Verification and limits
 
@@ -58,16 +59,19 @@ author-reported without transcripts, project links, host details, or tested sour
 The v0.4.0 Define exit check reported nothing unresolved on 2026-09-29.
 The 2026-10-05 v0.4.0 Plan passed 64 repository tests, render-drift, YAML/JSON
 parsing, and diff checks. After the author confirmed the architecture and risk choices,
-the Plan exit check found nothing unresolved. Live host parity is not yet established.
+the Plan exit check found nothing unresolved. Build passed 74 tests under Python 3.9.6
+and 3.14.0, Ruff lint/format, render and vendor drift checks, and the six clean-copy
+host/kind seeding cases. The live pilot proved artifact-producing handoff, not sourced
+public research or full organization-plugin installation.
 The generic generated-project scaffold check does not apply to this legacy source repository:
 it intentionally lacks `.agent-builder.json` and contains template tokens. It does pass on
 projects generated from the new templates.
 
 ## Next action
 
-Execute the first Build slice in disposable projects: implement the smallest adapter
-that reads the bundled upstream research step, binds a substantive idea, and verifies
-the resulting research artifact through authenticated Claude Code and Codex with Agent
-Builder as the only member-invoked skill. If either host cannot complete the handoff,
-stop and return to Plan before the rest of the integration. No v0.4.0 tag or push has
-been authorized by this phase transition.
+Ask the author to explicitly close Build and enter Review. Once authorized, have them
+refresh/install this v0.4.0 candidate and run Agent Builder on a separate project. A
+suitable-public-solution case must produce sourced research and an adopt recommendation;
+a novel-build case must produce one version-sized spec, plan, tasks, and an analysis of
+contradictions. See `docs/v0-4-build-verification.md` for exactly what passed and what
+remains. No v0.4.0 tag or push has been authorized by the Build phase alone.

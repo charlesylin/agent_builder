@@ -25,6 +25,7 @@ if sys.version_info < (3, 9):  # noqa: UP036 - deliberate guard for older interp
     sys.exit(2)
 
 import argparse  # noqa: E402
+import hashlib  # noqa: E402
 import json  # noqa: E402
 import re  # noqa: E402
 from dataclasses import dataclass  # noqa: E402
@@ -106,6 +107,31 @@ _QUALITY_FIELDS = (
     "Failure behavior and robustness",
     "Why this is the simpler, maintainable option",
 )
+_SPEC_KIT_VERSION = "1.1.0"
+_SPEC_KIT_COMMIT = "f1d3a4f8337ebbd3ae22760a9c12e3352b93a175"
+_SPEC_KIT_ASSETS = {
+    *(
+        f".specify/scripts/bash/{name}"
+        for name in (
+            "check-prerequisites.sh",
+            "common.sh",
+            "create-new-feature.sh",
+            "resolve-template.sh",
+            "setup-plan.sh",
+            "setup-tasks.sh",
+        )
+    ),
+    *(
+        f".specify/templates/{name}"
+        for name in (
+            "spec-template.md",
+            "plan-template.md",
+            "tasks-template.md",
+            "checklist-template.md",
+        )
+    ),
+    "third_party/spec-kit/LICENSE",
+}
 
 
 @dataclass(frozen=True)
@@ -185,7 +211,154 @@ def _uses_solution_gate(manifest: object) -> bool:
     return bool(match and tuple(map(int, match.groups())) >= (0, 3, 0))
 
 
-def _solution_record_issues(root: Path, state: str, ledger: str) -> tuple[ValidationIssue, ...]:
+def _uses_spec_kit(manifest: object) -> bool:
+    if not isinstance(manifest, dict):
+        return False
+    version = manifest.get("template_version")
+    match = _VERSION.fullmatch(version) if isinstance(version, str) else None
+    adapters = manifest.get("coding_agent_adapters")
+    return bool(
+        match
+        and tuple(map(int, match.groups())) >= (0, 4, 0)
+        and isinstance(adapters, list)
+        and all(isinstance(adapter, str) for adapter in adapters)
+        and {"codex", "claude"} & set(adapters)
+    )
+
+
+def _spec_kit_issues(root: Path) -> tuple[ValidationIssue, ...]:
+    issues: list[ValidationIssue] = []
+    path = root / ".specify/spec-kit-provenance.json"
+    if not path.is_file():
+        return (
+            ValidationIssue("missing-spec-kit", "v0.4 project needs bundled Spec Kit assets", path),
+        )
+    provenance = _load_json(path, issues)
+    if not isinstance(provenance, dict):
+        return tuple(issues)
+    upstream = provenance.get("upstream", {})
+    if not isinstance(upstream, dict) or (
+        upstream.get("version") != _SPEC_KIT_VERSION or upstream.get("commit") != _SPEC_KIT_COMMIT
+    ):
+        issues.append(
+            ValidationIssue(
+                "wrong-spec-kit-pin", "expected Spec Kit v1.1.0 at the approved commit", path
+            )
+        )
+    assets = provenance.get("assets")
+    if not isinstance(assets, dict) or set(assets) != _SPEC_KIT_ASSETS:
+        issues.append(
+            ValidationIssue(
+                "invalid-spec-kit-assets",
+                "asset list must contain the six helpers, four templates, and MIT notice",
+                path,
+            )
+        )
+    else:
+        for relative, digest in assets.items():
+            asset = root / relative
+            if asset.is_symlink() or not asset.is_file():
+                issues.append(
+                    ValidationIssue(
+                        "missing-spec-kit-asset", "required asset missing or symlinked", asset
+                    )
+                )
+            elif hashlib.sha256(asset.read_bytes()).hexdigest() != digest:
+                issues.append(
+                    ValidationIssue(
+                        "spec-kit-asset-drift", "asset differs from its pinned manifest", asset
+                    )
+                )
+    constitution = root / ".specify/memory/constitution.md"
+    agreement = root / "governance/operating-agreement.md"
+    if constitution.is_symlink() or not constitution.is_file():
+        issues.append(
+            ValidationIssue(
+                "missing-constitution-view",
+                "derive constitution from operating agreement",
+                constitution,
+            )
+        )
+    elif agreement.is_file() and constitution.read_bytes() != agreement.read_bytes():
+        issues.append(
+            ValidationIssue(
+                "stale-constitution-view",
+                "constitution must equal the operating agreement",
+                constitution,
+            )
+        )
+    return tuple(issues)
+
+
+def _spec_kit_research_issues(root: Path, fields: dict[str, str]) -> tuple[ValidationIssue, ...]:
+    record = root / "planning/solution-evaluation.md"
+    value = fields.get("Spec Kit research", "").strip()
+    if not re.fullmatch(r"\.specify/assessments/[a-z0-9-]+/research\.md", value):
+        return (
+            ValidationIssue(
+                "missing-spec-kit-research",
+                "link the research artifact by its project-relative path",
+                record,
+            ),
+        )
+    path = root / value
+    if path.is_symlink() or not path.is_file():
+        return (
+            ValidationIssue(
+                "missing-spec-kit-research",
+                "linked research artifact is missing or symlinked",
+                path,
+            ),
+        )
+    text = path.read_text(encoding="utf-8")
+    required = ("## Prior Art", "## Evidence Against the Idea", "## Sources", "Evidence confidence")
+    if any(marker not in text for marker in required):
+        return (
+            ValidationIssue(
+                "incomplete-spec-kit-research",
+                "research needs prior art, counterevidence, sources, and confidence",
+                path,
+            ),
+        )
+    return ()
+
+
+def _spec_kit_feature_issues(root: Path) -> tuple[ValidationIssue, ...]:
+    marker = root / ".specify/feature.json"
+    if not marker.is_file():
+        return (
+            ValidationIssue(
+                "missing-spec-kit-feature", "run the selected specify step before Build", marker
+            ),
+        )
+    issues: list[ValidationIssue] = []
+    data = _load_json(marker, issues)
+    if not isinstance(data, dict):
+        return tuple(issues)
+    name = data.get("feature_directory")
+    if not isinstance(name, str) or not re.fullmatch(r"specs/[a-zA-Z0-9-]+", name):
+        return (
+            ValidationIssue(
+                "invalid-spec-kit-feature",
+                "feature directory must be one direct specs/ child",
+                marker,
+            ),
+        )
+    directory = root / name
+    for filename in ("spec.md", "plan.md", "tasks.md"):
+        path = directory / filename
+        if path.is_symlink() or not path.is_file():
+            issues.append(
+                ValidationIssue(
+                    "missing-spec-kit-artifact", f"{filename} is required before Build", path
+                )
+            )
+    return tuple(issues)
+
+
+def _solution_record_issues(
+    root: Path, state: str, ledger: str, *, require_spec_kit: bool = False
+) -> tuple[ValidationIssue, ...]:
     path = root / "planning/solution-evaluation.md"
     if not path.is_file():
         return (
@@ -194,6 +367,8 @@ def _solution_record_issues(root: Path, state: str, ledger: str) -> tuple[Valida
 
     fields = dict(_SOLUTION_LINE.findall(path.read_text(encoding="utf-8")))
     issues: list[ValidationIssue] = []
+    if require_spec_kit:
+        issues.extend(_spec_kit_research_issues(root, fields))
     for name in _SOLUTION_FIELDS:
         value = fields.get(name, "").strip()
         if not value or value.startswith("(not yet"):
@@ -418,6 +593,9 @@ def validate_project(root: str | Path) -> tuple[ValidationIssue, ...]:
                         )
                     )
 
+        if _uses_spec_kit(manifest):
+            issues.extend(_spec_kit_issues(project_root))
+
     state_path = project_root / "governance/project-state.yaml"
     if state_path.is_file():
         state = state_path.read_text(encoding="utf-8")
@@ -450,6 +628,17 @@ def validate_project(root: str | Path) -> tuple[ValidationIssue, ...]:
 
     if kind == "agent":
         _validate_contract(project_root, issues)
+    if _uses_spec_kit(manifest) and state_path.is_file():
+        state = state_path.read_text(encoding="utf-8")
+        record = project_root / "planning/solution-evaluation.md"
+        if (
+            _STATUS_LINE.search(state)
+            and _STATUS_LINE.search(state).group(1) == "archived"
+            and record.is_file()
+        ):
+            fields = dict(_SOLUTION_LINE.findall(record.read_text(encoding="utf-8")))
+            if fields.get("Outcome", "").strip().lower() == "adopt":
+                issues.extend(_spec_kit_research_issues(project_root, fields))
     _scan_text_files(project_root, issues)
     return tuple(issues)
 
@@ -553,10 +742,20 @@ def phase_exit_issues(root: str | Path, phase: str) -> tuple[ValidationIssue, ..
         if _uses_solution_gate(manifest):
             state = state_path.read_text(encoding="utf-8") if state_path.is_file() else ""
             ledger = ledger_path.read_text(encoding="utf-8") if ledger_path.is_file() else ""
-            issues.extend(_solution_record_issues(project_root, state, ledger))
+            require_spec_kit = _uses_spec_kit(manifest)
+            issues.extend(
+                _solution_record_issues(
+                    project_root, state, ledger, require_spec_kit=require_spec_kit
+                )
+            )
             record_path = project_root / "planning/solution-evaluation.md"
             if record_path.is_file():
                 fields = dict(_SOLUTION_LINE.findall(record_path.read_text(encoding="utf-8")))
+                if require_spec_kit and fields.get("Outcome", "").strip().lower() in {
+                    "adapt",
+                    "build",
+                }:
+                    issues.extend(_spec_kit_feature_issues(project_root))
                 status = _STATUS_LINE.search(state)
                 if fields.get("Outcome", "").strip().lower() == "adopt" and (
                     status and status.group(1) == "archived"

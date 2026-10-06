@@ -178,17 +178,18 @@ next_release:
     as a separate requirement; see
     docs/v0-3-acceptance.md. The author chose a pinned, release-time-generated Spec Kit
     dependency payload over a separate member CLI installation. A filtered v1.1.0 payload
-    passed disposable structural and helper-script probes. The first Build slice is
-    a live Claude Code and Codex handoff stop/go gate; host parity remains unverified.
+    passed the live Claude Code and Codex artifact-producing handoff gate, plus
+    clean-copy seeding and helper checks across the six host/kind combinations.
+    Public-source verification and real-use benefit remain Review tests; see
+    docs/v0-4-build-verification.md.
 
 checkpoint:
   date: 2026-10-05
-  status: build_opened
-  phase_changed: true
+  status: build_implementation_ready_for_review_approval
+  phase_changed: false
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Execute the first Build slice in disposable projects: implement the smallest
-    Agent Builder-to-bundled-asset adapter and verify a substantive research
-    artifact through authenticated Claude Code and Codex. Stop and return to
-    Plan if either host cannot complete the handoff without a second member invocation.
+    Ask the author to close Build and enter Review explicitly. Then test the
+    installed v0.4.0 candidate on a separate project, including sourced adoption
+    and justified version-sized build cases, before accepting or tagging the release.

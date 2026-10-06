@@ -5,13 +5,15 @@ clarify the problem, check whether an existing solution is enough, then build on
 version only when needed. It keeps phase and decision records for agents while explaining
 status and consequential choices to people in plain language.
 
-It is three things in one folder, `skills/agent-builder/`:
+Its member-facing pieces live in one folder, `skills/agent-builder/`:
 
 - **`SKILL.md`** — the instructions Claude Code or Codex follows. The judgment lives here.
 - **`scripts/seed.py`** and **`scripts/check.py`** — create a project; validate one. Standard
   library only, Python 3.9+.
 - **`templates/`** — what a new project gets: `base/` for every kind, kind-specific files for
   `agent`, `skill`, or neutral `project`, and one adapter file per coding host.
+- **`vendor/spec-kit/`** — selected, pinned Spec Kit instructions and project assets used
+  by new v0.4.0 Claude Code and Codex projects; no separate CLI install is needed.
 
 The principles behind all of it live once, in `principles/`, and are rendered into every place
 they appear by `scripts/render.py`. A test fails if a copy drifts.
@@ -79,11 +81,12 @@ How to change principles, the skill, templates, or cut a release:
 
 ## Status
 
-**v0.3.0 accepted; v0.4.0 in Define.** The author reported all three v0.3 real-use Review
+**v0.3.0 accepted; v0.4.0 in Build.** The author reported all three v0.3 real-use Review
 scenarios passed and accepted the release on 2026-09-24. See the
-[v0.3 acceptance record](docs/v0-3-acceptance.md). The author opened v0.4.0 Define on
-2026-09-25. It will evaluate whether a maintained Spec Kit dependency offers a specific net
-improvement without degrading the working core; its smallest outcome is not yet defined.
+[v0.3 acceptance record](docs/v0-3-acceptance.md). The v0.4.0 Build integrates a pinned,
+filtered Spec Kit v1.1.0 payload without a member CLI installation. It is not yet an
+accepted release; [Build verification](docs/v0-4-build-verification.md) records the host
+handoff, clean-copy checks, and what the real-use Review must still prove.
 v0.2.1 and v0.1.0 remain [previous accepted releases](docs/RESUME.md).
 
 This repository is developed under its own phases; see

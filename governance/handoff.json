@@ -5,7 +5,7 @@
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.3.0 is accepted and tagged. The author approved the scoped v0.4.0 implementation plan, closed Plan, and opened Build. The plan uses a pinned release-time Spec Kit v1.1.0 payload, a single Agent Builder entry point, and one owner per artifact; members do not install the Spec Kit CLI. Structural and helper-script probes passed, but live handoff on Claude Code and Codex remains unproven. The first Build slice is a stop/go live-host test; if either host fails, stop the remaining integration and return to Plan.",
+  "summary": "Agent Builder v0.3.0 is accepted and tagged. The author approved the scoped v0.4.0 Build, which has implemented a pinned release-time Spec Kit v1.1.0 bundle behind the single Agent Builder entry point; members do not install the Spec Kit CLI. Claude Code and Codex each produced the expected research artifact in disposable live handoff pilots. Six copied-skill host/kind seeds and mechanical checks passed. Public-source verification and real-use benefit remain for Review. The project remains in Build pending explicit author approval to change phase; no v0.4.0 tag or push is authorized.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -182,6 +182,10 @@
       "media_type": "text/markdown"
     },
     {
+      "path": "docs/v0-4-build-verification.md",
+      "media_type": "text/markdown"
+    },
+    {
       "path": "docs/v0-2-acceptance.md",
       "media_type": "text/markdown"
     },
@@ -200,5 +204,5 @@
   ],
   "blockers": [],
   "questions": [],
-  "next_action": "Run the first Build slice in disposable projects: implement the minimal bundled-research adapter and verify artifact-producing handoff through authenticated Claude Code and Codex. Stop the remaining Build work and return to Plan if either host fails."
+  "next_action": "Ask the author to explicitly close Build and enter Review. Then use the installed v0.4.0 candidate on a separate project for sourced adopt and version-sized build controls; do not accept or tag before reviewing that evidence."
 }

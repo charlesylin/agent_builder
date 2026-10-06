@@ -171,6 +171,46 @@ a release. For `adapt` or `build`, explain the gap the existing options leave an
 reused. The checker ensures the evidence fields are present; you must assess whether they are
 credible.
 
+**Spec Kit-backed Plan work for new v0.4 projects.** This applies only when the seeded
+`.agent-builder.json` has `template_version` 0.4.0 or newer and selects Claude Code or Codex.
+Older projects are not silently upgraded; Gemini-only projects retain their prior behavior.
+The selected upstream-generated instructions are bundled as **data inside this Agent Builder
+skill**, at `vendor/spec-kit/<host>/speckit-<step>/SKILL.md`, where `<host>` is `claude` or
+`codex`. They are not member-facing skills. The member invokes only Agent Builder and never
+installs or runs the Spec Kit CLI. Before using a step, confirm the project's
+`.specify/spec-kit-provenance.json` is present and `check.py` reports a valid scaffold.
+Read the complete host-specific upstream file, replace its `$ARGUMENTS` with substantive
+context from the approved Agent Builder records, perform the selected step, and verify its
+output. Merely reading or mentioning the file is not a successful handoff.
+
+In early **Plan**, after Define is approved and before the final build-or-adopt judgment,
+use `assess-research` to challenge the proposed build. Bind an explicit safe slug **and**
+the actual problem, current approach, users, and smallest outcome from
+`planning/definition.md`; do not supply only a slug. Require
+`.specify/assessments/<slug>/research.md` with Prior Art, Evidence Against the Idea,
+Sources, and an honest evidence-confidence level. Link to it from the short
+`planning/solution-evaluation.md`; that Agent Builder record still owns the fit,
+utilization, maintenance, tests, security, license, setup, and final adopt/adapt/build
+judgment. If public sources cannot be verified, say so and do not treat guessed candidates
+as evidence. A sufficient public solution still ends in Plan only after typed author
+confirmation; do not produce a project release or build artifacts for an adoption.
+
+Only after the author confirms **adapt or build**, use the remaining selected steps
+proportionately in Plan for one version-sized feature. Bind `specify` to the confirmed
+outcome and exclusions; require `.specify/feature.json` and the selected
+`specs/<feature>/spec.md` before continuing. Use `clarify` only for consequential ambiguity,
+and `checklist` only for a real requirement-quality gap. Then use `plan` and `tasks`,
+requiring `specs/<feature>/plan.md` and `tasks.md`; use `analyze` after tasks to expose
+contradictions before Build. The detailed specification, plan, and tasks own build detail,
+but must reference rather than redefine the problem and version in Agent Builder's records.
+`.specify/memory/constitution.md` is a checked copy of
+`governance/operating-agreement.md`, never a second editable authority. If an upstream step
+would change purpose, scope, authority, or version target, pause for the corresponding
+Agent Builder approval. Never follow upstream suggestions to invoke intake, define,
+shape, decide, constitution, implement, converge, taskstoissues, or unbundled extension
+hooks. If a selected step cannot complete or its expected artifact is absent, fail loudly
+instead of claiming that Spec Kit ran or silently reverting to an unreviewed workflow.
+
 **One usable version, not the whole product.** Ask what would make `v0.1.0` useful for a new
 project, or the next appropriate Semantic Versioning `MAJOR.MINOR.PATCH` step for an existing
 one. Record that project's target and one-sentence usable goal under `deliverable` in

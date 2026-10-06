@@ -23,6 +23,7 @@ if sys.version_info < (3, 9):  # noqa: UP036 - deliberate guard for older interp
     sys.exit(2)
 
 import argparse  # noqa: E402
+import hashlib  # noqa: E402
 import json  # noqa: E402
 import os  # noqa: E402
 import re  # noqa: E402
@@ -42,7 +43,7 @@ except ImportError as error:  # pragma: no cover - only when the skill folder is
     raise SystemExit(f"seed.py needs check.py beside it in {HERE}: {error}") from error
 
 # Kept equal to "version" in the repository's .claude-plugin/plugin.json; a test enforces it.
-TEMPLATE_VERSION = "0.3.0"
+TEMPLATE_VERSION = "0.4.0"
 # The marker check.py looks for in planning/definition.md. Keep the two in sync.
 UNANSWERED = "(not yet answered)"
 
@@ -256,6 +257,61 @@ def _collect_templates(spec: ProjectSpec, context: dict[str, str]) -> dict[Path,
     return rendered_files
 
 
+def _spec_kit_files(spec: ProjectSpec, rendered: dict[Path, str]) -> dict[Path, bytes]:
+    """Return the pinned upstream project assets for the two supported v0.4 hosts."""
+
+    if not ({"codex", "claude"} & set(spec.adapters)):
+        return {}  # Gemini retains its v0.3 behavior.
+    vendor = HERE.parent / "vendor/spec-kit"
+    manifest_path = vendor / "manifest.json"
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise ScaffoldError(f"Spec Kit payload is missing or invalid: {error}") from error
+    upstream = manifest.get("upstream", {})
+    if upstream.get("version") != "1.1.0" or upstream.get("commit") != (
+        "f1d3a4f8337ebbd3ae22760a9c12e3352b93a175"
+    ):
+        raise ScaffoldError("Spec Kit payload does not match the approved v1.1.0 pin")
+    listed = manifest.get("files")
+    if not isinstance(listed, dict):
+        raise ScaffoldError("Spec Kit payload has no asset hash manifest")
+    project_assets: dict[Path, bytes] = {}
+    project_hashes: dict[str, str] = {}
+    for vendor_name, digest in listed.items():
+        if not vendor_name.startswith("project/"):
+            continue
+        relative = Path(vendor_name).relative_to("project")
+        source = vendor / vendor_name
+        if source.is_symlink() or not source.is_file():
+            raise ScaffoldError(f"Spec Kit project asset is missing or unsafe: {vendor_name}")
+        content = source.read_bytes()
+        if hashlib.sha256(content).hexdigest() != digest:
+            raise ScaffoldError(f"Spec Kit project asset differs from its manifest: {vendor_name}")
+        project_assets[relative] = content
+        project_hashes[relative.as_posix()] = digest
+    if len(project_assets) != 10:
+        raise ScaffoldError("Spec Kit payload must contain six Bash helpers and four templates")
+    license_content = (vendor / "LICENSE").read_bytes()
+    if hashlib.sha256(license_content).hexdigest() != listed.get("LICENSE"):
+        raise ScaffoldError("Spec Kit MIT notice differs from its manifest")
+    license_path = Path("third_party/spec-kit/LICENSE")
+    project_assets[license_path] = license_content
+    project_hashes[license_path.as_posix()] = listed["LICENSE"]
+    agreement = rendered[Path("governance/operating-agreement.md")].encode("utf-8")
+    project_assets[Path(".specify/memory/constitution.md")] = agreement
+    provenance = {
+        "schema_version": 1,
+        "upstream": upstream,
+        "assets": project_hashes,
+        "constitution_source": "governance/operating-agreement.md",
+    }
+    project_assets[Path(".specify/spec-kit-provenance.json")] = (
+        json.dumps(provenance, indent=2, sort_keys=True) + "\n"
+    ).encode("utf-8")
+    return project_assets
+
+
 def create_project(
     target: str | Path,
     spec: ProjectSpec,
@@ -276,6 +332,7 @@ def create_project(
 
     context = _context(spec, generated_at or datetime.now(timezone.utc))
     rendered_files = _collect_templates(spec, context)
+    spec_kit_files = _spec_kit_files(spec, rendered_files)
     temporary = Path(
         tempfile.mkdtemp(prefix=f".{destination.name}.agent-builder-", dir=destination.parent)
     )
@@ -288,6 +345,13 @@ def create_project(
             with output.open("w", encoding="utf-8", newline="\n") as handle:
                 handle.write(content)
 
+        for relative, content in spec_kit_files.items():
+            output = temporary / relative
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_bytes(content)
+            if relative.parts[:3] == (".specify", "scripts", "bash"):
+                output.chmod(0o755)
+
         issues = validate_project(temporary)
         if issues:
             details = "; ".join(f"{issue.code}: {issue.message}" for issue in issues)
@@ -299,7 +363,9 @@ def create_project(
             shutil.rmtree(temporary)
         raise
 
-    return tuple(destination / relative for relative in sorted(rendered_files))
+    return tuple(
+        destination / relative for relative in sorted(set(rendered_files) | set(spec_kit_files))
+    )
 
 
 def initialize_git(destination: Path, spec: ProjectSpec) -> str:

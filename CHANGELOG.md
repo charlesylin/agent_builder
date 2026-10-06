@@ -2,6 +2,16 @@
 
 All notable changes to Agent Builder are documented here.
 
+## [0.4.0] - Build candidate (not yet accepted)
+
+This version is under Build and is not a release tag. It bundles selected, pinned Spec Kit
+v1.1.0 assets at release time; members do not install its CLI. New Claude Code and Codex
+projects of all three supported kinds receive the selected Bash helpers and templates,
+a checked constitution view, an upstream provenance marker, and Agent Builder guidance
+for research-led adoption or proportional specification and planning. Existing projects
+are not modified; Gemini-only projects retain their earlier path. Real-use acceptance is
+pending Review.
+
 ## [0.3.0] - 2026-09-24
 
 Accepted after the author reported all three real-use Review scenarios passed. See

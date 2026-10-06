@@ -575,6 +575,11 @@ class BuildOrAdoptTests(unittest.TestCase):
         target = Path(directory) / "candidate"
         spec = ProjectSpec.create(name="Candidate", purpose="Meet one need.", kind=kind)
         create_project(target, spec, generated_at=GENERATED_AT)
+        # Preserve the v0.3 gate tests independently of v0.4's Spec Kit postconditions.
+        manifest_path = target / ".agent-builder.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["template_version"] = "0.3.0"
+        manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
         state_path = target / "governance/project-state.yaml"
         state_path.write_text(
             state_path.read_text(encoding="utf-8").replace(

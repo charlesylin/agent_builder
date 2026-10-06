@@ -56,14 +56,35 @@ Adding a kind: create `kinds/<name>/`, add it to `SUPPORTED_KINDS` in `seed.py` 
 `_KIND_REQUIRED_FILES` in `check.py`, add its row to `references/kinds.md` and the §1 table in
 the `SKILL.md` stencil, and seed one real project with it before shipping (AB-D023).
 
+## Refresh the Spec Kit bundle
+
+The v0.4 bundle is generated from the pinned upstream commit, not hand-edited. The
+approved version, commit, host steps, and project asset allowlist live in
+`scripts/refresh_spec_kit.py`. The source checkout and a Python 3.11+ environment with
+Spec Kit's release dependencies are needed only when refreshing. For example:
+
+```sh
+python3 scripts/refresh_spec_kit.py --source /path/to/pinned/spec-kit \
+  --python /path/to/isolated/python
+python3 scripts/refresh_spec_kit.py --check
+```
+
+The first command verifies the checkout commit, runs Spec Kit's unmodified CLI for
+Claude Code and Codex, copies only the approved outputs and MIT notice, and writes
+their hashes to `vendor/spec-kit/manifest.json`. The second command is offline and
+must pass in CI. A pin change requires an upstream and license review, regeneration,
+inspection of the asset diff, and a corresponding test update. Never modify a seeded
+project's `.specify/` files as a side effect of a bundle refresh.
+
 ## Release
 
 1. Update `CHANGELOG.md`: move `[Unreleased]` into a dated version section.
 2. Set the same version in `.claude-plugin/plugin.json`, `pyproject.toml`, and
    `TEMPLATE_VERSION` in `skills/agent-builder/scripts/seed.py` (a test keeps the first and
    last equal).
-3. Run the full gate: `scripts/render.py --check`, tests under 3.9 and a current Python,
-   `ruff check .`, `ruff format --check .`, and the evals.
+3. Run the full gate: `scripts/render.py --check`, `scripts/refresh_spec_kit.py --check`,
+   tests under 3.9 and a current Python, `ruff check .`, `ruff format --check .`, and
+   the evals. Exercise both hosts' member-facing flow for a changed integration.
 4. Commit, tag `vX.Y.Z`, push with `--follow-tags`.
 
 Installed copies update only when `plugin.json` `version` changes. Seeded projects never
