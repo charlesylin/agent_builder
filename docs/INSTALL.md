@@ -6,8 +6,9 @@ Python 3.9 or newer. Mechanics verified against vendor documentation on 2026-09-
 
 The **v0.4.0 Review candidate** bundles selected generated assets from pinned Spec Kit
 v1.1.0. Members install Agent Builder once; they do not install or invoke `specify`.
-The bundled upstream instructions are internal data, not extra visible skills. New
-Claude Code and Codex seeds of kind `agent`, `skill`, or `project` receive the needed
+The bundled upstream instructions are stored as `instructions.md` reference files, not
+extra `SKILL.md` entry points. New Claude Code and Codex seeds of kind `agent`, `skill`,
+or `project` receive the needed
 project helpers and templates. Existing seeds are never rewritten. The upstream CLI
 and Python 3.11+ are used only by the release-build refresh command, not on member
 machines. The selected project helpers require Bash when used.

@@ -34,12 +34,14 @@ SCRIPTS = (
 TEMPLATES = ("spec-template.md", "plan-template.md", "tasks-template.md", "checklist-template.md")
 HOST_DIR = {"claude": ".claude/skills", "codex": ".agents/skills"}
 CLI_EXPR = "import sys; sys.path.insert(0, 'src'); from specify_cli import main; main()"
+UPSTREAM_INSTRUCTION_NAME = "SKILL.md"
+BUNDLED_INSTRUCTION_NAME = "instructions.md"
 
 
 def expected_paths() -> tuple[Path, ...]:
     paths = [Path("LICENSE")]
     for host in HOST_DIR:
-        paths.extend(Path(host, f"speckit-{step}", "SKILL.md") for step in STEPS)
+        paths.extend(Path(host, f"speckit-{step}", BUNDLED_INSTRUCTION_NAME) for step in STEPS)
     paths.extend(Path("project/.specify/scripts/bash") / name for name in SCRIPTS)
     paths.extend(Path("project/.specify/templates") / name for name in TEMPLATES)
     return tuple(paths)
@@ -61,6 +63,8 @@ def verify() -> None:
     expected = {path.as_posix() for path in expected_paths()}
     if not isinstance(listed, dict) or set(listed) != expected:
         raise ValueError("Spec Kit manifest does not contain exactly the approved asset allowlist")
+    if any(path.name == UPSTREAM_INSTRUCTION_NAME for path in DEST.rglob("*")):
+        raise ValueError("Spec Kit instructions must not be discoverable as standalone skills")
     actual = {
         path.relative_to(DEST).as_posix()
         for path in DEST.rglob("*")
@@ -128,8 +132,8 @@ def refresh(source: Path | None, python: str) -> None:
         sources = {Path("LICENSE"): checkout / "LICENSE"}
         for host, directory in HOST_DIR.items():
             for step in STEPS:
-                sources[Path(host, f"speckit-{step}", "SKILL.md")] = (
-                    output[host] / directory / f"speckit-{step}" / "SKILL.md"
+                sources[Path(host, f"speckit-{step}", BUNDLED_INSTRUCTION_NAME)] = (
+                    output[host] / directory / f"speckit-{step}" / UPSTREAM_INSTRUCTION_NAME
                 )
         for script in SCRIPTS:
             sources[Path("project/.specify/scripts/bash") / script] = (

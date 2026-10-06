@@ -71,7 +71,9 @@ python3 scripts/refresh_spec_kit.py --check
 
 The first command verifies the checkout commit, runs Spec Kit's unmodified CLI for
 Claude Code and Codex, copies only the approved outputs and MIT notice, and writes
-their hashes to `vendor/spec-kit/manifest.json`. The second command is offline and
+their hashes to `vendor/spec-kit/manifest.json`. Upstream instruction bytes are unchanged,
+but the bundled filename is `instructions.md` rather than `SKILL.md` so they remain internal
+references instead of separately discoverable skills. The second command is offline and
 must pass in CI. A pin change requires an upstream and license review, regeneration,
 inspection of the asset diff, and a corresponding test update. Never modify a seeded
 project's `.specify/` files as a side effect of a bundle refresh.

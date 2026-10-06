@@ -29,6 +29,13 @@ class SpecKitBundleTests(unittest.TestCase):
         self.assertFalse(any("speckit-implement" in name for name in names))
         self.assertFalse(any("speckit-converge" in name for name in names))
         self.assertFalse(any("constitution-template" in name for name in names))
+        self.assertEqual(list(SKILL.rglob("SKILL.md")), [SKILL / "SKILL.md"])
+        for host in ("claude", "codex"):
+            for step in refresh_spec_kit.STEPS:
+                with self.subTest(host=host, step=step):
+                    path = f"{host}/speckit-{step}/instructions.md"
+                    self.assertIn(path, names)
+                    self.assertTrue((refresh_spec_kit.DEST / path).is_file())
 
     def test_payload_drift_is_reported(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -50,6 +57,17 @@ class SpecKitBundleTests(unittest.TestCase):
             with (
                 patch.object(refresh_spec_kit, "DEST", copy),
                 self.assertRaisesRegex(ValueError, "must not be a symlink"),
+            ):
+                refresh_spec_kit.verify()
+
+    def test_nested_skill_file_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            copy = Path(directory) / "spec-kit"
+            shutil.copytree(refresh_spec_kit.DEST, copy)
+            (copy / "codex/speckit-plan/SKILL.md").write_text("unexpected skill")
+            with (
+                patch.object(refresh_spec_kit, "DEST", copy),
+                self.assertRaisesRegex(ValueError, "must not be discoverable"),
             ):
                 refresh_spec_kit.verify()
 

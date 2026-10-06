@@ -174,10 +174,12 @@ credible.
 `.agent-builder.json` has `template_version` 0.4.0 or newer and selects Claude Code or Codex.
 Older projects are not silently upgraded; Gemini-only projects retain their prior behavior.
 The selected upstream-generated instructions are bundled as **data inside this Agent Builder
-skill**, at `vendor/spec-kit/<host>/speckit-<step>/SKILL.md`, where `<host>` is `claude` or
-`codex`. They are not member-facing skills. The member invokes only Agent Builder and never
-installs or runs the Spec Kit CLI. Before using a step, confirm the project's
-`.specify/spec-kit-provenance.json` is present and `check.py` reports a valid scaffold.
+skill**, at `vendor/spec-kit/<host>/speckit-<step>/instructions.md`, where `<host>` is `claude`
+or `codex`. The release bundle renames upstream's `SKILL.md` without changing its contents,
+so Codex and Claude Code do not discover these reference files as standalone skills. The
+member invokes only Agent Builder and never installs or runs the Spec Kit CLI. Before using
+a step, confirm the project's `.specify/spec-kit-provenance.json` is present and `check.py`
+reports a valid scaffold.
 Read the complete host-specific upstream file, replace its `$ARGUMENTS` with substantive
 context from the approved Agent Builder records, perform the selected step, and verify its
 output. Merely reading or mentioning the file is not a successful handoff.

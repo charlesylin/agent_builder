@@ -79,3 +79,12 @@ before accepting or tagging v0.4.0.
 The author subsequently requested and authorized pushing the Review candidate to
 `main` for Erico's Codex test; see `docs/v0-4-codex-review-handoff-erico.md`. No
 v0.4.0 tag or acceptance has been authorized.
+Erico's Computerator feedback supports the Codex skill/adapt path but leaves the
+adopt-and-archive control and his own v0.3 comparison open. A separate local Codex
+observation found that the bundled upstream `SKILL.md` files appeared as 14 standalone
+skills. The author approved a narrow Review correction: package those unchanged
+instructions as non-skill reference files, preserving Agent Builder as the sole entry
+point. A fresh Codex 0.159.2 CLI skill-inventory preview after the correction showed
+only Agent Builder, with no Spec Kit entries. Recheck the model-mediated Spec Kit
+handoff before acceptance; do not infer that Erico's successful session used a
+second workflow.

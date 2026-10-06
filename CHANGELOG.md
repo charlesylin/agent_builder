@@ -12,6 +12,10 @@ for research-led adoption or proportional specification and planning. Existing p
 are not modified; Gemini-only projects retain their earlier path. Real-use acceptance is
 pending Review.
 
+During Review, the bundled upstream instruction files were renamed from `SKILL.md` to
+`instructions.md` without changing their contents. This keeps Agent Builder as the only
+discoverable skill in its installed folder; the Spec Kit steps remain internal references.
+
 ## [0.3.0] - 2026-09-24
 
 Accepted after the author reported all three real-use Review scenarios passed. See
