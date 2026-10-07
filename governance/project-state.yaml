@@ -8,10 +8,10 @@ project:
   status: active
 
 phase:
-  current: review
-  status: review_closed_release_accepted
+  current: define
+  status: definition_in_progress
   last_confirmed_by: charles-yang-lin
-  last_confirmed_date: 2026-10-06
+  last_confirmed_date: 2026-10-07
   transition_requires: explicit_user_invocation_or_confirmation
   history:
     - phase: define
@@ -150,6 +150,13 @@ phase:
         Codex adapt/build test and the standalone-skill packaging correction,
         with remaining Review controls recorded as unverified in
         docs/v0-4-acceptance.md. No next Define iteration was opened.
+    - phase: define
+      date: 2026-10-07
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        Explicitly opened the next minor cycle after v0.4.0. The working target
+        is v0.5.0; purpose, smallest outcome, scope, and success evidence are
+        not yet defined.
 
 release:
   target: 0.4.0
@@ -189,20 +196,24 @@ release:
         acceptance_record: docs/v0-1-acceptance.md
 
 next_release:
-  target: null
-  version_status: not_defined
+  target: 0.5.0
+  version_status: in_define
   version_scheme: semantic_versioning_2_0_0
+  version_decision: AB-D061
+  purpose_status: open
+  scope_status: open
+  success_evidence_status: open
   note: >-
-    No next version or scope is approved. Use v0.4.0 in the organization and record
-    concrete feedback before opening another Define iteration.
+    The author requested a minor cycle, so the next Semantic Versioning target
+    after v0.4.0 is v0.5.0. No particular feature or fix is in scope yet.
 
 checkpoint:
-  date: 2026-10-06
-  status: review_closed_release_accepted
-  phase_changed: false
+  date: 2026-10-07
+  status: define_open_scope_pending
+  phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Use the tagged v0.4.0 release in the organization, collect real-use
-    observations and failures, and do not begin another build iteration until
-    the author explicitly opens Define.
+    Ask the author what single problem the v0.5.0 cycle should address. Treat
+    the v0.4.0 Windows CI failure and other Review observations as candidate
+    inputs, not approved scope.

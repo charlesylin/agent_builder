@@ -864,3 +864,19 @@ decisions:
       than presenting them as passed tests.
     provenance: explicit_author_acceptance_and_publication_request
     record: docs/v0-4-acceptance.md
+  - id: AB-D061
+    status: confirmed
+    date: 2026-10-07
+    confirmed_date: 2026-10-07
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said: "ok, please open define again. this will be a minor cycle".'
+    decision: >-
+      Close the post-release pause and open Define for the next minor Agent Builder
+      cycle, with v0.5.0 as the working Semantic Versioning target. Do not infer
+      the cycle's purpose or scope from prior Review findings.
+    rationale: >-
+      v0.4.0 is accepted and tagged, the Review exit check reports nothing
+      unresolved, and the author explicitly requested the phase transition.
+      Advancing from 0.4.0 to the next minor version yields 0.5.0; its specific
+      deliverable and success evidence must be confirmed during Define.
+    provenance: explicit_author_phase_transition

@@ -84,7 +84,8 @@ How to change principles, the skill, templates, or cut a release:
 **v0.4.0 accepted for organization use.** It integrates a pinned, filtered Spec Kit
 v1.1.0 payload without a member CLI installation. The
 [acceptance record](docs/v0-4-acceptance.md) explains the real-use evidence and its
-limits; some planned Review scenarios remain untested. No next build iteration is open.
+limits; some planned Review scenarios remain untested. Define is open for a
+tentative v0.5.0 minor cycle, with scope not yet chosen.
 v0.3.0, v0.2.1, and v0.1.0 remain [previous accepted releases](docs/RESUME.md).
 
 This repository is developed under its own phases; see
