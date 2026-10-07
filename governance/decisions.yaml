@@ -985,3 +985,30 @@ decisions:
       corrective patch and now returns to Define with no approved purpose.
     provenance: explicit_author_acceptance_and_phase_transition
     record: docs/v0-4-1-review.md
+  - id: AB-D067
+    status: confirmed
+    date: 2026-10-07
+    confirmed_date: 2026-10-07
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      After the proposed v0.5.0 goal of small, understandable,
+      behavior-tested Build increments and optional use of Erico's reviewer
+      was read back, the author said "this is acceptable with the caveat that
+      when very large changes are occurring, we should ask the user during
+      review if they'd like to run an unbiased code review agent (Erico's)".
+    decision: >-
+      Define the next cycle around lean, human-readable, behavior-tested
+      Build increments. When a change is very large, offer the user an
+      independent code review during Review, using Erico's agent as a Two
+      River Bio candidate rather than an automatic or universal dependency.
+    rationale: >-
+      The author reports excessive committed code and temporary artifacts,
+      hard-to-read documentation, and insufficient unit testing in recent
+      Agent Builder projects. A reviewer can add fresh scrutiny but cannot
+      itself prevent oversized commits or guarantee impartiality. The
+      reviewer should not inherit the builder's conclusions and must state
+      its coverage limits. The threshold, invocation method, and success
+      evidence remain Define/Plan work; no Build or phase transition was
+      authorized.
+    provenance: explicit_author_scope_confirmation_during_define
+    record: planning/v0-5-definition.md

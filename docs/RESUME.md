@@ -3,7 +3,9 @@
 Checkpoint: 2026-10-07. Agent Builder **v0.4.1** is accepted after a green
 Windows CI run and Review is closed. It has **not** been tagged. The author
 explicitly opened the next **Define** cycle, tentatively v0.5.0, with no
-purpose or scope agreed yet.
+purpose or scope agreed at that checkpoint. The author has since confirmed
+the lean, understandable, behavior-tested direction in the
+[current Define record](../planning/v0-5-definition.md).
 
 ## Recover context
 
@@ -41,7 +43,8 @@ The completed local checks and original Windows CI control are in
 [Build verification](v0-4-1-build-verification.md).
 The actual Windows, Ubuntu, and lint CI result and acceptance limit are in
 [Review evidence](v0-4-1-review.md). The next cycle's problem, smallest
-outcome, exclusions, and success evidence remain open.
+outcome, and broad scope are now recorded in the current Define record;
+the large-change signal and success evidence remain open.
 The v0.4.0 purpose and limits are in
 the [Define record](../planning/v0-4-definition.md), approved design in the
 [implementation plan](../planning/v0-4-implementation-plan.md), and completed Build
@@ -68,7 +71,7 @@ attributes; the actual Windows CI job passed.
 
 ## Next action
 
-Ask the author what single problem the next Define cycle should solve. The
-working version target is v0.5.0, but do not assign it features from previous
-feedback without the author's direction. v0.4.1 is accepted but untagged;
-request separate authorization before tagging or publishing that tag.
+Agree on success evidence and what should count as a very large change. The
+working version target is v0.5.0; stay in Define until the author explicitly
+authorizes Plan. v0.4.1 is accepted but untagged; request separate
+authorization before tagging or publishing that tag.

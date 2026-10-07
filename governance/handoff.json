@@ -5,7 +5,7 @@
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "The author accepted the v0.4.1 Windows Git checkout/hash patch and closed Review after GitHub CI passed on the candidate and subsequent review-record commits, including Windows Python 3.12, Ubuntu Python 3.9 and 3.12, and lint. The separate Windows colleague workstation test remains unverified. Define is open for the next cycle, with v0.5.0 only a working target and its problem, scope, and success criteria undecided. No v0.4.1 tag or push of this transition was requested.",
+  "summary": "Agent Builder v0.4.1 is accepted but untagged. Define is open with v0.5.0 as a working target. The author confirmed an outcome of lean, understandable, behavior-tested Build increments and asked that Review offer an independent code review for very large changes, with Erico's agent as a Two River Bio candidate. The large-change signal and success evidence remain open. No phase transition, tag, or push was requested.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -166,6 +166,11 @@
       "id": "AB-D066",
       "status": "confirmed",
       "summary": "Accept v0.4.1 with passing CI and documented Windows workstation-use limit, close Review, and open Define with v0.5.0 as a working target and scope undecided; do not infer tag or push authorization."
+    },
+    {
+      "id": "AB-D067",
+      "status": "confirmed",
+      "summary": "Define lean, understandable, behavior-tested Build increments and offer independent review during Review for very large changes; do not run it automatically or require Erico's tool universally."
     }
   ],
   "artifacts": [
@@ -191,6 +196,10 @@
     },
     {
       "path": "planning/definition.md",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "planning/v0-5-definition.md",
       "media_type": "text/markdown"
     },
     {
@@ -268,5 +277,5 @@
   ],
   "blockers": [],
   "questions": [],
-  "next_action": "Ask the author which single problem the next version should solve, then define a bounded, testable cycle. Only create or push the v0.4.1 tag if separately authorized."
+  "next_action": "Agree on success evidence and a proportionate signal for very large changes. Remain in Define until the author explicitly authorizes Plan. Only create or push the v0.4.1 tag if separately authorized."
 }
