@@ -4,7 +4,7 @@ Agent Builder is a skill. Installing it means getting the folder `skills/agent-b
 front of a coding agent. Nothing is installed with pip; the two scripts inside need only
 Python 3.9 or newer. Mechanics verified against vendor documentation on 2026-09-13.
 
-The **v0.4.0 release** bundles selected generated assets from pinned Spec Kit
+Since **v0.4.0**, Agent Builder bundles selected generated assets from pinned Spec Kit
 v1.1.0. Members install Agent Builder once; they do not install or invoke `specify`.
 The bundled upstream instructions are stored as `instructions.md` reference files, not
 extra `SKILL.md` entry points. New Claude Code and Codex seeds of kind `agent`, `skill`,
@@ -72,8 +72,9 @@ installed, and the offer will never fire.
 Update later with `/plugin marketplace update agent-builder`. Updates arrive only when
 `version` in `.claude-plugin/plugin.json` changes — so while iterating on the hook, bump the
 version or reinstall; editing the file alone is not enough.
-For v0.4.0, refresh or reinstall the plugin after updating the marketplace; a cached v0.3.0
-plugin will keep seeding v0.3.0 projects.
+For the v0.5.0 Build candidate, refresh or reinstall the plugin from the tested
+checkout after updating the marketplace; a cached v0.4.1 plugin will keep seeding
+v0.4.1 projects. v0.5.0 is not yet accepted or published.
 
 ## Claude Code — for everyone in the organization
 
@@ -104,8 +105,8 @@ ln -s /path/to/agent_builder/skills/agent-builder ~/.agents/skills/agent-builder
 ```
 
 Invoke explicitly with `$agent-builder`, or let the description trigger it. Codex support is
-targeted equally with Claude Code for the v0.4.0 Spec Kit integration. Refresh a copied
-skill folder (or point the symlink at a v0.4.0 checkout) before using it.
+targeted equally with Claude Code for the Spec Kit integration. Refresh a copied
+skill folder (or point the symlink at the current checkout) before using the candidate.
 
 ## Gemini CLI
 
@@ -116,10 +117,11 @@ itself in Gemini CLI has not been verified.
 
 `git` is needed for the first commit (the seed succeeds without it and says so), Python
 3.9+ runs `seed.py` and `check.py`, and Bash runs the selected Spec Kit helpers in new
-v0.4.0 Claude Code/Codex projects. No member-side Spec Kit CLI, Python 3.11+, first-use
+v0.4+ Claude Code/Codex projects. No member-side Spec Kit CLI, Python 3.11+, first-use
 download, or separate integration command is required. After seeding, check
-`.agent-builder.json` for `template_version: 0.4.0` and
-`.specify/spec-kit-provenance.json` for upstream `version: 1.1.0` and the approved commit.
+`.agent-builder.json` for the installed Agent Builder version (`0.5.0` for this
+Build candidate), and `.specify/spec-kit-provenance.json` for upstream
+`version: 1.1.0` and the approved commit.
 The project's `deliverable.target_version` is separate from Agent Builder's version.
 
 ## Uninstall

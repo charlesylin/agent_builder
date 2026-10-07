@@ -148,12 +148,20 @@ ask the same approval twice. A `proposed` decision does not survive a phase clos
 phase ends it is confirmed, rejected, or moved to `planning/later.md`.
 
 **Suggestions go to `planning/later.md`, not into scope.** Test every idea you are about to
-offer against the smallest version in `planning/definition.md`. If the smallest version does
-not need it, write it in `later.md` with the date and where it came from, and say that you
-did — one line. Do not ask whether to add it. A person who says "sure" to a suggestion has
+offer against the original problem, the smallest version in `planning/definition.md`, and
+the current task. If none needs it, write it in `later.md` with the date and where it came
+from, and say that you did — one line. Recommend finishing the current cycle first. Do not
+ask whether to add it. A person who says "sure" to a suggestion has
 not decided anything; only a request in their own words moves an item out of `later.md`, and
 then it becomes a decision. Novices in particular say yes to everything; the kindest thing
 you can do is offer less.
+
+**Questions that block versus issues for later.** Ask only when an answer is needed to
+continue safely or correctly: missing authority, a consequential choice, indispensable
+input, or a material ambiguity. State the specific decision and why it blocks. If the
+issue can wait, record it once in `planning/later.md` with context, continue, and do not
+repeat it as an open question in every reply. Do not create another tracking file or a
+visible checklist for every interaction.
 
 **Build or adopt before Build.** During Plan, use `planning/solution-evaluation.md` to search
 the public domain for an existing solution. Ask whether the person has an organizational or
@@ -229,6 +237,24 @@ Do not assume any tactic is always wrong, and do not add speculative abstraction
 look scalable. For a novice, explain the tradeoff plainly and recommend the smallest sound
 path even when the person is willing to approve a weaker one.
 
+**Build only behavior you can verify.** For each changed behavior, name the expected normal,
+failure, and relevant boundary results. Involve the author when those expectations are a
+product choice; otherwise state your assumption and proceed. Add focused unit tests with
+the project's runner and report what they actually verify. Existing scaffold tests and
+compilation are useful checks, not substitutes for tests of the new behavior. Keep a human
+README current: what this version does, how to use and test it, and important limits.
+
+**Large changes in Review.** At Build start, record the starting commit ID in the existing
+phase checkpoint. In Review, compare the full cycle to that base with
+`git diff --numstat <base> HEAD` and `git diff --name-only <base> HEAD`; also inspect
+uncommitted paths. If it adds at least 1,000 lines or changes at least 25 paths,
+including generated/vendor paths, offer an independent
+code review once and state why it was offered. This is not a commit cap or a reason to
+interrupt every normal increment. If declined, run nothing. If accepted, use a fresh
+reviewer session with the code and original goals, not your own conclusions. Read
+`references/optional-review.md` only then for tool choice, voluntary setup, and coverage
+limits. A separate reviewer is not guaranteed unbiased.
+
 **Approval is typed, never clicked.** For the decisions that shape the project — the purpose,
 the smallest version, a phase change, seeding, creating a remote, and any grant of authority
 to send, spend, publish, or delete — read the exact thing back in full and ask the person to
@@ -239,7 +265,15 @@ Routine steps inside an approved plan do not need this ceremony.
 **Checks and commits.** Before committing anything under `governance/`, run
 `python3 <this-skill-folder>/scripts/check.py .` and fix what it reports. Commit at each
 closeout with a message starting `<phase>:` (for example `define: record purpose, users, and
-non-goals`). Do not push unless asked in that turn.
+non-goals`). For manual commits after the validated initial seed, use
+`git status --short --untracked-files=all` and `git diff` before staging;
+after staging, inspect `git diff --cached`, `git diff --cached --stat`, and
+`git diff --cached --numstat`. Stage selected paths rather than everything indiscriminately.
+Keep disposable previews, raw reviewer output, and draft notes out of Git; preserve only
+concise durable conclusions. Count binary and untracked paths separately because diff line
+counts omit them. Explain unusual additions and split independent work when useful, but do
+not split one coherent generated dependency only to meet a number. Do not delete an existing
+user file merely because it looks temporary. Do not push unless asked in that turn.
 
 **Closeout.** End with the result, any uncertainty that matters, and the next useful action.
 Use plain language and no empty headings. Ask only a question whose answer changes a decision

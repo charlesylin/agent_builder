@@ -1,8 +1,9 @@
 # Resume Agent Builder
 
 Checkpoint: 2026-10-07. Agent Builder **v0.4.1** is accepted but untagged.
-The author closed **Define** and opened **Plan** for v0.5.0. The confirmed
-outcome and success evidence are in the [Define record](../planning/v0-5-definition.md).
+The author closed **Plan** and opened **Build** for v0.5.0. The confirmed
+outcome is in the [Define record](../planning/v0-5-definition.md); the approved
+scope is in the [implementation plan](../planning/v0-5-implementation-plan.md).
 
 ## Recover context
 
@@ -33,15 +34,18 @@ to make the generated-project scaffold check pass.
 
 ## Current project state
 
-`governance/project-state.yaml` records **Plan** as the current phase. The
-v0.4.1 scope is in the [Define record](../planning/v0-4-1-definition.md),
+`governance/project-state.yaml` records **Build** as the current phase. The
+v0.5.0 candidate changes are implemented locally. The repository tests passed
+on Python 3.12 and 3.14 (79 each); the pinned Spec Kit bundle, rendered files,
+and Ruff 0.16.6 lint and formatting checks passed. Real-use Review remains open.
+The v0.4.1 scope is in the [Define record](../planning/v0-4-1-definition.md),
 and its approved fix is in the [implementation plan](../planning/v0-4-1-implementation-plan.md).
 The completed local checks and original Windows CI control are in
 [Build verification](v0-4-1-build-verification.md).
 The actual Windows, Ubuntu, and lint CI result and acceptance limit are in
 [Review evidence](v0-4-1-review.md). The next cycle's outcome and Review
-evidence are confirmed in the v0.5.0 Define record. Plan must choose a
-proportionate large-change signal and the smallest implementation.
+evidence are confirmed in the v0.5.0 Define record. The approved Plan uses
+Git's own inventory, existing test runners, and optional independent review.
 The v0.4.0 purpose and limits are in
 the [Define record](../planning/v0-4-definition.md), approved design in the
 [implementation plan](../planning/v0-4-implementation-plan.md), and completed Build
@@ -68,8 +72,6 @@ attributes; the actual Windows CI job passed.
 
 ## Next action
 
-In Plan, evaluate existing tools and the smallest instruction or template
-changes that meet the v0.5.0 outcome. Test the proposed large-change signal
-and voluntary review-agent setup on Codex and Claude Code. Do not implement
-before Build approval. v0.4.1 remains untagged; tagging or pushing still
-requires separate authorization.
+Inspect the v0.5.0 Build candidate and decide whether to close Build and enter
+Review. Do not install the optional reviewer, enter Review, tag, or push without
+separate author direction. v0.4.1 remains accepted and untagged.

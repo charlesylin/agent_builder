@@ -2,6 +2,15 @@
 
 All notable changes to Agent Builder are documented here.
 
+## [0.5.0] - Build candidate (2026-10-07)
+
+Build is in progress; this version is not accepted or tagged. Agent Builder now
+distinguishes blocking questions from issues to defer, checks proposed work against
+the current outcome, and guides smaller commits, behavior-focused unit tests, and
+readable project instructions. Very large cycles prompt one optional independent
+review offer during Review. The Two River reviewer remains a separate, voluntary
+installation. Existing projects are not rewritten.
+
 ## [0.4.1] - 2026-10-07
 
 Accepted after the Windows CI job passed; not yet tagged. Preserve the exact

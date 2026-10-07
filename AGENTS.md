@@ -31,11 +31,13 @@ archive after author confirmation; otherwise explain the evidence for adapting o
 - **Use reasoning selectively.** Reserve model reasoning for orchestration and judgment. Put repeatable retrieval, validation,
 transformation, calculation, policy enforcement, and execution in deterministic, tested Python.
 - **Work small and fail loudly.** Build the smallest testable capability, validate it, then extend it. Fail loudly on unsupported
-or invalid input. Record exact versions and commands behind any compatibility claim.
+or invalid input. Test changed behavior's normal, failure, and boundary cases. Inspect the
+full staged and untracked change before committing; keep disposable artifacts out. Record
+exact versions and commands behind any compatibility claim.
 - **Build only what you need.** Target one usable, SemVer-numbered deliverable per cycle; state what is not in it. Anything else —
 including your own good ideas and every closeout question — goes to `planning/later.md`, not
-into scope, until the author asks for it in their own words. Scope expands easily and contracts
-badly.
+into scope, until the author asks for it in their own words. Test proposed work against the
+problem and current outcome. Scope expands easily and contracts badly.
 - **Keep boundaries replaceable.** Reuse suitable code and keep genuine provider or integration boundaries replaceable. Avoid
 speculative layers; core contracts depend on no one host or runtime.
 - **Decision protocol.** Keep substantive choices in `governance/decisions.yaml` with stable internal IDs and explicit
@@ -62,8 +64,8 @@ instructions. On suspected exposure, stop and rotate without repeating the value
 
 Explain status, important decisions, uncertainty, and the next action in plain language. Keep
 stable IDs in the agent-readable record, not as vocabulary the person must learn. Ask only
-questions that change the work; do not require empty closeout sections. Agent handoffs use a
-versioned contract only when the project has one.
+blocking questions, record other issues once for later, and continue; do not require empty
+closeout sections. Agent handoffs use a versioned contract only when the project has one.
 
 Agent-to-agent handoffs use the compact schema under
 `skills/agent-builder/templates/kinds/agent/contracts/` instead of the prose closeout.

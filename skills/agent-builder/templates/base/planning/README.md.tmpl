@@ -1,7 +1,8 @@
 # Planning workspace
 
-This directory is the source of truth for requirements, research, proposed architecture,
-open questions, review feedback, and the implementation-ready handoff.
+This directory holds the rationale and evidence needed to build, use, and resume
+the current version. Decisions live in `governance/decisions.yaml`. Keep this
+directory concise; do not commit working drafts or raw review output.
 
 ## Rules
 
@@ -12,6 +13,7 @@ open questions, review feedback, and the implementation-ready handoff.
 - Define external contracts before selecting a framework implementation.
 - Preserve assumptions, alternatives, evidence, known risks, and unresolved questions.
 - Build in small increments after the project author explicitly approves Build.
+- Ask about blockers; record nonblocking ideas once in `later.md` and keep going.
 
 ## Planned artifacts
 
@@ -26,7 +28,9 @@ relevant stage:
   before Build. It also records any user-provided codebase that was checked.
 - `governance/project-state.yaml` — records this project's next deliverable version and its
   usable goal separately from the Agent Builder template version.
-- `architecture.md` — boundaries, data flow, failure behavior, and deployment.
-- `implementation-plan.md` — ordered build slices and verification.
-- `handoff-to-review.md` — completed scope, fixtures, commands, risks, and questions.
-- `acceptance-feedback.md` — observations from the project author's realistic use.
+- `architecture.md` — only when the version needs explicit boundaries or contracts.
+- `implementation-plan.md` — the smallest ordered build and verification plan.
+
+Summarize consequential Review findings in an existing durable record. Keep previews,
+transcripts, reviewer packets, and drafts outside the committed repository unless they
+are themselves a needed product artifact.

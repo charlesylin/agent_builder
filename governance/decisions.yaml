@@ -1056,3 +1056,42 @@ decisions:
       transition does not authorize Build, publication, or a version tag.
     provenance: explicit_author_phase_transition
     record: planning/v0-5-definition.md
+  - id: AB-D070
+    status: confirmed
+    date: 2026-10-07
+    confirmed_date: 2026-10-07
+    confirmed_by: charles-yang-lin
+    confirmation: 'After the v0.5.0 plan was presented, the author said: "enter build!"'
+    decision: >-
+      Adapt existing Agent Builder guidance and seed templates for lean commits,
+      behavior-focused tests, readable docs, and blocker-versus-later triage.
+      Use Git's existing change inventory rather than a new checker. In Review,
+      offer an optional independent review once when a cycle adds at least
+      1,000 lines or changes at least 25 paths; keep the Two River review tool
+      separate and install it only after a member opts in.
+    rationale: >-
+      Git and existing test runners provide the mechanics, while Spec Kit does
+      not cover commit hygiene or user-question judgment. On this repository's
+      81-commit history the proposed signal catches 10 commits, including the
+      large Spec Kit addition, but not recent ordinary changes. The reviewer
+      is internal, has no selected license, and can skip oversized Python files;
+      it is a voluntary second opinion with coverage disclosed, not a general
+      dependency or a guarantee of impartiality.
+    provenance: explicit_author_plan_approval
+    record: planning/v0-5-implementation-plan.md
+  - id: AB-D071
+    status: confirmed
+    date: 2026-10-07
+    confirmed_date: 2026-10-07
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said: "enter build!"'
+    decision: >-
+      Close v0.5.0 Plan and enter Build for the approved lean-cycle adaptation.
+      Do not install the optional reviewer, push, tag, or enter Review without
+      separate authorization.
+    rationale: >-
+      The author explicitly approved the presented Plan. The Plan exit check
+      found no remaining proposal after confirming AB-D070. The documented
+      source-repository scaffold warnings are unrelated to this phase gate.
+    provenance: explicit_author_phase_transition
+    record: planning/v0-5-implementation-plan.md

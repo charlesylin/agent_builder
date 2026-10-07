@@ -6,7 +6,9 @@ Human-facing updates use concise, plain Markdown. Explain the current status, co
 decisions, uncertainty that matters, and one useful next action when there is one. Do not make
 the person decode local decision IDs, finding codes, or invented process terms; keep those in
 the structured project record and cite them only when useful for traceability. Ask a question
-only when its answer changes a decision or unblocks work. Do not manufacture empty closeout
+only when its answer changes a decision or unblocks work safely and correctly. Record a
+nonblocking issue once in `planning/later.md` and continue the current task; do not turn
+every update into a list of questions. Do not manufacture empty closeout
 sections or a speculative question. Standalone HTML is useful only when interaction or visual
 presentation materially improves comprehension.
 
@@ -19,5 +21,5 @@ not needed for the current version go to `planning/later.md` until the author re
 
 Explain status, important decisions, uncertainty, and the next action in plain language. Keep
 stable IDs in the agent-readable record, not as vocabulary the person must learn. Ask only
-questions that change the work; do not require empty closeout sections. Agent handoffs use a
-versioned contract only when the project has one.
+blocking questions, record other issues once for later, and continue; do not require empty
+closeout sections. Agent handoffs use a versioned contract only when the project has one.

@@ -21,13 +21,17 @@ Selected coding-agent adapters: {{ADAPTER_LIST}}.
 
 - `governance/` — phase, lifecycle status, decisions, and operating agreement.
 - `planning/` — definition, open questions, evidence, and later ideas.
-- `tests/` — scaffold checks; add product tests when the project chooses an implementation.
+- `tests/` — initial scaffold checks; add unit tests for changed product behavior.
 
-## Validate the scaffold
+## Validate the initial scaffold
 
 ```sh
 python3 -m unittest discover -s tests -v
 ```
+
+This checks the generated structure, not future product behavior. Once the project
+has an implementation, document how to use and test the current version and its
+important limits here.
 
 ## License
 

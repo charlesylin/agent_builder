@@ -51,6 +51,57 @@ class ProjectSpecTests(unittest.TestCase):
 
 
 class ScaffoldTests(unittest.TestCase):
+    def test_all_kinds_explain_scaffold_checks_and_keep_review_notes_optional(self) -> None:
+        for kind in ("agent", "skill", "project"):
+            with self.subTest(kind=kind), tempfile.TemporaryDirectory() as directory:
+                target = Path(directory) / kind
+                spec = ProjectSpec.create(
+                    name=f"Example {kind}", purpose="Deliver one useful result.", kind=kind
+                )
+                create_project(target, spec, generated_at=GENERATED_AT)
+
+                self.assertEqual(validate_project(target), ())
+                readme = (target / "README.md").read_text(encoding="utf-8")
+                self.assertIn("## Validate the initial scaffold", readme)
+                self.assertIn("behavior", readme.lower())
+                self.assertIn("important limits", readme)
+                planning = (target / "planning/README.md").read_text(encoding="utf-8")
+                self.assertNotIn("handoff-to-review.md", planning)
+                self.assertNotIn("acceptance-feedback.md", planning)
+                self.assertFalse((target / "planning/handoff-to-review.md").exists())
+                self.assertFalse((target / "planning/acceptance-feedback.md").exists())
+                later = (target / "planning/later.md").read_text(encoding="utf-8")
+                self.assertIn("nonblocking", later)
+                self.assertNotIn('every "what should you be asking" question', later)
+                agreement = (target / "governance/operating-agreement.md").read_text(
+                    encoding="utf-8"
+                )
+                self.assertIn("expected normal result, failure response", agreement)
+                self.assertIn("Record a\nnonblocking issue once", agreement)
+
+    def test_optional_reviewer_is_a_reference_not_a_seeded_dependency(self) -> None:
+        skill_text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
+        reference = SKILL / "references/optional-review.md"
+        self.assertTrue(reference.is_file())
+        self.assertIn(
+            "Read this only after the user accepts", reference.read_text(encoding="utf-8")
+        )
+        self.assertIn("references/optional-review.md", skill_text)
+
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "plain-project"
+            create_project(
+                target,
+                ProjectSpec.create(
+                    name="Plain Project", purpose="Keep reviewer optional.", kind="project"
+                ),
+                generated_at=GENERATED_AT,
+            )
+            self.assertFalse((target / "references/optional-review.md").exists())
+            self.assertNotIn(
+                "tr-review", (target / ".agent-builder.json").read_text(encoding="utf-8")
+            )
+
     def test_generates_and_validates_selected_adapters(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             target = Path(directory) / "generated-agent"

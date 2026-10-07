@@ -5,11 +5,14 @@ Read the selected coding-agent instruction file, `governance/operating-agreement
 
 - Stay within the current phase.
 - Keep changes small and testable.
+- Before committing, inspect tracked, staged, and untracked files; commit only durable work.
+- Add focused unit tests for changed behavior's normal, failure, and boundary cases.
 - Search for suitable maintained open-source components before implementing a replacement.
 - Record substantive decisions and dependency license obligations.
 - Never include secrets or sensitive personal data in code, fixtures, prompts, issues, or logs.
 
-Run the deterministic checks before requesting review:
+Run the scaffold checks below, plus the tests for any behavior you changed. Passing
+scaffold checks or compilation alone does not establish product behavior.
 
 ```sh
 python3 -m unittest discover -s tests -v

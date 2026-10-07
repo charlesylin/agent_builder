@@ -25,14 +25,18 @@ Do not select a runtime, add APIs, or implement agent behavior during Define.
 - `contracts/` — provider-independent schemas for communication and integrations.
 - `deployment/` — container policy; runtime-specific files are intentionally deferred.
 - `src/{{PYTHON_PACKAGE}}/` — Python package placeholder for the approved Build phase.
-- `tests/` — deterministic scaffold checks and, later, agent acceptance fixtures.
+- `tests/` — initial scaffold checks; add unit tests for each changed behavior.
 
-## Validate the scaffold
+## Validate the initial scaffold
 
 ```sh
 python3 -m unittest discover -s tests -v
 python3 -m compileall -q src tests
 ```
+
+These commands validate the generated structure and syntax, not future agent behavior.
+As the project grows, keep this README current with how to use and test the current
+version and its important limits.
 
 ## License
 

@@ -13,7 +13,7 @@ Its member-facing pieces live in one folder, `skills/agent-builder/`:
 - **`templates/`** — what a new project gets: `base/` for every kind, kind-specific files for
   `agent`, `skill`, or neutral `project`, and one adapter file per coding host.
 - **`vendor/spec-kit/`** — selected, pinned Spec Kit instructions and project assets used
-  by new v0.4.0 Claude Code and Codex projects; no separate CLI install is needed.
+  by new v0.4+ Claude Code and Codex projects; no separate CLI install is needed.
 
 The principles behind all of it live once, in `principles/`, and are rendered into every place
 they appear by `scripts/render.py`. A test fails if a copy drifts.
@@ -81,12 +81,10 @@ How to change principles, the skill, templates, or cut a release:
 
 ## Status
 
-**v0.4.0 accepted for organization use.** It integrates a pinned, filtered Spec Kit
-v1.1.0 payload without a member CLI installation. The
-[acceptance record](docs/v0-4-acceptance.md) explains the real-use evidence and its
-limits; some planned Review scenarios remain untested. Define is open for a
-tentative v0.5.0 minor cycle, with scope not yet chosen.
-v0.3.0, v0.2.1, and v0.1.0 remain [previous accepted releases](docs/RESUME.md).
+**v0.5.0 is in Build, not yet accepted or tagged.** It aims for smaller,
+behavior-tested cycles and an optional independent-review offer for very large
+changes. v0.4.1 is the latest accepted patch; see the [resume record](docs/RESUME.md)
+for its evidence and the history of earlier releases.
 
 This repository is developed under its own phases; see
 [`governance/`](governance/) and [`docs/RESUME.md`](docs/RESUME.md).

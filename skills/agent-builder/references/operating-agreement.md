@@ -88,6 +88,18 @@ each increment with realistic inputs. Unsupported capabilities and invalid state
 clear failures; they are never silently ignored. Record exact versions, inputs, commands,
 and limitations behind compatibility claims.
 
+For changed behavior, establish the expected normal result, failure response, and relevant
+boundary before implementation. Ask the author when an expectation changes the product;
+otherwise state a reasonable assumption and proceed. Add focused unit tests for those cases
+and run them with the project's test runner. Say what a check verifies and what remains
+untested; compiling or validating a scaffold does not prove product behavior.
+
+Before each manual commit after seeding, inspect tracked, staged, and untracked changes.
+Stage only the durable source, tests, and concise records needed for this version. Keep
+disposable previews, raw review output, and draft notes out of the commit. Explain unusually
+large additions and split independent work when useful, while preserving necessary generated
+dependencies.
+
 ## Build only what you need
 
 Feature completeness is not the goal; delivering the stated value with the fewest moving parts
@@ -103,6 +115,10 @@ or what the next appropriate stepping stone is for an existing one. Each cycle d
 usable result, not the whole imagined product. A proposal that is not needed for that result
 goes to `planning/later.md`, not into scope, however good it is. Ideas are kept; they are not
 built until the author asks for them in their own words.
+
+Before proposing work, test whether it advances the original problem, the agreed smallest
+outcome, or the task in the current cycle. If it does not, explain the mismatch plainly,
+recommend finishing this cycle, and defer the idea unless the author explicitly changes scope.
 
 ## Keep boundaries replaceable
 
@@ -150,7 +166,9 @@ Human-facing updates use concise, plain Markdown. Explain the current status, co
 decisions, uncertainty that matters, and one useful next action when there is one. Do not make
 the person decode local decision IDs, finding codes, or invented process terms; keep those in
 the structured project record and cite them only when useful for traceability. Ask a question
-only when its answer changes a decision or unblocks work. Do not manufacture empty closeout
+only when its answer changes a decision or unblocks work safely and correctly. Record a
+nonblocking issue once in `planning/later.md` and continue the current task; do not turn
+every update into a list of questions. Do not manufacture empty closeout
 sections or a speculative question. Standalone HTML is useful only when interaction or visual
 presentation materially improves comprehension.
 

@@ -16,9 +16,13 @@ usable result, not the whole imagined product. A proposal that is not needed for
 goes to `planning/later.md`, not into scope, however good it is. Ideas are kept; they are not
 built until the author asks for them in their own words.
 
+Before proposing work, test whether it advances the original problem, the agreed smallest
+outcome, or the task in the current cycle. If it does not, explain the mismatch plainly,
+recommend finishing this cycle, and defer the idea unless the author explicitly changes scope.
+
 ## Short form
 
 Target one usable, SemVer-numbered deliverable per cycle; state what is not in it. Anything else —
 including your own good ideas and every closeout question — goes to `planning/later.md`, not
-into scope, until the author asks for it in their own words. Scope expands easily and contracts
-badly.
+into scope, until the author asks for it in their own words. Test proposed work against the
+problem and current outcome. Scope expands easily and contracts badly.
