@@ -1095,3 +1095,21 @@ decisions:
       source-repository scaffold warnings are unrelated to this phase gate.
     provenance: explicit_author_phase_transition
     record: planning/v0-5-implementation-plan.md
+  - id: AB-D072
+    status: confirmed
+    date: 2026-10-07
+    confirmed_date: 2026-10-07
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said: "great, close build and enter review".'
+    decision: >-
+      Close v0.5.0 Build and enter Review for the locally committed lean-cycle
+      candidate. Real-use acceptance remains open; do not install or run the
+      optional reviewer, tag, or push without separate author direction.
+    rationale: >-
+      The Build exit check found nothing unresolved. The candidate passed 79
+      tests on both Python 3.12 and 3.14, rendered-file and pinned Spec Kit
+      checks, and Ruff checks. The cycle changed 34 paths from its recorded
+      base, so the approved threshold calls for one optional independent-review
+      offer during Review, not an automatic run.
+    provenance: explicit_author_phase_transition
+    record: planning/v0-5-implementation-plan.md

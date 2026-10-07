@@ -1,7 +1,7 @@
 # Resume Agent Builder
 
 Checkpoint: 2026-10-07. Agent Builder **v0.4.1** is accepted but untagged.
-The author closed **Plan** and opened **Build** for v0.5.0. The confirmed
+The author closed **Build** and opened **Review** for v0.5.0. The confirmed
 outcome is in the [Define record](../planning/v0-5-definition.md); the approved
 scope is in the [implementation plan](../planning/v0-5-implementation-plan.md).
 
@@ -34,10 +34,10 @@ to make the generated-project scaffold check pass.
 
 ## Current project state
 
-`governance/project-state.yaml` records **Build** as the current phase. The
-v0.5.0 candidate changes are implemented locally. The repository tests passed
+`governance/project-state.yaml` records **Review** as the current phase. The
+v0.5.0 candidate is committed locally. The repository tests passed
 on Python 3.12 and 3.14 (79 each); the pinned Spec Kit bundle, rendered files,
-and Ruff 0.16.6 lint and formatting checks passed. Real-use Review remains open.
+and Ruff 0.16.6 lint and formatting checks passed. Real-use acceptance remains open.
 The v0.4.1 scope is in the [Define record](../planning/v0-4-1-definition.md),
 and its approved fix is in the [implementation plan](../planning/v0-4-1-implementation-plan.md).
 The completed local checks and original Windows CI control are in
@@ -72,6 +72,7 @@ attributes; the actual Windows CI job passed.
 
 ## Next action
 
-Inspect the v0.5.0 Build candidate and decide whether to close Build and enter
-Review. Do not install the optional reviewer, enter Review, tag, or push without
-separate author direction. v0.4.1 remains accepted and untagged.
+Exercise the v0.5.0 candidate in realistic use and collect feedback. The cycle
+changed 34 paths from its recorded Build base, so offer an optional independent
+review once. Do not install or run that reviewer, accept the release, tag, or
+push without separate author direction. v0.4.1 remains accepted and untagged.

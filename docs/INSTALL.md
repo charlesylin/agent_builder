@@ -72,7 +72,7 @@ installed, and the offer will never fire.
 Update later with `/plugin marketplace update agent-builder`. Updates arrive only when
 `version` in `.claude-plugin/plugin.json` changes — so while iterating on the hook, bump the
 version or reinstall; editing the file alone is not enough.
-For the v0.5.0 Build candidate, refresh or reinstall the plugin from the tested
+For the v0.5.0 Review candidate, refresh or reinstall the plugin from the tested
 checkout after updating the marketplace; a cached v0.4.1 plugin will keep seeding
 v0.4.1 projects. v0.5.0 is not yet accepted or published.
 
@@ -120,7 +120,7 @@ itself in Gemini CLI has not been verified.
 v0.4+ Claude Code/Codex projects. No member-side Spec Kit CLI, Python 3.11+, first-use
 download, or separate integration command is required. After seeding, check
 `.agent-builder.json` for the installed Agent Builder version (`0.5.0` for this
-Build candidate), and `.specify/spec-kit-provenance.json` for upstream
+Review candidate), and `.specify/spec-kit-provenance.json` for upstream
 `version: 1.1.0` and the approved commit.
 The project's `deliverable.target_version` is separate from Agent Builder's version.
 
