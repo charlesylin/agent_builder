@@ -880,3 +880,27 @@ decisions:
       Advancing from 0.4.0 to the next minor version yields 0.5.0; its specific
       deliverable and success evidence must be confirmed during Define.
     provenance: explicit_author_phase_transition
+  - id: AB-D062
+    status: confirmed
+    date: 2026-10-07
+    confirmed_date: 2026-10-07
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      After the Windows hash failure and v0.4.1 patch scope were read back,
+      the author requested the assistant handle the fix, then said
+      "enter plan for v0.4.1".
+    decision: >-
+      Narrow the tentative next cycle from v0.5.0 to a v0.4.1 patch that
+      prevents Git checkout line-ending conversion from invalidating pinned
+      Spec Kit asset hashes in Agent Builder and newly seeded projects.
+      Close Define and enter Plan; do not implement until Build is authorized.
+    rationale: >-
+      A checkout with core.autocrlf=true reproduced bundle drift in Agent Builder
+      and all eleven pinned asset-drift errors in a seeded project. Preserving the
+      existing assets and hash checks is a corrective patch, not a new capability.
+      The Define exit check found nothing unresolved. The v0.5.0 target in
+      AB-D061 was explicitly a working target with no agreed scope; its phase
+      opening remains historical while this narrower author direction replaces
+      that target.
+    provenance: explicit_author_scope_and_phase_transition
+    record: planning/v0-4-1-definition.md

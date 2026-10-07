@@ -1,8 +1,9 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-10-07. Agent Builder **v0.4.0** is accepted and tagged. The author
-explicitly opened Define for a minor cycle, with **v0.5.0** as the working target.
-Its purpose, scope, and success evidence are still open.
+Checkpoint: 2026-10-07. Agent Builder **v0.4.0** is accepted and tagged. The
+author narrowed the tentative next cycle to **v0.4.1**, a patch for the
+Windows Git checkout/hash failure, and explicitly entered **Plan**. Build
+has not been authorized.
 
 ## Recover context
 
@@ -29,8 +30,10 @@ to make the generated-project scaffold check pass.
 
 ## Current project state
 
-`governance/project-state.yaml` records **Define** as the current phase. Opening it
-does not authorize Plan or Build. The v0.4.0 purpose and limits are in
+`governance/project-state.yaml` records **Plan** as the current phase. The
+v0.4.1 scope is in the [Define record](../planning/v0-4-1-definition.md),
+and its proposed fix is in the [implementation plan](../planning/v0-4-1-implementation-plan.md).
+The v0.4.0 purpose and limits are in
 the [Define record](../planning/v0-4-definition.md), approved design in the
 [implementation plan](../planning/v0-4-implementation-plan.md), and completed Build
 checks in [Build verification](v0-4-build-verification.md).
@@ -49,12 +52,14 @@ and measured v0.3 comparison were not completed before release. They are evidenc
 limits, not passed tests. The author explicitly accepted the release with those
 limits visible so the organization can use it and report actual outcomes.
 
-After publication, v0.4.0 CI passed Linux tests and lint but failed its Windows job:
-Windows checkout changed a bundled shell file's line endings, so its hash no longer
-matched the pinned manifest. This is a known candidate for the new cycle, not
-automatically approved v0.5.0 scope.
+After publication, v0.4.0 CI passed Linux tests and lint but failed its Windows
+job: Windows checkout changed bundled Spec Kit file line endings, so their hashes
+no longer matched the pinned manifest. The same failure was reproduced after a
+Windows-style Git checkout of a generated project. Temporary repositories using
+narrow Git `-text` attributes passed both checks under `core.autocrlf=true`.
 
 ## Next action
 
-Ask the author what one problem v0.5.0 should solve. Keep v0.4.0 in use and record
-feedback, but do not promote prior observations to scope without the author's choice.
+Review the v0.4.1 plan with the author and obtain explicit Build approval before
+editing product code. Do not move or republish the v0.4.0 tag. The separate
+v0.5.0 feature cycle is deferred.

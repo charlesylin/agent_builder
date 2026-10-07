@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-v0-5-define-2026-10-07",
-  "created_at": "2026-10-07T14:14:06Z",
+  "handoff_id": "agent-builder-v0-4-1-plan-2026-10-07",
+  "created_at": "2026-10-07T14:23:15Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.4.0 is accepted and tagged. On 2026-10-07 the author explicitly opened Define for the next minor cycle, with v0.5.0 as the working target. Purpose, scope, and success evidence remain open. The v0.4.0 Windows CI failure and other observations are candidate inputs only; no fix or feature is approved yet.",
+  "summary": "Agent Builder v0.4.0 is accepted and tagged. The author narrowed the tentative next cycle to v0.4.1 for the Windows Git checkout/hash failure and explicitly opened Plan on 2026-10-07. The failure reproduces in Agent Builder and generated projects under core.autocrlf=true; narrow Git -text attributes passed in temporary repositories. The proposed plan is ready for Build approval, but product code has not changed.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -141,6 +141,11 @@
       "id": "AB-D061",
       "status": "confirmed",
       "summary": "Open Define for the next minor cycle, tentatively v0.5.0, without assuming scope from prior Review findings."
+    },
+    {
+      "id": "AB-D062",
+      "status": "confirmed",
+      "summary": "Narrow the cycle to a v0.4.1 Windows checkout/hash patch, close Define, and enter Plan; Build remains unapproved."
     }
   ],
   "artifacts": [
@@ -197,6 +202,18 @@
       "media_type": "text/markdown"
     },
     {
+      "path": "planning/v0-4-1-definition.md",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "planning/v0-4-1-solution-evaluation.md",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "planning/v0-4-1-implementation-plan.md",
+      "media_type": "text/markdown"
+    },
+    {
       "path": "docs/v0-4-build-verification.md",
       "media_type": "text/markdown"
     },
@@ -223,5 +240,5 @@
   ],
   "blockers": [],
   "questions": [],
-  "next_action": "Ask the author what single problem the v0.5.0 cycle should address; do not infer scope from known v0.4.0 observations."
+  "next_action": "Present the scoped v0.4.1 plan and ask the author to explicitly close Plan and enter Build before modifying product code."
 }
