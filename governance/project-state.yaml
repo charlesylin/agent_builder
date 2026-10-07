@@ -9,7 +9,7 @@ project:
 
 phase:
   current: review
-  status: windows_ci_pending
+  status: evidence_complete_acceptance_pending
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-10-07
   transition_requires: explicit_user_invocation_or_confirmation
@@ -222,7 +222,7 @@ release:
 
 next_release:
   target: 0.4.1
-  version_status: in_review
+  version_status: review_evidence_complete
   version_scheme: semantic_versioning_2_0_0
   version_decision: AB-D063
   purpose_status: confirmed
@@ -235,11 +235,11 @@ next_release:
 
 checkpoint:
   date: 2026-10-07
-  status: review_windows_ci_pending
-  phase_changed: true
+  status: review_acceptance_pending
+  phase_changed: false
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Obtain explicit author approval before pushing main to run the real
-    GitHub Windows CI job, then inspect its result and record Review evidence.
-    Do not tag v0.4.1 before acceptance.
+    Present the passing Windows, Ubuntu, and lint CI results in
+    docs/v0-4-1-review.md to the author. Ask whether to accept v0.4.1 and
+    authorize its tag; do not infer acceptance from green checks alone.

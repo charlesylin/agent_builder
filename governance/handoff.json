@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "handoff_id": "agent-builder-v0-4-1-review-2026-10-07",
-  "created_at": "2026-10-07T18:53:07Z",
+  "created_at": "2026-10-07T18:56:44Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.4.0 is accepted and tagged. The v0.4.1 Windows Git checkout/hash patch is committed locally at ea4581d. After fresh core.autocrlf=true checkout verification, 77 tests on Python 3.9 and 3.14, Ruff 0.16.6, render, bundle, and compilation checks passed, the author explicitly closed Build and opened Review on 2026-10-07. Actual GitHub Windows CI and acceptance remain pending. This phase change did not authorize a push or tag.",
+  "summary": "Agent Builder v0.4.0 is accepted and tagged. The v0.4.1 Windows Git checkout/hash patch is on main. After the author authorized a push, GitHub CI run 37670583643 passed on commit 7260b42, including Windows Python 3.12, Ubuntu Python 3.9 and 3.12, and lint. Local 77-test suites and fresh core.autocrlf=true checkout verification also passed. Review remains open; author acceptance and a v0.4.1 tag are pending. The v0.4.0 tag is unchanged.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -156,6 +156,11 @@
       "id": "AB-D064",
       "status": "confirmed",
       "summary": "Close v0.4.1 Build and enter Review; actual Windows CI and acceptance remain pending, with no push or tag authorized."
+    },
+    {
+      "id": "AB-D065",
+      "status": "confirmed",
+      "summary": "Author authorized pushing the v0.4.1 candidate to main for actual Windows CI; all four jobs passed, but acceptance and tag remain pending."
     }
   ],
   "artifacts": [
@@ -228,6 +233,10 @@
       "media_type": "text/markdown"
     },
     {
+      "path": "docs/v0-4-1-review.md",
+      "media_type": "text/markdown"
+    },
+    {
       "path": "docs/v0-4-build-verification.md",
       "media_type": "text/markdown"
     },
@@ -254,5 +263,5 @@
   ],
   "blockers": [],
   "questions": [],
-  "next_action": "Request explicit author approval before pushing main to run actual GitHub Windows CI; inspect the result and record Review evidence. Do not tag v0.4.1 before acceptance."
+  "next_action": "Present the green v0.4.1 CI evidence and ask the author whether to accept and tag v0.4.1. Do not infer acceptance from passing tests."
 }
