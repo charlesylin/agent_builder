@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-v0-4-1-plan-2026-10-07",
+  "handoff_id": "agent-builder-v0-4-1-build-2026-10-07",
   "created_at": "2026-10-07T14:23:15Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.4.0 is accepted and tagged. The author narrowed the tentative next cycle to v0.4.1 for the Windows Git checkout/hash failure and explicitly opened Plan on 2026-10-07. The failure reproduces in Agent Builder and generated projects under core.autocrlf=true; narrow Git -text attributes passed in temporary repositories. The proposed plan is ready for Build approval, but product code has not changed.",
+  "summary": "Agent Builder v0.4.0 is accepted and tagged. The author narrowed the tentative next cycle to v0.4.1 for the Windows Git checkout/hash failure, then explicitly approved the narrow plan and entered Build on 2026-10-07. The failure reproduces in Agent Builder and generated projects under core.autocrlf=true; narrow Git -text attributes passed in temporary repositories. Product implementation remains to be done; no push or tag is authorized.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -146,6 +146,11 @@
       "id": "AB-D062",
       "status": "confirmed",
       "summary": "Narrow the cycle to a v0.4.1 Windows checkout/hash patch, close Define, and enter Plan; Build remains unapproved."
+    },
+    {
+      "id": "AB-D063",
+      "status": "confirmed",
+      "summary": "Close v0.4.1 Plan and enter Build for the narrow Git attributes, tests, and patch-version metadata."
     }
   ],
   "artifacts": [
@@ -240,5 +245,5 @@
   ],
   "blockers": [],
   "questions": [],
-  "next_action": "Present the scoped v0.4.1 plan and ask the author to explicitly close Plan and enter Build before modifying product code."
+  "next_action": "Implement the approved v0.4.1 attributes, regression tests, and version metadata; verify fresh core.autocrlf=true checkouts. Do not push or tag without separate author direction."
 }

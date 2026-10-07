@@ -2,8 +2,8 @@
 
 Checkpoint: 2026-10-07. Agent Builder **v0.4.0** is accepted and tagged. The
 author narrowed the tentative next cycle to **v0.4.1**, a patch for the
-Windows Git checkout/hash failure, and explicitly entered **Plan**. Build
-has not been authorized.
+Windows Git checkout/hash failure, and explicitly entered **Build** after
+approving the narrow plan. Implementation has not yet been completed.
 
 ## Recover context
 
@@ -30,9 +30,9 @@ to make the generated-project scaffold check pass.
 
 ## Current project state
 
-`governance/project-state.yaml` records **Plan** as the current phase. The
+`governance/project-state.yaml` records **Build** as the current phase. The
 v0.4.1 scope is in the [Define record](../planning/v0-4-1-definition.md),
-and its proposed fix is in the [implementation plan](../planning/v0-4-1-implementation-plan.md).
+and its approved fix is in the [implementation plan](../planning/v0-4-1-implementation-plan.md).
 The v0.4.0 purpose and limits are in
 the [Define record](../planning/v0-4-definition.md), approved design in the
 [implementation plan](../planning/v0-4-implementation-plan.md), and completed Build
@@ -60,6 +60,7 @@ narrow Git `-text` attributes passed both checks under `core.autocrlf=true`.
 
 ## Next action
 
-Review the v0.4.1 plan with the author and obtain explicit Build approval before
-editing product code. Do not move or republish the v0.4.0 tag. The separate
-v0.5.0 feature cycle is deferred.
+Implement the approved v0.4.1 patch and verify source and generated-project
+checkouts under `core.autocrlf=true`. Do not move or republish the v0.4.0 tag,
+push, or tag v0.4.1 without a separate author request. The separate v0.5.0
+feature cycle is deferred.

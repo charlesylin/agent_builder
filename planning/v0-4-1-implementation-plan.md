@@ -1,6 +1,6 @@
 # Agent Builder v0.4.1 — implementation plan
 
-Status: proposed in Plan. Build requires the author's explicit approval.
+Status: approved by the author on 2026-10-07; Build is open.
 Scope: the Windows checkout/hash patch in
 [the Define record](v0-4-1-definition.md). The
 [build-or-adopt evaluation](v0-4-1-solution-evaluation.md) recommends Git's
