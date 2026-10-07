@@ -961,3 +961,27 @@ decisions:
       Python 3.12. Acceptance remains a separate author decision.
     provenance: explicit_author_publication_request_during_review
     record: docs/v0-4-1-review.md
+  - id: AB-D066
+    status: confirmed
+    date: 2026-10-07
+    confirmed_date: 2026-10-07
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      After the author was shown that the pushed v0.4.1 candidate passed
+      Windows, Ubuntu, and lint CI, the author said "ok close review, move
+      to new define cycle".
+    decision: >-
+      Accept v0.4.1 with its documented evidence limit, close Review, and
+      open a new Define cycle. Resume v0.5.0 as a working minor-version
+      target without assigning it scope. Do not create or push a v0.4.1 tag
+      without a separate author request.
+    rationale: >-
+      GitHub CI runs 37670583643 and 37670796409 passed all four jobs,
+      including Windows Python 3.12. The patch and generated-project
+      regression tests were also verified locally. No separate member
+      Windows workstation use was observed, and the author closed Review
+      with that limit recorded. The Review exit check found nothing
+      unresolved. The earlier tentative v0.5.0 cycle was deferred for this
+      corrective patch and now returns to Define with no approved purpose.
+    provenance: explicit_author_acceptance_and_phase_transition
+    record: docs/v0-4-1-review.md

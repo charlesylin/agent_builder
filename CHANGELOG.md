@@ -4,9 +4,10 @@ All notable changes to Agent Builder are documented here.
 
 ## [0.4.1] - 2026-10-07
 
-Build candidate; not yet accepted or tagged. Preserve the exact pinned Spec Kit
-asset bytes across Git checkouts with Windows-style line-ending conversion, both
-in the Agent Builder repository and in newly seeded Claude Code and Codex projects.
+Accepted after the Windows CI job passed; not yet tagged. Preserve the exact
+pinned Spec Kit asset bytes across Git checkouts with Windows-style line-ending
+conversion, both in the Agent Builder repository and in newly seeded Claude Code
+and Codex projects.
 The upstream payload, manifest hashes, checker behavior, and member workflow are
 unchanged. Existing projects are not modified automatically.
 

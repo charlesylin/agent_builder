@@ -1,10 +1,9 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-10-07. Agent Builder **v0.4.0** is accepted and tagged. The
-author narrowed the tentative next cycle to **v0.4.1**, a patch for the
-Windows Git checkout/hash failure, and explicitly entered **Review** after
-the local Build checks passed. GitHub Windows CI has now passed; author
-acceptance and a v0.4.1 tag remain pending.
+Checkpoint: 2026-10-07. Agent Builder **v0.4.1** is accepted after a green
+Windows CI run and Review is closed. It has **not** been tagged. The author
+explicitly opened the next **Define** cycle, tentatively v0.5.0, with no
+purpose or scope agreed yet.
 
 ## Recover context
 
@@ -16,6 +15,10 @@ to make the generated-project scaffold check pass.
 
 ## Accepted releases
 
+- **v0.4.1 — accepted 2026-10-07, untagged.** Fixes Windows Git checkout
+  conversion of pinned Spec Kit files in both Agent Builder and newly
+  generated projects. Windows, Ubuntu, and lint CI passed; separate member
+  Windows workstation use was not observed. See [Review evidence](v0-4-1-review.md).
 - **v0.4.0 — accepted 2026-10-06.** A pinned Spec Kit 1.1.0 release-build payload gives
   new Claude Code and Codex projects research and proportional specification/planning
   guidance through the single Agent Builder skill. Members do not install the Spec Kit
@@ -31,13 +34,14 @@ to make the generated-project scaffold check pass.
 
 ## Current project state
 
-`governance/project-state.yaml` records **Review** as the current phase. The
+`governance/project-state.yaml` records **Define** as the current phase. The
 v0.4.1 scope is in the [Define record](../planning/v0-4-1-definition.md),
 and its approved fix is in the [implementation plan](../planning/v0-4-1-implementation-plan.md).
 The completed local checks and original Windows CI control are in
 [Build verification](v0-4-1-build-verification.md).
-The actual Windows, Ubuntu, and lint CI result is in
-[Review evidence](v0-4-1-review.md).
+The actual Windows, Ubuntu, and lint CI result and acceptance limit are in
+[Review evidence](v0-4-1-review.md). The next cycle's problem, smallest
+outcome, exclusions, and success evidence remain open.
 The v0.4.0 purpose and limits are in
 the [Define record](../planning/v0-4-definition.md), approved design in the
 [implementation plan](../planning/v0-4-implementation-plan.md), and completed Build
@@ -59,12 +63,12 @@ limits visible so the organization can use it and report actual outcomes.
 
 After publication, v0.4.0 CI passed Linux tests and lint but failed its Windows
 job: Windows checkout changed bundled Spec Kit file line endings, so their hashes
-no longer matched the pinned manifest. The same failure was reproduced after a
-Windows-style Git checkout of a generated project. Temporary repositories using
-narrow Git `-text` attributes passed both checks under `core.autocrlf=true`.
+no longer matched the pinned manifest. v0.4.1 addresses this with narrow Git
+attributes; the actual Windows CI job passed.
 
 ## Next action
 
-Present the passing [GitHub CI run](https://github.com/charlesylin/agent_builder/actions/runs/37670583643)
-to the author and ask whether to accept and tag v0.4.1. Do not move or
-republish the v0.4.0 tag. The separate v0.5.0 feature cycle is deferred.
+Ask the author what single problem the next Define cycle should solve. The
+working version target is v0.5.0, but do not assign it features from previous
+feedback without the author's direction. v0.4.1 is accepted but untagged;
+request separate authorization before tagging or publishing that tag.

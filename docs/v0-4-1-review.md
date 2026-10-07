@@ -1,6 +1,6 @@
 # v0.4.1 Review evidence
 
-Status: evidence complete; author acceptance and release tag pending.
+Status: accepted by the author on 2026-10-07; release tag not yet authorized.
 
 The v0.4.1 patch fixes the Windows Git checkout/hash failure without changing
 the pinned Spec Kit v1.1.0 payload or relaxing its hash checks. The local
@@ -19,5 +19,12 @@ from v0.4.0 [run 37520696645](https://github.com/charlesylin/agent_builder/actio
 No organization member has separately installed or used the v0.4.1 candidate
 on a Windows workstation. That is an evidence limit, not a failed test. This
 patch does not automatically change existing v0.4.0-generated projects.
-Review remains open until the author decides whether to accept v0.4.1. No
-v0.4.1 tag has been created, and the v0.4.0 tag remains unchanged.
+At that checkpoint, Review remained open pending the author's decision. No
+v0.4.1 tag had been created, and the v0.4.0 tag remained unchanged.
+
+After this evidence was read back, the author explicitly closed Review and
+opened the next Define cycle. A subsequent documentation-only push at
+`d3f90eb0073e74d87a9076ef3bc5c3625e2b5a53` also passed all four jobs in
+[GitHub CI run 37670796409](https://github.com/charlesylin/agent_builder/actions/runs/37670796409).
+The author accepted v0.4.1 with the workstation-use limit above; no tag was
+requested or created.

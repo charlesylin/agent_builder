@@ -8,8 +8,8 @@ project:
   status: active
 
 phase:
-  current: review
-  status: evidence_complete_acceptance_pending
+  current: define
+  status: definition_in_progress
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-10-07
   transition_requires: explicit_user_invocation_or_confirmation
@@ -182,64 +182,89 @@ phase:
         and 3.14, bundle verification, and lint passed. The Build exit check
         found nothing unresolved. Actual GitHub Windows CI and acceptance are
         still pending; no push or tag is implied.
+    - phase: review
+      date: 2026-10-07
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        Closed. The author accepted v0.4.1 after the actual GitHub Windows,
+        Ubuntu, and lint jobs passed, with separate Windows workstation use
+        unverified. The Review exit check found nothing unresolved. A version
+        tag was not requested or created.
+    - phase: define
+      date: 2026-10-07
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        Explicitly opened the next Define cycle after v0.4.1 acceptance.
+        v0.5.0 resumes as a working minor-version target; purpose, scope,
+        smallest outcome, and success evidence remain open.
 
 release:
-  target: 0.4.0
-  scope: filtered_spec_kit_augmentation_for_claude_code_and_codex
+  target: 0.4.1
+  scope: preserve_pinned_spec_kit_bytes_across_windows_git_checkouts
   runtime_included: false
-  acceptance_strategy: author_acceptance_with_documented_review_limits_and_org_use
+  acceptance_strategy: green_windows_ci_and_author_review_with_workstation_use_unverified
   status: accepted
-  accepted_date: 2026-10-06
+  accepted_date: 2026-10-07
   accepted_by: charles-yang-lin
-  decision: AB-D060
-  tag: v0.4.0
-  acceptance_record: docs/v0-4-acceptance.md
+  decision: AB-D066
+  tag: null
+  acceptance_record: docs/v0-4-1-review.md
   previous:
-    target: 0.3.0
-    scope: neutral_project_mode_with_build_or_adopt_and_version_sized_governance
+    target: 0.4.0
+    scope: filtered_spec_kit_augmentation_for_claude_code_and_codex
     runtime_included: false
-    acceptance_strategy: three_real_use_review_scenarios
+    acceptance_strategy: author_acceptance_with_documented_review_limits_and_org_use
     status: accepted
-    accepted_date: 2026-09-24
+    accepted_date: 2026-10-06
     accepted_by: charles-yang-lin
-    decision: AB-D050
-    tag: v0.3.0
-    acceptance_record: docs/v0-3-acceptance.md
+    decision: AB-D060
+    tag: v0.4.0
+    acceptance_record: docs/v0-4-acceptance.md
     previous:
-      target: 0.2.1
+      target: 0.3.0
+      scope: neutral_project_mode_with_build_or_adopt_and_version_sized_governance
+      runtime_included: false
+      acceptance_strategy: three_real_use_review_scenarios
       status: accepted
-      accepted_date: 2026-09-22
-      decision: AB-D039
-      tag: v0.2.1
-      acceptance_record: docs/v0-2-acceptance.md
+      accepted_date: 2026-09-24
+      accepted_by: charles-yang-lin
+      decision: AB-D050
+      tag: v0.3.0
+      acceptance_record: docs/v0-3-acceptance.md
       previous:
-        target: 0.1.0
+        target: 0.2.1
         status: accepted
-        accepted_date: 2026-09-13
-        decision: AB-D017
-        tag: v0.1.0
-        acceptance_record: docs/v0-1-acceptance.md
+        accepted_date: 2026-09-22
+        decision: AB-D039
+        tag: v0.2.1
+        acceptance_record: docs/v0-2-acceptance.md
+        previous:
+          target: 0.1.0
+          status: accepted
+          accepted_date: 2026-09-13
+          decision: AB-D017
+          tag: v0.1.0
+          acceptance_record: docs/v0-1-acceptance.md
 
 next_release:
-  target: 0.4.1
-  version_status: review_evidence_complete
+  target: 0.5.0
+  version_status: in_define
   version_scheme: semantic_versioning_2_0_0
-  version_decision: AB-D063
-  purpose_status: confirmed
-  scope_status: confirmed
-  success_evidence_status: confirmed
+  version_decision: AB-D066
+  purpose_status: open
+  scope_status: open
+  success_evidence_status: open
   note: >-
-    The author narrowed the previously tentative v0.5.0 cycle to a v0.4.1
-    patch for the Windows Git checkout/hash failure. Plan must compare the
-    smallest remedies and document a reproducible Windows-style Git test.
+    The earlier tentative v0.5.0 minor cycle resumes after the v0.4.1 patch.
+    It is only a working version target; no feature or fix is yet in scope.
 
 checkpoint:
   date: 2026-10-07
-  status: review_acceptance_pending
-  phase_changed: false
+  status: define_open_scope_pending
+  phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Present the passing Windows, Ubuntu, and lint CI results in
-    docs/v0-4-1-review.md to the author. Ask whether to accept v0.4.1 and
-    authorize its tag; do not infer acceptance from green checks alone.
+    Ask the author what single problem the next cycle should solve before
+    confirming v0.5.0 scope. The accepted v0.4.1 release remains untagged;
+    request separate authorization before creating or pushing a tag.
