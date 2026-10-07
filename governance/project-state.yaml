@@ -255,11 +255,12 @@ next_release:
   scope_status: confirmed_at_outcome_level
   success_evidence_status: open
   note: >-
-    The author accepted the direction of lean, understandable,
-    behavior-tested Build increments and a Review-time offer of an
-    independent code review for very large changes. v0.5.0 remains a
-    working version target. The large-change signal, reviewer method,
-    and success evidence remain open.
+    The author accepted lean, faster, understandable, behavior-tested
+    cycles: ask only blocking questions, record other issues for later,
+    and test work against the current outcome. Offer independent review
+    for very large changes and, if accepted, help install Erico's tool
+    on Codex or Claude Code when missing. v0.5.0 remains a working
+    target; the large-change signal and success evidence remain open.
 
 checkpoint:
   date: 2026-10-07
@@ -269,5 +270,6 @@ checkpoint:
   machine_handoff: governance/handoff.json
   next_action: >-
     Agree on concrete success evidence and a proportionate signal for
-    very large changes. Stay in Define until the author explicitly
-    authorizes Plan. The accepted v0.4.1 release remains untagged.
+    very large changes. Keep installation and reviewer selection
+    voluntary. Stay in Define until the author explicitly authorizes
+    Plan. The accepted v0.4.1 release remains untagged.
