@@ -1,0 +1,2 @@
+# Manifest hashes cover exact upstream bytes; do not rewrite them on checkout.
+skills/agent-builder/vendor/spec-kit/** -text

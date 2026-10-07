@@ -43,7 +43,7 @@ except ImportError as error:  # pragma: no cover - only when the skill folder is
     raise SystemExit(f"seed.py needs check.py beside it in {HERE}: {error}") from error
 
 # Kept equal to "version" in the repository's .claude-plugin/plugin.json; a test enforces it.
-TEMPLATE_VERSION = "0.4.0"
+TEMPLATE_VERSION = "0.4.1"
 # The marker check.py looks for in planning/definition.md. Keep the two in sync.
 UNANSWERED = "(not yet answered)"
 
@@ -309,6 +309,12 @@ def _spec_kit_files(spec: ProjectSpec, rendered: dict[Path, str]) -> dict[Path, 
     project_assets[Path(".specify/spec-kit-provenance.json")] = (
         json.dumps(provenance, indent=2, sort_keys=True) + "\n"
     ).encode("utf-8")
+    project_assets[Path(".gitattributes")] = (
+        b"# Preserve pinned Spec Kit bytes across Git checkouts.\n"
+        b".specify/scripts/bash/* -text\n"
+        b".specify/templates/* -text\n"
+        b"third_party/spec-kit/LICENSE -text\n"
+    )
     return project_assets
 
 

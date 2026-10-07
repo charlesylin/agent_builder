@@ -21,6 +21,27 @@ from check import phase_exit_issues, validate_project  # noqa: E402
 from seed import ProjectSpec, create_project  # noqa: E402
 
 
+def _git(cwd: Path, *args: str) -> None:
+    result = subprocess.run(
+        [
+            "git",
+            "-c",
+            "core.autocrlf=true",
+            "-c",
+            "user.name=Agent Builder Test",
+            "-c",
+            "user.email=test@example.invalid",
+            *args,
+        ],
+        cwd=cwd,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode:
+        raise AssertionError(f"git {' '.join(args)} failed: {result.stderr.strip()}")
+
+
 class SpecKitBundleTests(unittest.TestCase):
     def test_committed_payload_is_exact_and_has_no_excluded_workflows(self) -> None:
         refresh_spec_kit.verify()
@@ -46,6 +67,27 @@ class SpecKitBundleTests(unittest.TestCase):
                 (copy / "project/.specify/templates/spec-template.md").write_text("changed")
                 with self.assertRaisesRegex(ValueError, "asset drift"):
                     refresh_spec_kit.verify()
+
+    @unittest.skipUnless(shutil.which("git"), "Git is needed for the checkout regression")
+    def test_bundle_survives_autocrlf_checkout(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "source"
+            bundle = source / "skills/agent-builder/vendor/spec-kit"
+            bundle.parent.mkdir(parents=True)
+            shutil.copytree(refresh_spec_kit.DEST, bundle)
+            shutil.copy2(ROOT / ".gitattributes", source / ".gitattributes")
+            _git(source, "init", "-q")
+            _git(source, "add", "-A")
+            _git(source, "commit", "-qm", "test pinned bundle")
+
+            checkout = Path(directory) / "checkout"
+            _git(Path(directory), "clone", "-q", str(source), str(checkout))
+            with patch.object(
+                refresh_spec_kit,
+                "DEST",
+                checkout / "skills/agent-builder/vendor/spec-kit",
+            ):
+                refresh_spec_kit.verify()
 
     def test_payload_symlink_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -90,7 +132,7 @@ class SpecKitSeedTests(unittest.TestCase):
                     provenance = json.loads(
                         (target / ".specify/spec-kit-provenance.json").read_text()
                     )
-                    self.assertEqual(manifest["template_version"], "0.4.0")
+                    self.assertEqual(manifest["template_version"], "0.4.1")
                     self.assertEqual(provenance["upstream"]["version"], "1.1.0")
                     self.assertEqual(
                         (target / ".specify/memory/constitution.md").read_bytes(),
@@ -111,6 +153,33 @@ class SpecKitSeedTests(unittest.TestCase):
             create_project(target, spec)
             self.assertEqual(validate_project(target), ())
             self.assertFalse((target / ".specify").exists())
+            self.assertFalse((target / ".gitattributes").exists())
+
+    @unittest.skipUnless(shutil.which("git"), "Git is needed for the checkout regression")
+    def test_seeded_project_survives_autocrlf_checkout(self) -> None:
+        for host in ("claude", "codex"):
+            with self.subTest(host=host), tempfile.TemporaryDirectory() as directory:
+                source = Path(directory) / "source"
+                spec = ProjectSpec.create(
+                    name="Windows Git checkout",
+                    purpose="Preserve pinned assets.",
+                    kind="project",
+                    adapters=(host,),
+                )
+                create_project(source, spec)
+                self.assertTrue((source / ".gitattributes").is_file())
+                _git(source, "init", "-q")
+                _git(source, "add", "-A")
+                _git(source, "commit", "-qm", "test seeded project")
+
+                checkout = Path(directory) / "checkout"
+                _git(Path(directory), "clone", "-q", str(source), str(checkout))
+                self.assertEqual(validate_project(checkout), ())
+                asset = checkout / ".specify/scripts/bash/check-prerequisites.sh"
+                asset.write_bytes(asset.read_bytes() + b"# changed\n")
+                self.assertIn(
+                    "spec-kit-asset-drift", {issue.code for issue in validate_project(checkout)}
+                )
 
     def test_checker_catches_missing_and_divergent_assets(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
