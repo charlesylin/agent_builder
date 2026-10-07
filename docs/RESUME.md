@@ -2,9 +2,9 @@
 
 Checkpoint: 2026-10-07. Agent Builder **v0.4.0** is accepted and tagged. The
 author narrowed the tentative next cycle to **v0.4.1**, a patch for the
-Windows Git checkout/hash failure, and explicitly entered **Build** after
-approving the narrow plan. Local implementation and verification are complete;
-the author has not yet opened Review.
+Windows Git checkout/hash failure, and explicitly entered **Review** after
+the local Build checks passed. Actual GitHub Windows CI and acceptance remain
+pending.
 
 ## Recover context
 
@@ -31,7 +31,7 @@ to make the generated-project scaffold check pass.
 
 ## Current project state
 
-`governance/project-state.yaml` records **Build** as the current phase. The
+`governance/project-state.yaml` records **Review** as the current phase. The
 v0.4.1 scope is in the [Define record](../planning/v0-4-1-definition.md),
 and its approved fix is in the [implementation plan](../planning/v0-4-1-implementation-plan.md).
 The completed local checks and remaining Windows CI control are in
@@ -63,7 +63,8 @@ narrow Git `-text` attributes passed both checks under `core.autocrlf=true`.
 
 ## Next action
 
-Ask the author to close Build and enter Review. A push is still needed before
-the actual GitHub Windows CI result can be checked, but this turn did not
-authorize one. Do not move or republish the v0.4.0 tag or tag v0.4.1 before
-acceptance. The separate v0.5.0 feature cycle is deferred.
+Ask the author for explicit approval before pushing `main` to run the actual
+GitHub Windows CI job, then inspect the result and record Review evidence.
+This phase transition did not authorize a push. Do not move or republish the
+v0.4.0 tag or tag v0.4.1 before acceptance. The separate v0.5.0 feature cycle
+is deferred.

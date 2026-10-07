@@ -923,3 +923,21 @@ decisions:
       nothing unresolved. Build authorization does not publish or tag a release.
     provenance: explicit_author_phase_transition
     record: planning/v0-4-1-implementation-plan.md
+  - id: AB-D064
+    status: confirmed
+    date: 2026-10-07
+    confirmed_date: 2026-10-07
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said: "close Build and enter Review".'
+    decision: >-
+      Close v0.4.1 Build and enter Review for the Windows Git checkout/hash
+      patch. Keep actual GitHub Windows CI, acceptance, and the version tag
+      pending; this phase transition does not authorize a remote push.
+    rationale: >-
+      The approved patch is committed locally. Fresh core.autocrlf=true
+      checkout verification, 77 tests on Python 3.9 and 3.14, pinned Ruff,
+      bundle verification, generated-file checking, and compilation passed.
+      The Build exit check found nothing unresolved. Actual Windows CI
+      requires a separately authorized push and remains a Review control.
+    provenance: explicit_author_phase_transition
+    record: docs/v0-4-1-build-verification.md
