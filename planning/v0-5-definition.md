@@ -1,8 +1,8 @@
 # v0.5.0 Define: lean, faster, behavior-tested cycles
 
-Status: outcome and broad scope confirmed by the author on 2026-10-07. The
-version target remains tentative; exact success evidence and the meaning of
-"very large" are still open. Agent Builder remains in Define.
+Status: Define closed by the author on 2026-10-07; Plan is open. Target:
+v0.5.0. This record owns the agreed outcome and Review evidence, not the
+implementation method.
 
 ## Problem and value
 
@@ -44,16 +44,29 @@ Agent Builder should remain useful outside the organization.
   limits; no automated review can be promised to be bias-free.
 
 Do not bundle a private organization tool into general Agent Builder, force
-automatic installation or review, add a visible checklist to every reply, or
-create more permanent reports to demonstrate compliance. The exact large-change
-signal and host-specific installation steps belong in Plan.
+automatic installation or review, add a visible checklist to every reply,
+create more permanent reports to demonstrate compliance, or retroactively
+rewrite existing projects. The exact large-change signal below its obvious
+case and host-specific installation steps belong in Plan.
 
-## Evidence still to define
+## Review evidence
 
-Agree on realistic before/after cases: an oversized change with disposable
-artifacts, a behavior change with expected results and meaningful unit tests,
-a member reading the human documentation, a nonblocking issue recorded without
-interrupting the cycle, an actual blocker that prompts a question, and a Review
-in which the user can accept or decline independent review. If accepted, test
-missing-tool installation help on Codex and Claude Code. Record what was
-checked and skipped. No phase change or Build authorization is implied.
+1. In the same small project scenario, Agent Builder asks about a real blocker,
+   records nonblocking issues once for later, and continues without extra user
+   turns. When offered an off-scope idea, it explains why the current outcome
+   comes first. Compare this with v0.4.0 behavior; do not claim a faster cycle
+   without observing fewer interruptions or shorter time to the same outcome.
+2. In a Build example containing a behavior change and disposable previews or
+   reviewer notes, the committed result contains only durable files, concise
+   human instructions, and unit tests for expected, failure, and boundary
+   behavior. A member can say what it does, how to run and test it, and its
+   important limits without reading the machine ledger.
+3. A change like the author's `+10000 / -30` example always counts as very
+   large. Review offers an independent code review; declining runs nothing.
+   On acceptance, a missing reviewer leads to host-appropriate installation
+   help and verification on Codex and Claude Code. The review states its
+   actual coverage and skipped files. Plan should set a proportionate signal
+   for smaller changes without making normal increments require extra prompts.
+
+Keep the exact commands, thresholds below the obvious case, and any tool
+adaptation in Plan. No Build authorization is implied.

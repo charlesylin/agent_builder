@@ -1036,3 +1036,23 @@ decisions:
       remain to be specified; Define is still open.
     provenance: explicit_author_addition_during_define
     record: planning/v0-5-definition.md
+  - id: AB-D069
+    status: confirmed
+    date: 2026-10-07
+    confirmed_date: 2026-10-07
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said: "good, finish define and move to plan".'
+    decision: >-
+      Close Define and enter Plan for Agent Builder v0.5.0: faster,
+      smaller, more understandable and behavior-tested cycles, with a
+      voluntary independent-review offer for very large changes.
+    rationale: >-
+      The author confirmed the outcome and subsequent additions. The
+      Define record now gives three observable Review scenarios, including
+      the author's +10000/-30 example as an unmistakably large change.
+      The phase-exit check found nothing unresolved. The precise lower
+      large-change signal, installation steps, reuse options, and smallest
+      implementation are Plan questions, not Define blockers. This
+      transition does not authorize Build, publication, or a version tag.
+    provenance: explicit_author_phase_transition
+    record: planning/v0-5-definition.md

@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-v0-5-define-2026-10-07",
-  "created_at": "2026-10-07T19:00:14Z",
+  "handoff_id": "agent-builder-v0-5-plan-2026-10-07",
+  "created_at": "2026-10-07T19:35:22Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.4.1 is accepted but untagged. Define is open with v0.5.0 as a working target. The author confirmed an outcome of lean, understandable, behavior-tested Build increments and asked that Review offer an independent code review for very large changes, with Erico's agent as a Two River Bio candidate. The large-change signal and success evidence remain open. No phase transition, tag, or push was requested.",
+  "summary": "Agent Builder v0.4.1 is accepted but untagged. The author closed Define and opened Plan for v0.5.0. The confirmed outcome is faster, leaner, human-readable, behavior-tested cycles, with an optional independent-review offer when changes are very large. Plan must assess reuse, a proportionate trigger, and voluntary Codex/Claude Code reviewer setup. Build, tagging, and pushing are not authorized.",
   "decisions": [
     {
       "id": "AB-D034",
@@ -171,6 +171,16 @@
       "id": "AB-D067",
       "status": "confirmed",
       "summary": "Define lean, understandable, behavior-tested Build increments and offer independent review during Review for very large changes; do not run it automatically or require Erico's tool universally."
+    },
+    {
+      "id": "AB-D068",
+      "status": "confirmed",
+      "summary": "Ask only blocking questions, defer other issues once, use the current outcome as a scope test, and help install the optional reviewer on Codex or Claude Code if requested."
+    },
+    {
+      "id": "AB-D069",
+      "status": "confirmed",
+      "summary": "Close v0.5.0 Define and enter Plan with three observable Review scenarios; no Build or publication authorization."
     }
   ],
   "artifacts": [
@@ -277,5 +287,5 @@
   ],
   "blockers": [],
   "questions": [],
-  "next_action": "Agree on success evidence and a proportionate signal for very large changes. Remain in Define until the author explicitly authorizes Plan. Only create or push the v0.4.1 tag if separately authorized."
+  "next_action": "In Plan, assess existing tools and the smallest instruction or template changes for v0.5.0. Test a proportionate large-change signal and voluntary reviewer setup on Codex and Claude Code; do not implement without Build approval."
 }

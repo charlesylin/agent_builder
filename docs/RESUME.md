@@ -1,11 +1,8 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-10-07. Agent Builder **v0.4.1** is accepted after a green
-Windows CI run and Review is closed. It has **not** been tagged. The author
-explicitly opened the next **Define** cycle, tentatively v0.5.0, with no
-purpose or scope agreed at that checkpoint. The author has since confirmed
-the lean, understandable, behavior-tested direction in the
-[current Define record](../planning/v0-5-definition.md).
+Checkpoint: 2026-10-07. Agent Builder **v0.4.1** is accepted but untagged.
+The author closed **Define** and opened **Plan** for v0.5.0. The confirmed
+outcome and success evidence are in the [Define record](../planning/v0-5-definition.md).
 
 ## Recover context
 
@@ -36,15 +33,15 @@ to make the generated-project scaffold check pass.
 
 ## Current project state
 
-`governance/project-state.yaml` records **Define** as the current phase. The
+`governance/project-state.yaml` records **Plan** as the current phase. The
 v0.4.1 scope is in the [Define record](../planning/v0-4-1-definition.md),
 and its approved fix is in the [implementation plan](../planning/v0-4-1-implementation-plan.md).
 The completed local checks and original Windows CI control are in
 [Build verification](v0-4-1-build-verification.md).
 The actual Windows, Ubuntu, and lint CI result and acceptance limit are in
-[Review evidence](v0-4-1-review.md). The next cycle's problem, smallest
-outcome, and broad scope are now recorded in the current Define record;
-the large-change signal and success evidence remain open.
+[Review evidence](v0-4-1-review.md). The next cycle's outcome and Review
+evidence are confirmed in the v0.5.0 Define record. Plan must choose a
+proportionate large-change signal and the smallest implementation.
 The v0.4.0 purpose and limits are in
 the [Define record](../planning/v0-4-definition.md), approved design in the
 [implementation plan](../planning/v0-4-implementation-plan.md), and completed Build
@@ -71,7 +68,8 @@ attributes; the actual Windows CI job passed.
 
 ## Next action
 
-Agree on success evidence and what should count as a very large change. The
-working version target is v0.5.0; stay in Define until the author explicitly
-authorizes Plan. v0.4.1 is accepted but untagged; request separate
-authorization before tagging or publishing that tag.
+In Plan, evaluate existing tools and the smallest instruction or template
+changes that meet the v0.5.0 outcome. Test the proposed large-change signal
+and voluntary review-agent setup on Codex and Claude Code. Do not implement
+before Build approval. v0.4.1 remains untagged; tagging or pushing still
+requires separate authorization.
