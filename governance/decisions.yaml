@@ -1113,3 +1113,39 @@ decisions:
       offer during Review, not an automatic run.
     provenance: explicit_author_phase_transition
     record: planning/v0-5-implementation-plan.md
+  - id: AB-D073
+    status: confirmed
+    date: 2026-10-08
+    confirmed_date: 2026-10-08
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said: "return v0.5 to Plan to add the cleanup now".'
+    decision: >-
+      Return v0.5.0 from Review to Plan to scope a repository cleanup amendment.
+      Keep the existing candidate unaccepted and untagged; do not implement the
+      amendment or push without separate authorization.
+    rationale: >-
+      Review of the repository and the optional Two River Python reviewer
+      identified historical evidence files and a redundant handoff record as
+      cleanup candidates. The author explicitly requested a Plan return after
+      the phase boundary was explained. The Review exit check found nothing
+      unresolved, but the real-use v0.5.0 acceptance scenarios remain open.
+    provenance: explicit_author_phase_transition
+    record: planning/v0-5-implementation-plan.md
+  - id: AB-D074
+    status: proposed
+    date: 2026-10-08
+    decision: >-
+      Amend v0.5.0 Build to remove four completed-test evidence and instruction
+      files from the active tree while preserving Git-history retrieval,
+      repair their references, and compact the current machine handoff without
+      changing its top-level contract or the authoritative decision ledger.
+    rationale: >-
+      The four files total 2,702 lines; the two raw transcripts are already
+      interpreted in docs/v0-2-skill-test.md, and the two handoff packets are
+      unreferenced in the current tree. The 314-line machine handoff repeats
+      38 decision summaries that remain in governance/decisions.yaml. This
+      targets the agreed v0.5.0 problem of oversized repositories directly;
+      the separate Python function refactors are not needed to make the tree
+      smaller and are left for a later code-maintenance change.
+    provenance: plan_recommendation_after_author_requested_cleanup
+    record: planning/v0-5-implementation-plan.md

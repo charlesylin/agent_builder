@@ -1,8 +1,10 @@
 # Agent Builder v0.5.0 — proposed implementation plan
 
-**Status:** Approved by the author on 2026-10-07; Build is open. The [Define record](v0-5-definition.md)
-sets the outcome; the [reuse evaluation](v0-5-solution-evaluation.md)
-recommends a small adaptation of existing Agent Builder instructions and templates.
+**Status:** The original plan was approved and built. The author returned from
+Review to Plan on 2026-10-08 for the proposed cleanup amendment below; it is
+not yet approved for Build. The [Define record](v0-5-definition.md) sets the
+outcome; the [reuse evaluation](v0-5-solution-evaluation.md) supports adapting
+the existing Agent Builder instructions and templates.
 
 ## Operating behavior to implement
 
@@ -116,3 +118,42 @@ and the optional-review response. Compare with a similar v0.4.0 cycle; do not
 infer faster cycles from instruction text alone. A missing install or review
 coverage claim is a failure to report, not a reason to silently waive the
 scenario. Do not tag or publish v0.5.0 during Build.
+
+## Proposed cleanup amendment — 2026-10-08
+
+The author asked to make this repository itself leaner after reviewing its size.
+Keep v0.5.0's existing behavior and release target. This amendment concerns
+historical material in the active checkout and the current machine checkpoint,
+not generated projects or the bundled Spec Kit dependency.
+
+- Remove the two full 2026-09-14 skill-test transcripts from the current tree
+  (2,435 lines together). The results and decisions remain in
+  `docs/v0-2-skill-test.md`, which currently links to both files. Replace those
+  two links with exact Git-history retrieval instructions: the first transcript
+  is in commit `db98f06f554cc04dbb435dfe5c83afc3a274e39e`, the second in
+  `7cc90d702c48eb4ae3482ea1e6b845608cea38f3`. Verify each blob before
+  removal. Do not rewrite history or discard the summarized evidence.
+- Remove the completed v0.1 Sean test packet and v0.4 Erico handoff from the
+  current tree (267 lines together). Neither is referenced by current tracked
+  files. Their last recorded contents are recoverable at commits
+  `be443d01de8f324eeb4880ac36cff438e847a24a` and
+  `c871984d348d92e18fc2139fdcf7c783633abfcb`, respectively. Preserve
+  the concise acceptance records; do not remove other historical documents.
+- Shorten `governance/handoff.json` (314 lines, including 38 repeated decision
+  summaries) to the current phase, immediate decisions, essential artifact
+  pointers, evidence limits, and next action. Keep its existing top-level
+  fields and `schema_version`; `governance/decisions.yaml` remains the complete
+  authority. Update `docs/RESUME.md` consistently.
+
+Before staging, inspect the exact deletions and references. Verify the four
+Git-history blobs, no live Markdown links to deleted paths, valid handoff JSON,
+and unchanged phase/decision facts. Run the full Python test suite, render
+check, pinned Spec Kit verifier, Ruff checks, and `git diff --check`; report
+which checks do and do not exercise behavior. Stage only these durable changes.
+No push, tag, or v0.5.0 acceptance is part of this amendment.
+
+The independent review also suggested splitting two long Python functions and
+annotating one CLI parameter. Those changes may improve maintainability but
+will not materially shrink the repository and would add a second kind of work
+to this cleanup. Keep them visible as later maintenance candidates rather
+than expanding this amendment to refactor behavior-tested code.

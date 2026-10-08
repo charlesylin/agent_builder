@@ -8,10 +8,10 @@ project:
   status: active
 
 phase:
-  current: review
-  status: review_in_progress
+  current: plan
+  status: plan_in_progress
   last_confirmed_by: charles-yang-lin
-  last_confirmed_date: 2026-10-07
+  last_confirmed_date: 2026-10-08
   transition_requires: explicit_user_invocation_or_confirmation
   history:
     - phase: define
@@ -231,6 +231,13 @@ phase:
         and the Build exit check found nothing unresolved. Real-use acceptance
         remains open. The 34-path cycle qualifies for one optional independent
         review offer; no reviewer installation, acceptance, tag, or push is implied.
+    - phase: plan
+      date: 2026-10-08
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        The author explicitly returned v0.5.0 from Review to Plan to add a
+        repository cleanup amendment. Real-use acceptance remains open; this
+        transition does not authorize implementation, deletion, tagging, or a push.
 
 release:
   target: 0.4.1
@@ -282,7 +289,7 @@ release:
 
 next_release:
   target: 0.5.0
-  version_status: in_review
+  version_status: in_plan
   version_scheme: semantic_versioning_2_0_0
   version_decision: AB-D071
   purpose_status: confirmed
@@ -295,14 +302,13 @@ next_release:
     reviewer setup are in planning/v0-5-implementation-plan.md.
 
 checkpoint:
-  date: 2026-10-07
-  status: review_open
+  date: 2026-10-08
+  status: cleanup_amendment_proposed
   phase_changed: true
   build_base_commit: 9579fab6c02aac09cb3bf6db77cda302e6216634
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Exercise the v0.5.0 candidate in realistic use and collect author feedback.
-    Offer one optional independent review because the cycle changed 34 paths;
-    do not install or run a reviewer without opt-in. Do not accept, tag, or push
-    without separate author direction.
+    Review the proposed repository cleanup amendment in
+    planning/v0-5-implementation-plan.md. Do not remove files, refactor code,
+    enter Build, accept v0.5.0, tag, or push without separate author direction.

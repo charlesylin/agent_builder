@@ -1,9 +1,11 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-10-07. Agent Builder **v0.4.1** is accepted but untagged.
-The author closed **Build** and opened **Review** for v0.5.0. The confirmed
-outcome is in the [Define record](../planning/v0-5-definition.md); the approved
-scope is in the [implementation plan](../planning/v0-5-implementation-plan.md).
+Checkpoint: 2026-10-08. Agent Builder **v0.4.1** is accepted but untagged.
+The author returned v0.5.0 from **Review to Plan** to consider a repository
+cleanup amendment. The original Build candidate is committed but not accepted.
+The confirmed outcome is in the [Define record](../planning/v0-5-definition.md);
+the original Build scope and proposed amendment are in the
+[implementation plan](../planning/v0-5-implementation-plan.md).
 
 ## Recover context
 
@@ -34,10 +36,11 @@ to make the generated-project scaffold check pass.
 
 ## Current project state
 
-`governance/project-state.yaml` records **Review** as the current phase. The
+`governance/project-state.yaml` records **Plan** as the current phase. The
 v0.5.0 candidate is committed locally. The repository tests passed
 on Python 3.12 and 3.14 (79 each); the pinned Spec Kit bundle, rendered files,
-and Ruff 0.16.6 lint and formatting checks passed. Real-use acceptance remains open.
+and Ruff 0.16.6 lint and formatting checks passed. Real-use acceptance remains
+open. Review was interrupted to scope the cleanup; no cleanup Build is authorized.
 The v0.4.1 scope is in the [Define record](../planning/v0-4-1-definition.md),
 and its approved fix is in the [implementation plan](../planning/v0-4-1-implementation-plan.md).
 The completed local checks and original Windows CI control are in
@@ -72,7 +75,9 @@ attributes; the actual Windows CI job passed.
 
 ## Next action
 
-Exercise the v0.5.0 candidate in realistic use and collect feedback. The cycle
-changed 34 paths from its recorded Build base, so offer an optional independent
-review once. Do not install or run that reviewer, accept the release, tag, or
-push without separate author direction. v0.4.1 remains accepted and untagged.
+Review the proposed cleanup amendment in the v0.5.0 implementation plan. It
+would remove four completed-test files from the active tree with Git-history
+retrieval, repair references, and compact the machine handoff. The reviewer
+suggested Python refactors are deferred because they do not materially shrink
+this repository. Do not remove files, return to Build, accept v0.5.0, tag, or
+push without separate author direction.

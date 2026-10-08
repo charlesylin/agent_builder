@@ -81,9 +81,10 @@ How to change principles, the skill, templates, or cut a release:
 
 ## Status
 
-**v0.5.0 is in Review, not yet accepted or tagged.** It aims for smaller,
-behavior-tested cycles and an optional independent-review offer for very large
-changes. v0.4.1 is the latest accepted patch; see the [resume record](docs/RESUME.md)
+**v0.5.0 has returned to Plan for a cleanup amendment; it is not yet accepted
+or tagged.** It aims for smaller, behavior-tested cycles and an optional
+independent-review offer for very large changes. v0.4.1 is the latest accepted
+patch; see the [resume record](docs/RESUME.md)
 for its evidence and the history of earlier releases.
 
 This repository is developed under its own phases; see
