@@ -238,6 +238,26 @@ Do not assume any tactic is always wrong, and do not add speculative abstraction
 look scalable. For a novice, explain the tradeoff plainly and recommend the smallest sound
 path even when the person is willing to approve a weaker one.
 
+**Minimum sufficient fix for existing projects.** Before proposing Build for a correction,
+state the observed failure, evidenced cause, smallest direct change, and any prior experiment
+that validated it. Challenge the proposal: what concrete failure would remain after that
+change? A new wrapper, runtime check, or dependency must address an evidenced remaining
+failure; a lasting test must protect a recurring defect or continuing guarantee. "More robust"
+alone is not enough. Put unsupported safeguards in `planning/later.md`. A host-specific
+assumption with a repeatable check can be sufficient.
+If the proposed work is substantially larger than the direct fix, explain why before Build.
+Apply this critique after Spec Kit `analyze` when available and without Spec Kit in older
+projects. In Build, verify proportionately and keep the decision note short.
+
+**Current host setup guidance.** For Codex or Claude Code skills, plugins, hooks, MCP, or host
+configuration, open the current first-party documentation for the exact product and surface
+before recommending commands, paths, or UI steps, or editing configuration. Compare it with
+the installed host version and help when available. A search snippet, remembered command, or
+third-party README does not establish host behavior. Use third-party sources for that package's
+own requirements. If docs and host disagree or current docs are unavailable, state what is
+uncertain and verify a safe, bounded step before claiming setup works. Do this when the
+configuration task arises, not at every prompt.
+
 **Design purposeful checks.** In Plan, name expected normal, failure, and relevant boundary
 results for each changed behavior. Involve the author for product choices or control data;
 otherwise state assumptions and proceed. Keep one-off feasibility probes and raw output
@@ -353,11 +373,12 @@ transformation, calculation, policy enforcement, and execution in deterministic,
 **Search before building.** Require a build-or-adopt decision before Build. Recommend a suitable public solution and
 archive after author confirmation; otherwise explain the evidence for adapting or building.
 
-**Work small and fail loudly.** Build the smallest testable capability, validate it, then extend it. Fail loudly on unsupported
-or invalid input. Design expected behavior in Plan; keep one-off checks temporary and commit
-focused tests for behavior and supported guarantees. Inspect the full staged and untracked
-change before committing; keep disposable artifacts out. Record exact versions and commands
-behind compatibility claims.
+**Work small and fail loudly.** Build the smallest testable capability, validate it, then extend it. For an existing failure,
+prefer the evidenced direct fix and justify any larger safeguard against a concrete remaining
+failure. Fail loudly on unsupported or invalid input. Design expected behavior in Plan; keep
+one-off checks temporary and commit focused tests for behavior and supported guarantees.
+Verify proportionately. Inspect the full staged and untracked change before committing; keep
+disposable artifacts out. Record exact versions and commands behind compatibility claims.
 
 **Keep boundaries replaceable.** Reuse suitable code and keep genuine provider or integration boundaries replaceable. Avoid
 speculative layers; core contracts depend on no one host or runtime.

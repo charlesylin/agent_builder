@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "handoff_id": "agent-builder-v0-5-build-amendments-2026-10-08",
-  "created_at": "2026-10-08T17:14:34Z",
+  "created_at": "2026-10-08T17:40:53Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.4.1 is accepted but untagged. v0.5.0 is in Build for approved minimum-sufficient-fix and current first-party host-documentation guidance amendments. Real-use acceptance remains open; v0.5.0 is not accepted or tagged. The full decision history is in governance/decisions.yaml.",
+  "summary": "Agent Builder v0.4.1 is accepted but untagged. The two v0.5.0 guidance amendments are implemented in Build and await an explicit Review transition. Real-use acceptance remains open; v0.5.0 is not accepted or tagged. The full decision history is in governance/decisions.yaml.",
   "decisions": [
     {
       "id": "AB-D070",
@@ -77,5 +77,5 @@
   ],
   "blockers": [],
   "questions": [],
-  "next_action": "Implement the two approved Plan amendments, verify generated copies and focused behavior, then commit and push. Do not accept or tag v0.5.0."
+  "next_action": "Commit and push the implemented amendments, then await author direction to close Build and enter Review. Do not accept or tag v0.5.0."
 }

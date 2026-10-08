@@ -96,8 +96,18 @@ In Plan, establish the expected normal result, failure response, and relevant bo
 each changed behavior. Ask the author when an expectation changes the product or needs control
 data; otherwise state a reasonable assumption. Run one-off feasibility checks in a temporary
 location and keep their scripts and raw output out of Git. Record a concise finding and exact
-version and command when a check supports a decision. If it reproduces a defect or establishes
-a supported compatibility promise, retain a focused regression test in Build.
+version and command when a check supports a decision. Retain a focused regression test in
+Build when it protects a recurring defect or a supported compatibility promise; a one-off
+configuration fix may be sufficiently checked without adding a test.
+
+For a correction to an existing project, state the observed failure, its evidenced cause,
+the smallest direct fix, and whether an earlier experiment already validated that fix.
+Before proposing a larger Build, name the concrete failure that would remain after the direct
+fix. Add a wrapper, runtime check, or dependency only when it addresses an evidenced
+remaining failure; "more robust" alone is not a reason. Defer unsupported safeguards to
+`planning/later.md`. A documented host-specific assumption and repeatable check may suffice
+without a generalized discovery layer. If proposed work is substantially larger than the
+direct fix, justify that difference before Build, including after any Spec Kit analysis.
 
 In Build, add focused unit tests for changed logic and persistent contract or integration tests
 for supported dependency, host, environment, or external-boundary guarantees. Run the relevant
@@ -105,6 +115,9 @@ tests and say what each verifies and what remains untested. Label lint, compilat
 and scaffold checks by their actual purpose; they do not prove product behavior. If test code
 exceeds first-party source code, review it for duplication and obsolete setup, but do not cut
 valuable boundary tests or inflate implementation to meet a line ratio.
+Scale verification and the decision note to the change: inspect the resolved configuration
+and run relevant existing tests for a configuration-only fix; do not default to new application
+checks, image rebuilds, or the full suite without a demonstrated need.
 
 Before each manual commit after seeding, inspect tracked, staged, and untracked changes.
 Stage only the durable source, tests, and concise records needed for this version. Keep

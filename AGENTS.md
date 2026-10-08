@@ -30,11 +30,12 @@ Review. Transition only with explicit project-author approval; never infer one f
 archive after author confirmation; otherwise explain the evidence for adapting or building.
 - **Use reasoning selectively.** Reserve model reasoning for orchestration and judgment. Put repeatable retrieval, validation,
 transformation, calculation, policy enforcement, and execution in deterministic, tested Python.
-- **Work small and fail loudly.** Build the smallest testable capability, validate it, then extend it. Fail loudly on unsupported
-or invalid input. Design expected behavior in Plan; keep one-off checks temporary and commit
-focused tests for behavior and supported guarantees. Inspect the full staged and untracked
-change before committing; keep disposable artifacts out. Record exact versions and commands
-behind compatibility claims.
+- **Work small and fail loudly.** Build the smallest testable capability, validate it, then extend it. For an existing failure,
+prefer the evidenced direct fix and justify any larger safeguard against a concrete remaining
+failure. Fail loudly on unsupported or invalid input. Design expected behavior in Plan; keep
+one-off checks temporary and commit focused tests for behavior and supported guarantees.
+Verify proportionately. Inspect the full staged and untracked change before committing; keep
+disposable artifacts out. Record exact versions and commands behind compatibility claims.
 - **Build only what you need.** Target one usable, SemVer-numbered deliverable per cycle; state what is not in it. Anything else —
 including your own good ideas and every closeout question — goes to `planning/later.md`, not
 into scope, until the author asks for it in their own words. Test proposed work against the

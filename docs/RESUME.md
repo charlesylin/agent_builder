@@ -3,7 +3,8 @@
 Checkpoint: 2026-10-08. Agent Builder **v0.4.1** is accepted but untagged.
 The author returned v0.5.0 from Review to Plan after reporting an
 overbuilt fix in Project Aurora, then approved two guidance amendments and entered
-**Build**. The previous candidate is built but not accepted.
+**Build**. Both amendments are implemented; Review still requires explicit author
+direction. The candidate is not accepted.
 The confirmed outcome is in the [Define record](../planning/v0-5-definition.md);
 the original Build scope and approved amendments are in the
 [implementation plan](../planning/v0-5-implementation-plan.md).
@@ -44,9 +45,17 @@ The machine handoff is compact. New neutral projects have no placeholder tests
 or CI job; skill and agent projects retain continuing contract checks. Test
 guidance now separates expected behavior, temporary feasibility checks, and
 lasting regression tests for supported guarantees.
+The latest Build adds a direct-fix checkpoint for existing projects and a
+current first-party docs check for Codex/Claude Code configuration guidance.
+The install guide's Claude Code `--plugin-dir` hook claim was corrected against
+current Anthropic documentation; a live Claude Code check was unavailable because
+the local CLI reported that it was signed out.
 
-The amended candidate passed 79 repository tests on Python 3.9 and 3.14,
-rendered-file and pinned Spec Kit checks, and Ruff 0.16.6 lint and formatting.
+The earlier amended candidate passed 79 repository tests on Python 3.9 and 3.14.
+This Build reran all 79 on Python 3.14; rendered-file and pinned Spec Kit checks,
+Ruff 0.16.6 lint and formatting, and Claude plugin validation passed. An ephemeral,
+read-only Codex prompt using the updated skill recommended the one-line Aurora-like
+fix and deferred unsupported machinery.
 These checks establish packaging and deterministic behavior, not real-use
 acceptance. The source repository itself predates `.agent-builder.json`, so
 `check.py .` still reports its documented scaffold/template baseline warnings;
@@ -57,8 +66,7 @@ acceptance records above, especially [v0.4.0](v0-4-acceptance.md) and
 
 ## Next action
 
-Implement the two approved
-[Plan amendments](../planning/v0-5-implementation-plan.md): evidence of a
-remaining failure before adding machinery to a direct fix, and current
-first-party Codex/Claude Code documentation before host-specific setup guidance.
-The author requested a commit and push, but has not accepted or tagged v0.5.0.
+The Build is ready for the author to close it and enter Review. In Review, try
+the direct-fix guidance in a real correction and confirm the host setup guidance
+on an authenticated Claude Code installation if available. The author requested
+a commit and push, but has not accepted or tagged v0.5.0.

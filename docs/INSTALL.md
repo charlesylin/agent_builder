@@ -2,7 +2,8 @@
 
 Agent Builder is a skill. Installing it means getting the folder `skills/agent-builder/` in
 front of a coding agent. Nothing is installed with pip; the two scripts inside need only
-Python 3.9 or newer. Mechanics verified against vendor documentation on 2026-09-13.
+Python 3.9 or newer. Host setup guidance was checked against current first-party
+documentation and installed CLI help on 2026-10-08; a fresh install was not repeated.
 
 Since **v0.4.0**, Agent Builder bundles selected generated assets from pinned Spec Kit
 v1.1.0. Members install Agent Builder once; they do not install or invoke `specify`.
@@ -45,10 +46,9 @@ claude --plugin-dir /path/to/agent_builder
 Loads the plugin for that session only. Nothing to uninstall. Run this from an **empty**
 folder to test starting a project, or from inside a seeded project to test resuming.
 
-**`--plugin-dir` does not load the hook.** Plugin hooks run only when the plugin is installed,
-so this path exercises the skill and the scripts but never the offer. To test the hook, install
-it (below) and confirm with `/hooks`, which lists every registered hook and the file it came
-from. `claude --debug` shows each hook that matched, its exit code, and its output.
+`--plugin-dir` loads the plugin's hook as well as its skill for that session. To check the
+hook, use `/hooks` and trigger a matching prompt in a new session; `claude --debug` shows
+matching hooks, exit codes, and output. The offer should stay silent on unrelated prompts.
 
 ## Claude Code — install for yourself
 
@@ -66,8 +66,9 @@ GitHub, or from a local checkout while developing:
 ```
 
 Confirm the hook registered with `/hooks`: `UserPromptSubmit` should list one handler pointing
-at `hooks/agent_builder_offer.py`. If it does not appear, the plugin is loaded but not
-installed, and the offer will never fire.
+at `hooks/agent_builder_offer.py`. If it does not appear, check that the plugin is enabled
+and that its `hooks/hooks.json` was loaded; installation is not required for a
+`--plugin-dir` session.
 
 Update later with `/plugin marketplace update agent-builder`. Updates arrive only when
 `version` in `.claude-plugin/plugin.json` changes — so while iterating on the hook, bump the

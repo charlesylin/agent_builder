@@ -4,8 +4,8 @@ All notable changes to Agent Builder are documented here.
 
 ## [0.5.0] - Unreleased candidate (2026-10-07)
 
-The amended Build is complete and Build has reopened for two guidance amendments;
-this version is not accepted or tagged. Agent Builder now distinguishes blocking
+The guidance amendments are implemented in Build and await Review; this version
+is not accepted or tagged. Agent Builder now distinguishes blocking
 questions from issues to defer, checks proposed work against
 the current outcome, and guides smaller commits, behavior-focused unit tests, and
 readable project instructions. Very large cycles prompt one optional independent
@@ -13,6 +13,10 @@ review offer during Review. The Two River reviewer remains a separate, voluntary
 installation. The Build amendment removes historical raw files from the active
 tree, makes test guidance purpose-driven, and stops seeding placeholder tests
 and CI into empty neutral projects. Existing projects are not rewritten.
+For corrections to existing projects, Plan now checks for a direct fix before
+adding wrappers or safeguards; verification stays proportional. Host-specific
+Codex and Claude Code setup guidance now requires current first-party docs.
+The install guide also corrects how session-loaded Claude Code plugins handle hooks.
 
 ## [0.4.1] - 2026-10-07
 
