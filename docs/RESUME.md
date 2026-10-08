@@ -3,8 +3,8 @@
 Checkpoint: 2026-10-08. Agent Builder **v0.4.1** is accepted but untagged.
 The author returned v0.5.0 from Review to Plan after reporting an
 overbuilt fix in Project Aurora, then approved two guidance amendments and entered
-**Build**. Both amendments are implemented; Review still requires explicit author
-direction. The candidate is not accepted.
+**Build**. Both amendments are implemented, and the author has now opened
+**Review**. The candidate is not accepted.
 The confirmed outcome is in the [Define record](../planning/v0-5-definition.md);
 the original Build scope and approved amendments are in the
 [implementation plan](../planning/v0-5-implementation-plan.md).
@@ -38,7 +38,7 @@ to make the generated-project scaffold check pass.
 
 ## Current project state
 
-`governance/project-state.yaml` records **Build**. The earlier v0.5.0 amendments remove
+`governance/project-state.yaml` records **Review**. The earlier v0.5.0 amendments remove
 four historical files (2,702 lines) from the active tree; their exact contents
 remain in Git history, and the two transcript links now give retrieval commands.
 The machine handoff is compact. New neutral projects have no placeholder tests
@@ -66,7 +66,6 @@ acceptance records above, especially [v0.4.0](v0-4-acceptance.md) and
 
 ## Next action
 
-The Build is ready for the author to close it and enter Review. In Review, try
-the direct-fix guidance in a real correction and confirm the host setup guidance
-on an authenticated Claude Code installation if available. The author requested
-a commit and push, but has not accepted or tagged v0.5.0.
+Try the direct-fix guidance in a real correction and confirm the host setup guidance
+on an authenticated Claude Code installation if available. Record results and limits
+before the author decides whether to accept v0.5.0. No tag has been requested.

@@ -8,8 +8,8 @@ project:
   status: active
 
 phase:
-  current: build
-  status: build_ready_for_review
+  current: review
+  status: review_in_progress
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-10-08
   transition_requires: explicit_user_invocation_or_confirmation
@@ -269,6 +269,13 @@ phase:
         Plan amendments, closed Plan, and entered Build. The Plan exit check found
         nothing unresolved. Commit and push are authorized; Review acceptance and
         a version tag are not implied.
+    - phase: review
+      date: 2026-10-08
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        The author explicitly closed Build and entered Review for the committed v0.5.0
+        candidate. The Build exit check found nothing unresolved. Real-use acceptance
+        remains open; this transition does not accept or tag v0.5.0.
 
 release:
   target: 0.4.1
@@ -320,7 +327,7 @@ release:
 
 next_release:
   target: 0.5.0
-  version_status: built_pending_review
+  version_status: in_review
   version_scheme: semantic_versioning_2_0_0
   version_decision: AB-D071
   purpose_status: confirmed
@@ -334,11 +341,12 @@ next_release:
 
 checkpoint:
   date: 2026-10-08
-  status: build_amendments_implemented_pending_review
+  status: real_use_review_open
   phase_changed: true
   build_base_commit: 9579fab6c02aac09cb3bf6db77cda302e6216634
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Commit and push the implemented amendments. The author may then explicitly
-    close Build and enter Review. Keep v0.5.0 unaccepted and untagged.
+    Test the v0.5.0 guidance in real work, including a direct-fix correction
+    and host setup on an authenticated Claude Code installation when available.
+    Record observed results and limits before an acceptance decision.

@@ -4,7 +4,7 @@ All notable changes to Agent Builder are documented here.
 
 ## [0.5.0] - Unreleased candidate (2026-10-07)
 
-The guidance amendments are implemented in Build and await Review; this version
+The guidance amendments are implemented and v0.5.0 is in Review; this version
 is not accepted or tagged. Agent Builder now distinguishes blocking
 questions from issues to defer, checks proposed work against
 the current outcome, and guides smaller commits, behavior-focused unit tests, and

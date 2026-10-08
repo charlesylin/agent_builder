@@ -1261,3 +1261,19 @@ decisions:
       v0.5.0 deliverable.
     provenance: explicit_author_phase_transition_and_push_request
     record: planning/v0-5-implementation-plan.md
+  - id: AB-D081
+    status: confirmed
+    date: 2026-10-08
+    confirmed_date: 2026-10-08
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said: "commit and push and move to review".'
+    decision: >-
+      Close v0.5.0 Build and enter Review for real-use evaluation of the
+      committed candidate. Commit and push the phase transition without
+      accepting or tagging the release.
+    rationale: >-
+      The Build exit check found nothing unresolved. The earlier Build commit
+      is already on origin/main with a clean working tree. Review still needs
+      observed behavior and an explicit acceptance decision.
+    provenance: explicit_author_phase_transition_and_push_request
+    record: planning/v0-5-implementation-plan.md
