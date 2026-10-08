@@ -197,7 +197,7 @@ unit cases for changed behavior, and a regression check for any *promised*
 compatibility. Do not create a compatibility claim merely to pass this check;
 report actual coverage and remaining risk, not a count of green checks.
 
-## Proposed minimum-sufficient-fix amendment — 2026-10-08
+## Approved minimum-sufficient-fix amendment — 2026-10-08
 
 The Project Aurora report in the [Define record](v0-5-definition.md) exposes a
 gap in the existing “work small” rule: a plan can be correct in isolation yet
@@ -228,9 +228,9 @@ alone; use the existing render-drift test and a transient Aurora-like prompt
 to check whether the guidance chooses the direct fix and defers unsupported
 safeguards. In Review, report the observed response and its limits, not just
 a green file check.
-Build requires separate author approval.
+The author authorized Build on 2026-10-08.
 
-## Proposed current-host-documentation amendment — 2026-10-08
+## Approved current-host-documentation amendment — 2026-10-08
 
 For Codex or Claude Code skills, plugins, hooks, MCP, and host configuration,
 check the relevant **current first-party documentation** before recommending
@@ -255,4 +255,4 @@ distinguishes portable and compatibility formats, while [Claude Code's plugin
 guide](https://code.claude.com/docs/en/plugins) distinguishes Claude Code
 from other Claude surfaces and points to host-specific installation guidance.
 These links are examples of first-party sources to recheck at execution time,
-not permanently pinned commands. Build requires separate author approval.
+not permanently pinned commands. The author authorized Build on 2026-10-08.

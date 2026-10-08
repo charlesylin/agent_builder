@@ -1244,3 +1244,20 @@ decisions:
       instructions still require Build authorization.
     provenance: explicit_author_plan_addition
     record: planning/v0-5-implementation-plan.md
+  - id: AB-D080
+    status: confirmed
+    date: 2026-10-08
+    confirmed_date: 2026-10-08
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said: "finish plan, build and then commit/push".'
+    decision: >-
+      Close the v0.5.0 Plan and enter Build for the minimum-sufficient-fix and
+      current-host-documentation amendments. Commit and push the completed work;
+      do not infer Review acceptance or a release tag.
+    rationale: >-
+      The author explicitly approved implementing the two Plan amendments and
+      publishing the resulting repository commits. The Plan exit check found
+      nothing unresolved. The targeted guidance changes do not expand the
+      v0.5.0 deliverable.
+    provenance: explicit_author_phase_transition_and_push_request
+    record: planning/v0-5-implementation-plan.md

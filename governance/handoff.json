@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-v0-5-plan-amendments-2026-10-08",
+  "handoff_id": "agent-builder-v0-5-build-amendments-2026-10-08",
   "created_at": "2026-10-08T17:14:34Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.4.1 is accepted but untagged. v0.5.0 is in Plan with proposed minimum-sufficient-fix and current first-party host-documentation guidance amendments. Neither is implemented. Real-use acceptance remains open; v0.5.0 is not accepted or tagged. The full decision history is in governance/decisions.yaml.",
+  "summary": "Agent Builder v0.4.1 is accepted but untagged. v0.5.0 is in Build for approved minimum-sufficient-fix and current first-party host-documentation guidance amendments. Real-use acceptance remains open; v0.5.0 is not accepted or tagged. The full decision history is in governance/decisions.yaml.",
   "decisions": [
     {
       "id": "AB-D070",
@@ -46,6 +46,11 @@
       "id": "AB-D079",
       "status": "confirmed",
       "summary": "Require current first-party Codex or Claude Code documentation for host-specific setup guidance, with local host verification when possible."
+    },
+    {
+      "id": "AB-D080",
+      "status": "confirmed",
+      "summary": "Close Plan and enter Build for the two approved guidance amendments; commit and push, without implying acceptance or a tag."
     }
   ],
   "artifacts": [
@@ -72,5 +77,5 @@
   ],
   "blockers": [],
   "questions": [],
-  "next_action": "Ask the author to approve or correct both proposed Plan amendments in planning/v0-5-implementation-plan.md. Do not implement, enter Build, push, accept, or tag v0.5.0 without separate direction."
+  "next_action": "Implement the two approved Plan amendments, verify generated copies and focused behavior, then commit and push. Do not accept or tag v0.5.0."
 }

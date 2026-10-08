@@ -8,8 +8,8 @@ project:
   status: active
 
 phase:
-  current: plan
-  status: plan_in_progress
+  current: build
+  status: build_in_progress
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-10-08
   transition_requires: explicit_user_invocation_or_confirmation
@@ -261,6 +261,14 @@ phase:
         The author explicitly returned v0.5.0 to Plan for a minimum-sufficient-fix
         amendment after reporting the Project Aurora overbuild. Review exit
         found nothing unresolved. v0.5.0 remains unaccepted and untagged.
+    - phase: build
+      date: 2026-10-08
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        The author approved the minimum-sufficient-fix and current-host-documentation
+        Plan amendments, closed Plan, and entered Build. The Plan exit check found
+        nothing unresolved. Commit and push are authorized; Review acceptance and
+        a version tag are not implied.
 
 release:
   target: 0.4.1
@@ -312,7 +320,7 @@ release:
 
 next_release:
   target: 0.5.0
-  version_status: in_plan
+  version_status: in_build
   version_scheme: semantic_versioning_2_0_0
   version_decision: AB-D071
   purpose_status: confirmed
@@ -326,13 +334,11 @@ next_release:
 
 checkpoint:
   date: 2026-10-08
-  status: plan_amendment_ready_for_author_review
+  status: build_amendments_in_progress
   phase_changed: true
   build_base_commit: 9579fab6c02aac09cb3bf6db77cda302e6216634
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Ask the author to approve or correct the minimum-sufficient-fix and
-    current-host-documentation amendments in planning/v0-5-implementation-plan.md.
-    Do not implement them, re-enter Build, accept or tag v0.5.0, or push
-    without separate direction.
+    Implement the two approved Plan amendments, verify the focused behavior and
+    generated copies, then commit and push. Keep v0.5.0 unaccepted and untagged.
