@@ -5,8 +5,9 @@ Three runs: run 1 against B5b, run 2 against B6, run 3 (the `skill` kind) agains
 **Tester:** Charles Yang Lin
 **Build state:** B5b (`bd44074`), plugin version `0.2.0-dev`
 **Host:** Claude Code, `claude --plugin-dir ~/Dropbox/codex/project_agent_builder`
-**Transcript:** `docs/evidence/2026-09-14-skill-test-transcript.md` (verbatim; the `SKILL.md`
-text embedded in it is the 2026-09-14 rendering and will drift from `principles/`)
+**Transcript:** retained in Git history. Retrieve the verbatim record with
+`git show db98f06f554cc04dbb435dfe5c83afc3a274e39e:docs/evidence/2026-09-14-skill-test-transcript.md`.
+Its embedded `SKILL.md` is the 2026-09-14 rendering and will drift from `principles/`.
 
 Two sessions. Session 1 started in an empty directory and ran the Define conversation through
 to a seeded project. Session 2 started fresh in the seeded project with the plugin loaded and
@@ -127,8 +128,9 @@ Recorded as AB-D030, which supersedes AB-D024's thin-adapter clause. AB-D024's v
 
 # Run 2 — against B6 (`fa89eed`)
 
-**Transcript:** `docs/evidence/2026-09-14-skill-test-run2-transcript.md`. Fresh folder
-(`~/tmp/skill-test-2`), same two sessions, same opening prompt.
+**Transcript:** retained in Git history; retrieve it with
+`git show 7cc90d702c48eb4ae3482ea1e6b845608cea38f3:docs/evidence/2026-09-14-skill-test-run2-transcript.md`.
+This used a fresh folder (`~/tmp/skill-test-2`), the same two sessions, and the same opening prompt.
 
 ## Session 1 — start: pass, and the §1 revision behaved as written
 
