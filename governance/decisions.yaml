@@ -1210,3 +1210,20 @@ decisions:
       one optional independent-review offer during Review, not an automatic run.
     provenance: explicit_author_phase_transition_and_push_request
     record: planning/v0-5-implementation-plan.md
+  - id: AB-D078
+    status: confirmed
+    date: 2026-10-08
+    confirmed_date: 2026-10-08
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said: "return to plan to amend this".'
+    decision: >-
+      Return v0.5.0 from Review to Plan to amend the guidance for minimum
+      sufficient fixes to existing projects. Do not implement the amendment
+      until the author approves the Plan and enters Build.
+    rationale: >-
+      The author reported that Project Aurora's already-validated Compose
+      identity fix grew into unsupported wrappers, checks, tests, and notes.
+      The Review exit check found nothing unresolved. The report informs a
+      narrow Plan amendment, not v0.5.0 acceptance or a verified candidate test.
+    provenance: explicit_author_phase_transition
+    record: planning/v0-5-definition.md

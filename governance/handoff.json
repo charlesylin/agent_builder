@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-v0-5-review-2026-10-08",
-  "created_at": "2026-10-08T15:15:58Z",
+  "handoff_id": "agent-builder-v0-5-minimum-fix-plan-2026-10-08",
+  "created_at": "2026-10-08T17:04:41Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.4.1 is accepted but untagged. The author closed the amended v0.5.0 Build and opened Review. The candidate passed 79 tests on Python 3.9 and 3.14, render, pinned bundle, and Ruff checks. Real-use acceptance is open; v0.5.0 is not accepted or tagged. The full decision history is in governance/decisions.yaml.",
+  "summary": "Agent Builder v0.4.1 is accepted but untagged. The author returned v0.5.0 from Review to Plan after reporting an overbuilt Project Aurora fix. A narrow minimum-sufficient-fix guidance amendment is proposed, not implemented. Real-use acceptance remains open; v0.5.0 is not accepted or tagged. The full decision history is in governance/decisions.yaml.",
   "decisions": [
     {
       "id": "AB-D070",
@@ -36,6 +36,11 @@
       "id": "AB-D077",
       "status": "confirmed",
       "summary": "Close the amended Build, open Review, commit the phase records, and push main without accepting or tagging v0.5.0."
+    },
+    {
+      "id": "AB-D078",
+      "status": "confirmed",
+      "summary": "Return v0.5.0 to Plan for a minimum-sufficient-fix amendment; Build still needs approval."
     }
   ],
   "artifacts": [
@@ -62,5 +67,5 @@
   ],
   "blockers": [],
   "questions": [],
-  "next_action": "Assess the amended candidate on a real project using the three Review scenarios. Offer one optional independent review of this 47-path cycle; do not run it automatically. Acceptance and tagging remain separate decisions."
+  "next_action": "Ask the author to approve or correct the proposed minimum-sufficient-fix amendment in planning/v0-5-implementation-plan.md. Do not implement, enter Build, push, accept, or tag v0.5.0 without separate direction."
 }

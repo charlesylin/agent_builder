@@ -1,10 +1,10 @@
 # Agent Builder v0.5.0 — implementation plan
 
 **Status:** The original plan and both approved amendments were built. The
-author closed the amended Build and opened Review on 2026-10-08. The
-[Define record](v0-5-definition.md) sets the outcome; the
-[reuse evaluation](v0-5-solution-evaluation.md) supports adapting
-the existing Agent Builder instructions and templates.
+author returned from Review to Plan on 2026-10-08 for the proposed
+minimum-sufficient-fix amendment below. The [Define record](v0-5-definition.md)
+sets the outcome; the [reuse evaluation](v0-5-solution-evaluation.md) supports
+adapting the existing Agent Builder instructions and templates.
 
 ## Operating behavior to implement
 
@@ -196,3 +196,36 @@ In Review, inspect a real project cycle for disposable probes absent from Git,
 unit cases for changed behavior, and a regression check for any *promised*
 compatibility. Do not create a compatibility claim merely to pass this check;
 report actual coverage and remaining risk, not a count of green checks.
+
+## Proposed minimum-sufficient-fix amendment — 2026-10-08
+
+The Project Aurora report in the [Define record](v0-5-definition.md) exposes a
+gap in the existing “work small” rule: a plan can be correct in isolation yet
+far larger than an evidenced direct fix. This amendment adapts Agent Builder's
+current guidance; it needs no new dependency, validator, template, or form.
+
+Before proposing Build for a correction to an existing project, state the
+observed failure, evidenced cause, smallest direct change, and whether an
+earlier experiment already validated it. Ask what concrete failure would
+remain after that change. An added wrapper, runtime check, dependency, or
+persistent test must address that remaining failure; “more robust” by itself
+is insufficient. If none is evidenced, defer the extra work. Document a
+host-specific assumption and repeatable check when those suffice instead of
+automating host discovery. If the proposed implementation is substantially
+larger than the direct fix, explain why before Build.
+
+In Build, verify the changed behavior proportionately. A configuration-only
+identity edit may need the resolved Compose configuration and relevant existing
+tests, not new application code, image rebuilds, or a full suite by default.
+Retain focused regression tests when a demonstrated defect or continuing
+compatibility promise needs one. Keep the decision and verification note short.
+
+Implement this only in `principles/06-work-small-fail-loudly.md` and the Plan
+guidance of `scripts/stencils/skills/agent-builder/SKILL.md`, then regenerate
+their existing outputs. Apply the rule after Spec Kit analysis when present
+and in older projects without Spec Kit. Add no new committed test for prose
+alone; use the existing render-drift test and a transient Aurora-like prompt
+to check whether the guidance chooses the direct fix and defers unsupported
+safeguards. In Review, report the observed response and its limits, not just
+a green file check.
+Build requires separate author approval.

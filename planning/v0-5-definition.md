@@ -1,8 +1,8 @@
 # v0.5.0 Define: lean, faster, behavior-tested cycles
 
-Status: Define closed by the author on 2026-10-07; Review is open. Target:
-v0.5.0. This record owns the agreed outcome and Review evidence, not the
-implementation method.
+Status: Define closed by the author on 2026-10-07; Plan reopened for an
+amendment on 2026-10-08. Target: v0.5.0. This record owns the agreed outcome
+and Review evidence, not the implementation method.
 
 ## Problem and value
 

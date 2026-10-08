@@ -1,8 +1,9 @@
 # Resume Agent Builder
 
 Checkpoint: 2026-10-08. Agent Builder **v0.4.1** is accepted but untagged.
-The author closed the amended **Build** and opened **Review** for v0.5.0.
-The candidate is built but not accepted.
+The author returned v0.5.0 from Review to **Plan** after reporting an
+overbuilt fix in Project Aurora. The previous candidate is built but not accepted;
+the new guidance amendment is proposed, not implemented.
 The confirmed outcome is in the [Define record](../planning/v0-5-definition.md);
 the original Build scope and approved amendments are in the
 [implementation plan](../planning/v0-5-implementation-plan.md).
@@ -36,7 +37,7 @@ to make the generated-project scaffold check pass.
 
 ## Current project state
 
-`governance/project-state.yaml` records **Review**. The v0.5.0 amendments remove
+`governance/project-state.yaml` records **Plan**. The earlier v0.5.0 amendments remove
 four historical files (2,702 lines) from the active tree; their exact contents
 remain in Git history, and the two transcript links now give retrieval commands.
 The machine handoff is compact. New neutral projects have no placeholder tests
@@ -56,8 +57,8 @@ acceptance records above, especially [v0.4.0](v0-4-acceptance.md) and
 
 ## Next action
 
-Test the changed guidance on a real project using the three scenarios in the
-[Define record](../planning/v0-5-definition.md); do not treat repository checks
-as acceptance. This 47-path cycle qualifies for one optional independent-review
-offer, not an automatic run. The author requested a commit and push of the
-Review transition. Do not tag or accept v0.5.0 without separate direction.
+Ask the author to approve or correct the narrow
+[minimum-sufficient-fix amendment](../planning/v0-5-implementation-plan.md).
+It would require evidence of a remaining failure before adding machinery to an
+already-validated direct fix, and scale verification to the change. Do not
+implement it, enter Build, push, tag, or accept v0.5.0 without separate direction.

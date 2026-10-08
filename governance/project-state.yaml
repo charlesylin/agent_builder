@@ -8,8 +8,8 @@ project:
   status: active
 
 phase:
-  current: review
-  status: review_in_progress
+  current: plan
+  status: plan_in_progress
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-10-08
   transition_requires: explicit_user_invocation_or_confirmation
@@ -254,6 +254,13 @@ phase:
         Review, and requested a commit and push. The Build exit check found
         nothing unresolved. Local checks passed; real-use acceptance remains
         open. No version tag or release acceptance is implied.
+    - phase: plan
+      date: 2026-10-08
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        The author explicitly returned v0.5.0 to Plan for a minimum-sufficient-fix
+        amendment after reporting the Project Aurora overbuild. Review exit
+        found nothing unresolved. v0.5.0 remains unaccepted and untagged.
 
 release:
   target: 0.4.1
@@ -305,7 +312,7 @@ release:
 
 next_release:
   target: 0.5.0
-  version_status: in_review
+  version_status: in_plan
   version_scheme: semantic_versioning_2_0_0
   version_decision: AB-D071
   purpose_status: confirmed
@@ -319,12 +326,12 @@ next_release:
 
 checkpoint:
   date: 2026-10-08
-  status: review_open
+  status: plan_amendment_ready_for_author_review
   phase_changed: true
   build_base_commit: 9579fab6c02aac09cb3bf6db77cda302e6216634
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Assess the amended candidate on a real project using the scenarios in
-    planning/v0-5-definition.md. Offer one optional independent review for this
-    47-path cycle. Do not accept or tag v0.5.0 without separate author direction.
+    Ask the author to approve or correct the narrow minimum-sufficient-fix
+    amendment in planning/v0-5-implementation-plan.md. Do not implement it,
+    re-enter Build, accept or tag v0.5.0, or push without separate direction.

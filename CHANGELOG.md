@@ -4,9 +4,9 @@ All notable changes to Agent Builder are documented here.
 
 ## [0.5.0] - Unreleased candidate (2026-10-07)
 
-The amended Build is complete and Review is open; this version is not accepted
-or tagged. Agent Builder now distinguishes blocking questions from issues to
-defer, checks proposed work against
+The amended Build is complete and Plan has reopened for a further amendment;
+this version is not accepted or tagged. Agent Builder now distinguishes blocking
+questions from issues to defer, checks proposed work against
 the current outcome, and guides smaller commits, behavior-focused unit tests, and
 readable project instructions. Very large cycles prompt one optional independent
 review offer during Review. The Two River reviewer remains a separate, voluntary
