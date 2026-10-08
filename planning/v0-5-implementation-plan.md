@@ -1,9 +1,10 @@
 # Agent Builder v0.5.0 — proposed implementation plan
 
 **Status:** The original plan was approved and built. The author returned from
-Review to Plan on 2026-10-08 for the proposed cleanup amendment below; it is
-not yet approved for Build. The [Define record](v0-5-definition.md) sets the
-outcome; the [reuse evaluation](v0-5-solution-evaluation.md) supports adapting
+Review to Plan on 2026-10-08 for the proposed cleanup and test-design
+amendments below; neither is approved for Build. The
+[Define record](v0-5-definition.md) sets the outcome; the
+[reuse evaluation](v0-5-solution-evaluation.md) supports adapting
 the existing Agent Builder instructions and templates.
 
 ## Operating behavior to implement
@@ -157,3 +158,38 @@ annotating one CLI parameter. Those changes may improve maintainability but
 will not materially shrink the repository and would add a second kind of work
 to this cleanup. Keep them visible as later maintenance candidates rather
 than expanding this amendment to refactor behavior-tested code.
+
+## Proposed test-design amendment — 2026-10-08
+
+The author wants fewer performative checks within v0.5.0's existing lean,
+behavior-tested outcome. Distinguish three purposes:
+
+- **Plan:** State inputs and expected normal, failure, and relevant boundary
+  outcomes for each changed behavior. Ask the author about product choices or
+  control data; otherwise state assumptions. Run one-off feasibility probes in
+  a temporary location, not Git. Record only a concise finding and the exact
+  command/version when a probe supports a decision. If it reproduces a defect
+  or establishes a supported compatibility promise, add a focused committed
+  regression test in Build.
+- **Build:** Add focused unit tests for changed logic and persistent
+  integration/contract tests for supported dependency, host, environment, or
+  external-boundary guarantees. State what each protects. Label lint,
+  compilation, packaging, and scaffold checks honestly; do not call them
+  behavior tests or use an undefined "smoke test" label. Audit all three seeded
+  test templates and generated CI: remove redundant seed-time assertions,
+  retain continuing contracts, and do not imply an empty product is tested.
+  Update `principles/06-work-small-fail-loudly.md`, the skill stencil and
+  rendered copies, templates, and targeted repository tests; add no new
+  test-management script or report.
+
+**Size signal, not a cap:** This repository has 1,475 first-party Python test
+lines versus 1,947 Python source lines, excluding vendor and rendered
+copies. If tests exceed code, review duplication, setup, snapshots, and
+obsolete scaffolding, then explain justified exceptions. A hard cap could
+discourage security/boundary tests or encourage inflated code; a freshly
+seeded project may have no product code. Add no ratio gate in v0.5.0.
+
+In Review, inspect a real project cycle for disposable probes absent from Git,
+unit cases for changed behavior, and a regression check for any *promised*
+compatibility. Do not create a compatibility claim merely to pass this check;
+report actual coverage and remaining risk, not a count of green checks.

@@ -75,9 +75,10 @@ attributes; the actual Windows CI job passed.
 
 ## Next action
 
-Review the proposed cleanup amendment in the v0.5.0 implementation plan. It
-would remove four completed-test files from the active tree with Git-history
-retrieval, repair references, and compact the machine handoff. The reviewer
-suggested Python refactors are deferred because they do not materially shrink
-this repository. Do not remove files, return to Build, accept v0.5.0, tag, or
-push without separate author direction.
+Review the proposed cleanup and test-design amendments in the v0.5.0
+implementation plan. They would retire four historical files with Git-history
+retrieval, compact the machine handoff, design useful tests before Build,
+leave one-off probes uncommitted, and trim redundant seeded checks. The plan
+recommends treating a test-to-code ratio above one as a review signal rather
+than a hard cap; the author has not settled that choice. Neither amendment is
+authorized for Build, acceptance, tagging, or pushing.

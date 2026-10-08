@@ -1149,3 +1149,22 @@ decisions:
       smaller and are left for a later code-maintenance change.
     provenance: plan_recommendation_after_author_requested_cleanup
     record: planning/v0-5-implementation-plan.md
+  - id: AB-D075
+    status: proposed
+    date: 2026-10-08
+    decision: >-
+      Add a v0.5.0 test-design rule: define expected behavior during Plan, keep
+      one-off feasibility probes uncommitted, and commit focused unit and
+      compatibility tests only for continuing guarantees. Audit generated
+      scaffold tests and CI for redundant checks. Treat more test lines than
+      first-party code as a review signal, not an absolute cap.
+    rationale: >-
+      The author reports too many performative checks and asks for planned unit
+      tests, transient planning checks, and committed dependency/environment
+      tests. This repository has 1,475 first-party Python test lines versus
+      1,947 Python source lines, but newly seeded projects can have no
+      product code at all. A hard ratio gate could encourage deleting valuable
+      edge-case tests or inflating implementation code; a purpose-based audit
+      targets the reported waste without weakening supported guarantees.
+    provenance: author_requested_plan_addition_with_ratio_recommendation
+    record: planning/v0-5-implementation-plan.md
