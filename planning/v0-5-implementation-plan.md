@@ -1,8 +1,7 @@
 # Agent Builder v0.5.0 — implementation plan
 
-**Status:** The original plan was approved and built. The author returned from
-Review to Plan on 2026-10-08 for the cleanup and test-design amendments below;
-the author approved both and reopened Build on 2026-10-08. The
+**Status:** The original plan and both approved amendments were built. The
+author closed the amended Build and opened Review on 2026-10-08. The
 [Define record](v0-5-definition.md) sets the outcome; the
 [reuse evaluation](v0-5-solution-evaluation.md) supports adapting
 the existing Agent Builder instructions and templates.
