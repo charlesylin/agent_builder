@@ -3,7 +3,7 @@
 Checkpoint: 2026-10-08. Agent Builder **v0.4.1** is accepted but untagged.
 The author returned v0.5.0 from Review to **Plan** after reporting an
 overbuilt fix in Project Aurora. The previous candidate is built but not accepted;
-the new guidance amendment is proposed, not implemented.
+two further guidance amendments are proposed, not implemented.
 The confirmed outcome is in the [Define record](../planning/v0-5-definition.md);
 the original Build scope and approved amendments are in the
 [implementation plan](../planning/v0-5-implementation-plan.md).
@@ -57,8 +57,9 @@ acceptance records above, especially [v0.4.0](v0-4-acceptance.md) and
 
 ## Next action
 
-Ask the author to approve or correct the narrow
-[minimum-sufficient-fix amendment](../planning/v0-5-implementation-plan.md).
-It would require evidence of a remaining failure before adding machinery to an
-already-validated direct fix, and scale verification to the change. Do not
-implement it, enter Build, push, tag, or accept v0.5.0 without separate direction.
+Ask the author to approve or correct the two narrow
+[Plan amendments](../planning/v0-5-implementation-plan.md): evidence of a
+remaining failure before adding machinery to a direct fix, and current
+first-party Codex/Claude Code documentation before host-specific setup guidance.
+Do not implement them, enter Build, push, tag, or accept v0.5.0 without
+separate direction.

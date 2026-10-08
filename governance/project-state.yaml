@@ -332,6 +332,7 @@ checkpoint:
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Ask the author to approve or correct the narrow minimum-sufficient-fix
-    amendment in planning/v0-5-implementation-plan.md. Do not implement it,
-    re-enter Build, accept or tag v0.5.0, or push without separate direction.
+    Ask the author to approve or correct the minimum-sufficient-fix and
+    current-host-documentation amendments in planning/v0-5-implementation-plan.md.
+    Do not implement them, re-enter Build, accept or tag v0.5.0, or push
+    without separate direction.

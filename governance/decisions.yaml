@@ -1227,3 +1227,20 @@ decisions:
       narrow Plan amendment, not v0.5.0 acceptance or a verified candidate test.
     provenance: explicit_author_phase_transition
     record: planning/v0-5-definition.md
+  - id: AB-D079
+    status: confirmed
+    date: 2026-10-08
+    confirmed_date: 2026-10-08
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author asked to add a first-party documentation check for Codex and Claude configuration work to the Plan.'
+    decision: >-
+      Add guidance requiring current first-party Codex or Claude Code documentation
+      before giving or changing host-specific skill, plugin, or configuration
+      instructions; verify against the actual host when possible.
+    rationale: >-
+      Third-party setup instructions and remembered UI paths can become stale.
+      The Plan keeps this as a bounded task-time check rather than a new crawler
+      or dependency. Exact guidance and a targeted audit of existing install
+      instructions still require Build authorization.
+    provenance: explicit_author_plan_addition
+    record: planning/v0-5-implementation-plan.md

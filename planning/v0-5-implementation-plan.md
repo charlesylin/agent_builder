@@ -229,3 +229,30 @@ to check whether the guidance chooses the direct fix and defers unsupported
 safeguards. In Review, report the observed response and its limits, not just
 a green file check.
 Build requires separate author approval.
+
+## Proposed current-host-documentation amendment — 2026-10-08
+
+For Codex or Claude Code skills, plugins, hooks, MCP, and host configuration,
+check the relevant **current first-party documentation** before recommending
+commands, file locations, UI steps, or changing configuration. Open the actual
+page for the user's product and surface; a search snippet, third-party README,
+or remembered command is not authority for host behavior. Compare with the
+installed host's version, help, and visible capabilities when available. If
+they disagree or first-party docs cannot be reached, state the uncertainty and
+verify a safe, bounded step before claiming that setup works. Keep third-party
+sources for their own package-specific requirements, not host installation rules.
+
+This is a per-configuration-task check, not a browser step at every prompt or
+a frozen list of commands. At Build time, add a short rule to the existing
+Agent Builder skill stencil and render its copies; do not add a crawler or new
+dependency. Recheck this repo's `docs/INSTALL.md` and optional reviewer setup
+only where they give Codex/Claude host steps, and correct demonstrated stale
+instructions. Verify the changed instructions against the appropriate live
+host if available; otherwise label the unverified surface plainly.
+
+Plan evidence checked 2026-10-08: [OpenAI's plugin packaging guide](https://developers.openai.com/plugins/build/plugins)
+distinguishes portable and compatibility formats, while [Claude Code's plugin
+guide](https://code.claude.com/docs/en/plugins) distinguishes Claude Code
+from other Claude surfaces and points to host-specific installation guidance.
+These links are examples of first-party sources to recheck at execution time,
+not permanently pinned commands. Build requires separate author approval.
