@@ -1,8 +1,8 @@
-# Agent Builder v0.5.0 — proposed implementation plan
+# Agent Builder v0.5.0 — implementation plan
 
 **Status:** The original plan was approved and built. The author returned from
-Review to Plan on 2026-10-08 for the proposed cleanup and test-design
-amendments below; neither is approved for Build. The
+Review to Plan on 2026-10-08 for the cleanup and test-design amendments below;
+the author approved both and reopened Build on 2026-10-08. The
 [Define record](v0-5-definition.md) sets the outcome; the
 [reuse evaluation](v0-5-solution-evaluation.md) supports adapting
 the existing Agent Builder instructions and templates.
@@ -120,7 +120,7 @@ infer faster cycles from instruction text alone. A missing install or review
 coverage claim is a failure to report, not a reason to silently waive the
 scenario. Do not tag or publish v0.5.0 during Build.
 
-## Proposed cleanup amendment — 2026-10-08
+## Approved cleanup amendment — 2026-10-08
 
 The author asked to make this repository itself leaner after reviewing its size.
 Keep v0.5.0's existing behavior and release target. This amendment concerns
@@ -159,7 +159,7 @@ will not materially shrink the repository and would add a second kind of work
 to this cleanup. Keep them visible as later maintenance candidates rather
 than expanding this amendment to refactor behavior-tested code.
 
-## Proposed test-design amendment — 2026-10-08
+## Approved test-design amendment — 2026-10-08
 
 The author wants fewer performative checks within v0.5.0's existing lean,
 behavior-tested outcome. Distinguish three purposes:

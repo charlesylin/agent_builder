@@ -1132,8 +1132,11 @@ decisions:
     provenance: explicit_author_phase_transition
     record: planning/v0-5-implementation-plan.md
   - id: AB-D074
-    status: proposed
+    status: confirmed
     date: 2026-10-08
+    confirmed_date: 2026-10-08
+    confirmed_by: charles-yang-lin
+    confirmation: 'After both amendments and the ratio recommendation were presented, the author said: "yes, build away".'
     decision: >-
       Amend v0.5.0 Build to remove four completed-test evidence and instruction
       files from the active tree while preserving Git-history retrieval,
@@ -1150,8 +1153,11 @@ decisions:
     provenance: plan_recommendation_after_author_requested_cleanup
     record: planning/v0-5-implementation-plan.md
   - id: AB-D075
-    status: proposed
+    status: confirmed
     date: 2026-10-08
+    confirmed_date: 2026-10-08
+    confirmed_by: charles-yang-lin
+    confirmation: 'After the ratio-as-signal recommendation was presented, the author said: "yes, build away".'
     decision: >-
       Add a v0.5.0 test-design rule: define expected behavior during Plan, keep
       one-off feasibility probes uncommitted, and commit focused unit and
@@ -1167,4 +1173,20 @@ decisions:
       edge-case tests or inflating implementation code; a purpose-based audit
       targets the reported waste without weakening supported guarantees.
     provenance: author_requested_plan_addition_with_ratio_recommendation
+    record: planning/v0-5-implementation-plan.md
+  - id: AB-D076
+    status: confirmed
+    date: 2026-10-08
+    confirmed_date: 2026-10-08
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said: "yes, build away" after the two proposed amendments were presented.'
+    decision: >-
+      Close the reopened v0.5.0 Plan and enter Build for the approved repository
+      cleanup and test-design amendments, keeping v0.5.0 unaccepted and untagged.
+    rationale: >-
+      The author approved the proposed work and the test-to-code ratio as a
+      review signal. The Plan exit check passes after confirming both proposals.
+      The full v0.5.0 cycle base remains recorded; no push or Review acceptance
+      is implied.
+    provenance: explicit_author_phase_transition
     record: planning/v0-5-implementation-plan.md

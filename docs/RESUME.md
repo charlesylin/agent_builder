@@ -1,10 +1,10 @@
 # Resume Agent Builder
 
 Checkpoint: 2026-10-08. Agent Builder **v0.4.1** is accepted but untagged.
-The author returned v0.5.0 from **Review to Plan** to consider a repository
-cleanup amendment. The original Build candidate is committed but not accepted.
+The author approved the cleanup and test-design amendments and reopened
+**Build** for v0.5.0. The original Build candidate is committed but not accepted.
 The confirmed outcome is in the [Define record](../planning/v0-5-definition.md);
-the original Build scope and proposed amendment are in the
+the original Build scope and approved amendments are in the
 [implementation plan](../planning/v0-5-implementation-plan.md).
 
 ## Recover context
@@ -36,11 +36,11 @@ to make the generated-project scaffold check pass.
 
 ## Current project state
 
-`governance/project-state.yaml` records **Plan** as the current phase. The
+`governance/project-state.yaml` records **Build** as the current phase. The
 v0.5.0 candidate is committed locally. The repository tests passed
 on Python 3.12 and 3.14 (79 each); the pinned Spec Kit bundle, rendered files,
 and Ruff 0.16.6 lint and formatting checks passed. Real-use acceptance remains
-open. Review was interrupted to scope the cleanup; no cleanup Build is authorized.
+open. Review was interrupted to scope the amendments; their Build is now authorized.
 The v0.4.1 scope is in the [Define record](../planning/v0-4-1-definition.md),
 and its approved fix is in the [implementation plan](../planning/v0-4-1-implementation-plan.md).
 The completed local checks and original Windows CI control are in
@@ -75,10 +75,9 @@ attributes; the actual Windows CI job passed.
 
 ## Next action
 
-Review the proposed cleanup and test-design amendments in the v0.5.0
-implementation plan. They would retire four historical files with Git-history
-retrieval, compact the machine handoff, design useful tests before Build,
-leave one-off probes uncommitted, and trim redundant seeded checks. The plan
-recommends treating a test-to-code ratio above one as a review signal rather
-than a hard cap; the author has not settled that choice. Neither amendment is
-authorized for Build, acceptance, tagging, or pushing.
+Implement the approved cleanup and test-design amendments in the v0.5.0
+implementation plan: retire four historical files with Git-history retrieval,
+compact the machine handoff, and make tests purposeful rather than performative.
+The author approved using a test-to-code ratio above one as a review signal,
+not a hard cap. Acceptance, Review transition, tagging, and pushing remain
+separate author decisions.

@@ -4,8 +4,8 @@ All notable changes to Agent Builder are documented here.
 
 ## [0.5.0] - Unreleased candidate (2026-10-07)
 
-The original Build is complete, but the project returned to Plan for a proposed
-repository cleanup amendment; this version is not accepted or tagged. Agent Builder now
+The original Build is complete, and Build reopened for approved cleanup and
+test-design amendments; this version is not accepted or tagged. Agent Builder now
 distinguishes blocking questions from issues to defer, checks proposed work against
 the current outcome, and guides smaller commits, behavior-focused unit tests, and
 readable project instructions. Very large cycles prompt one optional independent
