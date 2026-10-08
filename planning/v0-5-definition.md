@@ -1,6 +1,6 @@
 # v0.5.0 Define: lean, faster, behavior-tested cycles
 
-Status: Define closed by the author on 2026-10-07; Plan is open. Target:
+Status: Define closed by the author on 2026-10-07; Review is open. Target:
 v0.5.0. This record owns the agreed outcome and Review evidence, not the
 implementation method.
 
@@ -70,3 +70,20 @@ case and host-specific installation steps belong in Plan.
 
 Keep the exact commands, thresholds below the obvious case, and any tool
 adaptation in Plan. No Build authorization is implied.
+
+## Review feedback: minimum sufficient fix
+
+The author reports that a Project Aurora container used UID 10001 against
+Mac-mini files owned by UID 501, after a one-run UID 501 override had already
+worked. The eventual fix was a `501:20` live Compose service setting and a
+resolved-configuration check. The agent also built a discovery wrapper,
+application-level preflight, tests, and extensive notes; these addressed no
+demonstrated second failure and were removed. This is reported user experience,
+not a verified v0.5.0 test run.
+
+For corrective work, the next Plan amendment should require the observed
+failure, evidenced cause, smallest direct fix, and any prior validating trial.
+Before adding a wrapper, runtime check, dependency, or lasting test, identify
+the concrete failure that would remain after that fix; otherwise defer it.
+Scale verification and documentation to the actual change. A large proposed
+implementation must justify the additional failure it prevents before Build.
