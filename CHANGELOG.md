@@ -10,7 +10,9 @@ distinguishes blocking questions from issues to defer, checks proposed work agai
 the current outcome, and guides smaller commits, behavior-focused unit tests, and
 readable project instructions. Very large cycles prompt one optional independent
 review offer during Review. The Two River reviewer remains a separate, voluntary
-installation. Existing projects are not rewritten.
+installation. The Build amendment removes historical raw files from the active
+tree, makes test guidance purpose-driven, and stops seeding placeholder tests
+and CI into empty neutral projects. Existing projects are not rewritten.
 
 ## [0.4.1] - 2026-10-07
 

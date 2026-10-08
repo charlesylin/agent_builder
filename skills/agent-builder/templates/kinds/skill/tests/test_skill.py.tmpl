@@ -1,4 +1,4 @@
-"""Dependency-free checks for the generated skill contract."""
+"""Continuing checks for the generated skill's packaging contract."""
 
 from __future__ import annotations
 
@@ -23,10 +23,6 @@ class SkillScaffoldTests(unittest.TestCase):
         manifest = json.loads((ROOT / ".claude-plugin/plugin.json").read_text(encoding="utf-8"))
         self.assertEqual(manifest["name"], {{PROJECT_SLUG_JSON}})
         self.assertTrue(manifest["description"])
-
-    def test_new_project_starts_in_define(self) -> None:
-        state = (ROOT / "governance/project-state.yaml").read_text(encoding="utf-8")
-        self.assertIn("  current: define\n", state)
 
 
 if __name__ == "__main__":

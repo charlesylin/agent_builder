@@ -21,17 +21,15 @@ Selected coding-agent adapters: {{ADAPTER_LIST}}.
 
 - `governance/` — phase, lifecycle status, decisions, and operating agreement.
 - `planning/` — definition, open questions, evidence, and later ideas.
-- `tests/` — initial scaffold checks; add unit tests for changed product behavior.
+- No product tests or CI job are seeded before there is product behavior to verify.
 
-## Validate the initial scaffold
+## Validation
 
-```sh
-python3 -m unittest discover -s tests -v
-```
-
-This checks the generated structure, not future product behavior. Once the project
-has an implementation, document how to use and test the current version and its
-important limits here.
+Agent Builder validated the generated structure when it seeded this project.
+In Plan, define expected results for the first version. In Build, add focused
+unit tests for its behavior and persistent checks for any supported dependency
+or environment guarantee, add CI to run those tests, and document their use
+here. State the important limits.
 
 ## License
 

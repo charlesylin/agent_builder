@@ -1,4 +1,4 @@
-"""Dependency-free checks for the generated project contract."""
+"""Continuing check for the agent handoff example and schema."""
 
 from __future__ import annotations
 
@@ -18,16 +18,6 @@ class ScaffoldTests(unittest.TestCase):
             (ROOT / "contracts/examples/agent-handoff.example.json").read_text(encoding="utf-8")
         )
         self.assertEqual(set(schema["required"]) - set(example), set())
-
-    def test_new_project_starts_in_define(self) -> None:
-        state = (ROOT / "governance/project-state.yaml").read_text(encoding="utf-8")
-        self.assertIn("  current: define\n", state)
-
-    def test_runtime_is_not_selected(self) -> None:
-        metadata = json.loads((ROOT / ".agent-builder.json").read_text(encoding="utf-8"))
-        self.assertIsNone(metadata["runtime_profile"])
-        self.assertFalse((ROOT / "Dockerfile").exists())
-        self.assertFalse((ROOT / "compose.yaml").exists())
 
 
 if __name__ == "__main__":

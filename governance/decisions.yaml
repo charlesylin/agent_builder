@@ -1171,7 +1171,11 @@ decisions:
       1,947 Python source lines, but newly seeded projects can have no
       product code at all. A hard ratio gate could encourage deleting valuable
       edge-case tests or inflating implementation code; a purpose-based audit
-      targets the reported waste without weakening supported guarantees.
+      targets the reported waste without weakening supported guarantees. This
+      narrows AB-D022 for an empty neutral project: no CI job is seeded before
+      there is behavior or a compatibility contract to protect. Agent and skill
+      scaffolds retain CI for their continuing contracts.
+    amends: AB-D022
     provenance: author_requested_plan_addition_with_ratio_recommendation
     record: planning/v0-5-implementation-plan.md
   - id: AB-D076

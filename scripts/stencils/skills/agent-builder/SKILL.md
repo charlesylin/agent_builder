@@ -237,12 +237,17 @@ Do not assume any tactic is always wrong, and do not add speculative abstraction
 look scalable. For a novice, explain the tradeoff plainly and recommend the smallest sound
 path even when the person is willing to approve a weaker one.
 
-**Build only behavior you can verify.** For each changed behavior, name the expected normal,
-failure, and relevant boundary results. Involve the author when those expectations are a
-product choice; otherwise state your assumption and proceed. Add focused unit tests with
-the project's runner and report what they actually verify. Existing scaffold tests and
-compilation are useful checks, not substitutes for tests of the new behavior. Keep a human
-README current: what this version does, how to use and test it, and important limits.
+**Design purposeful checks.** In Plan, name expected normal, failure, and relevant boundary
+results for each changed behavior. Involve the author for product choices or control data;
+otherwise state assumptions and proceed. Keep one-off feasibility probes and raw output
+uncommitted; record a concise decision finding with exact versions and commands. In Build,
+add focused unit tests for changed logic and persistent tests only for supported dependency,
+host, environment, or external-boundary guarantees. Say what each check verifies; do not
+present lint, compilation, packaging, or scaffold validation as product behavior tests. If
+test code exceeds first-party source code, inspect for duplication rather than imposing a
+hard cap. An empty neutral project has no seeded test job; when its first Build adds behavior
+or a compatibility promise, add CI to run its durable tests. Keep the human README current:
+what this version does, how to use and test it, and important limits.
 
 **Large changes in Review.** At Build start, record the starting commit ID in the existing
 phase checkpoint. In Review, compare the full cycle to that base with

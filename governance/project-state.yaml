@@ -311,13 +311,12 @@ next_release:
 
 checkpoint:
   date: 2026-10-08
-  status: build_amendments_in_progress
+  status: build_amendments_ready_for_review
   phase_changed: true
   build_base_commit: 9579fab6c02aac09cb3bf6db77cda302e6216634
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Implement the approved cleanup and test-design amendments in
-    planning/v0-5-implementation-plan.md. Preserve Git-history retrieval and
-    continuing test guarantees. Do not accept v0.5.0, enter Review, tag, or
+    Report the local Build evidence and ask the author to close Build and enter
+    Review. Real-use acceptance remains open. Do not accept v0.5.0, tag, or
     push without separate author direction.

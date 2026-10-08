@@ -51,7 +51,7 @@ class ProjectSpecTests(unittest.TestCase):
 
 
 class ScaffoldTests(unittest.TestCase):
-    def test_all_kinds_explain_scaffold_checks_and_keep_review_notes_optional(self) -> None:
+    def test_all_kinds_explain_actual_checks_and_keep_review_notes_optional(self) -> None:
         for kind in ("agent", "skill", "project"):
             with self.subTest(kind=kind), tempfile.TemporaryDirectory() as directory:
                 target = Path(directory) / kind
@@ -62,7 +62,14 @@ class ScaffoldTests(unittest.TestCase):
 
                 self.assertEqual(validate_project(target), ())
                 readme = (target / "README.md").read_text(encoding="utf-8")
-                self.assertIn("## Validate the initial scaffold", readme)
+                if kind == "project":
+                    self.assertIn("No product tests or CI job are seeded", readme)
+                    self.assertIn("add CI to run those tests", readme)
+                    self.assertFalse((target / "tests").exists())
+                    self.assertFalse((target / ".github/workflows/ci.yml").exists())
+                else:
+                    self.assertIn("python3 -m unittest discover -s tests -v", readme)
+                    self.assertTrue((target / ".github/workflows/ci.yml").is_file())
                 self.assertIn("behavior", readme.lower())
                 self.assertIn("important limits", readme)
                 planning = (target / "planning/README.md").read_text(encoding="utf-8")
@@ -77,6 +84,8 @@ class ScaffoldTests(unittest.TestCase):
                     encoding="utf-8"
                 )
                 self.assertIn("expected normal result, failure response", agreement)
+                self.assertIn("one-off feasibility checks", agreement)
+                self.assertIn("If test code\nexceeds", agreement)
                 self.assertIn("Record a\nnonblocking issue once", agreement)
 
     def test_optional_reviewer_is_a_reference_not_a_seeded_dependency(self) -> None:
@@ -206,9 +215,8 @@ class ScaffoldTests(unittest.TestCase):
 
             for relative in ("contracts", "deployment", "src", "SKILL.md", ".claude-plugin"):
                 self.assertFalse((target / relative).exists(), relative)
-            ci = (target / ".github/workflows/ci.yml").read_text(encoding="utf-8")
-            self.assertIn("unittest discover", ci)
-            self.assertNotIn("compileall -q src", ci)
+            self.assertFalse((target / ".github/workflows/ci.yml").exists())
+            self.assertFalse((target / "tests").exists())
             dependabot = (target / ".github/dependabot.yml").read_text(encoding="utf-8")
             self.assertNotIn("package-ecosystem: pip", dependabot)
 
@@ -233,8 +241,8 @@ class ScaffoldTests(unittest.TestCase):
             manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
             self.assertEqual(validate_project(target), ())
 
-    def test_generated_project_runs_its_own_tests(self) -> None:
-        for kind in ("agent", "skill", "project"):
+    def test_seeded_agent_and_skill_contract_checks_run(self) -> None:
+        for kind, count in (("agent", 1), ("skill", 2)):
             with self.subTest(kind=kind), tempfile.TemporaryDirectory() as directory:
                 target = Path(directory) / f"self-test-{kind}"
                 spec = ProjectSpec.create(
@@ -251,7 +259,7 @@ class ScaffoldTests(unittest.TestCase):
                 )
 
                 self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-            self.assertIn("Ran 2 tests" if kind == "project" else "Ran 3 tests", result.stderr)
+            self.assertIn(f"Ran {count} test", result.stderr)
 
     def test_refuses_to_overwrite_an_existing_target(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -595,6 +603,9 @@ class ReviewFeedbackTests(unittest.TestCase):
             skill.index("**First, the problem.**"), skill.index("**Second, the kind.**")
         )
         self.assertIn("planning/later.md", skill)
+        self.assertIn("Keep one-off feasibility probes and raw output\nuncommitted", skill)
+        self.assertIn("test code exceeds first-party source code", skill)
+        self.assertIn("An empty neutral project has no seeded test job", skill)
         self.assertIn("**Approval is typed, never clicked.**", skill)
         self.assertIn("check.py . --leaving <old-phase>", skill)
         with tempfile.TemporaryDirectory() as directory:

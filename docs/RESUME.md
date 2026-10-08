@@ -2,7 +2,7 @@
 
 Checkpoint: 2026-10-08. Agent Builder **v0.4.1** is accepted but untagged.
 The author approved the cleanup and test-design amendments and reopened
-**Build** for v0.5.0. The original Build candidate is committed but not accepted.
+**Build** for v0.5.0. The amendments are implemented locally but not accepted.
 The confirmed outcome is in the [Define record](../planning/v0-5-definition.md);
 the original Build scope and approved amendments are in the
 [implementation plan](../planning/v0-5-implementation-plan.md).
@@ -36,48 +36,26 @@ to make the generated-project scaffold check pass.
 
 ## Current project state
 
-`governance/project-state.yaml` records **Build** as the current phase. The
-v0.5.0 candidate is committed locally. The repository tests passed
-on Python 3.12 and 3.14 (79 each); the pinned Spec Kit bundle, rendered files,
-and Ruff 0.16.6 lint and formatting checks passed. Real-use acceptance remains
-open. Review was interrupted to scope the amendments; their Build is now authorized.
-The v0.4.1 scope is in the [Define record](../planning/v0-4-1-definition.md),
-and its approved fix is in the [implementation plan](../planning/v0-4-1-implementation-plan.md).
-The completed local checks and original Windows CI control are in
-[Build verification](v0-4-1-build-verification.md).
-The actual Windows, Ubuntu, and lint CI result and acceptance limit are in
-[Review evidence](v0-4-1-review.md). The next cycle's outcome and Review
-evidence are confirmed in the v0.5.0 Define record. The approved Plan uses
-Git's own inventory, existing test runners, and optional independent review.
-The v0.4.0 purpose and limits are in
-the [Define record](../planning/v0-4-definition.md), approved design in the
-[implementation plan](../planning/v0-4-implementation-plan.md), and completed Build
-checks in [Build verification](v0-4-build-verification.md).
+`governance/project-state.yaml` records **Build**. The v0.5.0 amendments remove
+four historical files (2,702 lines) from the active tree; their exact contents
+remain in Git history, and the two transcript links now give retrieval commands.
+The machine handoff is compact. New neutral projects have no placeholder tests
+or CI job; skill and agent projects retain continuing contract checks. Test
+guidance now separates expected behavior, temporary feasibility checks, and
+lasting regression tests for supported guarantees.
 
-Erico's real Codex skill project reported sourced research, an adapt recommendation,
-one feature specification, plan, tasks, and a consistency analysis. The supplied
-execution record says Agent Builder read bundled Spec Kit instructions; no separate
-member CLI was installed. It is an agent-authored account with supporting artifacts,
-not a full transcript. A later packaging correction changed the bundled instruction
-filenames, leaving their contents unchanged; a fresh Codex inventory showed only
-Agent Builder as a skill. The repository checks passed, but a live project session
-was not rerun after that rename.
-
-The adopt-and-archive case, planted contradiction, full real-use host/kind matrix,
-and measured v0.3 comparison were not completed before release. They are evidence
-limits, not passed tests. The author explicitly accepted the release with those
-limits visible so the organization can use it and report actual outcomes.
-
-After publication, v0.4.0 CI passed Linux tests and lint but failed its Windows
-job: Windows checkout changed bundled Spec Kit file line endings, so their hashes
-no longer matched the pinned manifest. v0.4.1 addresses this with narrow Git
-attributes; the actual Windows CI job passed.
+The amended candidate passed 79 repository tests on Python 3.9 and 3.14,
+rendered-file and pinned Spec Kit checks, and Ruff 0.16.6 lint and formatting.
+These checks establish packaging and deterministic behavior, not real-use
+acceptance. The source repository itself predates `.agent-builder.json`, so
+`check.py .` still reports its documented scaffold/template baseline warnings;
+do not fabricate generated-project files to silence them. v0.5.0 is not
+accepted or tagged. Prior release evidence and limits remain in the linked
+acceptance records above, especially [v0.4.0](v0-4-acceptance.md) and
+[v0.4.1](v0-4-1-review.md).
 
 ## Next action
 
-Implement the approved cleanup and test-design amendments in the v0.5.0
-implementation plan: retire four historical files with Git-history retrieval,
-compact the machine handoff, and make tests purposeful rather than performative.
-The author approved using a test-to-code ratio above one as a review signal,
-not a hard cap. Acceptance, Review transition, tagging, and pushing remain
-separate author decisions.
+Ask the author to close Build and enter Review if these local results are
+sufficient. Then test the changed guidance on a real project; do not treat
+the repository checks as acceptance. Do not tag or push without author direction.

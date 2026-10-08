@@ -11,10 +11,9 @@ Read the selected coding-agent instruction file, `governance/operating-agreement
 - Record substantive decisions and dependency license obligations.
 - Never include secrets or sensitive personal data in code, fixtures, prompts, issues, or logs.
 
-Run the scaffold checks below, plus the tests for any behavior you changed. Passing
-scaffold checks or compilation alone does not establish product behavior.
+Run the handoff contract check below, plus tests for any behavior you changed.
+Passing a contract check alone does not establish product behavior.
 
 ```sh
 python3 -m unittest discover -s tests -v
-python3 -m compileall -q src tests
 ```

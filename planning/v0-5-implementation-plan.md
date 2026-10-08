@@ -178,6 +178,10 @@ behavior-tested outcome. Distinguish three purposes:
   behavior tests or use an undefined "smoke test" label. Audit all three seeded
   test templates and generated CI: remove redundant seed-time assertions,
   retain continuing contracts, and do not imply an empty product is tested.
+  Seed no CI job for an empty neutral project; add one when its first Build
+  creates behavior or a supported compatibility contract. Agent and skill
+  kinds keep CI for their existing contracts. This narrows the earlier blanket
+  seeded-CI decision only for an empty neutral project.
   Update `principles/06-work-small-fail-loudly.md`, the skill stencil and
   rendered copies, templates, and targeted repository tests; add no new
   test-management script or report.

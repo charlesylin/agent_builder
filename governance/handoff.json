@@ -1,254 +1,49 @@
 {
   "schema_version": "1.0",
   "handoff_id": "agent-builder-v0-5-build-amendments-2026-10-08",
-  "created_at": "2026-10-08T14:56:23Z",
+  "created_at": "2026-10-08T15:03:10Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.4.1 is accepted but untagged. The author approved v0.5.0 cleanup and test-design amendments and reopened Build. The original candidate is committed and locally tested but not accepted. No Review transition, version tag, or push is authorized.",
+  "summary": "Agent Builder v0.4.1 is accepted but untagged. v0.5.0 remains in Build; approved cleanup and test-design amendments are implemented locally and pass 79 tests on Python 3.9 and 3.14, render, pinned bundle, and Ruff checks. Real-use acceptance is open. The full decision history is in governance/decisions.yaml. No Review transition, tag, or push is authorized.",
   "decisions": [
-    {
-      "id": "AB-D034",
-      "status": "confirmed",
-      "summary": "Build only what is needed; state the smallest version and exclusions."
-    },
-    {
-      "id": "AB-D035",
-      "status": "confirmed",
-      "summary": "Suggestions stay outside scope and proposed decisions expire at phase close."
-    },
-    {
-      "id": "AB-D036",
-      "status": "confirmed",
-      "summary": "Consequential approvals are typed in the author's words."
-    },
-    {
-      "id": "AB-D038",
-      "status": "confirmed",
-      "summary": "Release 0.2.1 during Review with the first feedback incorporated."
-    },
-    {
-      "id": "AB-D039",
-      "status": "confirmed",
-      "summary": "Accept v0.2.1, close Review, carry F-018 through F-025 as inputs, and open the next Define with version and scope undecided."
-    },
-    {
-      "id": "AB-D040",
-      "status": "confirmed",
-      "summary": "Formalize project mode and governance for logical versioning, reuse, modularity, and simplicity while constraining Agent Builder to what users need."
-    },
-    {
-      "id": "AB-D041",
-      "status": "confirmed",
-      "summary": "Deliver one usable neutral project mode with required build-or-adopt, version-sized MVP, modular reuse, and evidence-backed technical-quality behavior."
-    },
-    {
-      "id": "AB-D042",
-      "status": "confirmed",
-      "summary": "Require a DepMap-like adopt-and-archive scenario plus concrete user feedback on cycle time, evidence-backed reuse, or simplification."
-    },
-    {
-      "id": "AB-D043",
-      "status": "confirmed",
-      "summary": "Keep project memory structured for agents while making human-facing governance plain, descriptive, and proportional to real consequences."
-    },
-    {
-      "id": "AB-D044",
-      "status": "confirmed",
-      "summary": "Validate that real users understand status, decisions, and next action without decoding internal labels, and find approvals consequential and the process lightweight."
-    },
-    {
-      "id": "AB-D045",
-      "status": "confirmed",
-      "summary": "Target Agent Builder v0.3.0, version project deliverables independently, and archive no-build adoptions without inventing a project release."
-    },
-    {
-      "id": "AB-D046",
-      "status": "confirmed",
-      "summary": "Close Define and enter Plan for v0.3.0."
-    },
-    {
-      "id": "AB-D047",
-      "status": "confirmed",
-      "summary": "Confirmed release split: lean v0.3.0 without Spec Kit dependency or source copy, then separately define v0.4.0 with a maintained Spec Kit dependency and targeted replacements; no Windows-specific gate."
-    },
-    {
-      "id": "AB-D048",
-      "status": "confirmed",
-      "summary": "Close Plan and enter Build for the confirmed lean v0.3.0 plan."
-    },
-    {
-      "id": "AB-D049",
-      "status": "confirmed",
-      "summary": "Close Build and enter Review for v0.3.0; acceptance and tagging remain open."
-    },
-    {
-      "id": "AB-D050",
-      "status": "confirmed",
-      "summary": "Accept and locally tag v0.3.0; use it before opening v0.4.0 Define."
-    },
-    {
-      "id": "AB-D051",
-      "status": "confirmed",
-      "summary": "Close v0.3.0 Review and open v0.4.0 Define with scope and success evidence still open."
-    },
-    {
-      "id": "AB-D052",
-      "status": "confirmed",
-      "summary": "Use Spec Kit only for a demonstrated net improvement; preserve Agent Builder's working core and separately evaluate user-experience changes."
-    },
-    {
-      "id": "AB-D053",
-      "status": "confirmed",
-      "summary": "Target Claude Code and Codex across agent, project, and skill builds; exclude Chat, Cowork, and claude.ai from v0.4.0."
-    },
-    {
-      "id": "AB-D054",
-      "status": "confirmed",
-      "summary": "Close v0.4.0 Define and open Plan for the approved scope."
-    },
-    {
-      "id": "AB-D055",
-      "status": "confirmed",
-      "summary": "Use a pinned Spec Kit CLI at release time to generate and bundle selected upstream assets; do not require a separate member CLI installation."
-    },
-    {
-      "id": "AB-D056",
-      "status": "confirmed",
-      "summary": "Use a filtered Spec Kit v1.1.0 payload as non-discoverable Agent Builder data with explicit argument binding, artifact checks, and one owner per record."
-    },
-    {
-      "id": "AB-D057",
-      "status": "confirmed",
-      "summary": "Make authenticated Claude Code and Codex handoff a first Build-slice stop/go gate; return to Plan if either fails."
-    },
-    {
-      "id": "AB-D058",
-      "status": "confirmed",
-      "summary": "Close v0.4.0 Plan and open Build for the approved scoped integration, beginning with the live-host gate."
-    },
-    {
-      "id": "AB-D059",
-      "status": "confirmed",
-      "summary": "Close v0.4.0 Build and open Review; acceptance and tagging remain open."
-    },
-    {
-      "id": "AB-D060",
-      "status": "confirmed",
-      "summary": "Accept v0.4.0 for organization use, close Review, publish the tag, and defer the next Define iteration while members use the release."
-    },
-    {
-      "id": "AB-D061",
-      "status": "confirmed",
-      "summary": "Open Define for the next minor cycle, tentatively v0.5.0, without assuming scope from prior Review findings."
-    },
-    {
-      "id": "AB-D062",
-      "status": "confirmed",
-      "summary": "Narrow the cycle to a v0.4.1 Windows checkout/hash patch, close Define, and enter Plan; Build remains unapproved."
-    },
-    {
-      "id": "AB-D063",
-      "status": "confirmed",
-      "summary": "Close v0.4.1 Plan and enter Build for the narrow Git attributes, tests, and patch-version metadata."
-    },
-    {
-      "id": "AB-D064",
-      "status": "confirmed",
-      "summary": "Close v0.4.1 Build and enter Review; actual Windows CI and acceptance remain pending, with no push or tag authorized."
-    },
-    {
-      "id": "AB-D065",
-      "status": "confirmed",
-      "summary": "Author authorized pushing the v0.4.1 candidate to main for actual Windows CI; all four jobs passed, but acceptance and tag remain pending."
-    },
-    {
-      "id": "AB-D066",
-      "status": "confirmed",
-      "summary": "Accept v0.4.1 with passing CI and documented Windows workstation-use limit, close Review, and open Define with v0.5.0 as a working target and scope undecided; do not infer tag or push authorization."
-    },
-    {
-      "id": "AB-D067",
-      "status": "confirmed",
-      "summary": "Define lean, understandable, behavior-tested Build increments and offer independent review during Review for very large changes; do not run it automatically or require Erico's tool universally."
-    },
-    {
-      "id": "AB-D068",
-      "status": "confirmed",
-      "summary": "Ask only blocking questions, defer other issues once, use the current outcome as a scope test, and help install the optional reviewer on Codex or Claude Code if requested."
-    },
-    {
-      "id": "AB-D069",
-      "status": "confirmed",
-      "summary": "Close v0.5.0 Define and enter Plan with three observable Review scenarios; no Build or publication authorization."
-    },
     {
       "id": "AB-D070",
       "status": "confirmed",
-      "summary": "Adapt existing guidance and templates, reuse Git and test runners, and offer optional review once for a cycle with at least 1,000 added lines or 25 changed paths."
-    },
-    {
-      "id": "AB-D071",
-      "status": "confirmed",
-      "summary": "Close v0.5.0 Plan and enter Build; reviewer installation, Review, tagging, and pushing remain unapproved."
-    },
-    {
-      "id": "AB-D072",
-      "status": "confirmed",
-      "summary": "Close v0.5.0 Build and enter Review; real-use acceptance remains open, and the 34-path cycle calls for one optional independent-review offer."
+      "summary": "Adapt existing guidance and templates for lean, behavior-tested cycles; offer optional independent review only for very large changes."
     },
     {
       "id": "AB-D073",
       "status": "confirmed",
-      "summary": "Return v0.5.0 from Review to Plan to scope repository cleanup; acceptance and Build authorization remain open."
+      "summary": "Return v0.5.0 from Review to Plan to scope cleanup."
     },
     {
       "id": "AB-D074",
       "status": "confirmed",
-      "summary": "Remove four historical files from the active tree with Git-history retrieval, repair references, and compact the machine handoff while preserving its contract."
+      "summary": "Retire four historical files with Git-history retrieval and compact this handoff."
     },
     {
       "id": "AB-D075",
       "status": "confirmed",
-      "summary": "Design behavioral tests in Plan, leave one-off probes uncommitted, retain tests for continuing guarantees, and review a test-to-code ratio above one without imposing a hard cap."
+      "summary": "Design behavior tests in Plan, keep one-off probes uncommitted, test continuing guarantees, and use test-to-code size as a review signal."
     },
     {
       "id": "AB-D076",
       "status": "confirmed",
-      "summary": "Close the reopened Plan and enter Build for the approved cleanup and test-design amendments."
+      "summary": "Close Plan and reopen Build for the approved amendments."
     }
   ],
   "artifacts": [
     {
-      "path": "AGENTS.md",
-      "media_type": "text/markdown"
-    },
-    {
       "path": "governance/project-state.yaml",
       "media_type": "application/yaml"
-    },
-    {
-      "path": "governance/operating-agreement.md",
-      "media_type": "text/markdown"
     },
     {
       "path": "governance/decisions.yaml",
       "media_type": "application/yaml"
     },
     {
-      "path": "docs/RESUME.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "planning/definition.md",
-      "media_type": "text/markdown"
-    },
-    {
       "path": "planning/v0-5-definition.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "planning/v0-5-solution-evaluation.md",
       "media_type": "text/markdown"
     },
     {
@@ -256,79 +51,11 @@
       "media_type": "text/markdown"
     },
     {
-      "path": "planning/v0-4-definition.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "planning/implementation-plan.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "planning/spec-kit-comparison.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "planning/spec-kit-component-map.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "planning/v0-4-spec-kit-feasibility.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "planning/v0-4-solution-evaluation.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "planning/v0-4-implementation-plan.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "planning/v0-4-1-definition.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "planning/v0-4-1-solution-evaluation.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "planning/v0-4-1-implementation-plan.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "docs/v0-4-1-build-verification.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "docs/v0-4-1-review.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "docs/v0-4-build-verification.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "docs/v0-2-acceptance.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "docs/v0-2-review-feedback.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "docs/v0-3-build-verification.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "docs/v0-3-acceptance.md",
-      "media_type": "text/markdown"
-    },
-    {
-      "path": "docs/v0-4-acceptance.md",
+      "path": "docs/RESUME.md",
       "media_type": "text/markdown"
     }
   ],
   "blockers": [],
   "questions": [],
-  "next_action": "Implement the approved v0.5.0 cleanup and test-design amendments. Do not enter Review, accept v0.5.0, tag, or push without separate author direction."
+  "next_action": "Ask the author to close Build and enter Review after reporting local verification. Real-use acceptance, tagging, and pushing remain separate decisions."
 }

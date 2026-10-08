@@ -27,7 +27,7 @@ Do not write the procedure in `SKILL.md` or add scripts during Define.
 - `.claude-plugin/plugin.json` — manifest for installing this skill as a Claude plugin.
 - `governance/` — operating agreement, phase state, and decisions.
 - `planning/` — requirements, research, open questions, and the implementation plan.
-- `tests/` — initial scaffold checks; add unit tests for changed script behavior.
+- `tests/` — continuing skill packaging checks; add unit tests for changed script behavior.
 
 ## Install for local use
 
@@ -35,13 +35,13 @@ Claude Code and Codex both read a skill from a directory containing `SKILL.md`. 
 this repository into `~/.claude/skills/{{PROJECT_SLUG}}` or `~/.agents/skills/{{PROJECT_SLUG}}`
 to try it, or install it as a plugin once it leaves Define.
 
-## Validate the initial scaffold
+## Check the skill packaging
 
 ```sh
 python3 -m unittest discover -s tests -v
 ```
 
-This checks the generated structure, not the skill's future behavior. Keep this
+This checks front matter and the plugin manifest, not the skill's future behavior. Keep this
 README current with how to use and test the working skill and its important limits.
 
 ## License
