@@ -179,9 +179,17 @@ a release. For `adapt` or `build`, explain the gap the existing options leave an
 reused. The checker ensures the evidence fields are present; you must assess whether they are
 credible.
 
-**Spec Kit-backed Plan work for new v0.4 projects.** This applies only when the seeded
+For a correction that restores an existing project's already agreed behavior, use its prior
+build-or-adopt decision if the solution choice is unchanged. Keep a short Plan note of the
+failure, evidenced cause, direct fix, repeatable check, and exclusions. Do not restart public
+idea research or the Spec Kit feature sequence for this maintenance path. A new capability,
+changed contract, or changed solution choice takes the normal version-sized Plan path below. Phase
+approval still applies.
+
+**Spec Kit-backed Plan work for new projects and features.** This applies only when the seeded
 `.agent-builder.json` has `template_version` 0.4.0 or newer and selects Claude Code or Codex.
 Older projects are not silently upgraded; Gemini-only projects retain their prior behavior.
+The maintenance correction path above does not restart these feature steps.
 The selected upstream-generated instructions are bundled as **data inside this Agent Builder
 skill**, at `vendor/spec-kit/<host>/speckit-<step>/instructions.md`, where `<host>` is `claude`
 or `codex`. The release bundle renames upstream's `SKILL.md` without changing its contents,
@@ -246,8 +254,14 @@ failure; a lasting test must protect a recurring defect or continuing guarantee.
 alone is not enough. Put unsupported safeguards in `planning/later.md`. A host-specific
 assumption with a repeatable check can be sufficient.
 If the proposed work is substantially larger than the direct fix, explain why before Build.
-Apply this critique after Spec Kit `analyze` when available and without Spec Kit in older
-projects. In Build, verify proportionately and keep the decision note short.
+For a new feature, apply this critique after Spec Kit `analyze` when available; for a direct
+maintenance correction, apply it in the short Plan note without running that sequence.
+At the existing Plan-to-Build approval, state the direct change, what evidence counts as done,
+and what is excluded. Stop Build when that evidence passes. Before adding an unplanned
+wrapper, runtime check, dependency, lasting test, broader test run, or documentation, name
+the concrete failure it would prevent. Defer unsupported extras; seek author approval only
+if the addition materially expands scope, not for routine adjustments within it. Verify
+proportionately and keep the decision note short.
 
 **Current host setup guidance.** For Codex or Claude Code skills, plugins, hooks, MCP, or host
 configuration, open the current first-party documentation for the exact product and surface
@@ -373,12 +387,13 @@ transformation, calculation, policy enforcement, and execution in deterministic,
 **Search before building.** Require a build-or-adopt decision before Build. Recommend a suitable public solution and
 archive after author confirmation; otherwise explain the evidence for adapting or building.
 
-**Work small and fail loudly.** Build the smallest testable capability, validate it, then extend it. For an existing failure,
-prefer the evidenced direct fix and justify any larger safeguard against a concrete remaining
-failure. Fail loudly on unsupported or invalid input. Design expected behavior in Plan; keep
-one-off checks temporary and commit focused tests for behavior and supported guarantees.
-Verify proportionately. Inspect the full staged and untracked change before committing; keep
-disposable artifacts out. Record exact versions and commands behind compatibility claims.
+**Work small and fail loudly.** Build the smallest testable capability and stop when its agreed evidence passes. For an
+existing failure, prefer the evidenced direct fix and justify any larger safeguard against a
+concrete remaining failure. Fail loudly on unsupported or invalid input. Design expected
+behavior in Plan; keep one-off checks temporary and commit focused tests for behavior and
+supported guarantees. Verify proportionately. Inspect the full staged and untracked change
+before committing; keep disposable artifacts out. Record exact versions and commands behind
+compatibility claims.
 
 **Keep boundaries replaceable.** Reuse suitable code and keep genuine provider or integration boundaries replaceable. Avoid
 speculative layers; core contracts depend on no one host or runtime.

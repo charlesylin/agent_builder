@@ -239,7 +239,7 @@ any successful prior experiment; name the smallest change, a repeatable check,
 and what will be left out. Reuse the project's existing build-or-adopt decision
 when the solution choice has not changed. Do not require a fresh Spec Kit idea
 assessment or feature specification, plan, tasks, and analysis just to restore
-that behavior. A new capability, changed contract, or new dependency returns
+that behavior. A new capability, changed contract, or changed solution choice returns
 to the normal version-sized Plan path. Existing phase approval still applies.
 
 At the Plan-to-Build decision, tell the author the direct change, evidence that

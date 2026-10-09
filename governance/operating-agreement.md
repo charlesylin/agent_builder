@@ -117,6 +117,17 @@ remaining failure; "more robust" alone is not a reason. Defer unsupported safegu
 without a generalized discovery layer. If proposed work is substantially larger than the
 direct fix, justify that difference before Build, including after any Spec Kit analysis.
 
+For a correction that restores already agreed behavior, keep Plan to a short note of the
+failure, cause, direct change, repeatable check, and exclusions. Reuse the project's existing
+build-or-adopt decision if the solution choice has not changed; do not restart Spec Kit idea
+assessment or feature planning for this maintenance path. A new capability, changed contract,
+or changed solution choice takes the normal version-sized Plan path. At the existing Plan-to-Build
+approval, state the direct change, what evidence will count as done, and what is out of scope.
+Stop Build when that evidence passes. Before adding unplanned machinery, a persistent test,
+a broader test run, or documentation, name the concrete failure it would prevent. Defer it if
+none is evidenced; seek author approval if it materially expands the agreed scope. Routine
+adjustments within that scope need no new approval.
+
 In Build, add focused unit tests for changed logic and persistent contract or integration tests
 for supported dependency, host, environment, or external-boundary guarantees. Run the relevant
 tests and say what each verifies and what remains untested. Label lint, compilation, packaging,
