@@ -1293,3 +1293,20 @@ decisions:
       No release acceptance, tag, or push is implied.
     provenance: explicit_author_phase_and_scope_direction
     record: planning/v0-5-implementation-plan.md
+  - id: AB-D083
+    status: confirmed
+    date: 2026-10-09
+    confirmed_date: 2026-10-09
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author explicitly authorized moving through Plan and Build for this correction.'
+    decision: >-
+      Close the v0.5.0 stopping-rule Plan and enter Build for edits to the
+      existing principle and skill stencil, followed by rendered outputs and
+      proportionate checks.
+    rationale: >-
+      The Plan exit check passed. The approved change makes the direct fix,
+      done evidence, and exclusions explicit at the existing Plan-to-Build
+      approval and stops after that evidence passes. No new framework,
+      durable test file, push, tag, or release acceptance is implied.
+    provenance: explicit_author_phase_and_scope_direction
+    record: planning/v0-5-implementation-plan.md
