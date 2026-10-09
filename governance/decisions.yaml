@@ -1277,3 +1277,19 @@ decisions:
       observed behavior and an explicit acceptance decision.
     provenance: explicit_author_phase_transition_and_push_request
     record: planning/v0-5-implementation-plan.md
+  - id: AB-D082
+    status: confirmed
+    date: 2026-10-09
+    confirmed_date: 2026-10-09
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said: "ok try that. move through plan/build for this and then i can review in my existing work".'
+    decision: >-
+      Return v0.5.0 from Review to Plan, implement a narrow stop rule and
+      proportionate maintenance path, then reopen Review for real-work testing.
+    rationale: >-
+      Guidance added in the prior Build still permits a small correction to
+      expand during planning or testing. The author wants a more operational
+      human checkpoint without a new framework or extra routine approval.
+      No release acceptance, tag, or push is implied.
+    provenance: explicit_author_phase_and_scope_direction
+    record: planning/v0-5-implementation-plan.md

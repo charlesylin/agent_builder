@@ -1,8 +1,8 @@
 # Agent Builder v0.5.0 — implementation plan
 
-**Status:** The original plan and both approved amendments were built. The
-author returned from Review to Plan on 2026-10-08 for the proposed
-minimum-sufficient-fix amendment below. The [Define record](v0-5-definition.md)
+**Status:** The original plan and earlier amendments were built. The author
+returned from Review to Plan on 2026-10-09 for the narrow stopping-rule amendment.
+The [Define record](v0-5-definition.md)
 sets the outcome; the [reuse evaluation](v0-5-solution-evaluation.md) supports
 adapting the existing Agent Builder instructions and templates.
 
@@ -229,6 +229,35 @@ to check whether the guidance chooses the direct fix and defers unsupported
 safeguards. In Review, report the observed response and its limits, not just
 a green file check.
 The author authorized Build on 2026-10-08.
+
+## Approved stopping rule for small corrections — 2026-10-09
+
+The earlier direct-fix guidance still allows planning and testing to grow after
+the fix is identified. For an existing project's correction to already agreed
+behavior, use a short maintenance path: cite the observed failure, cause, and
+any successful prior experiment; name the smallest change, a repeatable check,
+and what will be left out. Reuse the project's existing build-or-adopt decision
+when the solution choice has not changed. Do not require a fresh Spec Kit idea
+assessment or feature specification, plan, tasks, and analysis just to restore
+that behavior. A new capability, changed contract, or new dependency returns
+to the normal version-sized Plan path. Existing phase approval still applies.
+
+At the Plan-to-Build decision, tell the author the direct change, evidence that
+will count as done, and explicit exclusions. That approval is the scope limit,
+not a request for a second sign-off on routine implementation details. Stop
+Build once that evidence passes. Before adding an unplanned wrapper, runtime
+check, dependency, persistent test, broader test run, or documentation, name
+the concrete failure it would prevent. If none is evidenced, defer it. If it
+materially changes the approved scope, seek author approval before doing it.
+No new form, gate script, test framework, or blanket test-count limit is added.
+
+Expected behavior: a previously validated one-line configuration correction
+gets the direct edit and resolved-configuration check, then stops; a concrete
+remaining failure can justify an exception; a new feature still gets the full
+Plan treatment. Implement in the existing work-small principle and skill
+stencil, render copies, and validate rendering plus the existing focused
+repository tests. Real-work behavior remains for Review. No push or tag is
+authorized by this amendment.
 
 ## Approved current-host-documentation amendment — 2026-10-08
 
