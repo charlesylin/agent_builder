@@ -1,10 +1,8 @@
 # Resume Agent Builder
 
-Checkpoint: 2026-10-08. Agent Builder **v0.4.1** is accepted but untagged.
-The author returned v0.5.0 from Review to Plan after reporting an
-overbuilt fix in Project Aurora, then approved two guidance amendments and entered
-**Build**. Both amendments are implemented, and the author has now opened
-**Review**. The candidate is not accepted.
+Checkpoint: 2026-10-09. Agent Builder **v0.4.1** is accepted but untagged.
+The author reopened **Review** for v0.5.0 after a narrow stopping-rule amendment.
+The candidate is not accepted or tagged.
 The confirmed outcome is in the [Define record](../planning/v0-5-definition.md);
 the original Build scope and approved amendments are in the
 [implementation plan](../planning/v0-5-implementation-plan.md).
@@ -45,20 +43,25 @@ The machine handoff is compact. New neutral projects have no placeholder tests
 or CI job; skill and agent projects retain continuing contract checks. Test
 guidance now separates expected behavior, temporary feasibility checks, and
 lasting regression tests for supported guarantees.
-The latest Build adds a direct-fix checkpoint for existing projects and a
+The prior Build added a direct-fix checkpoint for existing projects and a
 current first-party docs check for Codex/Claude Code configuration guidance.
+The 2026-10-09 amendment adds a short path for maintenance corrections and says
+to stop Build when its agreed verification passes. Unplanned tests or machinery
+need an evidenced remaining failure; material scope growth needs author approval.
 The install guide's Claude Code `--plugin-dir` hook claim was corrected against
 current Anthropic documentation; a live Claude Code check was unavailable because
 the local CLI reported that it was signed out.
 
 The earlier amended candidate passed 79 repository tests on Python 3.9 and 3.14.
-This Build reran all 79 on Python 3.14; rendered-file and pinned Spec Kit checks,
+That Build reran all 79 on Python 3.14; rendered-file and pinned Spec Kit checks,
 Ruff 0.16.6 lint and formatting, and Claude plugin validation passed. An ephemeral,
 read-only Codex prompt using the updated skill recommended the one-line Aurora-like
 fix and deferred unsupported machinery.
-These checks establish packaging and deterministic behavior, not real-use
-acceptance. The source repository itself predates `.agent-builder.json`, so
-`check.py .` still reports its documented scaffold/template baseline warnings;
+The latest amendment passed render agreement, 51 relevant repository tests,
+Claude plugin validation, and the Build exit check. These checks establish
+packaging, not real-use acceptance. This source repository predates
+`.agent-builder.json`, so `check.py .` still reports its documented
+scaffold/template baseline warnings;
 do not fabricate generated-project files to silence them. v0.5.0 is not
 accepted or tagged. Prior release evidence and limits remain in the linked
 acceptance records above, especially [v0.4.0](v0-4-acceptance.md) and
@@ -66,6 +69,7 @@ acceptance records above, especially [v0.4.0](v0-4-acceptance.md) and
 
 ## Next action
 
-Try the direct-fix guidance in a real correction and confirm the host setup guidance
-on an authenticated Claude Code installation if available. Record results and limits
-before the author decides whether to accept v0.5.0. No tag has been requested.
+Try the stopping rule in an existing-project correction: did Agent Builder name
+the direct fix and done check, avoid unsupported extras, and stop after proof?
+Record results and limits before the author decides whether to accept v0.5.0.
+The local commits are not pushed; no tag has been requested.

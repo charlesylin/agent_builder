@@ -1,8 +1,8 @@
 # Agent Builder v0.5.0 — implementation plan
 
-**Status:** The original plan and earlier amendments were built. The author
-returned from Review to Plan on 2026-10-09 for the narrow stopping-rule amendment.
-The [Define record](v0-5-definition.md)
+**Status:** The original plan and all approved amendments were built. The author
+returned from Review to Plan on 2026-10-09 for the narrow stopping-rule amendment,
+then reopened Review for real-work testing. The [Define record](v0-5-definition.md)
 sets the outcome; the [reuse evaluation](v0-5-solution-evaluation.md) supports
 adapting the existing Agent Builder instructions and templates.
 

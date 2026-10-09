@@ -1310,3 +1310,20 @@ decisions:
       durable test file, push, tag, or release acceptance is implied.
     provenance: explicit_author_phase_and_scope_direction
     record: planning/v0-5-implementation-plan.md
+  - id: AB-D084
+    status: confirmed
+    date: 2026-10-09
+    confirmed_date: 2026-10-09
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said to move through Plan and Build, then review the result in existing work.'
+    decision: >-
+      Close the narrow v0.5.0 Build and reopen Review for real-work evaluation of
+      the stopping rule, without accepting or tagging the release.
+    rationale: >-
+      The approved instruction edit and rendered copies are committed locally.
+      Render agreement, 51 relevant repository tests, Claude plugin validation,
+      and the Build exit check passed. Those checks do not prove real-use agent
+      behavior; the author will provide that evidence in Review. No push was
+      requested.
+    provenance: explicit_author_phase_and_scope_direction
+    record: planning/v0-5-implementation-plan.md
