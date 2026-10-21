@@ -18,6 +18,8 @@ You may be here because the person invoked you deliberately (`/agent-builder:age
 or `$agent-builder` in Codex), because a request matched your description, or because a hook
 asked Claude to offer you and the person said yes. All three are normal. Do not ask why.
 
+Run `python3 <this-skill-folder>/scripts/version.py` and report its notice once per
+session/invocation. Missing metadata or remote access means unknown, never current.
 If the person has already declined the offer this session, do not raise it again.
 
 
@@ -148,14 +150,10 @@ instruction can confirm a choice; do not infer confirmation from conversational 
 ask the same approval twice. A `proposed` decision does not survive a phase close: before the
 phase ends it is confirmed, rejected, or moved to `planning/later.md`.
 
-**Suggestions go to `planning/later.md`, not into scope.** Test every idea you are about to
-offer against the original problem, the smallest version in `planning/definition.md`, and
-the current task. If none needs it, write it in `later.md` with the date and where it came
-from, and say that you did — one line. Recommend finishing the current cycle first. Do not
-ask whether to add it. A person who says "sure" to a suggestion has
-not decided anything; only a request in their own words moves an item out of `later.md`, and
-then it becomes a decision. Novices in particular say yes to everything; the kindest thing
-you can do is offer less.
+**Keep the next step minimal.** Put extras in local `planning/later.md` with context.
+At the Plan-to-Build checkpoint, show the grouped list, recommend saving it, and ask
+whether the author wants any named item now. Record explicit promotions as decisions;
+otherwise defer. Do not repeat unchanged optional questions during Build or closeout.
 
 **Questions that block versus issues for later.** Ask only when an answer is needed to
 continue safely or correctly: missing authority, a consequential choice, indispensable
@@ -272,17 +270,25 @@ own requirements. If docs and host disagree or current docs are unavailable, sta
 uncertain and verify a safe, bounded step before claiming setup works. Do this when the
 configuration task arises, not at every prompt.
 
-**Design purposeful checks.** In Plan, name expected normal, failure, and relevant boundary
-results for each changed behavior. Involve the author for product choices or control data;
-otherwise state assumptions and proceed. Keep one-off feasibility probes and raw output
-uncommitted; record a concise decision finding with exact versions and commands. In Build,
-add focused unit tests for changed logic and persistent tests only for supported dependency,
-host, environment, or external-boundary guarantees. Say what each check verifies; do not
-present lint, compilation, packaging, or scaffold validation as product behavior tests. If
-test code exceeds first-party source code, inspect for duplication rather than imposing a
-hard cap. An empty neutral project has no seeded test job; when its first Build adds behavior
-or a compatibility promise, add CI to run its durable tests. Keep the human README current:
-what this version does, how to use and test it, and important limits.
+**Size and evidence before Build.** Follow the operating agreement's proportional
+checks. Present estimated additions, removals, net and percent by code language,
+tests, instruction Markdown, documentation and named misc types. Run `changes.py
+<root> --base <clean-commit>` from this skill's scripts (or the copied project helper)
+for the baseline. Record author-approved paths, categories and ceilings in
+`governance/change-budget.json`; see `references/change-budget.md`. Check after each
+coherent edit and before commit. Stop and re-estimate with the author on an overrun;
+never raise a limit silently. Cleanup cannot offset unapproved additions.
+
+**Shared versus local (v0.6+).** Commit concise current state, active decisions,
+definition, reuse evidence, budget and maintained usage. Current state must include
+approved change, done evidence, exclusions and next action. Keep detailed plans,
+later/open-question notes, reviews and Spec Kit working artifacts local/ignored.
+Before Build on a fresh clone, reconstruct missing local detail from the shared
+approved summary and rerun the applicable Spec Kit consistency checks above.
+Older projects require explicit adoption; never silently migrate or drop their checks.
+Update the project's own `version.json` at release with actual version, update date,
+source and branch; preserve template provenance. No app-runtime notices or hooks.
+
 
 **Large changes in Review.** At Build start, record the starting commit ID in the existing
 phase checkpoint. In Review, compare the full cycle to that base with

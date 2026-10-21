@@ -53,3 +53,18 @@ service-account*.json
 # Eval run output
 evals/results/
 evals-*.json
+
+# Local working governance; share concise state, decisions, definition and reuse evidence.
+/planning/*
+!/planning/definition.md
+!/planning/solution-evaluation.md
+/.specify/assessments/
+/.specify/feature.json
+/specs/
+/docs/RESUME.md
+/governance/handoff.json
+/docs/v0-*
+/docs/validation.md
+/docs/existing-project-review.md
+/docs/onboarding-kit-review.md
+/docs/open-source-evaluation.md

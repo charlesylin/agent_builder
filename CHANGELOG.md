@@ -2,10 +2,18 @@
 
 All notable changes to Agent Builder are documented here.
 
+## [0.6.0] — 2026-10-21 (Build candidate; not accepted)
+
+Adds Git-based categorized change budgets and honest version/date notices for coding
+sessions and skill invocations. New scaffolds retain concise shared governance and
+ignore detailed working notes; older projects require explicit adoption. Tests protect
+functionality and Plan exposes deferred items once. Historical source-repository records
+remain in local copies and pinned Git history. Runtime notices and hooks remain deferred.
+
 ## [0.5.0] - 2026-10-21
 
 Accepted after author-reported real-use success; untagged. See the
-[acceptance record](docs/v0-5-acceptance.md) for evidence and limits.
+[acceptance record](https://github.com/charlesylin/agent_builder/blob/f1e7582362e2c65c748cefa7691f7c236b9af42f/docs/v0-5-acceptance.md) for evidence and limits.
 Agent Builder now distinguishes blocking
 questions from issues to defer, checks proposed work against
 the current outcome, and guides smaller commits, behavior-focused unit tests, and
@@ -30,7 +38,7 @@ unchanged. Existing projects are not modified automatically.
 
 ## [0.4.0] - 2026-10-06
 
-Accepted for organization use; see [the acceptance record](docs/v0-4-acceptance.md) for
+Accepted for organization use; see [the acceptance record](https://github.com/charlesylin/agent_builder/blob/f1e7582362e2c65c748cefa7691f7c236b9af42f/docs/v0-4-acceptance.md) for
 the supporting evidence and what has not been tested. This version bundles selected,
 pinned Spec Kit v1.1.0 assets at release time; members do not install its CLI. New
 Claude Code and Codex projects of all three supported kinds receive the selected Bash
@@ -46,7 +54,7 @@ discoverable skill in its installed folder; the Spec Kit steps remain internal r
 ## [0.3.0] - 2026-09-24
 
 Accepted after the author reported all three real-use Review scenarios passed. See
-`docs/v0-3-acceptance.md` for the evidence and its limits. This release makes neutral projects
+[docs/v0-3-acceptance.md](https://github.com/charlesylin/agent_builder/blob/f1e7582362e2c65c748cefa7691f7c236b9af42f/docs/v0-3-acceptance.md) for the evidence and its limits. This release makes neutral projects
 and one usable, version-sized outcome first-class without adding Spec Kit as a dependency.
 
 ### Added
@@ -73,10 +81,10 @@ and one usable, version-sized outcome first-class without adding Spec Kit as a d
 Review feedback from the first colleague to use v0.2 (Sean), incorporated during Review under
 AB-D038. v0.2 opened projects well and closed nothing; 0.2.1 makes a project state its problem
 before its purpose, keeps suggestions out of scope, and refuses phase changes with loose ends.
-Evidence and reasoning: `docs/v0-2-review-feedback.md`.
+Evidence and reasoning: [docs/v0-2-review-feedback.md](https://github.com/charlesylin/agent_builder/blob/f1e7582362e2c65c748cefa7691f7c236b9af42f/docs/v0-2-review-feedback.md).
 
 Accepted on 2026-09-22 under AB-D039 after Sean completed the organization-install acceptance
-test on Windows; see `docs/v0-2-acceptance.md`. F-018 through F-025 are carried into the next
+test on Windows; see [docs/v0-2-acceptance.md](https://github.com/charlesylin/agent_builder/blob/f1e7582362e2c65c748cefa7691f7c236b9af42f/docs/v0-2-acceptance.md). F-018 through F-025 are carried into the next
 Define iteration rather than treated as acceptance blockers.
 
 ### Added
@@ -122,8 +130,8 @@ Agent Builder becomes a skill. The folder `skills/agent-builder/` — `SKILL.md`
 standard-library scripts, and the templates — is the product; nothing is installed with pip.
 Principles live once under `principles/` and every copy is generated and drift-checked. A
 `UserPromptSubmit` hook offers the skill when someone starts new work. Built as B1–B8 of
-`docs/v0-2-plan.md`; evidence from three hands-on runs and two eval runs is in
-`docs/v0-2-skill-test.md`. Handed to Review on this date; acceptance is still open.
+[docs/v0-2-plan.md](https://github.com/charlesylin/agent_builder/blob/f1e7582362e2c65c748cefa7691f7c236b9af42f/docs/v0-2-plan.md); evidence from three hands-on runs and two eval runs is in
+[docs/v0-2-skill-test.md](https://github.com/charlesylin/agent_builder/blob/f1e7582362e2c65c748cefa7691f7c236b9af42f/docs/v0-2-skill-test.md). Handed to Review on this date; acceptance is still open.
 
 ### Changed in B8
 
@@ -211,7 +219,7 @@ Principles live once under `principles/` and every copy is generated and drift-c
 
 Governance and project scaffolding only. No agent runtime, model client, MCP server, custom
 API, Dockerfile, or Compose service is included. Accepted by the project author on 2026-09-13
-under AB-D017; see [the acceptance record](docs/v0-1-acceptance.md).
+under AB-D017; see [the acceptance record](https://github.com/charlesylin/agent_builder/blob/f1e7582362e2c65c748cefa7691f7c236b9af42f/docs/v0-1-acceptance.md).
 
 ### Added
 

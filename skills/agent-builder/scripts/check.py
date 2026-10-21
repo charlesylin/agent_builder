@@ -211,6 +211,12 @@ def _uses_solution_gate(manifest: object) -> bool:
     return bool(match and tuple(map(int, match.groups())) >= (0, 3, 0))
 
 
+def _uses_local_notes(manifest: object) -> bool:
+    version = manifest.get("template_version", "") if isinstance(manifest, dict) else ""
+    match = _VERSION.fullmatch(version) if isinstance(version, str) else None
+    return bool(match and tuple(map(int, match.groups())) >= (0, 6, 0))
+
+
 def _uses_spec_kit(manifest: object) -> bool:
     if not isinstance(manifest, dict):
         return False
@@ -523,7 +529,11 @@ def validate_project(root: str | Path) -> tuple[ValidationIssue, ...]:
         else:
             kind = declared
 
-    for relative in _REQUIRED_FILES + _KIND_REQUIRED_FILES[kind]:
+    required = _REQUIRED_FILES + _KIND_REQUIRED_FILES[kind]
+    if _uses_local_notes(manifest):
+        required = tuple(p for p in required if p != Path("planning/open-questions.md"))
+        required += tuple(map(Path, ("version.json", "scripts/version.py", "scripts/changes.py")))
+    for relative in required:
         if not (project_root / relative).is_file():
             issues.append(
                 ValidationIssue("missing-file", "required scaffold file is missing", relative)
@@ -628,7 +638,7 @@ def validate_project(root: str | Path) -> tuple[ValidationIssue, ...]:
 
     if kind == "agent":
         _validate_contract(project_root, issues)
-    if _uses_spec_kit(manifest) and state_path.is_file():
+    if _uses_spec_kit(manifest) and not _uses_local_notes(manifest) and state_path.is_file():
         state = state_path.read_text(encoding="utf-8")
         record = project_root / "planning/solution-evaluation.md"
         if (

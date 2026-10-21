@@ -5,9 +5,9 @@ These instructions govern work in this repository. Read
 `governance/project-state.yaml` and `governance/operating-agreement.md` before
 substantive work.
 
-When resuming in a fresh session, also read `governance/decisions.yaml` and
-`docs/RESUME.md`. Treat the handoff as a checkpoint; reconcile it with current repository
-state and newer author instructions before continuing.
+At the first coding response, run `python3 skills/agent-builder/scripts/version.py`
+and report its notice once. Read `governance/decisions.yaml`; local RESUME/handoff
+notes are optional checkpoints, reconciled with current state and author instructions.
 
 ## Nokkvi's law
 

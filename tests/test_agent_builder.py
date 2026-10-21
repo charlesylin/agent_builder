@@ -63,30 +63,16 @@ class ScaffoldTests(unittest.TestCase):
                 self.assertEqual(validate_project(target), ())
                 readme = (target / "README.md").read_text(encoding="utf-8")
                 if kind == "project":
-                    self.assertIn("No product tests or CI job are seeded", readme)
-                    self.assertIn("add CI to run those tests", readme)
                     self.assertFalse((target / "tests").exists())
                     self.assertFalse((target / ".github/workflows/ci.yml").exists())
                 else:
                     self.assertIn("python3 -m unittest discover -s tests -v", readme)
                     self.assertTrue((target / ".github/workflows/ci.yml").is_file())
-                self.assertIn("behavior", readme.lower())
-                self.assertIn("important limits", readme)
                 planning = (target / "planning/README.md").read_text(encoding="utf-8")
                 self.assertNotIn("handoff-to-review.md", planning)
                 self.assertNotIn("acceptance-feedback.md", planning)
                 self.assertFalse((target / "planning/handoff-to-review.md").exists())
                 self.assertFalse((target / "planning/acceptance-feedback.md").exists())
-                later = (target / "planning/later.md").read_text(encoding="utf-8")
-                self.assertIn("nonblocking", later)
-                self.assertNotIn('every "what should you be asking" question', later)
-                agreement = (target / "governance/operating-agreement.md").read_text(
-                    encoding="utf-8"
-                )
-                self.assertIn("expected normal result, failure response", agreement)
-                self.assertIn("one-off feasibility checks", agreement)
-                self.assertIn("If test code\nexceeds", agreement)
-                self.assertIn("Record a\nnonblocking issue once", agreement)
 
     def test_optional_reviewer_is_a_reference_not_a_seeded_dependency(self) -> None:
         skill_text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
@@ -594,41 +580,6 @@ class ReviewFeedbackTests(unittest.TestCase):
             self.assertIn("Cannot leave define yet", result.stderr)
             self.assertIn("unanswered", result.stderr)
 
-    def test_skill_and_adapters_carry_the_review_rules(self) -> None:
-        # AB-D033/035/036 must reach both the skill and the seeded project's own instructions,
-        # because the seeded adapter does the work when the skill is not invoked (F-009).
-        skill = (SKILL / "SKILL.md").read_text(encoding="utf-8")
-        self.assertIn("What problem are you solving?", skill)
-        self.assertLess(
-            skill.index("**First, the problem.**"), skill.index("**Second, the kind.**")
-        )
-        self.assertIn("planning/later.md", skill)
-        self.assertIn("Keep one-off feasibility probes and raw output\nuncommitted", skill)
-        self.assertIn("test code exceeds first-party source code", skill)
-        self.assertIn("An empty neutral project has no seeded test job", skill)
-        self.assertIn("**Approval is typed, never clicked.**", skill)
-        self.assertIn("check.py . --leaving <old-phase>", skill)
-        with tempfile.TemporaryDirectory() as directory:
-            target = Path(directory) / "rules"
-            spec = ProjectSpec.create(name="Rules", purpose="Carry the rules.", adapters=["claude"])
-            create_project(target, spec, generated_at=GENERATED_AT)
-            agreement = (target / "governance/operating-agreement.md").read_text(encoding="utf-8")
-            self.assertIn("does not survive a phase close", agreement)
-            self.assertIn("Do not use a menu pick or button as a substitute", agreement)
-            self.assertIn("do not create a second approval round", agreement)
-            self.assertIn("planning/later.md", agreement)
-            adapter = (target / "CLAUDE.md").read_text(encoding="utf-8")
-            self.assertIn("**Build only what you need.**", adapter)
-            self.assertIn("planning/later.md", adapter)
-
-    def test_nokkvis_law_encourages_a_stuck_person(self) -> None:
-        # AB-D037: the law is about tone; a frustrated person gets encouragement, then help.
-        for path in (SKILL / "SKILL.md", ROOT / "principles/03-nokkvis-law.md"):
-            with self.subTest(path=path.name):
-                text = path.read_text(encoding="utf-8")
-                self.assertIn("you got this!", text)
-            self.assertIn("frustrat", text)
-
 
 class BuildOrAdoptTests(unittest.TestCase):
     """The v0.3 gate distinguishes evidence, a confirmed decision, and archiving."""
@@ -930,12 +881,6 @@ class ReviewReadinessTests(unittest.TestCase):
                 ).stdout,
                 "",
             )
-
-    def test_skill_guidance_challenges_fragile_browser_shortcuts(self) -> None:
-        skill = (SKILL / "SKILL.md").read_text(encoding="utf-8")
-        self.assertIn("Challenge fragile shortcuts and product sprawl", skill)
-        self.assertIn("side-load a browser", skill)
-        self.assertIn("installation, permissions, updates, and unattended operation", skill)
 
 
 if __name__ == "__main__":

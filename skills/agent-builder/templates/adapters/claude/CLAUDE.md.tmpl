@@ -4,6 +4,12 @@ This project follows Agent Builder. If the `agent-builder` skill is available, i
 (`/agent-builder:agent-builder`) before substantive work: it knows the phases, the decision ledger, the seeder and
 checker, and the closeout. If it is not installed, this file and `governance/` are sufficient.
 
+At the first response of each coding session, run `python3 scripts/version.py` and
+report its notice once. This describes the project's own version, not its template.
+Before Build, agree a change budget using `governance/change-budget.md`; run
+`python3 scripts/changes.py .` after coherent edits and before commits. Re-estimate
+overruns with the author. Preserve shared approval; detailed working notes stay local.
+
 Before substantive work, read `governance/operating-agreement.md`,
 `governance/project-state.yaml`, and `governance/decisions.yaml` completely. When asked for
 status or where things stand, give a briefing — project and purpose, phase and status, what

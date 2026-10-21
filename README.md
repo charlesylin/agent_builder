@@ -81,14 +81,12 @@ How to change principles, the skill, templates, or cut a release:
 
 ## Status
 
-**v0.5.0 is in Review; it is not accepted or tagged.** It aims for smaller,
-behavior-tested cycles and an optional
-independent-review offer for very large changes. v0.4.1 is the latest accepted
-patch; see the [resume record](docs/RESUME.md)
-for its evidence and the history of earlier releases.
+**v0.6.0 is in Build; v0.5.0 is accepted and untagged.** This cycle adds categorized
+change budgets, proportionate tests, lean shared governance and coding/skill version
+notices. See [current state](governance/project-state.yaml) for authority and evidence.
 
 This repository is developed under its own phases; see
-[`governance/`](governance/) and [`docs/RESUME.md`](docs/RESUME.md).
+[`governance/`](governance/) and [`governance/project-state.yaml`](governance/project-state.yaml).
 
 ## License
 

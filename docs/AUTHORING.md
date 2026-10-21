@@ -95,5 +95,11 @@ update themselves; `check.py --since` shows their owners what changed.
 ## This repository's own governance
 
 Agent Builder is developed under its own phases. `governance/project-state.yaml` records the
-phase; `governance/decisions.yaml` the decisions; `docs/RESUME.md` how to pick it up. Follow
+phase; `governance/decisions.yaml` the decisions; optional local `docs/RESUME.md` as a checkpoint. Follow
 them — the skill is only as credible as the repository that ships it.
+
+For v0.6+ change budgets and explicit adoption into older projects, use the
+[budget reference](../skills/agent-builder/references/change-budget.md). Update
+`skills/agent-builder/version.json` with the actual release version and update date
+alongside package/plugin/seeder metadata. Preserve generated projects' original
+template provenance; their `version.json` records their own releases.

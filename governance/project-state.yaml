@@ -2,408 +2,46 @@ schema_version: 1
 project:
   id: agent-builder
   name: Agent Builder
-  template_version: 0.1.0
-  # active | paused | abandoned | archived (AB-D031). The phase says how far the work got;
-  # this says whether anyone is still doing it.
   status: active
-
+  purpose: Proportionate, version-sized development for agents, skills and projects.
 phase:
   current: build
-  status: implementation_in_progress
+  status: ready_for_review_approval
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-10-21
-  transition_requires: explicit_user_invocation_or_confirmation
+  transition_requires: explicit_author_approval
   history:
-    - phase: define
-      date: 2026-09-08
-      outcome: Initial purpose and development preferences established.
-    - phase: plan
-      date: 2026-09-08
-      outcome: Governance-first v0.1 scope and container boundary approved.
     - phase: build
-      date: 2026-09-08
-      outcome: Explicitly authorized by the project author.
-    - phase: review
-      date: 2026-09-08
-      outcome: Explicitly authorized after the v0.1 build and mechanical validation completed.
-    - phase: review
-      date: 2026-09-13
-      outcome: Closed. v0.1 accepted by the project author under AB-D017.
-    - phase: define
-      date: 2026-09-13
-      outcome: >-
-        Explicitly authorized by the project author after v0.1 acceptance.
-        v0.2 scope is open and not yet determined.
-    - phase: define
-      date: 2026-09-13
-      outcome: Closed. Define record docs/v0-2-define.md; AB-D019 through AB-D024 confirmed.
-    - phase: plan
-      date: 2026-09-13
-      outcome: Explicitly authorized by the project author. Plan record docs/v0-2-plan.md.
-    - phase: plan
-      date: 2026-09-13
-      outcome: Closed. AB-D025 through AB-D029 confirmed.
-    - phase: build
-      date: 2026-09-13
-      outcome: Explicitly authorized by the project author. Executes B1 through B8 in docs/v0-2-plan.md, one commit each.
-    - phase: build
-      date: 2026-09-14
-      outcome: Closed. B1 through B8 landed; v0.2.0 tagged.
-    - phase: review
-      date: 2026-09-14
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Explicitly authorized by the project author on receiving Sean's feedback. A 0.2.1
-        refinement (AB-D033..037) is authorized inside Review (AB-D038).
-    - phase: review
-      date: 2026-09-22
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Closed. Agent Builder v0.2 accepted at release 0.2.1 under AB-D039 after Sean
-        completed the organization-install acceptance test on Windows.
-    - phase: define
-      date: 2026-09-22
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Explicitly authorized by the project author after v0.2.1 acceptance. The next
-        iteration's version and scope are open and not yet determined.
-    - phase: define
-      date: 2026-09-22
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Closed after the author confirmed the v0.3.0 purpose, smallest project-mode outcome,
-        exclusions, success evidence, and versioning rule. Define exit check passed.
-    - phase: plan
-      date: 2026-09-22
-      confirmed_by: charles-yang-lin
-      outcome: Explicitly authorized by the project author for v0.3.0.
-    - phase: build
-      date: 2026-09-22
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author explicitly closed Plan and entered Build for the confirmed lean v0.3.0
-        plan. Spec Kit integration remains deferred to a separately defined v0.4.0.
-    - phase: review
-      date: 2026-09-23
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author explicitly closed Build and entered Review for v0.3.0 after all approved
-        Build slices passed mechanical verification. Real-use acceptance remains open.
-    - phase: review
-      date: 2026-09-24
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author reported all three real-use scenarios passed and accepted Agent Builder
-        v0.3.0. The release will be used before advancing to v0.4.0, so Review remains the
-        current phase for post-release observations. Evidence limits are in
-        docs/v0-3-acceptance.md.
-    - phase: define
-      date: 2026-09-25
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author explicitly closed v0.3.0 Review and opened v0.4.0 Define. The Review exit
-        check found nothing unresolved. v0.4.0 purpose, smallest outcome, exclusions, and
-        success evidence remain open.
-    - phase: define
-      date: 2026-09-29
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Closed after the author approved the v0.4.0 Define record: targeted Spec Kit
-        improvement without v0.3.0 regression, Claude Code and Codex coverage for agent,
-        skill, and project builds, and no separate member installation. The Define exit
-        check found nothing unresolved.
-    - phase: plan
-      date: 2026-09-29
-      confirmed_by: charles-yang-lin
-      outcome: Explicitly authorized by the author for v0.4.0.
-    - phase: plan
-      date: 2026-10-05
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Closed after the author approved the filtered Spec Kit v1.1.0 dependency
-        boundary and first-slice live-host stop/go test. The Plan exit check
-        found nothing unresolved.
-    - phase: build
-      date: 2026-10-05
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Explicitly authorized by the author for the scoped v0.4.0 plan. The
-        first slice tests authenticated Claude Code and Codex handoff before
-        any further integration work.
-    - phase: build
-      date: 2026-10-06
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Closed after the pinned Spec Kit integration was committed and the
-        Build exit check found nothing unresolved. Real-use acceptance is open.
-    - phase: review
-      date: 2026-10-06
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Explicitly authorized by the author for v0.4.0 real-use testing on a
-        separate project. No acceptance, release tag, or publication is implied.
-    - phase: review
-      date: 2026-10-06
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Closed. The author accepted v0.4.0 for organization use after Erico's
-        Codex adapt/build test and the standalone-skill packaging correction,
-        with remaining Review controls recorded as unverified in
-        docs/v0-4-acceptance.md. No next Define iteration was opened.
-    - phase: define
-      date: 2026-10-07
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Explicitly opened the next minor cycle after v0.4.0. The working target
-        is v0.5.0; purpose, smallest outcome, scope, and success evidence are
-        not yet defined.
-    - phase: plan
-      date: 2026-10-07
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Closed Define and entered Plan for v0.4.1 after the Windows Git checkout
-        hash failure was reproduced in both Agent Builder and a generated project.
-        The author narrowed the tentative v0.5.0 cycle to a patch fix. Define exit
-        check found nothing unresolved.
-    - phase: build
-      date: 2026-10-07
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author explicitly closed v0.4.1 Plan and entered Build for the narrow
-        Git attributes, regression-test, and release-metadata patch. The Plan
-        exit check found nothing unresolved. No push, tag, or Review acceptance
-        is implied.
-    - phase: review
-      date: 2026-10-07
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author explicitly closed v0.4.1 Build and entered Review after the
-        local Windows-style Git checkout reproduction, 77 tests on Python 3.9
-        and 3.14, bundle verification, and lint passed. The Build exit check
-        found nothing unresolved. Actual GitHub Windows CI and acceptance are
-        still pending; no push or tag is implied.
-    - phase: review
-      date: 2026-10-07
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Closed. The author accepted v0.4.1 after the actual GitHub Windows,
-        Ubuntu, and lint jobs passed, with separate Windows workstation use
-        unverified. The Review exit check found nothing unresolved. A version
-        tag was not requested or created.
-    - phase: define
-      date: 2026-10-07
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Explicitly opened the next Define cycle after v0.4.1 acceptance.
-        v0.5.0 resumes as a working minor-version target; purpose, scope,
-        smallest outcome, and success evidence remain open.
-    - phase: define
-      date: 2026-10-07
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Closed after the author accepted the v0.5.0 outcome and directed
-        completion of Define. Success evidence covers fewer unnecessary
-        user interruptions, lean and behavior-tested commits, readable
-        documentation, and an optional independent review of very large
-        changes. The Define exit check found nothing unresolved.
-    - phase: plan
-      date: 2026-10-07
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Explicitly opened by the author. Plan must choose the smallest
-        implementation, test a proportionate large-change signal, and
-        verify optional reviewer setup on Codex and Claude Code before
-        proposing Build.
-    - phase: build
-      date: 2026-10-07
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author explicitly approved the v0.5.0 Plan and entered Build.
-        The approved adaptation reuses Git and existing test runners, keeps
-        Erico's reviewer optional, and does not authorize publication or Review.
-    - phase: review
-      date: 2026-10-07
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author explicitly closed v0.5.0 Build and entered Review. The
-        candidate is committed locally; 79 tests passed on Python 3.12 and
-        3.14, rendered files, pinned Spec Kit assets, and Ruff checks passed,
-        and the Build exit check found nothing unresolved. Real-use acceptance
-        remains open. The 34-path cycle qualifies for one optional independent
-        review offer; no reviewer installation, acceptance, tag, or push is implied.
-    - phase: plan
-      date: 2026-10-08
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author explicitly returned v0.5.0 from Review to Plan to add a
-        repository cleanup amendment. Real-use acceptance remains open; this
-        transition does not authorize implementation, deletion, tagging, or a push.
-    - phase: build
-      date: 2026-10-08
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author approved the repository cleanup and test-design amendments
-        and explicitly reopened Build. Amendments start from commit
-        b4e977007f361970708947525830f557ee8f67f1. v0.5.0 remains unaccepted
-        and untagged; no push is implied.
-    - phase: review
-      date: 2026-10-08
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author explicitly closed the amended v0.5.0 Build and entered
-        Review, and requested a commit and push. The Build exit check found
-        nothing unresolved. Local checks passed; real-use acceptance remains
-        open. No version tag or release acceptance is implied.
-    - phase: plan
-      date: 2026-10-08
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author explicitly returned v0.5.0 to Plan for a minimum-sufficient-fix
-        amendment after reporting the Project Aurora overbuild. Review exit
-        found nothing unresolved. v0.5.0 remains unaccepted and untagged.
-    - phase: build
-      date: 2026-10-08
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author approved the minimum-sufficient-fix and current-host-documentation
-        Plan amendments, closed Plan, and entered Build. The Plan exit check found
-        nothing unresolved. Commit and push are authorized; Review acceptance and
-        a version tag are not implied.
-    - phase: review
-      date: 2026-10-08
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author explicitly closed Build and entered Review for the committed v0.5.0
-        candidate. The Build exit check found nothing unresolved. Real-use acceptance
-        remains open; this transition does not accept or tag v0.5.0.
-    - phase: plan
-      date: 2026-10-09
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        The author returned v0.5.0 to Plan for a narrow overbuilding and testing
-        amendment, authorized moving through Plan and Build, and will evaluate the
-        result in existing work. Real-use acceptance and tagging remain open.
-    - phase: build
-      date: 2026-10-09
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Closed the narrow Plan after its exit check passed and entered Build as
-        explicitly authorized. The direct edit is to the existing principle and
-        skill stencil, with rendered copies; proof is render agreement and relevant
-        repository checks. No new framework, test file, push, or tag is approved.
-    - phase: review
-      date: 2026-10-09
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Closed the approved narrow Build after rendered-file checks, 51 relevant
-        repository tests, Claude plugin validation, and the Build exit check passed.
-        The author will evaluate the stopping rule in existing work. v0.5.0 remains
-        unaccepted and untagged; no push was requested.
-    - phase: review
       date: 2026-10-21
       confirmed_by: charles-yang-lin
-      outcome: >-
-        Closed. The author reported that the latest tests worked and accepted
-        v0.5.0 with the evidence limits in docs/v0-5-acceptance.md. Newly exposed
-        issues belong in the next cycle. The Review exit check found nothing
-        unresolved; no release tag was requested.
-    - phase: define
-      date: 2026-10-21
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Explicitly opened by the author with v0.6.0 as the working target.
-        Purpose, scope, smallest outcome, and success evidence remain open.
-        Commit and push of the governance updates are authorized.
-    - phase: define
-      date: 2026-10-21
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Closed after the author approved the v0.6.0 definition, including the
-        additions/removals breakdown by category and language. The Define exit
-        check found nothing unresolved.
-    - phase: plan
-      date: 2026-10-21
-      confirmed_by: charles-yang-lin
-      outcome: >-
-        Opened on the author's direction to move on from the approved Define.
-        Select the smallest implementation and resolve the remaining measurement,
-        governance-storage, and version-authority choices before proposing Build.
-
+      outcome: Author approved the v0.6.0 Plan with "ok build"; Plan exit check passed.
 release:
   target: 0.5.0
-  scope: lean_behavior_tested_cycles_and_proportionate_maintenance
-  runtime_included: false
-  acceptance_strategy: author_reported_real_use_success_with_documented_evidence_limits
   status: accepted
   accepted_date: 2026-10-21
-  accepted_by: charles-yang-lin
   decision: AB-D085
   tag: null
-  acceptance_record: docs/v0-5-acceptance.md
-  previous:
-    target: 0.4.1
-    scope: preserve_pinned_spec_kit_bytes_across_windows_git_checkouts
-    runtime_included: false
-    acceptance_strategy: green_windows_ci_and_author_review_with_workstation_use_unverified
-    status: accepted
-    accepted_date: 2026-10-07
-    accepted_by: charles-yang-lin
-    decision: AB-D066
-    tag: null
-    acceptance_record: docs/v0-4-1-review.md
-    previous:
-      target: 0.4.0
-      scope: filtered_spec_kit_augmentation_for_claude_code_and_codex
-      runtime_included: false
-      acceptance_strategy: author_acceptance_with_documented_review_limits_and_org_use
-      status: accepted
-      accepted_date: 2026-10-06
-      accepted_by: charles-yang-lin
-      decision: AB-D060
-      tag: v0.4.0
-      acceptance_record: docs/v0-4-acceptance.md
-      previous:
-        target: 0.3.0
-        scope: neutral_project_mode_with_build_or_adopt_and_version_sized_governance
-        runtime_included: false
-        acceptance_strategy: three_real_use_review_scenarios
-        status: accepted
-        accepted_date: 2026-09-24
-        accepted_by: charles-yang-lin
-        decision: AB-D050
-        tag: v0.3.0
-        acceptance_record: docs/v0-3-acceptance.md
-        previous:
-          target: 0.2.1
-          status: accepted
-          accepted_date: 2026-09-22
-          decision: AB-D039
-          tag: v0.2.1
-          acceptance_record: docs/v0-2-acceptance.md
-          previous:
-            target: 0.1.0
-            status: accepted
-            accepted_date: 2026-09-13
-            decision: AB-D017
-            tag: v0.1.0
-            acceptance_record: docs/v0-1-acceptance.md
-
-next_release:
-  target: 0.6.0
-  version_status: in_build
-  version_scheme: semantic_versioning_2_0_0
-  version_decision: AB-D085
-  purpose_status: confirmed
-  scope_status: confirmed
-  success_evidence_status: confirmed
-  note: >-
-    Author approved the v0.6.0 Plan with "ok build". Adapt Git with two Python
-    helpers for categorized size budgets and coding/skill version notices;
-    simplify shared governance and preserve working records locally. Runtime
-    notices, mandatory hooks and automatic upgrades remain deferred.
-
+  evidence: Author reported latest real-use tests worked; detailed scenario coverage unavailable.
+deliverable:
+  target_version: 0.6.0
+  goal: Proportionate builds and tests, lean shared governance, honest session version notices.
+build:
+  baseline: f1e7582362e2c65c748cefa7691f7c236b9af42f
+  decision: AB-D090
+  direct_change: Two Git/Python helpers, seeder/checker integration, existing instructions and record cleanup.
+  done_evidence: Functional budget/version/seed tests, render and lint; existing CI matrix when available.
+  exclusions: Runtime notices, mandatory hooks, automatic migration, dependencies, push and tags.
+  budget: governance/change-budget.json
+  cleanup: Untrack historical docs and working plans preserving local copies and Git history.
+  governance: Share current state, active decisions, definition, reuse and budget; details local.
+  notice: Coding sessions and skill invocations only; unknown remote state must never claim current.
 checkpoint:
   date: 2026-10-21
-  status: build_in_progress
-  phase_changed: true
-  next_action: Implement the approved Plan and budgets; Review requires author approval.
+  next_action: Author approval to close Build and enter Review; no push or tag authorized.
+  source_repository: true
+  limitation: Predates generated manifest; do not fabricate scaffold files to satisfy check.py.
+history: f1e7582362e2c65c748cefa7691f7c236b9af42f:governance/project-state.yaml
+verification:
+  local: 81 tests passed on Python 3.9.6 and 3.12.15; render, compile and Ruff 0.16.6 passed.
+  pending: Actual Windows/Linux CI and supported-host session observations; Claude unavailable.
+  remote_notice: Live ls-remote verified unreleased metadata and checkout ahead of origin/main.

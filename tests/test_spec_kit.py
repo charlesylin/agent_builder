@@ -132,7 +132,7 @@ class SpecKitSeedTests(unittest.TestCase):
                     provenance = json.loads(
                         (target / ".specify/spec-kit-provenance.json").read_text()
                     )
-                    self.assertEqual(manifest["template_version"], "0.5.0")
+                    self.assertEqual(manifest["template_version"], "0.6.0")
                     self.assertEqual(provenance["upstream"]["version"], "1.1.0")
                     self.assertEqual(
                         (target / ".specify/memory/constitution.md").read_bytes(),
@@ -232,6 +232,11 @@ class SpecKitSeedTests(unittest.TestCase):
             )
             record = target / "planning/solution-evaluation.md"
             record.write_text(record.read_text().replace("- Outcome: pending", "- Outcome: adopt"))
+            self.assertEqual(validate_project(target), ())  # v0.6 working research is local.
+            marker = target / ".agent-builder.json"
+            manifest = json.loads(marker.read_text())
+            manifest["template_version"] = "0.5.0"
+            marker.write_text(json.dumps(manifest))
             self.assertIn(
                 "missing-spec-kit-research", {issue.code for issue in validate_project(target)}
             )

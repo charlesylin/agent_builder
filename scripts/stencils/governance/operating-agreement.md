@@ -59,10 +59,8 @@ framework-driven abstractions.
 
 {{principle:communication-and-handoffs}}
 
-## v0.1 boundary (historical)
+## Shared records
 
-Version 0.1 supplied governance, project metadata, host-agent adapters, a machine-handoff
-contract, security defaults, Python directories, and deterministic scaffold validation. It
-did not supply an agent runtime, model client, MCP server, custom API, Dockerfile, or Compose
-service. v0.1 was accepted on 2026-09-13 (AB-D017); v0.2 scope is recorded in
-`docs/v0-2-define.md`.
+Keep concise current state, active decisions, approved definition and reuse evidence in
+Git. Detailed plans, discussions, review output and optional handoffs stay local/ignored.
+Historical decisions remain retrievable from pinned Git history; compacting is not reversal.

@@ -43,7 +43,7 @@ except ImportError as error:  # pragma: no cover - only when the skill folder is
     raise SystemExit(f"seed.py needs check.py beside it in {HERE}: {error}") from error
 
 # Kept equal to "version" in the repository's .claude-plugin/plugin.json; a test enforces it.
-TEMPLATE_VERSION = "0.5.0"
+TEMPLATE_VERSION = "0.6.0"
 # The marker check.py looks for in planning/definition.md. Keep the two in sync.
 UNANSWERED = "(not yet answered)"
 
@@ -254,6 +254,25 @@ def _collect_templates(spec: ProjectSpec, context: dict[str, str]) -> dict[Path,
             rendered_files[destination] = _render(
                 source.read_text(encoding="utf-8"), context, source=source
             )
+    for name in ("changes.py", "version.py"):
+        rendered_files[Path("scripts") / name] = (HERE / name).read_text(encoding="utf-8")
+    rendered_files[Path("governance/change-budget.md")] = (
+        HERE.parent / "references/change-budget.md"
+    ).read_text(encoding="utf-8")
+    rendered_files[Path("version.json")] = (
+        json.dumps(
+            {
+                "schema_version": 1,
+                "name": spec.name,
+                "version": None,
+                "updated": context["GENERATED_DATE"],
+                "repository": None,
+                "branch": None,
+            },
+            indent=2,
+        )
+        + "\n"
+    )
     return rendered_files
 
 

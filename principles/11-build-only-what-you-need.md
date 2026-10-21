@@ -19,6 +19,8 @@ built until the author asks for them in their own words.
 Before proposing work, test whether it advances the original problem, the agreed smallest
 outcome, or the task in the current cycle. If it does not, explain the mismatch plainly,
 recommend finishing this cycle, and defer the idea unless the author explicitly changes scope.
+At Plan approval, show the grouped later list once, recommend saving it, and ask whether
+any named item belongs now. Do not repeat unchanged optional questions during Build.
 
 ## Short form
 

@@ -128,15 +128,15 @@ a broader test run, or documentation, name the concrete failure it would prevent
 none is evidenced; seek author approval if it materially expands the agreed scope. Routine
 adjustments within that scope need no new approval.
 
-In Build, add focused unit tests for changed logic and persistent contract or integration tests
-for supported dependency, host, environment, or external-boundary guarantees. Run the relevant
-tests and say what each verifies and what remains untested. Label lint, compilation, packaging,
-and scaffold checks by their actual purpose; they do not prove product behavior. If test code
-exceeds first-party source code, review it for duplication and obsolete setup, but do not cut
-valuable boundary tests or inflate implementation to meet a line ratio.
-Scale verification and the decision note to the change: inspect the resolved configuration
-and run relevant existing tests for a configuration-only fix; do not default to new application
-checks, image rebuilds, or the full suite without a demonstrated need.
+Size and testing must be proportional to the approved outcome. Before Build, show
+estimated additions/removals/net/percent against a fixed clean commit, grouped by code
+language, tests, instruction Markdown, documentation and named miscellaneous types.
+Approve paths and gross addition/removal ceilings; run the change-budget helper after
+coherent edits and before commits. Re-estimate overruns with the author, never silently
+raise limits. Generated/vendor content and binary files/bytes remain visible.
+Every persistent test must protect supported functionality or a continuing guarantee;
+name what a failure would break. Drop wording-only assertions and redundant checks.
+Run focused checks, label lint/packaging honestly, and stop when agreed evidence passes.
 
 Before each manual commit after seeding, inspect tracked, staged, and untracked changes.
 Stage only the durable source, tests, and concise records needed for this version. Keep
@@ -163,6 +163,8 @@ built until the author asks for them in their own words.
 Before proposing work, test whether it advances the original problem, the agreed smallest
 outcome, or the task in the current cycle. If it does not, explain the mismatch plainly,
 recommend finishing this cycle, and defer the idea unless the author explicitly changes scope.
+At Plan approval, show the grouped later list once, recommend saving it, and ask whether
+any named item belongs now. Do not repeat unchanged optional questions during Build.
 
 ### Keep boundaries replaceable
 
@@ -221,10 +223,8 @@ projects keep an agent-readable state and decision record without assuming agent
 Do not turn a human closeout into a machine handoff, or use it to grow scope: ideas that are
 not needed for the current version go to `planning/later.md` until the author requests them.
 
-## v0.1 boundary (historical)
+## Shared records
 
-Version 0.1 supplied governance, project metadata, host-agent adapters, a machine-handoff
-contract, security defaults, Python directories, and deterministic scaffold validation. It
-did not supply an agent runtime, model client, MCP server, custom API, Dockerfile, or Compose
-service. v0.1 was accepted on 2026-09-13 (AB-D017); v0.2 scope is recorded in
-`docs/v0-2-define.md`.
+Keep concise current state, active decisions, approved definition and reuse evidence in
+Git. Detailed plans, discussions, review output and optional handoffs stay local/ignored.
+Historical decisions remain retrievable from pinned Git history; compacting is not reversal.

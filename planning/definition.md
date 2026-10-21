@@ -1,73 +1,29 @@
-# Agent Builder v0.3.0 definition (historical)
+# Agent Builder v0.6.0
 
-Target: v0.3.0. Define closed and Plan opened by the author on 2026-09-22. The author
-confirmed the purpose, scope, version, and success evidence. v0.3.0 was accepted on
-2026-09-24; this remains its definition record, not the open v0.4.0 definition.
+Approved 2026-10-21. Users: Two River Bio members building agents, skills and tools.
 
-## What problem does this solve?
+## Problem and value
 
-> We want to codify the "project" mode, create a logical versioning system and also enact the
-> governance and guidance around re-use, modularity and simplicity
-
-## How is it solved today?
-
-> we are trying to solve for vibe coding creating spaghetti code, re-inventing the wheel, and
-> not being scalable to an organization
-
-The current approach relies too much on ad hoc building and recommendations that can enlarge
-the product beyond what is needed.
-
-## What is the value if it is solved?
-
-> should formally enact project mode for agent-builder so that will help anyone in the near term
-> building projects and it will also improve agent-builder by helping it constrain and simplify
-> the user vs. suggesting too much
-
-## Who is it for?
-
-> primary user(s) remain the members of the two river bio organization
-
-## Purpose
-
-The next Agent Builder version will formally enact project mode and establish governance for
-logical versioning, reuse, modularity, and simplicity, so Two River Bio members can build
-useful project increments without spaghetti code, reinventing existing solutions, or making
-choices that cannot scale across the organization. It will also constrain Agent Builder from
-proposing more than the user needs.
+The author reports overbuilt fixes, performative tests, excessive committed planning
+and uncertainty about versions in use. v0.5 guidance has not sufficiently constrained
+these behaviors. Make the smallest useful next step visible and enforce its size budget.
 
 ## Smallest version that delivers the value
 
-Deliver a usable, validated neutral `project` mode that guides a Two River Bio member through
-one version-sized MVP. Before Build, require an evidence-backed build-or-adopt decision, a
-standard version stepping stone, preference for reusable modular components, and evidence for
-the simplicity, robustness, and organizational scalability of technical recommendations.
-Maintain structured agent-readable memory while making the human experience plain and
-proportionate. Internal identifiers need not appear in human-facing interactions.
+Show estimated and actual additions/removals/net/percent by code language, tests,
+instruction Markdown, documentation and explicitly named miscellaneous types.
+Protect functionality with proportionate tests. Expose grouped deferrals before Build,
+recommend saving them, and require an explicit request to promote them. Share concise
+current governance; keep working detail locally. At coding-session/skill entry, report
+name, own version, update date and remote freshness, including unknown states honestly.
 
 ## Not in this version
 
-- Organizational-repository configuration.
-- Grafify or skill discovery.
-- Formal testing or control improvements.
-
-## Versioning
-
-Agent Builder targets v0.3.0 under Semantic Versioning 2.0.0. Each governed project tracks the
-versions of its own deliverables independently, with one usable outcome per cycle. If adopting
-an existing solution fully resolves the need, record that solution's version and archive the
-project without claiming a new project release.
+Runtime startup notices, mandatory hooks/server policy, automatic updates or bulk migration.
 
 ## Success evidence
 
-The main real-use case is a DepMap-like request. Agent Builder identifies a suitable public
-solution, records evidence of fit, utilization, maintenance, testing, security history, and
-license obligations, recommends adoption, and archives the project after typed author
-confirmation without entering Build. This is an example of the required decision behavior,
-not a named skill or vendor to build into Agent Builder. Additional Two River Bio feedback
-should show at least one of: a shorter path to a useful outcome, more evidence-backed
-adoption recommendations, or effective pushback that reduces product sprawl. Do not invent
-numerical thresholds before a baseline exists.
-
-In real use, a member should understand status, important decisions, and next action without
-decoding internal identifiers. Each approval should have a concrete consequence, and user
-feedback should find the process clear and appropriately lightweight.
+Budget breaches and unapproved paths stop the workflow; cleanup does not hide additions.
+Version and scaffold checks cover normal, invalid and offline behavior. Fresh clones
+retain shared authority without working notes. Review observes a simple correction,
+a declined later item and notices on supported hosts; no fabricated host coverage.
