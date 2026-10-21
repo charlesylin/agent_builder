@@ -32,7 +32,9 @@ trustworthy version status when starting a session.
    practices to guide the boundary.
 5. **Session version notice:** Agent Builder and things built with it identify
    their name, version, last-update date, and whether they are current against
-   the remote or behind it at the beginning of each session.
+   the remote or behind it at the beginning of each session. On 2026-10-21,
+   the author limited this to coding sessions and skill invocations; finished-app
+   runtime startup integration is deferred.
 
 ## Approved smallest outcome and evidence
 

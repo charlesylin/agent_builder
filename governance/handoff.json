@@ -1,16 +1,21 @@
 {
   "schema_version": "1.0",
-  "handoff_id": "agent-builder-v0-6-plan-2026-10-21",
-  "created_at": "2026-10-21T15:26:22Z",
+  "handoff_id": "agent-builder-v0-6-build-2026-10-21",
+  "created_at": "2026-10-21T15:51:08Z",
   "source_agent": "agent-builder-codex",
   "target_agent": null,
   "status": "in_progress",
-  "summary": "Agent Builder v0.5.0 is accepted and untagged. The author approved the v0.6.0 definition, including category/language additions and removals, and opened Plan. The approved outcome and evidence are in planning/v0-6-definition.md; Build remains unapproved. Full decisions are in governance/decisions.yaml.",
+  "summary": "Author approved the v0.6.0 Plan and entered Build with \"ok build\". Implement the approved helpers, size budgets and lean governance; deferred extras remain out of scope.",
   "decisions": [
     {
-      "id": "AB-D088",
+      "id": "AB-D089",
       "status": "confirmed",
-      "summary": "Approve the refined v0.6.0 Define outcome and evidence, close Define, and enter Plan."
+      "summary": "Limit notices to coding sessions and skill invocations."
+    },
+    {
+      "id": "AB-D090",
+      "status": "confirmed",
+      "summary": "Approve the Plan, budgets and cleanup; enter Build."
     }
   ],
   "artifacts": [
@@ -33,9 +38,21 @@
     {
       "path": "planning/v0-6-definition.md",
       "media_type": "text/markdown"
+    },
+    {
+      "path": "planning/v0-6-implementation-plan.md",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "planning/v0-6-solution-evaluation.md",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "planning/later.md",
+      "media_type": "text/markdown"
     }
   ],
   "blockers": [],
   "questions": [],
-  "next_action": "Evaluate existing solutions and select the smallest v0.6.0 implementation; present estimated additions/removals by category, purposeful verification, and flagged-for-later items before seeking Build approval. No push or tag is requested."
+  "next_action": "Implement and verify the approved Plan. Review, push and tagging require separate authorization."
 }

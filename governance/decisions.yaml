@@ -1394,3 +1394,33 @@ decisions:
       shared/local record boundary, and version authority. Build is not approved.
     provenance: explicit_author_define_approval_and_progression
     record: planning/v0-6-definition.md
+  - id: AB-D089
+    status: confirmed
+    date: 2026-10-21
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      After hearing that coding sessions and skill invocations are simpler than
+      every finished-app launch, the author said "then keep it simple".
+    decision: >-
+      Limit v0.6.0 version notices to coding sessions and skill invocations;
+      defer finished-tool/app runtime startup integration.
+    provenance: explicit_author_plan_scope_clarification
+    record: planning/v0-6-implementation-plan.md
+  - id: AB-D090
+    status: confirmed
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said "ok build", approving the Plan and entry into Build.'
+    date: 2026-10-21
+    decision: >-
+      Adapt Git and existing Agent Builder code with two small Python helpers,
+      an approved change budget, concise shared governance and ignored working
+      records, and metadata-based session version notices. Apply the specified
+      cleanup to this repository and lean defaults to new scaffolds.
+    rationale: >-
+      Existing counters add setup but do not cover this workflow. Git provides
+      the primitives; deterministic grouping and budget checks address the gap
+      left by prose-only guidance. The proposed estimate is +1,020/-5,540 total
+      lines, including +350/-50 Python implementation. Detailed scope, ceilings,
+      compatibility limits, cleanup inventory and evidence are in the Plan.
+    provenance: explicit_author_plan_approval_and_build_transition
+    record: planning/v0-6-implementation-plan.md
