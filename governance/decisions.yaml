@@ -1327,3 +1327,25 @@ decisions:
       requested.
     provenance: explicit_author_phase_and_scope_direction
     record: planning/v0-5-implementation-plan.md
+  - id: AB-D085
+    status: confirmed
+    date: 2026-10-21
+    confirmed_date: 2026-10-21
+    confirmed_by: charles-yang-lin
+    confirmation: >-
+      The author reported that the latest tests worked and exposed issues for
+      a new version, then said "do that!" after the recommendation to accept
+      v0.5.0, close Review, open Define with v0.6.0 as the working target,
+      and commit and push the governance updates.
+    decision: >-
+      Accept v0.5.0 with documented evidence limits, close Review, and open
+      Define for a working v0.6.0 target. Commit and push the governance
+      updates. Leave the next cycle's scope open and create no release tag.
+    rationale: >-
+      The author reports successful latest real-use tests and explicitly
+      accepts the current version. Detailed test observations and the new
+      issues have not been supplied; do not infer scenario-specific coverage.
+      The Review exit check passed with nothing unresolved. Capture the newly
+      exposed issues in the next Define cycle before proposing implementation.
+    provenance: explicit_author_acceptance_phase_transition_and_push_request
+    record: docs/v0-5-acceptance.md
