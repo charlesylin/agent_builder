@@ -1,8 +1,8 @@
 # Resume Agent Builder
 
 Checkpoint: 2026-10-21. Agent Builder **v0.5.0** is accepted and untagged.
-The author closed Review and opened **Define**, with **v0.6.0** as the working
-next target. Scope remains open. See the [acceptance record](v0-5-acceptance.md)
+The author approved v0.6.0 Define and opened **Plan**. The next target is
+**v0.6.0**. See the [acceptance record](v0-5-acceptance.md)
 for reported test success and evidence limits.
 
 ## Recover context
@@ -38,19 +38,20 @@ to make the generated-project scaffold check pass.
 
 ## Current project state
 
-`governance/project-state.yaml` records **Define** for a working v0.6.0 target.
-The author reports that the latest tests exposed new issues for this cycle;
-those issues have not yet been described. Purpose, scope, smallest outcome,
-exclusions, and success evidence remain open. No implementation is approved.
+`governance/project-state.yaml` records **Plan** for v0.6.0.
+The five approved requirements, smallest outcome, and success evidence are in the
+[v0.6.0 Define record](../planning/v0-6-definition.md). They cover Build size,
+useful tests, visible deferrals, lean shared governance, and session version
+status. Change-size reporting includes additions and removals by category and
+language. Implementation choices remain open; Build is not approved.
 
 The accepted v0.5.0 outcome and amendments remain in the
 [Define record](../planning/v0-5-definition.md) and
 [implementation plan](../planning/v0-5-implementation-plan.md).
-The prior resume note saying the candidate commits were unpushed was stale:
-local and live remote `main` both pointed to `6cd6958` before this closeout.
-The author authorized committing and pushing the governance transition.
 
 ## Next action
 
-Capture the newly exposed issues from the author, then define the smallest
-useful v0.6.0 outcome, exclusions, and success evidence. No tag was requested.
+Evaluate existing solutions and select the smallest implementation. Resolve
+measurement and enforcement, local/shared governance, and version authority.
+Present estimated additions/removals by category, purposeful verification, and
+flagged-for-later items before seeking Build approval. No push or tag is requested.

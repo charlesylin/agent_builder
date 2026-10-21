@@ -1349,3 +1349,48 @@ decisions:
       exposed issues in the next Define cycle before proposing implementation.
     provenance: explicit_author_acceptance_phase_transition_and_push_request
     record: docs/v0-5-acceptance.md
+  - id: AB-D086
+    status: confirmed
+    date: 2026-10-21
+    confirmed_by: charles-yang-lin
+    decision: >-
+      Define v0.6.0 around the author's five requested improvements: visible
+      estimates and control of Build growth, functional and proportionate tests,
+      explicit later-item triage with saving as the default recommendation,
+      substantially leaner committed governance, and session-start version/date
+      reporting with remote freshness for Agent Builder and generated tools.
+    rationale: >-
+      The author reports continuing overbuilding, performative testing, excessive
+      committed prose, and uncertainty about versions in use. These are requested
+      Define requirements; implementation, counting rules, record storage, and
+      version authority remain undecided. The phase stays Define.
+    provenance: explicit_author_define_requirements
+    record: planning/v0-6-definition.md
+  - id: AB-D087
+    status: confirmed
+    date: 2026-10-21
+    confirmed_by: charles-yang-lin
+    decision: >-
+      Refine the Build-size requirement to show additions and reductions by code
+      language/type, documentation, and explicitly identified miscellaneous files.
+    rationale: >-
+      The author wants cleanup visible as a benefit and wants miscellaneous
+      changes explained. Detailed counting and enforcement remain Plan choices.
+    provenance: explicit_author_define_refinement
+    record: planning/v0-6-definition.md
+  - id: AB-D088
+    status: confirmed
+    date: 2026-10-21
+    confirmed_date: 2026-10-21
+    confirmed_by: charles-yang-lin
+    confirmation: 'The author said: "ok, this define is good, move on".'
+    decision: >-
+      Approve the v0.6.0 Define outcome, five requirements, refined change-size
+      breakdown, and success evidence; close Define and enter Plan.
+    rationale: >-
+      The author accepted the refined definition and directed progression to
+      the next phase. The Define exit check found nothing unresolved. Plan
+      must select the smallest implementation, counting and enforcement rules,
+      shared/local record boundary, and version authority. Build is not approved.
+    provenance: explicit_author_define_approval_and_progression
+    record: planning/v0-6-definition.md

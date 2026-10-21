@@ -8,8 +8,8 @@ project:
   status: active
 
 phase:
-  current: define
-  status: awaiting_definition
+  current: plan
+  status: plan_in_progress
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-10-21
   transition_requires: explicit_user_invocation_or_confirmation
@@ -314,6 +314,20 @@ phase:
         Explicitly opened by the author with v0.6.0 as the working target.
         Purpose, scope, smallest outcome, and success evidence remain open.
         Commit and push of the governance updates are authorized.
+    - phase: define
+      date: 2026-10-21
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        Closed after the author approved the v0.6.0 definition, including the
+        additions/removals breakdown by category and language. The Define exit
+        check found nothing unresolved.
+    - phase: plan
+      date: 2026-10-21
+      confirmed_by: charles-yang-lin
+      outcome: >-
+        Opened on the author's direction to move on from the approved Define.
+        Select the smallest implementation and resolve the remaining measurement,
+        governance-storage, and version-authority choices before proposing Build.
 
 release:
   target: 0.5.0
@@ -376,23 +390,24 @@ release:
 
 next_release:
   target: 0.6.0
-  version_status: working_target
+  version_status: in_plan
   version_scheme: semantic_versioning_2_0_0
   version_decision: AB-D085
-  purpose_status: open
-  scope_status: open
-  success_evidence_status: open
+  purpose_status: confirmed
+  scope_status: confirmed
+  success_evidence_status: confirmed
   note: >-
-    The author opened a new Define cycle for issues exposed by the latest
-    real-use tests. Capture those issues before defining the smallest outcome,
-    exclusions, and success evidence; no implementation is approved.
+    The author approved planning/v0-6-definition.md and entered Plan.
+    Implementation, measurement rules, governance storage, and version authority
+    remain Plan choices; Build is not approved.
 
 checkpoint:
   date: 2026-10-21
-  status: define_open
+  status: plan_open
   phase_changed: true
   human_handoff: docs/RESUME.md
   machine_handoff: governance/handoff.json
   next_action: >-
-    Capture the newly exposed issues from the author and define the smallest
-    useful v0.6.0 outcome, exclusions, and success evidence.
+    Evaluate existing solutions and select the smallest v0.6.0 implementation,
+    with estimated additions/removals by category, purposeful verification, and
+    flagged-for-later items before seeking Build approval.
