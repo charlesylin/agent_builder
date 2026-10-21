@@ -5,8 +5,8 @@ project:
   status: active
   purpose: Proportionate, version-sized development for agents, skills and projects.
 phase:
-  current: build
-  status: ready_for_review_approval
+  current: review
+  status: awaiting_author_project_review
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-10-21
   transition_requires: explicit_author_approval
@@ -15,6 +15,10 @@ phase:
       date: 2026-10-21
       confirmed_by: charles-yang-lin
       outcome: Author approved the v0.6.0 Plan with "ok build"; Plan exit check passed.
+    - phase: review
+      date: 2026-10-21
+      confirmed_by: charles-yang-lin
+      outcome: Build closed; author will review local candidate 5094280 in a Claude project on this machine.
 release:
   target: 0.5.0
   status: accepted
@@ -37,7 +41,7 @@ build:
   notice: Coding sessions and skill invocations only; unknown remote state must never claim current.
 checkpoint:
   date: 2026-10-21
-  next_action: Author approval to close Build and enter Review; no push or tag authorized.
+  next_action: Review v0.6.0 from the local repo in the author's Claude project; acceptance remains open.
   source_repository: true
   limitation: Predates generated manifest; do not fabricate scaffold files to satisfy check.py.
 history: f1e7582362e2c65c748cefa7691f7c236b9af42f:governance/project-state.yaml

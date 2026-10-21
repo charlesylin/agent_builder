@@ -191,3 +191,7 @@ decisions:
     date: 2026-10-21
     decision: "Adapt Git and existing Agent Builder code with two small Python helpers, an approved change budget, concise shared governance and ignored working records, and metadata-based session version notices. Apply the specified cleanup to this repository and lean defaults to new scaffolds."
     confirmation: 'Author: "ok build". Plan, budgets, cleanup and Build approved; extras deferred.'
+  - id: AB-D091
+    status: confirmed
+    date: 2026-10-21
+    decision: Author directed closing Build and reviewing local v0.6.0 in a Claude project on this machine; no acceptance, push or tag implied.
