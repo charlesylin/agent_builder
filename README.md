@@ -81,7 +81,7 @@ How to change principles, the skill, templates, or cut a release:
 
 ## Status
 
-**v0.6.0 is in Review; v0.5.0 is accepted and untagged.** This cycle adds categorized
+**v0.6.0 is accepted (October 22, 2026), tagged `v0.6.0`.** It adds categorized
 change budgets, proportionate tests, lean shared governance and coding/skill version
 notices. See [current state](governance/project-state.yaml) for authority and evidence.
 

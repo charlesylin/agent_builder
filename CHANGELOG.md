@@ -2,7 +2,9 @@
 
 All notable changes to Agent Builder are documented here.
 
-## [0.6.0] — 2026-10-21 (Review candidate; not accepted)
+## [0.6.0] — 2026-10-22
+
+Accepted after author-reported successful project Review; tagged v0.6.0.
 
 Adds Git-based categorized change budgets and honest version/date notices for coding
 sessions and skill invocations. New scaffolds retain concise shared governance and

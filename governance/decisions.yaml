@@ -195,3 +195,7 @@ decisions:
     status: confirmed
     date: 2026-10-21
     decision: Author directed closing Build and reviewing local v0.6.0 in a Claude project on this machine; no acceptance, push or tag implied.
+  - id: AB-D092
+    status: confirmed
+    date: 2026-10-22
+    decision: Author reports v0.6.0 Review went well and explicitly requests acceptance, tagging and push; close Review without opening a new cycle. Required release bookkeeping adds a metadata-only allowance of 6 added/4 removed lines; implementation budgets remain unchanged.

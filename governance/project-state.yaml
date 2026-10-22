@@ -6,9 +6,9 @@ project:
   purpose: Proportionate, version-sized development for agents, skills and projects.
 phase:
   current: review
-  status: awaiting_author_project_review
+  status: accepted
   last_confirmed_by: charles-yang-lin
-  last_confirmed_date: 2026-10-21
+  last_confirmed_date: 2026-10-22
   transition_requires: explicit_author_approval
   history:
     - phase: build
@@ -18,14 +18,14 @@ phase:
     - phase: review
       date: 2026-10-21
       confirmed_by: charles-yang-lin
-      outcome: Build closed; author will review local candidate 5094280 in a Claude project on this machine.
+      outcome: Closed 2026-10-22 after author-reported successful Claude project review; accepted v0.6.0, tag and push authorized.
 release:
-  target: 0.5.0
+  target: 0.6.0
   status: accepted
-  accepted_date: 2026-10-21
-  decision: AB-D085
-  tag: null
-  evidence: Author reported latest real-use tests worked; detailed scenario coverage unavailable.
+  accepted_date: 2026-10-22
+  decision: AB-D092
+  tag: v0.6.0
+  evidence: Author reports Review went well; detailed scenarios not supplied. CI passed for 924fe1e.
 deliverable:
   target_version: 0.6.0
   goal: Proportionate builds and tests, lean shared governance, honest session version notices.
@@ -40,12 +40,12 @@ build:
   governance: Share current state, active decisions, definition, reuse and budget; details local.
   notice: Coding sessions and skill invocations only; unknown remote state must never claim current.
 checkpoint:
-  date: 2026-10-21
-  next_action: Review v0.6.0 from the local repo in the author's Claude project; acceptance remains open.
+  date: 2026-10-22
+  next_action: Use accepted v0.6.0; no next Define cycle authorized.
   source_repository: true
   limitation: Predates generated manifest; do not fabricate scaffold files to satisfy check.py.
 history: f1e7582362e2c65c748cefa7691f7c236b9af42f:governance/project-state.yaml
 verification:
   local: 81 tests passed on Python 3.9.6 and 3.12.15; render, compile and Ruff 0.16.6 passed.
-  pending: Actual Windows/Linux CI and supported-host session observations; Claude unavailable.
+  review: Author-reported success in the planned Claude project; independent host scenario coverage unverified.
   remote_notice: Live ls-remote verified unreleased metadata and checkout ahead of origin/main.
