@@ -1,29 +1,25 @@
-# Agent Builder v0.6.0
+# Agent Builder v0.6.1
 
-Approved 2026-10-21. Users: Two River Bio members building agents, skills and tools.
+Maintenance scope confirmed 2026-10-26; Plan opened by the author.
+Users: people building agents, skills and tools with Agent Builder.
 
-## Problem and value
+## Problem and smallest useful correction
 
-The author reports overbuilt fixes, performative tests, excessive committed planning
-and uncertainty about versions in use. v0.5 guidance has not sufficiently constrained
-these behaviors. Make the smallest useful next step visible and enforce its size budget.
+v0.6.0 budgets are not consistently surfaced in conversation, physical-line limits
+can reward compressed code, and testing still grows beyond the behavior that matters.
 
-## Smallest version that delivers the value
+- Show budgets to the user at approval, meaningful Build updates and closeout.
+- Retain added/removed lines and category/language breakdowns, alongside codebase
+  growth percentages that distinguish formatting from substantive growth. Preserve readability.
+- Define the minimum necessary unit-test cases against the behavior contract in Plan;
+  implement those tests and build toward them. Keep temporary experiments local.
+  Every retained test must protect functionality or a supported guarantee.
 
-Show estimated and actual additions/removals/net/percent by code language, tests,
-instruction Markdown, documentation and explicitly named miscellaneous types.
-Protect functionality with proportionate tests. Expose grouped deferrals before Build,
-recommend saving them, and require an explicit request to promote them. Share concise
-current governance; keep working detail locally. At coding-session/skill entry, report
-name, own version, update date and remote freshness, including unknown states honestly.
+## Success evidence and exclusions
 
-## Not in this version
+Review sees estimates and actuals in conversation, no incentive to compress readable
+code, and a clear connection between each retained test and a meaningful failure.
+The measurement method, size estimate and focused checks will be proposed in Plan.
+Larger v0.7 work, new analysis frameworks, runtime notices and automatic migration are out.
 
-Runtime startup notices, mandatory hooks/server policy, automatic updates or bulk migration.
-
-## Success evidence
-
-Budget breaches and unapproved paths stop the workflow; cleanup does not hide additions.
-Version and scaffold checks cover normal, invalid and offline behavior. Fresh clones
-retain shared authority without working notes. Review observes a simple correction,
-a declined later item and notices on supported hosts; no fabricated host coverage.
+Accepted v0.6.0 scope: `d093440:planning/definition.md`.

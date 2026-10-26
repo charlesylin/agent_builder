@@ -5,10 +5,10 @@ project:
   status: active
   purpose: Proportionate, version-sized development for agents, skills and projects.
 phase:
-  current: review
-  status: accepted
+  current: plan
+  status: in_progress
   last_confirmed_by: charles-yang-lin
-  last_confirmed_date: 2026-10-22
+  last_confirmed_date: 2026-10-26
   transition_requires: explicit_author_approval
   history:
     - phase: build
@@ -19,6 +19,10 @@ phase:
       date: 2026-10-21
       confirmed_by: charles-yang-lin
       outcome: Closed 2026-10-22 after author-reported successful Claude project review; accepted v0.6.0, tag and push authorized.
+    - phase: plan
+      date: 2026-10-26
+      confirmed_by: charles-yang-lin
+      outcome: Author said "yes open plan" for the three v0.6.1 maintenance corrections; Review exit check passed.
 release:
   target: 0.6.0
   status: accepted
@@ -27,25 +31,23 @@ release:
   tag: v0.6.0
   evidence: Author reports Review went well; detailed scenarios not supplied. CI passed for 924fe1e.
 deliverable:
-  target_version: 0.6.0
-  goal: Proportionate builds and tests, lean shared governance, honest session version notices.
-build:
-  baseline: f1e7582362e2c65c748cefa7691f7c236b9af42f
-  decision: AB-D090
-  direct_change: Two Git/Python helpers, seeder/checker integration, existing instructions and record cleanup.
-  done_evidence: Functional budget/version/seed tests, render and lint; existing CI matrix when available.
-  exclusions: Runtime notices, mandatory hooks, automatic migration, dependencies, push and tags.
-  budget: governance/change-budget.json
-  cleanup: Untrack historical docs and working plans preserving local copies and Git history.
-  governance: Share current state, active decisions, definition, reuse and budget; details local.
-  notice: Coding sessions and skill invocations only; unknown remote state must never claim current.
+  target_version: 0.6.1
+  goal: Visible budgets, readable code without line-count incentives, and minimal contract-driven tests.
+plan:
+  decision: AB-D093
+  scope: Surface budgets in conversation; distinguish code growth from formatting; define necessary tests before implementation.
+  next_step: Propose the smallest changes, measurement contract, visible estimate and focused test cases.
+  approval: Plan opened only; implementation choices, budget and Build remain unapproved.
+  prior_budget: governance/change-budget.json belongs to completed v0.6.0; no v0.6.1 budget approved yet.
+  exclusions: Larger v0.7 work, new analysis frameworks, runtime notices and automatic migration.
+previous_build: d09344014558d08d141b559d9b2d137dc1b2fc34:governance/project-state.yaml
 checkpoint:
-  date: 2026-10-22
-  next_action: Use accepted v0.6.0; no next Define cycle authorized.
+  date: 2026-10-26
+  next_action: Prepare the short v0.6.1 maintenance Plan; keep detailed working notes local.
   source_repository: true
   limitation: Predates generated manifest; do not fabricate scaffold files to satisfy check.py.
 history: f1e7582362e2c65c748cefa7691f7c236b9af42f:governance/project-state.yaml
-verification:
+previous_release_verification:
   local: 81 tests passed on Python 3.9.6 and 3.12.15; render, compile and Ruff 0.16.6 passed.
   review: Author-reported success in the planned Claude project; independent host scenario coverage unverified.
   remote_notice: Live ls-remote verified unreleased metadata and checkout ahead of origin/main.
