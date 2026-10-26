@@ -132,7 +132,7 @@ class SpecKitSeedTests(unittest.TestCase):
                     provenance = json.loads(
                         (target / ".specify/spec-kit-provenance.json").read_text()
                     )
-                    self.assertEqual(manifest["template_version"], "0.6.1")
+                    self.assertEqual(manifest["template_version"], "0.6.2")
                     self.assertEqual(provenance["upstream"]["version"], "1.1.0")
                     self.assertEqual(
                         (target / ".specify/memory/constitution.md").read_bytes(),

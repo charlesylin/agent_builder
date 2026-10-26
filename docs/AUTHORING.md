@@ -89,6 +89,9 @@ project's `.specify/` files as a side effect of a bundle refresh.
    the evals. Exercise both hosts' member-facing flow for a changed integration.
 4. Commit, tag `vX.Y.Z`, push with `--follow-tags`.
 
+For the v0.6.2 template fix, record the plugin version/path actually loaded by Claude Code;
+verify its env.example.tmpl survives installation and seeding produces a valid .env.example.
+
 Installed copies update only when `plugin.json` `version` changes. Seeded projects never
 update themselves; `check.py --since` shows their owners what changed.
 

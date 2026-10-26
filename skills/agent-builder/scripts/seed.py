@@ -43,7 +43,7 @@ except ImportError as error:  # pragma: no cover - only when the skill folder is
     raise SystemExit(f"seed.py needs check.py beside it in {HERE}: {error}") from error
 
 # Kept equal to "version" in the repository's .claude-plugin/plugin.json; a test enforces it.
-TEMPLATE_VERSION = "0.6.1"
+TEMPLATE_VERSION = "0.6.2"
 # The marker check.py looks for in planning/definition.md. Keep the two in sync.
 UNANSWERED = "(not yet answered)"
 
@@ -249,6 +249,8 @@ def _collect_templates(spec: ProjectSpec, context: dict[str, str]) -> dict[Path,
             ]
             rendered_parts[-1] = rendered_parts[-1].removesuffix(".tmpl")
             destination = Path(*rendered_parts)
+            if destination == Path("env.example"):
+                destination = Path(".env.example")
             if destination in rendered_files and not may_override:
                 raise ScaffoldError(f"template collision at {destination}")
             rendered_files[destination] = _render(

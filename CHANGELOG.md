@@ -2,6 +2,11 @@
 
 All notable changes to Agent Builder are documented here.
 
+## [0.6.2] — 2026-10-26
+
+Build candidate: package the environment example as env.example.tmpl and generate
+.env.example at seed time. Actual Claude Code installation verification remains pending.
+
 ## [0.6.1] — 2026-10-26
 
 Accepted by the author after focused Build checks; tagged v0.6.1.

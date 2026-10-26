@@ -29,7 +29,6 @@ htmlcov/
 .env
 .env.*
 !.env.example
-!**/.env.example.tmpl
 .secrets/
 secrets/
 *.pem
