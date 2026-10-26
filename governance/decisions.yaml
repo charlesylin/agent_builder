@@ -213,3 +213,7 @@ decisions:
     status: confirmed
     date: 2026-10-26
     decision: Author adds Erico's amendment during Build; show additions green and removals red on interactive terminals and use diff-style chat summaries where supported. Keep JSON/redirected output plain; fit within approved budgets.
+  - id: AB-D096
+    status: confirmed
+    date: 2026-10-26
+    decision: Author explicitly closes Build and Review, accepts v0.6.1, requests commit/push/tag and opening the next cycle. Use v0.7.0 as a provisional Define target for the larger idea; scope remains unprovided.

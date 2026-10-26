@@ -5,8 +5,8 @@ project:
   status: active
   purpose: Proportionate, version-sized development for agents, skills and projects.
 phase:
-  current: build
-  status: ready_for_review
+  current: review
+  status: accepted
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-10-26
   transition_requires: explicit_author_approval
@@ -27,13 +27,17 @@ phase:
       date: 2026-10-26
       confirmed_by: charles-yang-lin
       outcome: Author approved v0.6.1 with "good, go to build"; Plan exit check passed.
+    - phase: review
+      date: 2026-10-26
+      confirmed_by: charles-yang-lin
+      outcome: Author closed Build and accepted v0.6.1 Review; tag and push approved.
 release:
-  target: 0.6.0
+  target: 0.6.1
   status: accepted
-  accepted_date: 2026-10-22
-  decision: AB-D092
-  tag: v0.6.0
-  evidence: Author reports Review went well; detailed scenarios not supplied. CI passed for 924fe1e.
+  accepted_date: 2026-10-26
+  decision: AB-D096
+  tag: v0.6.1
+  evidence: Author accepts this small correction after seven focused tests, render and lint passed; no additional real-work Review scenarios supplied.
 deliverable:
   target_version: 0.6.1
   goal: Visible budgets, readable code without line-count incentives, and minimal contract-driven tests.
@@ -42,10 +46,7 @@ build:
   scope: Surface budgets in conversation; distinguish code growth from formatting; define necessary tests before implementation.
   baseline: dbdce8a7278e7a79affe1b9f34fabf3a7857977f
   direct_change: Extend changes.py with non-whitespace byte growth; tighten visible-budget and contract-first testing instructions and render copies.
-  compatibility: Keep schema-1 gross-line and path enforcement; additive report fields only, no automatic formatting exemptions.
   estimate: Python +80/-25; tests +60/-10; instructions +120/-85; documentation +35/-15; metadata +65/-90 lines.
-  code_growth: Approximately +2000 non-whitespace bytes (+2.9% of 69240); +55 net Python lines (+2.3%).
-  done_evidence: Focused size and inventory cases, existing budget and metadata checks, fresh-clone case, render agreement and touched-Python lint.
   approval: Author approved scope, budget and minimum evidence on 2026-10-26.
   result: Seven focused tests passed on Python 3.9.6; render agreement and Ruff 0.16.6 passed; all category ceilings respected.
   budget: governance/change-budget.json
@@ -53,7 +54,7 @@ build:
 previous_build: d09344014558d08d141b559d9b2d137dc1b2fc34:governance/project-state.yaml
 checkpoint:
   date: 2026-10-26
-  next_action: Author-directed Review of local v0.6.1 candidate; Build evidence passed, no release acceptance or push.
+  next_action: Tag and push accepted v0.6.1, then open the next Define cycle as authorized.
   source_repository: true
   limitation: Predates generated manifest; do not fabricate scaffold files to satisfy check.py.
 history: f1e7582362e2c65c748cefa7691f7c236b9af42f:governance/project-state.yaml
