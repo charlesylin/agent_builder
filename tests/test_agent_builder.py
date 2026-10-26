@@ -62,8 +62,8 @@ class ScaffoldTests(unittest.TestCase):
 
                 self.assertEqual(validate_project(target), ())
                 self.assertEqual(
-                    (target / ".env.example").read_bytes(),
-                    (SKILL / "templates/base/env.example.tmpl").read_bytes(),
+                    (target / ".env.example").read_text(encoding="utf-8"),
+                    (SKILL / "templates/base/env.example.tmpl").read_text(encoding="utf-8"),
                 )
                 self.assertFalse((target / "env.example").exists())
                 readme = (target / "README.md").read_text(encoding="utf-8")
