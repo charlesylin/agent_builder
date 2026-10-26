@@ -205,6 +205,11 @@ decisions:
     confirmation: 'Author: "yes open plan".'
     decision: Open a short v0.6.1 maintenance Plan for visible conversational budgets, growth reporting that preserves readable formatting, and minimal contract-driven tests defined before implementation. Keep v0.7 separate; Build and its budget remain unapproved.
   - id: AB-D094
-    status: proposed
+    status: confirmed
     date: 2026-10-26
     decision: Adapt the existing Git/Python helper with additive non-whitespace byte growth reporting; retain schema-1 limits and readability review. Surface budgets in conversation and define minimal behavior cases before Build. Proposed whole-cycle ceilings and evidence are in project-state.yaml; working detail stays local. No new dependency or automatic formatting waiver.
+    confirmation: 'Author: "good, go to build"; proposed scope, budget and minimum evidence approved.'
+  - id: AB-D095
+    status: confirmed
+    date: 2026-10-26
+    decision: Author adds Erico's amendment during Build; show additions green and removals red on interactive terminals and use diff-style chat summaries where supported. Keep JSON/redirected output plain; fit within approved budgets.

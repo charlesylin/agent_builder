@@ -5,8 +5,8 @@ project:
   status: active
   purpose: Proportionate, version-sized development for agents, skills and projects.
 phase:
-  current: plan
-  status: awaiting_approval
+  current: build
+  status: in_progress
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-10-26
   transition_requires: explicit_author_approval
@@ -23,6 +23,10 @@ phase:
       date: 2026-10-26
       confirmed_by: charles-yang-lin
       outcome: Author said "yes open plan" for the three v0.6.1 maintenance corrections; Review exit check passed.
+    - phase: build
+      date: 2026-10-26
+      confirmed_by: charles-yang-lin
+      outcome: Author approved v0.6.1 with "good, go to build"; Plan exit check passed.
 release:
   target: 0.6.0
   status: accepted
@@ -33,24 +37,22 @@ release:
 deliverable:
   target_version: 0.6.1
   goal: Visible budgets, readable code without line-count incentives, and minimal contract-driven tests.
-plan:
-  decision: AB-D093
+build:
+  decision: AB-D094
   scope: Surface budgets in conversation; distinguish code growth from formatting; define necessary tests before implementation.
-  next_step: Author reviews the proposed direct change, budget and minimum cases; Build requires approval.
-  proposal: AB-D094
   baseline: dbdce8a7278e7a79affe1b9f34fabf3a7857977f
   direct_change: Extend changes.py with non-whitespace byte growth; tighten visible-budget and contract-first testing instructions and render copies.
   compatibility: Keep schema-1 gross-line and path enforcement; additive report fields only, no automatic formatting exemptions.
   estimate: Python +80/-25; tests +60/-10; instructions +120/-85; documentation +35/-15; metadata +65/-90 lines.
   code_growth: Approximately +2000 non-whitespace bytes (+2.9% of 69240); +55 net Python lines (+2.3%).
   done_evidence: Focused size and inventory cases, existing budget and metadata checks, fresh-clone case, render agreement and touched-Python lint.
-  approval: Plan opened only; implementation choices, budget and Build remain unapproved.
-  prior_budget: governance/change-budget.json belongs to completed v0.6.0; no v0.6.1 budget approved yet.
+  approval: Author approved scope, budget and minimum evidence on 2026-10-26.
+  budget: governance/change-budget.json
   exclusions: Larger v0.7 work, new analysis frameworks, runtime notices and automatic migration.
 previous_build: d09344014558d08d141b559d9b2d137dc1b2fc34:governance/project-state.yaml
 checkpoint:
   date: 2026-10-26
-  next_action: Review the v0.6.1 proposal; local detail is planning/v0-6-1-plan.md and planning/v0-6-1-budget.json.
+  next_action: Implement approved v0.6.1 cases and changes, check actuals, then present the candidate for Review.
   source_repository: true
   limitation: Predates generated manifest; do not fabricate scaffold files to satisfy check.py.
 history: f1e7582362e2c65c748cefa7691f7c236b9af42f:governance/project-state.yaml
