@@ -230,3 +230,6 @@ decisions:
     date: 2026-10-26
     decision: Rename the names-only environment template to env.example.tmpl and map its output to .env.example in the existing seeder. Reuse existing tests, preserve validation and verify the actual installed plugin in Review. Proposed budget and evidence are recorded in project-state.yaml; no dependency or recovery framework.
     confirmation: Author said "approved" to the concrete v0.6.2 Plan and budget; enter Build.
+  - id: AB-D100
+    status: confirmed
+    decision: On 2026-10-26 the author requested push and tag v0.6.2 to enable Claude Code review; publish the candidate without inferring release acceptance.
