@@ -1,4 +1,4 @@
-# Agent Builder v0.6.2 — Define
+# Agent Builder v0.6.2
 
 Working patch target, 2026-10-26. Fix Claude Code seeding delayed by recovery from an
 installed plugin whose environment-example template is missing.
@@ -12,4 +12,5 @@ v0.6.1 was a workaround, not the installed version. The omission stage is still 
 Success: the published plugin loaded by Claude Code seeds a project with the names-only
 .env.example and normal validation, without remote-source recovery. Evaluate an ordinary
 packaged filename mapped to .env.example; verify the actual publication/install path.
-No updater, retry layer, packaging framework or v0.7 features. No Plan or Build approved.
+No updater, retry layer, packaging framework or v0.7 features. Define approved and Plan
+opened 2026-10-26; Build awaits approval.

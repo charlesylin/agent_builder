@@ -24,3 +24,7 @@ our choice, informed by GitHub's focused README, Issues and tag-based release co
 2026-10-26, v0.6.1 maintenance: reuse the accepted Git/Python adaptation above.
 The observed gaps are physical-line-only reporting and insufficiently explicit presentation/
 test instructions; extend existing code and instruction sources without a new dependency.
+
+2026-10-26, v0.6.2 maintenance: retain the existing Python seeder; no new dependency.
+The installed payload omits one template. Propose an ordinary source filename with exact
+output mapping; actual-channel Review must confirm delivery. Omission stage remains unknown.
