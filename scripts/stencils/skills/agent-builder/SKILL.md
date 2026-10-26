@@ -270,8 +270,10 @@ uncertain and verify a safe, bounded step before claiming setup works. Do this w
 configuration task arises, not at every prompt.
 
 **Size and evidence before Build.** Follow the operating agreement's proportional
-checks. Present estimated additions, removals, net and percent by code language,
-tests, instruction Markdown, documentation and named misc types. Run `changes.py
+checks. Show estimates, Build actuals versus estimates and final actuals in conversation,
+by language, tests, instructions, docs and named misc types; include line and non-whitespace
+size growth. Use green/red diff summaries where supported. Preserve readable formatting.
+Plan minimal behavior cases; implement those tests before changed code. Run `changes.py
 <root> --base <clean-commit>` from this skill's scripts (or the copied project helper)
 for the baseline. Record author-approved paths, categories and ceilings in
 `governance/change-budget.json`; see `references/change-budget.md`. Check after each

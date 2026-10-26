@@ -88,10 +88,12 @@ each increment with realistic inputs. Unsupported capabilities and invalid state
 clear failures; they are never silently ignored. Record exact versions, inputs, commands,
 and limitations behind compatibility claims.
 
-In Plan, establish the expected normal result, failure response, and relevant boundary for
-each changed behavior. Ask the author when an expectation changes the product or needs control
-data; otherwise state a reasonable assumption. Run one-off feasibility checks in a temporary
-location and keep their scripts and raw output out of Git. Record a concise finding and exact
+In Plan, list the minimum unit cases: input, expected result/failure and the supported
+behavior each protects. In Build, implement those cases before the changed code; add integration
+coverage only for an affected supported boundary. Keep tests to the contract's minimum.
+Ask the author when an expectation changes the product or needs control data; otherwise state
+a reasonable assumption. Run one-off feasibility checks in a temporary location and keep
+their scripts and raw output out of Git. Record a concise finding and exact
 version and command when a check supports a decision. Retain a focused regression test in
 Build when it protects a recurring defect or a supported compatibility promise; a one-off
 configuration fix may be sufficiently checked without adding a test.
@@ -116,14 +118,16 @@ a broader test run, or documentation, name the concrete failure it would prevent
 none is evidenced; seek author approval if it materially expands the agreed scope. Routine
 adjustments within that scope need no new approval.
 
-Size and testing must be proportional to the approved outcome. Before Build, show
-estimated additions/removals/net/percent against a fixed clean commit, grouped by code
-language, tests, instruction Markdown, documentation and named miscellaneous types.
-Approve paths and gross addition/removal ceilings; run the change-budget helper after
-coherent edits and before commits. Re-estimate overruns with the author, never silently
-raise limits. Generated/vendor content and binary files/bytes remain visible.
+Show the budget in conversation at Build approval, actuals versus estimates after coherent
+Build increments, and final actuals at closeout; a file or tool output alone is insufficient.
+Group additions/removals/net/percent by language, tests, instructions, docs and named misc types;
+include non-whitespace code-size growth, generated/vendor content and binary bytes. Use green
+additions/red removals where supported (diff blocks in chat); retain signs in plain output.
+Approve paths and gross line ceilings against a fixed clean commit; check after coherent edits
+and before commits. Re-estimate overruns, never silently raise limits or compress readable code.
+Whitespace-neutral size is a proxy, not proof of unchanged behavior; keep formatting readable.
 Every persistent test must protect supported functionality or a continuing guarantee;
-name what a failure would break. Drop wording-only assertions and redundant checks.
+name what a failure would break. Name checks by behavior; drop wording-only and redundant checks.
 Run focused checks, label lint/packaging honestly, and stop when agreed evidence passes.
 
 Before each manual commit after seeding, inspect tracked, staged, and untracked changes.

@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Report physical-line changes against a fixed commit; enforce an approved JSON budget."""
+"""Report line and whitespace-neutral size changes; enforce an approved JSON budget."""
 
 import argparse
 import fnmatch
 import json
 import os
 import subprocess
+import sys
 from pathlib import Path
 
 
@@ -168,10 +169,29 @@ def measure(root, base, overrides=None):
                 )
             )
         )
+    code_size = {"baseline": 0, "current": 0}
+    for before, names in ((True, tree), (False, tracked - {""})):
+        key = "baseline" if before else "current"
+        for name in names:
+            if special(name, before):
+                continue
+            data = content(name, before)
+            if b"\0" in data:
+                continue
+            size = len(b"".join(data.split()))
+            item = row(name, "lines")
+            item.setdefault("size_bytes", {"baseline": 0, "current": 0})[key] += size
+            if category(name, {}).endswith(" code") and not any(
+                part in {"vendor", "third_party"} for part in Path(name).parts
+            ):
+                code_size[key] += size
+    for size in [code_size, *(r["size_bytes"] for r in rows.values() if "size_bytes" in r)]:
+        size["net"] = size["current"] - size["baseline"]
+        size["percent"] = 100 * size["net"] / size["baseline"] if size["baseline"] else None
     for item in rows.values():
         item["net"] = item["added"] - item["removed"]
         item["percent"] = 100 * item["net"] / item["baseline"] if item["baseline"] else None
-    return {"baseline": base, "rows": rows, "paths": sorted(paths)}
+    return {"baseline": base, "rows": rows, "paths": sorted(paths), "code_size_bytes": code_size}
 
 
 def check_budget(report, budget):
@@ -192,6 +212,12 @@ def check_budget(report, budget):
                 elif row[key] > limit:
                     issues.append(f"{label}: {key} {row[key]} exceeds {limit}")
     return issues
+
+
+def color_delta(text):
+    if not sys.stdout.isatty():
+        return text
+    return f"\033[{31 if text.startswith('-') else 32}m{text}\033[0m"
 
 
 def main(argv=None):
@@ -224,7 +250,8 @@ def main(argv=None):
             for label, row in sorted(report["rows"].items()):
                 pct = f"{row['percent']:+.1f}%" if row["percent"] is not None else "N/A"
                 print(
-                    f"{label} | {row['baseline']} | +{row['added']} | -{row['removed']} | "
+                    f"{label} | {row['baseline']} | {color_delta('+' + str(row['added']))} | "
+                    f"{color_delta('-' + str(row['removed']))} | "
                     f"{row['net']:+} | {pct} | {row['files']}/{row['generated']}/{row['vendor']}"
                 )
             lines = [row for row in report["rows"].values() if row["unit"] == "lines"]
@@ -232,7 +259,17 @@ def main(argv=None):
                 sum(row[k] for row in lines) for k in ("baseline", "added", "removed")
             )
             pct = f"{100 * (added - removed) / baseline:+.1f}%" if baseline else "N/A"
-            print(f"Total text | {baseline} | +{added} | -{removed} | {added - removed:+} | {pct}")
+            print(
+                f"Total text | {baseline} | {color_delta(f'+{added}')} | "
+                f"{color_delta(f'-{removed}')} | {added - removed:+} | {pct}"
+            )
+            print("Non-whitespace bytes | Baseline | Current | Net | Net %")
+            sizes = {k: r["size_bytes"] for k, r in report["rows"].items() if "size_bytes" in r}
+            sizes["First-party code size"] = report["code_size_bytes"]
+            for label, size in sorted(sizes.items()):
+                pct = f"{size['percent']:+.1f}%" if size["percent"] is not None else "N/A"
+                delta = color_delta(f"{size['net']:+}")
+                print(f"{label} | {size['baseline']} | {size['current']} | {delta} | {pct}")
             for issue in issues:
                 print(issue)
         return int(bool(issues))

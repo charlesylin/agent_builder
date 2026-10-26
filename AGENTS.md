@@ -32,11 +32,11 @@ archive after author confirmation; otherwise explain the evidence for adapting o
 transformation, calculation, policy enforcement, and execution in deterministic, tested Python.
 - **Work small and fail loudly.** Build the smallest testable capability and stop when its agreed evidence passes. For an
 existing failure, prefer the evidenced direct fix and justify any larger safeguard against a
-concrete remaining failure. Fail loudly on unsupported or invalid input. Design expected
-behavior in Plan; keep one-off checks temporary and commit focused tests for behavior and
-supported guarantees. Verify proportionately. Inspect the full staged and untracked change
-before committing; keep disposable artifacts out. Record exact versions and commands behind
-compatibility claims.
+concrete remaining failure. Fail loudly on unsupported or invalid input. Define
+minimal unit cases in Plan, implement them before changed code, and keep experiments temporary.
+Show estimated/actual line and code-size budgets in chat; preserve readability. Verify
+proportionately. Inspect the full staged and untracked change before committing; keep
+disposable artifacts out. Record exact versions and commands behind compatibility claims.
 - **Build only what you need.** Target one usable, SemVer-numbered deliverable per cycle; state what is not in it. Anything else —
 including your own good ideas and every closeout question — goes to `planning/later.md`, not
 into scope, until the author asks for it in their own words. Test proposed work against the

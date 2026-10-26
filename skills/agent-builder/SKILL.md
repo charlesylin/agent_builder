@@ -271,8 +271,10 @@ uncertain and verify a safe, bounded step before claiming setup works. Do this w
 configuration task arises, not at every prompt.
 
 **Size and evidence before Build.** Follow the operating agreement's proportional
-checks. Present estimated additions, removals, net and percent by code language,
-tests, instruction Markdown, documentation and named misc types. Run `changes.py
+checks. Show estimates, Build actuals versus estimates and final actuals in conversation,
+by language, tests, instructions, docs and named misc types; include line and non-whitespace
+size growth. Use green/red diff summaries where supported. Preserve readable formatting.
+Plan minimal behavior cases; implement those tests before changed code. Run `changes.py
 <root> --base <clean-commit>` from this skill's scripts (or the copied project helper)
 for the baseline. Record author-approved paths, categories and ceilings in
 `governance/change-budget.json`; see `references/change-budget.md`. Check after each
@@ -395,11 +397,11 @@ archive after author confirmation; otherwise explain the evidence for adapting o
 
 **Work small and fail loudly.** Build the smallest testable capability and stop when its agreed evidence passes. For an
 existing failure, prefer the evidenced direct fix and justify any larger safeguard against a
-concrete remaining failure. Fail loudly on unsupported or invalid input. Design expected
-behavior in Plan; keep one-off checks temporary and commit focused tests for behavior and
-supported guarantees. Verify proportionately. Inspect the full staged and untracked change
-before committing; keep disposable artifacts out. Record exact versions and commands behind
-compatibility claims.
+concrete remaining failure. Fail loudly on unsupported or invalid input. Define
+minimal unit cases in Plan, implement them before changed code, and keep experiments temporary.
+Show estimated/actual line and code-size budgets in chat; preserve readability. Verify
+proportionately. Inspect the full staged and untracked change before committing; keep
+disposable artifacts out. Record exact versions and commands behind compatibility claims.
 
 **Keep boundaries replaceable.** Reuse suitable code and keep genuine provider or integration boundaries replaceable. Avoid
 speculative layers; core contracts depend on no one host or runtime.

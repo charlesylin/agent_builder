@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "name": "Agent Builder",
-  "version": "0.6.0",
-  "updated": "2026-10-22",
+  "version": "0.6.1",
+  "updated": "2026-10-26",
   "repository": "https://github.com/charlesylin/agent_builder.git",
   "branch": "main"
 }

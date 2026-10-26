@@ -6,7 +6,7 @@ project:
   purpose: Proportionate, version-sized development for agents, skills and projects.
 phase:
   current: build
-  status: in_progress
+  status: ready_for_review
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-10-26
   transition_requires: explicit_author_approval
@@ -47,12 +47,13 @@ build:
   code_growth: Approximately +2000 non-whitespace bytes (+2.9% of 69240); +55 net Python lines (+2.3%).
   done_evidence: Focused size and inventory cases, existing budget and metadata checks, fresh-clone case, render agreement and touched-Python lint.
   approval: Author approved scope, budget and minimum evidence on 2026-10-26.
+  result: Seven focused tests passed on Python 3.9.6; render agreement and Ruff 0.16.6 passed; all category ceilings respected.
   budget: governance/change-budget.json
   exclusions: Larger v0.7 work, new analysis frameworks, runtime notices and automatic migration.
 previous_build: d09344014558d08d141b559d9b2d137dc1b2fc34:governance/project-state.yaml
 checkpoint:
   date: 2026-10-26
-  next_action: Implement approved v0.6.1 cases and changes, check actuals, then present the candidate for Review.
+  next_action: Author-directed Review of local v0.6.1 candidate; Build evidence passed, no release acceptance or push.
   source_repository: true
   limitation: Predates generated manifest; do not fabricate scaffold files to satisfy check.py.
 history: f1e7582362e2c65c748cefa7691f7c236b9af42f:governance/project-state.yaml

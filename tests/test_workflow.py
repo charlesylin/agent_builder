@@ -59,8 +59,11 @@ class ChangesTests(unittest.TestCase):
             report = changes.measure(root, base)
             self.assertEqual(report["rows"]["Python code"]["added"], 1)
             self.assertEqual(report["rows"]["Python code"]["baseline"], 30)
+            self.assertEqual(report["code_size_bytes"]["net"], 7)
+            self.assertAlmostEqual(report["code_size_bytes"]["percent"], 100 * 7 / 110)
             binary = report["rows"]["Misc: .bin files (bytes)"]
             self.assertEqual((binary["added"], binary["removed"]), (6, 4))
+            self.assertNotIn("size_bytes", binary)
             self.assertNotIn("ignored/no.py", report["paths"])
             self.assertIsNone(report["rows"]["Documentation"]["percent"])
             budget = {
@@ -83,6 +86,44 @@ class ChangesTests(unittest.TestCase):
                 self.assertEqual(changes.main([str(root), "--budget", str(budget_path)]), 1)
                 self.assertEqual(changes.main([str(root), "--base", "not-a-commit"]), 2)
 
+    def test_size_ignores_layout_and_accounts_for_each_snapshot(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            git(root, "init", "-q")
+            (root / "a.py").write_bytes(b"x = (1 + 2)\n")
+            (root / "move.py").write_bytes(b"old=1\n")
+            (root / "vendor").mkdir()
+            (root / "vendor/v.py").write_bytes(b"vendored=1\n")
+            base = commit(root)
+            (root / "a.py").write_bytes(b"x = (\n    1 + 2\n)\n")
+            layout = changes.measure(root, base)
+            self.assertEqual(layout["code_size_bytes"]["net"], 0)
+            self.assertEqual(layout["code_size_bytes"]["baseline"], 12)
+            self.assertGreater(layout["rows"]["Python code"]["added"], 0)
+            git(root, "mv", "move.py", "move.md")
+            (root / "new.py").write_bytes(b"new = 3\n")
+            report = changes.measure(root, base)
+            self.assertEqual(report["code_size_bytes"]["current"], 12)
+            docs = report["rows"]["Documentation"]["size_bytes"]
+            self.assertEqual((docs["baseline"], docs["current"], docs["percent"]), (0, 5, None))
+            (root / "a.py").unlink()
+            self.assertEqual(changes.measure(root, base)["code_size_bytes"]["net"], -7)
+            args = [str(root), "--base", base]
+            for terminal in (False, True):
+                with (
+                    redirect_stdout(StringIO()) as out,
+                    patch.object(out, "isatty", return_value=terminal),
+                ):
+                    self.assertEqual(changes.main(args), 0)
+                    self.assertEqual("\x1b[32m+" in out.getvalue(), terminal)
+                    self.assertEqual("\x1b[31m-" in out.getvalue(), terminal)
+                    self.assertIn("First-party code size | 12 | 5 |", out.getvalue())
+                    out.seek(0)
+                    out.truncate()
+                    self.assertEqual(changes.main([*args, "--json"]), 0)
+                    self.assertEqual(json.loads(out.getvalue())["code_size_bytes"]["net"], -7)
+                    self.assertNotIn("\x1b", out.getvalue())
+
     def test_staged_deletion_keeps_ignored_copy_and_never_reads_symlink(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -101,6 +142,8 @@ class ChangesTests(unittest.TestCase):
             if (root / "external").is_symlink():
                 self.assertEqual(report["rows"]["Misc: external files (links)"]["added"], 1)
             self.assertEqual(report["rows"]["Misc: external files"]["removed"], 1)
+            self.assertEqual(report["rows"]["Documentation"]["size_bytes"]["current"], 0)
+            self.assertEqual(report["rows"]["Misc: external files"]["size_bytes"]["current"], 0)
             self.assertTrue((root / "local.md").is_file())
             self.assertEqual(changes.category("src/a.ts", {}), "TypeScript code")
             self.assertEqual(changes.category("a.py", {"a.py": "override"}), "override")

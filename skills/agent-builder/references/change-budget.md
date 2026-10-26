@@ -7,6 +7,21 @@ Inspect pre-existing dirty work and agree its handling before fixing the cycle b
 After approval run `python3 scripts/changes.py .` after coherent edits and before commits.
 An overrun or unapproved path exits 1; unavailable/invalid input exits 2. Re-estimate with
 the author rather than widening the budget. Scope approval still applies below the limits.
+Never compress readable code to meet a limit.
+
+Show estimates in conversation before Build approval, actuals versus estimates after each
+coherent Build increment and final actuals at closeout. A plan or tool output alone is not
+visible reporting. Use green additions/red removals (diff blocks in chat) where supported;
+the helper colors interactive terminals and leaves redirected text/JSON plain.
+
+Text rows also report non-whitespace byte baseline/current/net/percent (`size_bytes` in
+JSON); `code_size_bytes` separately totals first-party code, excluding tests and paths under
+vendor/third_party. Count bytes after removing ASCII whitespace, including comments/strings.
+This proxy ignores wrapping/indentation size, not their possible behavioral effects. It is
+not semantic complexity or an automatic limit exemption; keep schema-1 line/path enforcement.
+Compare both snapshots by category, including renames, additions and staged deletions;
+exclude ignored local copies of staged deletions and never follow links/submodules.
+Binary rows retain byte units. A zero size baseline reports N/A (JSON null).
 
 `governance/change-budget.json` example (replace estimates with the approved numbers):
 

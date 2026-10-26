@@ -2,6 +2,13 @@
 
 All notable changes to Agent Builder are documented here.
 
+## [0.6.1] — 2026-10-26
+
+Build candidate; awaiting author-directed Review and acceptance.
+Budgets must be shown in conversation. Reports add whitespace-neutral code-size growth
+and green/red terminal deltas while retaining readable formatting and existing limits.
+Plan defines minimum behavior tests before implementation; temporary experiments stay local.
+
 ## [0.6.0] — 2026-10-22
 
 Accepted after author-reported successful project Review; tagged v0.6.0.
