@@ -43,16 +43,16 @@ release:
   tag: v0.6.1
   evidence: Author accepts this small correction after seven focused tests, render and lint passed; no additional real-work Review scenarios supplied.
 deliverable:
-  target_version: 0.7.0
-  goal: Await the author's larger new definition; scope and success criteria remain open.
+  target_version: 0.6.2
+  goal: Restore reliable new-project seeding from the installed Claude plugin; working patch target.
 define:
-  decision: AB-D096
-  scope: Awaiting author input; no Plan or Build approved.
+  decision: AB-D097
+  scope: Missing environment-example template in the Claude plugin; larger v0.7 idea deferred. No Plan or Build approved.
   previous_budget: governance/change-budget.json is the completed v0.6.1 budget, not authority for this cycle.
 previous_build: 3849e4d205b5dc10f60f26bcc0db84bcf4cd204f:governance/project-state.yaml
 checkpoint:
   date: 2026-10-26
-  next_action: Capture the larger idea, desired outcome and smallest useful v0.7.0 scope.
+  next_action: Confirm the affected Claude install path and agree the smallest packaging correction; evidence is in local planning/v0-6-2-feedback.md.
   source_repository: true
   limitation: Predates generated manifest; do not fabricate scaffold files to satisfy check.py.
 history: 3849e4d205b5dc10f60f26bcc0db84bcf4cd204f:governance/project-state.yaml

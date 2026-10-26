@@ -217,3 +217,7 @@ decisions:
     status: confirmed
     date: 2026-10-26
     decision: Author explicitly closes Build and Review, accepts v0.6.1, requests commit/push/tag and opening the next cycle. Use v0.7.0 as a provisional Define target for the larger idea; scope remains unprovided.
+  - id: AB-D097
+    status: confirmed
+    date: 2026-10-26
+    decision: Author raises another v0.6.x correction for Claude new-project seeding delayed by a missing environment-example template. Define this narrow fix under working target v0.6.2; defer the larger v0.7 idea. Implementation and phase transition are not authorized.

@@ -1,9 +1,13 @@
-# Agent Builder v0.7.0 — Define
+# Agent Builder v0.6.2 — Define
 
-Opened 2026-10-26 at the author's request after accepting v0.6.1.
-The target is provisional: the author has a larger idea yet to describe.
+Working patch target, 2026-10-26. Restore reliable seeding from the installed Claude plugin
+without repeated investigation or fetching a source checkout to replace a missing template.
 
-Outcome, users, scope, non-goals and success criteria await that definition.
-No deferred item is promoted automatically; no Plan or Build is authorized.
+A local Desktop payload (v0.6.0) lacks only .env.example.tmpl among the templates; seeding
+with those templates fails validation, while repository templates succeed. The specific
+v0.6.1 installation mentioned by the author and the omission stage remain unverified.
 
-Accepted v0.6.1 scope: `v0.6.1:planning/definition.md`.
+Success: the actual published/installed Claude plugin seeds a new project containing the
+names-only .env.example, with normal validation and no remote-source recovery needed.
+Keep the correction small; no updater, retry layer, packaging framework or v0.7 features.
+No Plan or Build approved. Detailed diagnostic evidence stays local.
