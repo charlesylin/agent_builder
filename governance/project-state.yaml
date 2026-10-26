@@ -6,7 +6,7 @@ project:
   purpose: Proportionate, version-sized development for agents, skills and projects.
 phase:
   current: plan
-  status: in_progress
+  status: awaiting_approval
   last_confirmed_by: charles-yang-lin
   last_confirmed_date: 2026-10-26
   transition_requires: explicit_author_approval
@@ -36,14 +36,21 @@ deliverable:
 plan:
   decision: AB-D093
   scope: Surface budgets in conversation; distinguish code growth from formatting; define necessary tests before implementation.
-  next_step: Propose the smallest changes, measurement contract, visible estimate and focused test cases.
+  next_step: Author reviews the proposed direct change, budget and minimum cases; Build requires approval.
+  proposal: AB-D094
+  baseline: dbdce8a7278e7a79affe1b9f34fabf3a7857977f
+  direct_change: Extend changes.py with non-whitespace byte growth; tighten visible-budget and contract-first testing instructions and render copies.
+  compatibility: Keep schema-1 gross-line and path enforcement; additive report fields only, no automatic formatting exemptions.
+  estimate: Python +80/-25; tests +60/-10; instructions +120/-85; documentation +35/-15; metadata +65/-90 lines.
+  code_growth: Approximately +2000 non-whitespace bytes (+2.9% of 69240); +55 net Python lines (+2.3%).
+  done_evidence: Focused size and inventory cases, existing budget and metadata checks, fresh-clone case, render agreement and touched-Python lint.
   approval: Plan opened only; implementation choices, budget and Build remain unapproved.
   prior_budget: governance/change-budget.json belongs to completed v0.6.0; no v0.6.1 budget approved yet.
   exclusions: Larger v0.7 work, new analysis frameworks, runtime notices and automatic migration.
 previous_build: d09344014558d08d141b559d9b2d137dc1b2fc34:governance/project-state.yaml
 checkpoint:
   date: 2026-10-26
-  next_action: Prepare the short v0.6.1 maintenance Plan; keep detailed working notes local.
+  next_action: Review the v0.6.1 proposal; local detail is planning/v0-6-1-plan.md and planning/v0-6-1-budget.json.
   source_repository: true
   limitation: Predates generated manifest; do not fabricate scaffold files to satisfy check.py.
 history: f1e7582362e2c65c748cefa7691f7c236b9af42f:governance/project-state.yaml

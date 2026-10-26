@@ -20,3 +20,7 @@
 Local evidence: Git 2.54.0 (Apple Git-157), Python 3.9.6. Codex 0.163.0-alpha.10.2;
 Claude unavailable. Actual session behavior requires Review. The local/shared split is
 our choice, informed by GitHub's focused README, Issues and tag-based release conventions.
+
+2026-10-26, v0.6.1 maintenance: reuse the accepted Git/Python adaptation above.
+The observed gaps are physical-line-only reporting and insufficiently explicit presentation/
+test instructions; extend existing code and instruction sources without a new dependency.
